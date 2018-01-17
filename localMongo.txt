@@ -1,0 +1,5 @@
+-Running mongodb local instace:
+    - open cmd
+    - "C:\Program Files\MongoDB\Server\3.6\bin\mongod.exe"
+    - open new cmd
+    - "C:\Program Files\MongoDB\Server\3.6\bin\mongodb.exe"
