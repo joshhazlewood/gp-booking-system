@@ -5,6 +5,8 @@ const router = express.Router();
 
 //Import the mongoose module
 var mongoose = require('mongoose');
+// var staffSchema = mongoose.model('staff').schema;
+require('../schemas/staff.js');
 
 //Set up default mongoose connection
 var mongoDB = 'mongodb://josh:Pa55word!@ds251807.mlab.com:51807/gp-db-13118866';
@@ -63,5 +65,20 @@ router.get('/users', (req, res) => {
         sendError(err, res);
     });
 });
+
+// STAFF COLLECTION
+
+var testStaff = new staffSchema({
+    forname : 'josh',
+    surname : 'hazlewood',
+    staff_role: 10,
+    user_name : 'joshhaz',
+    password : 'test'
+});
+
+testStaff.create(function (err) {
+    if (err) return handleError(err); // saved!  
+    console.log('Saved to staff collection');
+})
 
 module.exports = router;
