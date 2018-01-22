@@ -8,6 +8,7 @@ var mongoose = require('mongoose');
 // const StaffSchema = require('../schemas/staff.js');
 var staffSchema = require('../schemas/staff');
 var patientSchema = require('../schemas/patient');
+var appointmentsSchema = require('../schemas/appointments');
 
 const express = require('express');
 const router = express.Router();
@@ -78,14 +79,15 @@ router.get('/users', (req, res) => {
 });
 
 // STAFF COLLECTION
-// var staffModel = mongoose.model('staff', staffSchema, 'staff');
-// var testStaff = {
-//     forename : 'josh',
-//     surname : 'hazlewood',
-//     staff_role: 10,
-//     user_name : 'joshhaz',
-//     password : 'test'
-// };
+var staffModel = mongoose.model('staff', staffSchema, 'staff');
+var testStaff = {
+    staff_id: 50,
+    forename : 'josh',
+    surname : 'hazlewood',
+    staff_role: 10,
+    user_name : 'joshhaz',
+    password : 'test'
+};
 
 // staffModel.create(testStaff, function(err) {
 //     if (err) return handleError(err)
@@ -94,7 +96,8 @@ router.get('/users', (req, res) => {
 
 var patientModel = mongoose.model('patients', patientSchema, 'patients');
 var testPatient = {
-    forename: 'josh',
+    patient_id: 100,
+    forename: 'test',
     surname: 'hazlewood',
     address: [{
         line1: '2b',
@@ -111,15 +114,51 @@ var testPatient = {
             name: 'lisinopril',
             amount: '5',
             unit: 'mg/day'
+        }, {
+            name: 'test_med',
+            amount: '5',
+            unit: 'mg/day'
         }]
     }],
     user_name: 'joshhaz',
     password: 'testPass'
 }
 
-patientModel.create(testPatient, function(err) {
-    if (err) return handleError(err)
-    console.log("added to patients collection");
-})
+// patientModel.create(testPatient, function(err) {
+//     if (err) return handleError(err)
+//     console.log("added to patients collection");
+// })
+
+var appointmentModel = mongoose.model('appointments', appointmentsSchema, 'appointments');
+var testAppointment = {
+    appointment_id: 50,
+    patient_id : 20,
+    staff_id: 30,
+    start_time: new Date(),
+    end_time: new Date()
+}
+console.log(testAppointment);
+appointmentModel.create(testAppointment, function(err) {
+    // if (err) return handleError(err)
+    if (err) {
+        console.log('Error Inserting New Appointment Data');
+        if (err.name == 'ValidationError') {
+            for (field in err.errors) {
+                console.log(err.errors[field].message); 
+            }
+        }
+    } else {
+        console.log('added to appointments')
+    }
+});
+// appointmentModel.create(testAppointment, function(err) {
+//     if (err) return handleError(err)
+//     console.log("added to appointments collection");
+// })
+
+// appointmentModel.create(testAppointment, function(err) {
+//     if (err) return handleError(err)
+//     console.log("added to appointments collection");
+// })
 
 module.exports = router;
