@@ -124,10 +124,18 @@ var testPatient = {
     password: 'testPass'
 }
 
-// patientModel.create(testPatient, function(err) {
-//     if (err) return handleError(err)
-//     console.log("added to patients collection");
-// })
+patientModel.create(testPatient, function(err) {
+    if (err) {
+        console.log('Error Inserting New Patient Data');
+        if (err.name == 'ValidationError') {
+            for (field in err.errors) {
+                console.log(err.errors[field].message); 
+            }
+        }
+    } else {
+        console.log('added to patients collection')
+    }
+})
 
 var appointmentModel = mongoose.model('appointments', appointmentsSchema, 'appointments');
 var testAppointment = {
@@ -138,27 +146,18 @@ var testAppointment = {
     end_time: new Date()
 }
 console.log(testAppointment);
-appointmentModel.create(testAppointment, function(err) {
-    // if (err) return handleError(err)
-    if (err) {
-        console.log('Error Inserting New Appointment Data');
-        if (err.name == 'ValidationError') {
-            for (field in err.errors) {
-                console.log(err.errors[field].message); 
-            }
-        }
-    } else {
-        console.log('added to appointments')
-    }
-});
 // appointmentModel.create(testAppointment, function(err) {
-//     if (err) return handleError(err)
-//     console.log("added to appointments collection");
-// })
-
-// appointmentModel.create(testAppointment, function(err) {
-//     if (err) return handleError(err)
-//     console.log("added to appointments collection");
-// })
+//     // if (err) return handleError(err)
+//     if (err) {
+//         console.log('Error Inserting New Appointment Data');
+//         if (err.name == 'ValidationError') {
+//             for (field in err.errors) {
+//                 console.log(err.errors[field].message); 
+//             }
+//         }
+//     } else {
+//         console.log('added to appointments')
+//     }
+// });
 
 module.exports = router;
