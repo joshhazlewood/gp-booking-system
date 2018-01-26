@@ -11,15 +11,17 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { StaffListComponent } from './staff-list/staff-list.component';
 import { PatientListComponent } from './patient-list/patient-list.component';
 import { AppointmentsComponent } from './appointments/appointments.component';
+import { AdminPanelComponent } from './admin-panel/admin-panel.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 const appRoutes: Routes = [
-  { path: 'dashboard', component: DashboardComponent },
+  { path: 'home', component: DashboardComponent },
   { path: 'staff-list', component: StaffListComponent },
   { path: 'patients-list', component: PatientListComponent },
   { path: 'appointments-list', component: AppointmentsComponent },
+  { path: 'admin', component:  AdminPanelComponent},
   { path: '',
-    redirectTo: '/dashboard',
+    redirectTo: '/home',
     pathMatch: 'full'
   },
   { path: '**', component: PageNotFoundComponent }
@@ -34,7 +36,8 @@ const appRoutes: Routes = [
     PageNotFoundComponent,
     StaffListComponent,
     PatientListComponent,
-    AppointmentsComponent
+    AppointmentsComponent,
+    AdminPanelComponent
   ],
   imports: [
     BrowserModule,

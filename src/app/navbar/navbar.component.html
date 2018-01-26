@@ -1,6 +1,6 @@
 <nav class="navbar" role="navigation" aria-label="main navigation">
   <div class="navbar-brand">
-    <a class="navbar-item" href="/dashboard">
+    <a class="navbar-item" routerLink="/home">
       <img src="https://bulma.io/images/bulma-logo.png" alt="Bulma: a modern CSS framework based on Flexbox" width="112" height="28">
     </a>
 
@@ -14,7 +14,7 @@
   <div id="navbar-data" class="navbar-menu">
     <!-- navbar start, navbar end -->
     <div class="navbar-start">
-      <a class="navbar-item" routerLink="/dashboard" routerLinkActive="active">
+      <a class="navbar-item" routerLink="/home" routerLinkActive="active">
         Home
       </a>
       <a class="navbar-item" routerLink="/staff-list">
@@ -25,6 +25,9 @@
       </a>
       <a class="navbar-item" routerLink="/appointments-list">
         Appointments
+      </a>
+      <a class="navbar-item" routerLink="/admin">
+        Admin
       </a>
     </div>
   </div>
