@@ -15,7 +15,7 @@ export class AppComponent {
 
   // Create an instance of the DataService through dependency injection
   constructor(private _dataService: DataService) {
-    this._dataService.getUsers()
-      .subscribe(res => this.users = res);
+    // this._dataService.getUsers()
+    //   .subscribe(res => this.users = res);
   }
 }
