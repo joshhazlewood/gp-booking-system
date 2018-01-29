@@ -44,7 +44,7 @@ db.once('open', function() {
 //     return MongoClient.connect('mongodb://joshhaz:Pa55word!@ds247407.mlab.com:47407/gp-db-13118866', (err, client) => {
 //         if (err) return console.log(err);
 
-        
+
 //         var db = client.db('gp-db-13118866');
 //         closure(db);
 //     });
@@ -65,7 +65,7 @@ let response = {
 };
 
 // Get users
-router.get('/users', (req, res) => {    
+router.get('/users', (req, res) => {
     db.collection('users')
     .find()
     .toArray()
@@ -129,7 +129,7 @@ patientModel.create(testPatient, function(err) {
         console.log('Error Inserting New Patient Data');
         if (err.name == 'ValidationError') {
             for (field in err.errors) {
-                console.log(err.errors[field].message); 
+                console.log(err.errors[field].message);
             }
         }
     } else {
@@ -152,7 +152,7 @@ console.log(testAppointment);
 //         console.log('Error Inserting New Appointment Data');
 //         if (err.name == 'ValidationError') {
 //             for (field in err.errors) {
-//                 console.log(err.errors[field].message); 
+//                 console.log(err.errors[field].message);
 //             }
 //         }
 //     } else {
