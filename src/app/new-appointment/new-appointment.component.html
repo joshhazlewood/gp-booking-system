@@ -3,13 +3,12 @@
   <br>
   <p>Please select or type a date.</p>
   <form [formGroup]="myForm" novalidate>
-    <my-date-picker name="date" placeholder="dd/mm/yyyy" 
-        [options]="myDatePickerOptions" formControlName="myDate"></my-date-picker>
+    <my-date-picker name="date" placeholder="dd/mm/yyyy" [options]="myDatePickerOptions" formControlName="myDate"></my-date-picker>
     <!-- other controls are here... -->
-    <input class="button is-info" type="submit" value="Search for appointments" [attr.disabled]='isValidForm?'':null'>
+    <input class="button is-info" type="submit" value="Search for appointments" [attr.disabled]='!isFormValidAndTouched() === true ? true : null'>
     <!-- <a class="button is-info" [attr.disabled]='true' (input)="null">Search for appointments</a> -->
   </form>
   <p>Form value: {{ myForm.value | json }}</p>
-<p>Form status: {{ myForm.status | json }}</p>
-<p>Form valid: {{ myForm.valid | json }}</p>
+  <p>Form status: {{ myForm.status | json }}</p>
+  <p>Form valid: {{ myForm.valid | json }}</p>
 </div>
