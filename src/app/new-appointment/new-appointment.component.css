@@ -1,0 +1,13 @@
+.field {
+    width: 50%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 1.3em;
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+}
+
+p {
+    padding-bottom: 0.5em;
+}

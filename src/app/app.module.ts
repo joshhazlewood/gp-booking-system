@@ -3,6 +3,9 @@ import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { HttpModule } from '@angular/http';
 import { RouterModule, Routes } from '@angular/router';
+import { FormsModule, ReactiveFormsModule }   from '@angular/forms';
+
+import { MyDatePickerModule } from 'mydatepicker';
 
 import { AppComponent } from './app.component';
 import { DataService } from './services/data.service';
@@ -13,11 +16,13 @@ import { PatientListComponent } from './patient-list/patient-list.component';
 import { AppointmentsComponent } from './appointments/appointments.component';
 import { AdminPanelComponent } from './admin-panel/admin-panel.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { NewAppointmentComponent } from './new-appointment/new-appointment.component';
 
 const appRoutes: Routes = [
   { path: 'home', component: DashboardComponent },
   { path: 'staff-list', component: StaffListComponent },
   { path: 'patients-list', component: PatientListComponent },
+  { path: 'new-appointment', component: NewAppointmentComponent },
   { path: 'appointments-list', component: AppointmentsComponent },
   { path: 'admin', component:  AdminPanelComponent},
   { path: '',
@@ -37,7 +42,8 @@ const appRoutes: Routes = [
     StaffListComponent,
     PatientListComponent,
     AppointmentsComponent,
-    AdminPanelComponent
+    AdminPanelComponent,
+    NewAppointmentComponent
   ],
   imports: [
     BrowserModule,
@@ -46,7 +52,10 @@ const appRoutes: Routes = [
     RouterModule.forRoot(
       appRoutes,
       { enableTracing: false } // <-- debugging purposes only
-    )
+    ),
+    FormsModule,
+    ReactiveFormsModule,
+    MyDatePickerModule
   ],
   providers: [DataService],
   bootstrap: [AppComponent]

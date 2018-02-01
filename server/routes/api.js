@@ -124,18 +124,18 @@ var testPatient = {
     password: 'testPass'
 }
 
-patientModel.create(testPatient, function(err) {
-    if (err) {
-        console.log('Error Inserting New Patient Data');
-        if (err.name == 'ValidationError') {
-            for (field in err.errors) {
-                console.log(err.errors[field].message);
-            }
-        }
-    } else {
-        console.log('added to patients collection')
-    }
-})
+// patientModel.create(testPatient, function(err) {
+//     if (err) {
+//         console.log('Error Inserting New Patient Data');
+//         if (err.name == 'ValidationError') {
+//             for (field in err.errors) {
+//                 console.log(err.errors[field].message);
+//             }
+//         }
+//     } else {
+//         console.log('added to patients collection')
+//     }
+// })
 
 var appointmentModel = mongoose.model('appointments', appointmentsSchema, 'appointments');
 var testAppointment = {
