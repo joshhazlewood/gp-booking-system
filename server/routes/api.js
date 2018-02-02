@@ -1,6 +1,6 @@
-
-// const MongoClient = require('mongodb').MongoClient;
-// const ObjectID = require('mongodb').ObjectID;
+const express = require('express');
+const router = express.Router();
+const appointments = require('./appointments.js')
 
 //Import the mongoose module
 var mongoose = require('mongoose');
@@ -9,9 +9,6 @@ var mongoose = require('mongoose');
 var staffSchema = require('../schemas/staff');
 var patientSchema = require('../schemas/patient');
 var appointmentsSchema = require('../schemas/appointments');
-
-const express = require('express');
-const router = express.Router();
 
 //Set up default mongoose connection
 var mongoDB = 'mongodb://josh:Pa55word!@ds251807.mlab.com:51807/gp-db-13118866';
@@ -38,6 +35,8 @@ db.once('open', function() {
     // we're connected!
     console.log('Connected to DB');
   });
+
+router.use('/appointments', appointments);
 
 // Connect
 // const connection = (closure) => {

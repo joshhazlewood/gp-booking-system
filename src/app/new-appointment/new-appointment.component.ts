@@ -5,6 +5,7 @@ import { Validators } from '@angular/forms';
 
 import { IMyDpOptions, IMyDateModel } from 'mydatepicker';
 import { IMyDate } from '../../../node_modules/mydatepicker/dist/interfaces/my-date.interface';
+import { Appointment } from '../models/appointment';
 
 @Component({
   selector: 'app-new-appointment',
@@ -14,11 +15,13 @@ import { IMyDate } from '../../../node_modules/mydatepicker/dist/interfaces/my-d
 export class NewAppointmentComponent implements OnInit {
 
   private formIsValid = false;
+  private dateSelected = false;
   private todaysDate = new Date();
 
   public myDatePickerOptions: IMyDpOptions = {
     // other options...
     dateFormat: 'dd/mm/yyyy',
+    disableUntil: { year: this.todaysDate.getFullYear(), month: this.todaysDate.getMonth() + 1, day: this.todaysDate.getDate() - 1 }
   };
 
   public myForm: FormGroup;
@@ -34,21 +37,10 @@ export class NewAppointmentComponent implements OnInit {
       // example: {date: {year: 2018, month: 10, day: 9}} which sets this date to initial
       // value.
 
-      myDate: [null, Validators.required],
-      disableUntil: { year: this.todaysDate.getFullYear(), month: this.todaysDate.getMonth() + 1, day: this.todaysDate.getDate() }
+      myDate: [null, Validators.required]
       // other controls are here...
     });
   }
-
-//   disableUntil() {
-//     const d: date = new Date();
-//     d.setDate(d.getDate() - 1);
-//     let copy = this.getCopyOfOptions();
-//     copy.disableUntil = {year: d.getFullYear(), 
-//                          month: d.getMonth() + 1, 
-//                          day: d.getDate()};
-//     this.myOptions = copy;
-// }
 
   setDate(): void {
     // Set today date using the patchValue function
@@ -62,7 +54,6 @@ export class NewAppointmentComponent implements OnInit {
         }
       }
     });
-    // console.log('asdsad');
   }
 
   clearDate(): void {
@@ -73,6 +64,30 @@ export class NewAppointmentComponent implements OnInit {
   isFormValidAndTouched(): boolean {
     // console.log('valid:' + this.myForm.valid + 'touched: ' + this.myForm.touched);
     return this.myForm.valid && this.myForm.touched;
+  }
+
+  findAppointments(): void {
+    this.dateSelected = true;
+    const appointments = [];
+    const selectedDate = this.myForm.get('myDate').value['date'];
+    const selectedYear = selectedDate.year;
+    const selectedMonth = selectedDate.month - 1;
+    const selectedDay = selectedDate.day;
+    const startHour = 9;
+
+    for(let i=0; i<17; i++) {
+      let appointment = new Appointment();
+      let hour: number = startHour + (i * 0.5);
+      if(Number.isInteger(hour)) {
+        // console.log('hour is int ' + hour);
+        appointment.start_time = new Date(selectedYear, selectedMonth, selectedDay, hour);
+        console.log(appointment.start_time);
+      } else {
+        // console.log('hour is not int ' + hour);
+        appointment.start_time = new Date(selectedYear, selectedMonth, selectedDay, hour - 0.5, 30);
+        console.log(appointment.start_time.getHours());
+      }
+    }
   }
 
 }
