@@ -75,10 +75,10 @@ export class NewAppointmentComponent implements OnInit {
     const selectedDay = selectedDate.day;
     const startHour = 9;
 
-    for(let i=0; i<17; i++) {
-      let appointment = new Appointment();
-      let hour: number = startHour + (i * 0.5);
-      if(Number.isInteger(hour)) {
+    for (let i = 0; i < 17; i++) {
+      const appointment = new Appointment();
+      const hour: number = startHour + (i * 0.5);
+      if (Number.isInteger(hour)) {
         // console.log('hour is int ' + hour);
         appointment.start_time = new Date(selectedYear, selectedMonth, selectedDay, hour);
         console.log(appointment.start_time);
@@ -89,5 +89,4 @@ export class NewAppointmentComponent implements OnInit {
       }
     }
   }
-
 }
