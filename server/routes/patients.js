@@ -1,11 +1,11 @@
-var express = require('express');
-var router = express.Router();
-var mongoose = require('mongoose');
+const express = require('express');
+const router = express.Router();
+const mongoose = require('mongoose');
 
-var patientSchema = require('../schemas/patient');
+const patientSchema = require('../schemas/patient');
 
-var patientModel = mongoose.model('patients', patientSchema, 'patients');
-var testPatient = {
+const patientModel = mongoose.model('patients', patientSchema, 'patients');
+const testPatient = {
     patient_id: 100,
     forename: 'test',
     surname: 'hazlewood',
@@ -34,17 +34,17 @@ var testPatient = {
     password: 'testPass'
 }
 
-patientModel.create(testPatient, function(err) {
-    if (err) {
-        console.log('Error Inserting New Patient Data');
-        if (err.name == 'ValidationError') {
-            for (field in err.errors) {
-                console.log(err.errors[field].message);
-            }
-        }
-    } else {
-        console.log('added to patients collection')
-    }
-})
+// patientModel.create(testPatient, function(err) {
+//     if (err) {
+//         console.log('Error Inserting New Patient Data');
+//         if (err.name == 'ValidationError') {
+//             for (field in err.errors) {
+//                 console.log(err.errors[field].message);
+//             }
+//         }
+//     } else {
+//         console.log('added to patients collection')
+//     }
+// })
 
 module.exports = router;

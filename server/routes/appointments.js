@@ -1,15 +1,15 @@
-var express = require('express');
-var router = express.Router();
-var mongoose = require('mongoose');
+const express = require('express');
+const router = express.Router();
+const mongoose = require('mongoose');
 
-var appointmentsSchema = require('../schemas/appointments');
+const appointmentsSchema = require('../schemas/appointments');
 
 router.get('/', function(req, res) {
     res.send('appointments');
 })
 
-var appointmentModel = mongoose.model('appointments', appointmentsSchema, 'appointments');
-var testAppointment = {
+const appointmentModel = mongoose.model('appointments', appointmentsSchema, 'appointments');
+const testAppointment = {
     appointment_id: 50,
     patient_id : 20,
     staff_id: 30,

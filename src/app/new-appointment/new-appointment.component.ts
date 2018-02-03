@@ -78,15 +78,25 @@ export class NewAppointmentComponent implements OnInit {
     for (let i = 0; i < 17; i++) {
       const appointment = new Appointment();
       const hour: number = startHour + (i * 0.5);
-      if (Number.isInteger(hour)) {
+      if (this.isOnTheHour(hour)) {
         // console.log('hour is int ' + hour);
         appointment.start_time = new Date(selectedYear, selectedMonth, selectedDay, hour);
-        console.log(appointment.start_time);
+        appointments[i] = appointment.start_time;
+        // console.log(appointment.start_time);
+        // console.log(appointment.start_time.getHours() + ':00');
       } else {
         // console.log('hour is not int ' + hour);
         appointment.start_time = new Date(selectedYear, selectedMonth, selectedDay, hour - 0.5, 30);
-        console.log(appointment.start_time.getHours());
+        appointments[i] = appointment.start_time;
+        // console.log(appointment.start_time);
+        // console.log(appointment.start_time.getHours() + ':' + appointment.start_time.getMinutes());
       }
     }
+    console.log(appointments);
   }
+
+  isOnTheHour(hour: number): boolean {
+    return Number.isInteger(hour);
+  }
+
 }
