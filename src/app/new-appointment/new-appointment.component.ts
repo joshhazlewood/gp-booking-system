@@ -5,7 +5,7 @@ import { Validators } from '@angular/forms';
 
 import { IMyDpOptions, IMyDateModel } from 'mydatepicker';
 import { IMyDate } from '../../../node_modules/mydatepicker/dist/interfaces/my-date.interface';
-import { Appointment } from '../models/appointment';
+import { PotentialAppointment } from '../models/potential-appointment';
 
 @Component({
   selector: 'app-new-appointment',
@@ -16,7 +16,10 @@ export class NewAppointmentComponent implements OnInit {
 
   private formIsValid = false;
   private dateSelected = false;
+  private appointmentsFound = false;
   private todaysDate = new Date();
+  public heroes = ['1', '2', '3'];
+  public appointments = [];
 
   public myDatePickerOptions: IMyDpOptions = {
     // other options...
@@ -44,6 +47,8 @@ export class NewAppointmentComponent implements OnInit {
 
   setDate(): void {
     // Set today date using the patchValue function
+    this.appointmentsFound = false;
+
     const date = new Date();
     this.myForm.patchValue({
       myDate: {
@@ -59,16 +64,15 @@ export class NewAppointmentComponent implements OnInit {
   clearDate(): void {
     // Clear the date using the patchValue function
     this.myForm.patchValue({ myDate: null });
+    this.appointmentsFound = false;
   }
 
   isFormValidAndTouched(): boolean {
-    // console.log('valid:' + this.myForm.valid + 'touched: ' + this.myForm.touched);
     return this.myForm.valid && this.myForm.touched;
   }
 
   findAppointments(): void {
     this.dateSelected = true;
-    const appointments = [];
     const selectedDate = this.myForm.get('myDate').value['date'];
     const selectedYear = selectedDate.year;
     const selectedMonth = selectedDate.month - 1;
@@ -76,23 +80,18 @@ export class NewAppointmentComponent implements OnInit {
     const startHour = 9;
 
     for (let i = 0; i < 17; i++) {
-      const appointment = new Appointment();
+      const appointment = new PotentialAppointment();
       const hour: number = startHour + (i * 0.5);
       if (this.isOnTheHour(hour)) {
-        // console.log('hour is int ' + hour);
-        appointment.start_time = new Date(selectedYear, selectedMonth, selectedDay, hour);
-        appointments[i] = appointment.start_time;
-        // console.log(appointment.start_time);
-        // console.log(appointment.start_time.getHours() + ':00');
+        appointment.date = new Date(selectedYear, selectedMonth, selectedDay, hour);
+        this.appointments[i] = appointment.date;
       } else {
-        // console.log('hour is not int ' + hour);
-        appointment.start_time = new Date(selectedYear, selectedMonth, selectedDay, hour - 0.5, 30);
-        appointments[i] = appointment.start_time;
-        // console.log(appointment.start_time);
-        // console.log(appointment.start_time.getHours() + ':' + appointment.start_time.getMinutes());
+        appointment.date = new Date(selectedYear, selectedMonth, selectedDay, hour - 0.5, 30);
+        this.appointments[i] = appointment.date;
       }
     }
-    console.log(appointments);
+    this.appointmentsFound = true;
+    console.log(this.appointments);
   }
 
   isOnTheHour(hour: number): boolean {

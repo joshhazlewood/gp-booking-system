@@ -1,14 +1,22 @@
 <div class="field">
+
   <h1 class="title">Book an appointment</h1>
   <p>Please select or type a date.</p>
+
   <form [formGroup]="myForm" novalidate>
     <my-date-picker name="date" placeholder="dd/mm/yyyy" [options]="myDatePickerOptions" formControlName="myDate"></my-date-picker>
-    <input class="button is-info" type="submit" (click)="findAppointments()"value="Search for appointments" [attr.disabled]='!isFormValidAndTouched() === true ? true : null'>
+    <input class="button is-info" type="submit" (click)="findAppointments()" value="Search for appointments" [attr.disabled]='!isFormValidAndTouched() === true ? true : null'>
   </form>
-  <div *ngIf="dateSelected">
-    <p>date selected</p>
-  </div>
-  <p>Form value: {{ myForm.value | json }}</p>
-  <p>Form status: {{ myForm.status | json }}</p>
-  <p>Form valid: {{ myForm.valid | json }}</p>
+
+  <ng-container *ngIf="appointmentsFound">
+    <div class="box" *ngFor="let app of appointments">
+      <div class="container">
+        <h1>{{ app.getHours() + ':' + app.getMinutes() }}</h1>
+        <p>{{ app.toLocaleTimeString() }}</p>
+        <p>{{ app.toLocaleDateString() }}</p>
+        <p>{{ app.toUTCString() }}/</p>
+      </div>
+    </div>
+  </ng-container>
+
 </div>

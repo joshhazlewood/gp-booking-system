@@ -1,3 +1,3 @@
 export class Appointment {
-    public start_time: Date
+    public start_time: Date;
 }
