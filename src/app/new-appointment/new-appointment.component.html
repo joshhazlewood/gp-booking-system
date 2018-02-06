@@ -7,7 +7,7 @@
     <my-date-picker name="date" placeholder="dd/mm/yyyy" [options]="myDatePickerOptions" formControlName="myDate"></my-date-picker>
     <input class="button is-info" type="submit" (click)="findAppointments()" value="Search for appointments" [attr.disabled]='!isFormValidAndTouched() === true ? true : null'>
   </form>
-
+  <br>
   <ng-container *ngIf="appointmentsFound">
     <div class="box" *ngFor="let app of appointments">
       <div class="container">
