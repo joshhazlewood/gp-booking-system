@@ -15,10 +15,9 @@ import { PotentialAppointment } from '../models/potential-appointment';
 export class NewAppointmentComponent implements OnInit {
 
   private formIsValid = false;
-  private dateSelected = false;
   private appointmentsFound = false;
   private todaysDate = new Date();
-  public heroes = ['1', '2', '3'];
+
   public appointments = [];
 
   public myDatePickerOptions: IMyDpOptions = {
@@ -72,7 +71,6 @@ export class NewAppointmentComponent implements OnInit {
   }
 
   findAppointments(): void {
-    this.dateSelected = true;
     const selectedDate = this.myForm.get('myDate').value['date'];
     const selectedYear = selectedDate.year;
     const selectedMonth = selectedDate.month - 1;
@@ -82,6 +80,7 @@ export class NewAppointmentComponent implements OnInit {
     for (let i = 0; i < 17; i++) {
       const appointment = new PotentialAppointment();
       const hour: number = startHour + (i * 0.5);
+
       if (this.isOnTheHour(hour)) {
         appointment.date = new Date(selectedYear, selectedMonth, selectedDay, hour);
         this.appointments[i] = appointment.date;
@@ -91,7 +90,6 @@ export class NewAppointmentComponent implements OnInit {
       }
     }
     this.appointmentsFound = true;
-    console.log(this.appointments);
   }
 
   isOnTheHour(hour: number): boolean {

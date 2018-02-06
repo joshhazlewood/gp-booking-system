@@ -11,3 +11,8 @@
 p {
     padding-bottom: 0.5em;
 }
+
+.box {
+    margin-left: 1em;
+    margin-right: 1em;
+}
