@@ -13,9 +13,9 @@
       </div>
     </form>
     <br>
-    <ng-container *ngIf="appointmentsFound">
+    <ng-container *ngIf="availableAppointmentsFound">
       <div class="columns content is-multiline is-tablet">
-        <div class="column is-one-quarter-desktop" *ngFor="let app of appointments; let index = i">
+        <div class="column is-one-quarter-desktop" *ngFor="let app of sortedAppointments; let index = i">
           <div class="box">
             <p>
               <strong>{{ app.date.toLocaleTimeString().substr(0, 5)}} - {{ app.doctor }}</strong>
