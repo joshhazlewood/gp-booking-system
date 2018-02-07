@@ -1,7 +1,7 @@
 export class PotentialAppointment {
     public date: Date;
-    public doctor: String;
-    
+    public doctor: string;
+
     constructor() {
 
     }
