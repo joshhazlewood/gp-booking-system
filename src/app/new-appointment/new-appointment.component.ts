@@ -18,7 +18,8 @@ export class NewAppointmentComponent implements OnInit {
   private appointmentsFound = false;
   private todaysDate = new Date();
 
-  public appointments = [];
+  public appointments;
+  private doctors = ['doc1', 'doc2', 'doc3', 'doc4'];
 
   public myDatePickerOptions: IMyDpOptions = {
     // other options...
@@ -71,25 +72,53 @@ export class NewAppointmentComponent implements OnInit {
   }
 
   findAppointments(): void {
+    this.appointments = new Array();
     const selectedDate = this.myForm.get('myDate').value['date'];
     const selectedYear = selectedDate.year;
     const selectedMonth = selectedDate.month - 1;
     const selectedDay = selectedDate.day;
     const startHour = 9;
 
-    for (let i = 0; i < 17; i++) {
-      const appointment = new PotentialAppointment();
-      const hour: number = startHour + (i * 0.5);
+    this.doctors.forEach((doc) => {
+      console.log(doc);
+      for (let i = 0; i < 17; i++) {
+        const appointment = new PotentialAppointment();
+        const hour: number = startHour + (i * 0.5);
 
-      if (this.isOnTheHour(hour)) {
-        appointment.date = new Date(selectedYear, selectedMonth, selectedDay, hour);
-        this.appointments[i] = appointment.date;
-      } else {
-        appointment.date = new Date(selectedYear, selectedMonth, selectedDay, hour - 0.5, 30);
-        this.appointments[i] = appointment.date;
+        appointment.doctor = doc;
+        console.log('hour' + i + ' = ' + hour)
+        // console.log(this.isOnTheHour())
+        // console.log(this.isOnTheHour(10));
+        if (this.isOnTheHour(hour)) {
+          appointment.date = new Date(selectedYear, selectedMonth, selectedDay, hour);
+          this.appointments.push(appointment);
+        } else {
+          appointment.date = new Date(selectedYear, selectedMonth, selectedDay, hour - 0.5, 30);
+          this.appointments.push(appointment);
+        }
       }
-    }
+    });
+    this.sortAppointmentsByTimeAndDocName();
+    // this.appointments.sort()
     this.appointmentsFound = true;
+  }
+
+  sortAppointmentsByTimeAndDocName(): void {
+    this.appointments.sort(function(date1, date2) {
+      let result = 0;
+      if(date1.date < date2.date) {
+        return -1;
+      } else if(date1.date > date2.date) {
+        return 1;
+      } else {
+        if (date1.doctor < date2.doctor) {
+          return -1;
+        } else if (date1.doctor > date2.doctor) {
+          return 1;    
+        }
+        return 0;
+      }
+    })
   }
 
   isOnTheHour(hour: number): boolean {

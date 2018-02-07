@@ -2,21 +2,25 @@
   <div class="container">
     <h1 class="title">Book an appointment</h1>
     <p>Please select or type a date.</p>
-    <div class="field">
-      <form [formGroup]="myForm" novalidate>
-        <my-date-picker name="date" placeholder="dd/mm/yyyy" [options]="myDatePickerOptions" formControlName="myDate"></my-date-picker>
-        <input class="button is-info" type="submit" (click)="findAppointments()" value="Search for appointments" [attr.disabled]='!isFormValidAndTouched() === true ? true : null'>
-      </form>
-    </div>
+    <form [formGroup]="myForm" novalidate>
+      <div class="field has-addons">
+        <div class="control">
+          <my-date-picker name="date" placeholder="dd/mm/yyyy" [options]="myDatePickerOptions" formControlName="myDate"></my-date-picker>
+        </div>
+        <div class="control">
+          <input class="button is-info" type="submit" (click)="findAppointments()" value="Search for appointments" [attr.disabled]='!isFormValidAndTouched() === true ? true : null'>
+        </div>
+      </div>
+    </form>
     <br>
     <ng-container *ngIf="appointmentsFound">
       <div class="columns content is-multiline is-tablet">
         <div class="column is-one-quarter-desktop" *ngFor="let app of appointments; let index = i">
           <div class="box">
             <p>
-              <strong>{{ app.toLocaleTimeString().substr(0, 5) }}</strong>
+              <strong>{{ app.date.toLocaleTimeString().substr(0, 5)}} - {{ app.doctor }}</strong>
             </p>
-            <p>{{ app.toUTCString().substr(0, 17) }}</p>
+            <p>{{ app.date.toUTCString().substr(0, 17) }}</p>
           </div>
         </div>
       </div>

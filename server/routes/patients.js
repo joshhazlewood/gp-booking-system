@@ -95,9 +95,5 @@ router.get('/:id', function (req, res) {
 //     }
 // })
 
-module.exports = router;
-        console.log('added to patients collection')
-//     }
-// })
 
 module.exports = router;
