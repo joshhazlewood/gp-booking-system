@@ -1,22 +1,26 @@
-<div class="container">
-  <h1 class="title">Book an appointment</h1>
-  <p>Please select or type a date.</p>
-  <div class="field">
-    <form [formGroup]="myForm" novalidate>
-      <my-date-picker name="date" placeholder="dd/mm/yyyy" [options]="myDatePickerOptions" formControlName="myDate"></my-date-picker>
-      <input class="button is-info" type="submit" (click)="findAppointments()" value="Search for appointments" [attr.disabled]='!isFormValidAndTouched() === true ? true : null'>
-    </form>
-  </div>
-  <br>
-  <ng-container *ngIf="appointmentsFound">
-    <div class="columns content is-multiline is-desktop box">
-      <div class="column is-one-quarter" *ngFor="let app of appointments; let index = i">
-        <div class="box">
-          <h1>{{ app.toLocaleTimeString().substr(0, 5) }}</h1>
-          <p>{{ app.toUTCString() }}</p>
+<section class="section">
+  <div class="container">
+    <h1 class="title">Book an appointment</h1>
+    <p>Please select or type a date.</p>
+    <div class="field">
+      <form [formGroup]="myForm" novalidate>
+        <my-date-picker name="date" placeholder="dd/mm/yyyy" [options]="myDatePickerOptions" formControlName="myDate"></my-date-picker>
+        <input class="button is-info" type="submit" (click)="findAppointments()" value="Search for appointments" [attr.disabled]='!isFormValidAndTouched() === true ? true : null'>
+      </form>
+    </div>
+    <br>
+    <ng-container *ngIf="appointmentsFound">
+      <div class="columns content is-multiline is-tablet">
+        <div class="column is-one-quarter-desktop" *ngFor="let app of appointments; let index = i">
+          <div class="box">
+            <p>
+              <strong>{{ app.toLocaleTimeString().substr(0, 5) }}</strong>
+            </p>
+            <p>{{ app.toUTCString().substr(0, 17) }}</p>
+          </div>
         </div>
       </div>
-    </div>
-  </ng-container>
-  <br>
-</div>
+    </ng-container>
+    <br>
+  </div>
+</section>
