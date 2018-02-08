@@ -5,11 +5,4 @@ export class PotentialAppointment {
     constructor() {
 
     }
-
-    // /**
-    //  * getDate
-    //  */
-    // public getDate() {
-    //     return this.date;
-    // }
 }

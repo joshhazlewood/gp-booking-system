@@ -18,14 +18,14 @@ export class NewAppointmentComponent implements OnInit {
   private todaysDate = new Date();
 
   private potentialAppointments: PotentialAppointment[];
+  private takenAppointments: TakenAppointment[];
+  private availableAppointments: PotentialAppointment[];
   private sortedAppointments;
   private takeApp1;
   private takeApp2;
   private takeApp3;
   private takeApp4;
 
-  private takenAppointments: TakenAppointment[];
-  private availableAppointments: PotentialAppointment[];
   private doctors = ['doc1', 'doc2', 'doc3', 'doc4'];
 
   public myDatePickerOptions: IMyDpOptions = {
@@ -151,5 +151,9 @@ removeExistingAppointments(appointments: PotentialAppointment[], takenAppointmen
 isOnTheHour(hour: number): boolean {
   return Number.isInteger(hour);
 }
+
+  bookAppointment(appointment : PotentialAppointment ) {
+    console.log(appointment);
+  }
 
 }
