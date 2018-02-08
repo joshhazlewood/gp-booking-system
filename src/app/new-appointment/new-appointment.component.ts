@@ -39,9 +39,6 @@ export class NewAppointmentComponent implements OnInit {
   constructor(private formBuilder: FormBuilder) { }
 
   ngOnInit() {
-    console.log(this.todaysDate.getFullYear());
-    console.log(this.todaysDate.getMonth() + 1); // base 0 so + 1 month
-    console.log(this.todaysDate.getDate());
     this.myForm = this.formBuilder.group({
       // Empty string or null means no initial value. Can be also specific date for
       // example: {date: {year: 2018, month: 10, day: 9}} which sets this date to initial
@@ -117,41 +114,42 @@ export class NewAppointmentComponent implements OnInit {
     this.availableAppointmentsFound = true;
   }
 
-  sortAppointmentsByTimeAndDocName(array: PotentialAppointment[]): PotentialAppointment[] {
-    const sortedArray = array.sort(function (date1, date2) {
-      if (date1.date < date2.date) {
+sortAppointmentsByTimeAndDocName(array: PotentialAppointment[]): PotentialAppointment[] {
+  const sortedArray = array.sort(function (date1, date2) {
+    if (date1.date < date2.date) {
+      return -1;
+    } else if (date1.date > date2.date) {
+      return 1;
+    } else {
+      if (date1.doctor < date2.doctor) {
         return -1;
-      } else if (date1.date > date2.date) {
+      } else if (date1.doctor > date2.doctor) {
         return 1;
-      } else {
-        if (date1.doctor < date2.doctor) {
-          return -1;
-        } else if (date1.doctor > date2.doctor) {
-          return 1;
-        }
-        return 0;
       }
-    });
-    return sortedArray;
-  }
+      return 0;
+    }
+  });
+  return sortedArray;
+}
 
-  removeExistingAppointments(appointments: PotentialAppointment[], takenAppointments: TakenAppointment[]): PotentialAppointment[] {
-    const availableAppointments = appointments.filter(function (app) {
-      //  Returns NOT of takenAppointments.some because we filter out if
-      //  the potential appointment is at the same time as any other appointment today.
-      return !takenAppointments.some((takenApp) => {
-        const appTaken = (app.date.getTime() === takenApp.start_time.getTime() && app.doctor === takenApp.doctor);
-        if (appTaken) {
-          return true;
-        }
-        return false;
-      });
+removeExistingAppointments(appointments: PotentialAppointment[], takenAppointments: TakenAppointment[]): PotentialAppointment[] {
+  const availableAppointments = appointments.filter(function (app) {
+    //  Returns NOT of takenAppointments.some because we filter out if
+    //  the potential appointment is at the same time as any other appointment today.
+    const appNotTaken =  !takenAppointments.some((takenApp) => {
+      const appTaken = (app.date.getTime() === takenApp.start_time.getTime() && app.doctor === takenApp.doctor);
+      if (appTaken) {
+        return true;
+      }
+      return false;
     });
-    return availableAppointments;
-  }
+    return appNotTaken;
+  });
+  return availableAppointments;
+}
 
-  isOnTheHour(hour: number): boolean {
-    return Number.isInteger(hour);
-  }
+isOnTheHour(hour: number): boolean {
+  return Number.isInteger(hour);
+}
 
 }
