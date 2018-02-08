@@ -21,6 +21,7 @@
               <strong>{{ app.date.toLocaleTimeString().substr(0, 5)}} - {{ app.doctor }}</strong>
             </p>
             <p>{{ app.date.toUTCString().substr(0, 17) }}</p>
+            <input type="submit" value="Book" class="button is-info" (click)="bookAppointment(app)">
           </div>
         </div>
       </div>
