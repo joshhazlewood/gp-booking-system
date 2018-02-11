@@ -15,13 +15,19 @@
     <br>
     <ng-container *ngIf="availableAppointmentsFound">
       <div class="columns content is-multiline is-tablet">
-        <div class="column is-one-quarter-desktop" *ngFor="let app of sortedAppointments; let index = i">
-          <div class="box">
+        <div class="column is-one-quarter-desktop has-text-centered" *ngFor="let app of sortedAppointments; let index = i">
+          <div class="box is-light">
             <p>
               <strong>{{ app.date.toLocaleTimeString().substr(0, 5)}} - {{ app.doctor }}</strong>
             </p>
-            <p>{{ app.date.toUTCString().substr(0, 17) }}</p>
-            <input type="submit" value="Book" class="button is-info" (click)="bookAppointment(app)">
+            <nav class="level">
+              <p class="level-item has-text-centered">
+                {{ app.date.toUTCString().substr(0, 17) }}
+              </p>
+              <p class="level-item has-text-centered">
+                <input type="submit" value="Book" class="button is-info" (click)="bookAppointment(app)">
+              </p>
+            </nav>
           </div>
         </div>
       </div>
