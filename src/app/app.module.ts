@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { HttpModule } from '@angular/http';
+import { Http } from '@angular/http';
 import { RouterModule, Routes } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
@@ -17,6 +18,7 @@ import { AppointmentsComponent } from './appointments/appointments.component';
 import { AdminPanelComponent } from './admin-panel/admin-panel.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { NewAppointmentComponent } from './new-appointment/new-appointment.component';
+import { AppointmentsService } from './services/appointments.service';
 
 const appRoutes: Routes = [
   { path: 'home', component: DashboardComponent },
@@ -57,7 +59,7 @@ const appRoutes: Routes = [
     ReactiveFormsModule,
     MyDatePickerModule
   ],
-  providers: [DataService],
+  providers: [DataService, AppointmentsService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
