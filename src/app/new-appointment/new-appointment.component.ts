@@ -64,7 +64,10 @@ export class NewAppointmentComponent implements OnInit {
   }
 
   getAppointments(): void {
-    this.appointmentsService.getAppointments().subscribe(takenAppointments => this.takenAppointmentsFromDb = takenAppointments);
+    this.appointmentsService.getAppointments().subscribe(res => {
+      const data = res['data'];
+      // this.takenAppointmentsFromDb = data.map(app => new Appointment());
+    });
   }
 
   setDate(): void {

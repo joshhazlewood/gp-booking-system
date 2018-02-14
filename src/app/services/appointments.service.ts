@@ -13,18 +13,18 @@ export class AppointmentsService {
 
   constructor(private http: Http) { }
 
-  getAppointments(): Observable<Appointment[]> {
+  getAppointments() {
     return this.http
-      .get('/api/appointments')
-      .map((res: Response) => {
-        // return <Appointment[]> res.json();
-        return res.json().results().map(app => {
-          return new Appointment(
-            app.appointment_id,
-            app.
-          )
-        });
-      })
+      .get('/api/appointments');
+      // .map((res: Response) => {
+      //   // return <Appointment[]> res.json();
+      //   return res.json().results().map(app => {
+      //     return new Appointment(
+      //       app.appointment_id,
+      //       app.
+      //     )
+      //   });
+      // })
   }
 
 }
