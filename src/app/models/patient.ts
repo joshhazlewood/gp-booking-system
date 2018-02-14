@@ -1,5 +1,5 @@
-import { ClinicalNotes } from "./clinical-notes";
-import { Address } from "./address";
+import { ClinicalNotes } from './clinical-notes';
+import { Address } from './address';
 
 export class Patient {
     private patient_id: number;
