@@ -3,28 +3,26 @@ import { Http, Headers, RequestOptions, Response } from '@angular/http';
 
 // import { Appointment } from '../services/interfaces/appointment'
 
-import {Observable} from "rxjs/Observable";
+import { Observable } from "rxjs/Observable";
 import { Appointment } from '../models/appointment';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable()
 export class AppointmentsService {
 
   result: any;
 
-  constructor(private http: Http) { }
+  constructor(private http: HttpClient) { }
 
   getAppointments() {
     return this.http
       .get('/api/appointments');
-      // .map((res: Response) => {
-      //   // return <Appointment[]> res.json();
-      //   return res.json().results().map(app => {
-      //     return new Appointment(
-      //       app.appointment_id,
-      //       app.
-      //     )
-      //   });
-      // })
+  }
+
+  getAppointmentsOnDate(date: Date) {
+    console.log('date: ' + date.toISOString());
+    console.log('/api/appointments/date/' + date.toISOString());
+    return this.http.get('/api/appointments/date/' + date.toISOString());
   }
 
 }

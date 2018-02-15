@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const mongoose = require('mongoose');
+const moment = require('moment');
 
 var appointmentsSchema = require('../schemas/appointments');
 var appointmentsModel = mongoose.model('appointments', appointmentsSchema, 'appointments');
@@ -23,7 +24,7 @@ router.get('/', function (req, res) {
     });
 })
 
-router.get('/:id', function (req, res) {
+router.get('/id/:id', function (req, res) {
     appointmentsModel.find({ 'appointment_id': req.params.id }, function (err, appointment) {
         if (!err) {
             console.log(appointment.length);
@@ -32,7 +33,8 @@ router.get('/:id', function (req, res) {
                 response.status = 404;
                 response.data = null;
                 res.json(response);
-            } else { // continue with response if it's found
+            } else { 
+                // continue with response if it's found
                 response.status = 200;
                 response.data = appointment;
                 res.json(response);
@@ -43,16 +45,42 @@ router.get('/:id', function (req, res) {
     })
 })
 
+router.get('/date/:date', function(req, res) {
+    date = req.params.date;
+    dateToFind = new moment(date);
+    dateToFindPlusOneDay = new moment(date);
+    dateToFindPlusOneDay = dateToFindPlusOneDay.add(1, 'd');
+
+    appointmentsModel.find({'start_time': { '$gte' : dateToFind.toDate(), '$lt': dateToFindPlusOneDay.toDate() }}, function (err, appointments ) {
+        console.log('stuff');
+        if (!err) {
+            if (appointments.length === 0) {
+                response.status = 404;
+                response.data = null;
+                res.json(response);
+            } else { 
+                // continue with response if it's found
+                response.status = 200;
+                response.data = appointments;
+                res.json(response);
+            }
+        } else {
+            console.log(err);
+        }
+    });
+})
+
 // var testAppointment = {
 //     appointment_id: 50,
 //     patient_id : 20,
 //     staff_id: 30,
-//     start_time: new Date(),
-//     end_time: new Date()
+//     staff_name: 'doc2',
+//     start_time: new Date(2018, 1, 16, 9),
+//     end_time: new Date(2018, 1, 16, 9, 30)
 // }
 
 // console.log(testAppointment);
-// appointmentModel.create(testAppointment, function(err) {
+// appointmentsModel.create(testAppointment, function(err) {
 //     // if (err) return handleError(err)
 //     if (err) {
 //         console.log('Error Inserting New Appointment Data');

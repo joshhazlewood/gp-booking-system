@@ -21,14 +21,8 @@ export class NewAppointmentComponent implements OnInit {
 
   private potentialAppointments: PotentialAppointment[];
   private takenAppointments: TakenAppointment[];
-  // private takenAppointmentsFromDb: Appointment[];
-  private takenAppointmentsFromDb;
   private availableAppointments: PotentialAppointment[];
   private sortedAppointments;
-  private takeApp1;
-  private takeApp2;
-  private takeApp3;
-  private takeApp4;
 
   private doctors = ['doc1', 'doc2', 'doc3', 'doc4'];
 
@@ -51,22 +45,36 @@ export class NewAppointmentComponent implements OnInit {
       myDate: [null, Validators.required]
       // other controls are here...
     });
-
-    this.takeApp1 = new TakenAppointment('doc1', new Date(2018, 1, 8, 9));
-    this.takeApp2 = new TakenAppointment('doc2', new Date(2018, 1, 8, 9, 30));
-    this.takeApp3 = new TakenAppointment('doc3', new Date(2018, 1, 8, 11));
-    this.takeApp4 = new TakenAppointment('doc4', new Date(2018, 1, 8, 11, 30));
-    this.takenAppointments = new Array<TakenAppointment>();
-    this.takenAppointmentsFromDb = new Array<Appointment>();
-    this.getAppointments();
-    console.log(this.takenAppointmentsFromDb);
-    // this.takenAppointments.push(this.takeApp1, this.takeApp2, this.takeApp3, this.takeApp4);
   }
 
-  getAppointments(): void {
-    this.appointmentsService.getAppointments().subscribe(res => {
+  getAppointmentsAndRemoveExisting(date: Date): void {
+    let dataIsNull = false;
+
+    this.appointmentsService.getAppointmentsOnDate(date).subscribe(res => {
+      console.log('no err');
       const data = res['data'];
-      // this.takenAppointmentsFromDb = data.map(app => new Appointment());
+      if(data === null) {
+        dataIsNull = true;
+      } else {
+        this.takenAppointments = data.map( (app) => {
+          return new TakenAppointment(
+            app.staff_name,
+            app.start_time,
+          )
+        });
+      }
+    }, (err) => {
+      console.log(err);
+    }, () => {
+      if( dataIsNull ) {
+        this.availableAppointments = this.potentialAppointments;
+        this.sortedAppointments = this.sortAppointmentsByTimeAndDocName(this.availableAppointments);
+        this.availableAppointmentsFound = true;
+      } else {
+        this.availableAppointments = this.removeExistingAppointments(this.potentialAppointments, this.takenAppointments);
+        this.sortedAppointments = this.sortAppointmentsByTimeAndDocName(this.availableAppointments);
+        this.availableAppointmentsFound = true;
+      }
     });
   }
 
@@ -106,7 +114,6 @@ export class NewAppointmentComponent implements OnInit {
     const startHour = 9;
 
     this.doctors.forEach((doc) => {
-      // console.log(doc);
       for (let i = 0; i < 17; i++) {
         const appointment = new PotentialAppointment();
         const hour: number = startHour + (i * 0.5);
@@ -122,10 +129,8 @@ export class NewAppointmentComponent implements OnInit {
         }
       }
     });
-
-    this.availableAppointments = this.removeExistingAppointments(this.potentialAppointments, this.takenAppointments);
-    this.sortedAppointments = this.sortAppointmentsByTimeAndDocName(this.availableAppointments);
-    this.availableAppointmentsFound = true;
+    //  pass in the selected day to pull relevant appointments from the DB
+    this.getAppointmentsAndRemoveExisting(new Date(selectedYear, selectedMonth, selectedDay));
   }
 
   sortAppointmentsByTimeAndDocName(array: PotentialAppointment[]): PotentialAppointment[] {
@@ -151,7 +156,7 @@ export class NewAppointmentComponent implements OnInit {
       //  Returns NOT of takenAppointments.some because we filter out if
       //  the potential appointment is at the same time as any other appointment today.
       const appNotTaken = !takenAppointments.some((takenApp) => {
-        const appTaken = (app.date.getTime() === takenApp.start_time.getTime() && app.doctor === takenApp.doctor);
+        const appTaken = (app.date.getTime() === new Date(takenApp.start_time).getTime() && app.doctor === takenApp.doctor);
         if (appTaken) {
           return true;
         }
