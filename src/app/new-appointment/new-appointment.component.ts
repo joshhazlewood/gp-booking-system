@@ -7,7 +7,8 @@ import { IMyDate } from '../../../node_modules/mydatepicker/dist/interfaces/my-d
 import { PotentialAppointment } from '../models/potential-appointment';
 import { TakenAppointment } from '../models/taken-appointment';
 import { Appointment } from '../models/appointment';
-import { AppointmentsService } from '../services/appointments.service'
+import { AppointmentsService } from '../services/appointments.service';
+import { StaffService } from '../services/staff.service';
 
 @Component({
   selector: 'app-new-appointment',
@@ -24,7 +25,8 @@ export class NewAppointmentComponent implements OnInit {
   private availableAppointments: PotentialAppointment[];
   private sortedAppointments;
 
-  private doctors = ['doc1', 'doc2', 'doc3', 'doc4'];
+  // private doctors = ['doc1', 'doc2', 'doc3', 'doc4'];
+  private doctors = [];
 
   public myDatePickerOptions: IMyDpOptions = {
     // other options...
@@ -34,7 +36,7 @@ export class NewAppointmentComponent implements OnInit {
 
   public myForm: FormGroup;
 
-  constructor(private formBuilder: FormBuilder, private appointmentsService: AppointmentsService) { }
+  constructor(private formBuilder: FormBuilder, private appointmentsService: AppointmentsService, private staffService: StaffService) { }
 
   ngOnInit() {
     this.myForm = this.formBuilder.group({
@@ -45,6 +47,22 @@ export class NewAppointmentComponent implements OnInit {
       myDate: [null, Validators.required]
       // other controls are here...
     });
+    this.staffService.getDoctors().subscribe( (res) => {
+      let dataIsNull = false;
+
+      const data = res['data'];
+      if ( data === null ) {
+        dataIsNull = true;
+      } else {
+        this.doctors = data.map( (app) => {
+          return app.forename + ' ' + app.surname;
+        });
+      }
+    }, (err) => {
+      console.log(err);
+    }, () => {
+      console.log(this.doctors);
+    });
   }
 
   getAppointmentsAndRemoveExisting(date: Date): void {
@@ -53,20 +71,20 @@ export class NewAppointmentComponent implements OnInit {
     this.appointmentsService.getAppointmentsOnDate(date).subscribe(res => {
       console.log('no err');
       const data = res['data'];
-      if(data === null) {
+      if ( data === null ) {
         dataIsNull = true;
       } else {
         this.takenAppointments = data.map( (app) => {
           return new TakenAppointment(
             app.staff_name,
             app.start_time,
-          )
+          );
         });
       }
     }, (err) => {
       console.log(err);
     }, () => {
-      if( dataIsNull ) {
+      if ( dataIsNull ) {
         this.availableAppointments = this.potentialAppointments;
         this.sortedAppointments = this.sortAppointmentsByTimeAndDocName(this.availableAppointments);
         this.availableAppointmentsFound = true;

@@ -19,6 +19,7 @@ import { AdminPanelComponent } from './admin-panel/admin-panel.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { NewAppointmentComponent } from './new-appointment/new-appointment.component';
 import { AppointmentsService } from './services/appointments.service';
+import { StaffService } from './services/staff.service';
 
 const appRoutes: Routes = [
   { path: 'home', component: DashboardComponent },
@@ -59,7 +60,11 @@ const appRoutes: Routes = [
     ReactiveFormsModule,
     MyDatePickerModule
   ],
-  providers: [DataService, AppointmentsService],
+  providers: [
+    DataService,
+    AppointmentsService,
+    StaffService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

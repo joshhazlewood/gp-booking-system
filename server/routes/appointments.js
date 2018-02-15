@@ -74,9 +74,9 @@ router.get('/date/:date', function(req, res) {
 //     appointment_id: 50,
 //     patient_id : 20,
 //     staff_id: 30,
-//     staff_name: 'doc2',
-//     start_time: new Date(2018, 1, 16, 9),
-//     end_time: new Date(2018, 1, 16, 9, 30)
+//     staff_name: 'josh hazlewood',
+//     start_time: new Date(2018, 1, 17, 16),
+//     end_time: new Date(2018, 1, 17, 16, 30)
 // }
 
 // console.log(testAppointment);
