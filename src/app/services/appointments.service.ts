@@ -1,8 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Http, Headers, RequestOptions, Response } from '@angular/http';
 
-// import { Appointment } from '../services/interfaces/appointment'
-
 import { Observable } from "rxjs/Observable";
 import { Appointment } from '../models/appointment';
 import { HttpClient } from '@angular/common/http';

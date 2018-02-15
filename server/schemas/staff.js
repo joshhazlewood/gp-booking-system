@@ -28,9 +28,9 @@ var staffSchema = new Schema({
         required: [true, surnameRequiredErrorMsg]
     },
     staff_role: {
-        type: Number,
+        type: String,
         min: 1,
-        max: 1000,
+        max: 100,
         required: [true, staff_roleRequiredErrorMsg]
     },
     user_name: {

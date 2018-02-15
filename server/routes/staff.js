@@ -11,7 +11,7 @@ var testStaff = {
     staff_id: 50,
     forename : 'josh',
     surname : 'hazlewood',
-    staff_role: 10,
+    staff_role: 'doctor',
     user_name : 'joshhaz',
     password : 'test'
 };
@@ -32,14 +32,34 @@ router.get('/', function(req, res) {
             console.log(err);
         }
     });
-})
+});
 
-router.get('/:id', function(req, res) {
+router.get('/id/:id', function(req, res) {
     staffModel.find({'staff_id' : req.params.id}, function(err, staff) {
         if (!err) {
             console.log(staff.length);
             // find returns an array - check if empty then send to 404
             if(staff.length === 0) {
+                response.status = 404;
+                response.data = null;
+                res.json(response);
+            } else { // continue with response if it's found
+                response.status = 200;
+                response.data = staff;
+                res.json(response);
+            }
+        } else {
+            console.log(err);
+        }
+    })
+});
+
+router.get('/doctors', function(req, res) {
+    staffModel.find({'staff_role' : 'doctor'}, 'forename surname', function(err, staff) {
+        if (!err) {
+            console.log(staff.length);
+            // find returns an array - check if empty then send to 404
+            if( staff.length === 0 ) {
                 response.status = 404;
                 response.data = null;
                 res.json(response);
@@ -65,6 +85,6 @@ router.get('/:id', function(req, res) {
 //     } else {
 //         console.log('added to staff collection')
 //     }
-// })
+// });
 
 module.exports = router;
