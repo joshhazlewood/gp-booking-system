@@ -55,7 +55,7 @@ export class NewAppointmentComponent implements OnInit {
         dataIsNull = true;
       } else {
         this.doctors = data.map( (app) => {
-          return app.forename + ' ' + app.surname;
+          return [app.staff_id, app.forename + ' ' + app.surname];
         });
       }
     }, (err) => {
@@ -136,7 +136,8 @@ export class NewAppointmentComponent implements OnInit {
         const appointment = new PotentialAppointment();
         const hour: number = startHour + (i * 0.5);
 
-        appointment.doctor = doc;
+        appointment.staff_id = doc[0];
+        appointment.doctor = doc[1];
 
         if (this.isOnTheHour(hour)) {
           appointment.date = new Date(selectedYear, selectedMonth, selectedDay, hour);
@@ -190,7 +191,10 @@ export class NewAppointmentComponent implements OnInit {
   }
 
   bookAppointment(appointment: PotentialAppointment) {
-    console.log(appointment);
+    // console.log(appointment);
+    this.appointmentsService.createNewAppointment(appointment).subscribe(data => {
+      console.log(data);
+    });
   }
 
 }

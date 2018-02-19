@@ -55,9 +55,9 @@ router.get('/id/:id', function(req, res) {
 });
 
 router.get('/doctors', function(req, res) {
-    staffModel.find({'staff_role' : 'doctor'}, 'forename surname', function(err, staff) {
+    staffModel.find({'staff_role' : 'doctor'}, 'forename surname staff_id', function(err, staff) {
         if (!err) {
-            console.log(staff.length);
+            // console.log(staff.length);
             // find returns an array - check if empty then send to 404
             if( staff.length === 0 ) {
                 response.status = 404;

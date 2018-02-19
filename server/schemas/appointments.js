@@ -11,8 +11,8 @@ const staff_nameRequiredErrorMsg = 'Staff name is required';
 var appointmentsSchema = new Schema({
     appointment_id: {
         type: Number,
-        min: 1,
-        max: 1000,
+        min: 0,
+        max: 100000,
         required: [true, appointment_idRequiredErrorMsg]
     },
     patient_id: {
