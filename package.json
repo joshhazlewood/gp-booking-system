@@ -2,6 +2,7 @@
   "name": "gp-booking-system",
   "version": "0.0.0",
   "license": "MIT",
+  "main": "server.js",
   "scripts": {
     "ng": "ng",
     "start": "node server",
@@ -10,7 +11,12 @@
     "lint": "ng lint",
     "e2e": "ng e2e",
     "watch": "ng build --watch",
-    "dev": "run-p watch start"
+    "dev": "run-p watch start",
+    "postinstall": "ng build --aot -prod"
+  },
+  "engines": {
+    "node": "~8.9.1",
+    "npm": "~5.5.1"
   },
   "private": true,
   "dependencies": {
@@ -23,6 +29,8 @@
     "@angular/platform-browser": "^5.2.0",
     "@angular/platform-browser-dynamic": "^5.2.0",
     "@angular/router": "^5.2.0",
+    "@angular/cli": "^1.6.4",
+    "@angular/compiler-cli": "^5.2.0",
     "body-parser": "^1.18.2",
     "core-js": "^2.5.3",
     "express": "^4.16.2",
