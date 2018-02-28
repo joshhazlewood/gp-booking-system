@@ -30,6 +30,8 @@
     "@angular/platform-browser": "^5.2.0",
     "@angular/platform-browser-dynamic": "^5.2.0",
     "@angular/router": "^5.2.0",
+    "@angular/compiler-cli": "^5.2.6",
+    "@angular/cli": "^1.7.1",
     "body-parser": "^1.18.2",
     "core-js": "^2.5.3",
     "express": "^4.16.2",
