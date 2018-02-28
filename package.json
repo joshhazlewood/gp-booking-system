@@ -11,9 +11,7 @@
     "lint": "ng lint",
     "e2e": "ng e2e",
     "watch": "ng build --watch",
-    "dev": "run-p watch start",
-    "postinstall": "ng build --aot --prod",
-    "preinstall": "npm install @angular/cli @angular/compiler-cli typescript"
+    "postinstall": "ng build --aot -prod"
   },
   "engines": {
     "node": "~8.9.1",
@@ -46,9 +44,6 @@
     "zone.js": "^0.8.20"
   },
   "devDependencies": {
-    "@angular/cli": "^1.7.1",
-    "@angular/compiler-cli": "^5.2.6",
-    "@angular/language-service": "^5.2.0",
     "@types/jasmine": "~2.5.53",
     "@types/jasminewd2": "~2.0.2",
     "@types/node": "^6.0.96",
