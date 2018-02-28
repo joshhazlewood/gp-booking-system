@@ -17,7 +17,7 @@ import { StaffService } from '../services/staff.service';
 })
 export class NewAppointmentComponent implements OnInit {
   private formIsValid = false;
-  private availableAppointmentsFound = false;
+  public availableAppointmentsFound = false;
   private todaysDate = new Date();
 
   private potentialAppointments: PotentialAppointment[];

@@ -15,9 +15,7 @@ const appointmentsSchema = require('../schemas/appointments');
 
 //Set up default mongoose connection
 const mongoDB = 'mongodb://josh:Pa55word!@ds251807.mlab.com:51807/gp-db-13118866';
-
 mongoose.connect(mongoDB);
-
 // Get Mongoose to use the global promise library
 mongoose.Promise = global.Promise;
 //Get the default connection
