@@ -11,7 +11,7 @@
     "lint": "ng lint",
     "e2e": "ng e2e",
     "watch": "ng build --watch",
-    "preinstall": "npm install @angular/cli @angular/compiler-cli typescript@2.6.2",
+    "preinstall": "npm install @angular/cli@1.7.1 @angular/compiler-cli@5.2.6 typescript@2.6.2",
     "postinstall": "ng build --aot -prod"
   },
   "engines": {
