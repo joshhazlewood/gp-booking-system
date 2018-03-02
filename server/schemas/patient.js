@@ -29,8 +29,8 @@ var patientSchema = new Schema({
         max: 100,
         required: [true, surnameRequiredErrorMsg]
     },
-    address: [addressSchema],
-    clinical_notes: [clinicalNotesSchema],
+    address: addressSchema,
+    clinical_notes: clinicalNotesSchema,
     user_name: {
         type: String,
         min: 1,

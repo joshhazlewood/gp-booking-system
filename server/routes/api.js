@@ -90,6 +90,7 @@ router.post('/login', (req, res) => {
 
 router.get('/protected', ensureToken, (req, res) => {
     jwt.verify(req.token, '13118866', (err, data) => {
+        console.log(data);
         if( err ) {
             res.sendStatus(403);
         } else {

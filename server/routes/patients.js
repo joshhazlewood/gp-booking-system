@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const mongoose = require('mongoose');
+const jwt = require('jsonwebtoken');
 
 const patientSchema = require('../schemas/patient');
 
@@ -27,15 +28,17 @@ var testPatient = {
         notes: 'loads of notes here',
         last_accessed: new Date(),
         last_accessed_by: 10,
-        medications: [{
-            name: 'lisinopril',
-            amount: '5',
-            unit: 'mg/day'
-        }, {
-            name: 'test_med',
-            amount: '5',
-            unit: 'mg/day'
-        }]
+        medications: [
+            {
+                name: 'lisinopril',
+                amount: '5',
+                unit: 'mg/day'
+            }, {
+                name: 'test_med',
+                amount: '5',
+                unit: 'mg/day'
+            }
+        ]
     }],
     user_name: 'joshhaz',
     password: 'testPass'
@@ -94,6 +97,49 @@ router.post('/new-patient', (req, res) => {
         }
     });
 });
+
+router.post('/login', (req, res) => {
+    const user = req.body;
+
+    patientModel.findOne({ 'username': user.user_name }, (err, patient) => {
+        if (err) {
+            return handleError(err);
+        } else {
+            console.log(patient.clinical_notes.medications);
+            // console.log(patient.clinical_notes.diagnosis);
+            const token = jwt.sign({ patient }, '13118866');
+            res.json({
+                token: token
+            });
+        }
+    })
+});
+
+router.get('/protected', ensureToken, (req, res) => {
+    jwt.verify(req.token, '13118866', (err, data) => {
+        console.log(data);
+        if (err) {
+            res.sendStatus(403);
+        } else {
+            res.json({
+                text: 'protected shit bro',
+                data: data
+            });
+        }
+    });
+});
+
+function ensureToken(req, res, next) {
+    const bearerHeader = req.headers["authorization"];
+    if (typeof bearerHeader !== 'undefined') {
+        const bearer = bearerHeader.split(" ");
+        const bearerToken = bearer[1];
+        req.token = bearerToken;
+        next();
+    } else {
+        res.sendStatus(403);
+    }
+}
 
 // patientModel.create(testPatient, function (err) {
 //     if (err) {
