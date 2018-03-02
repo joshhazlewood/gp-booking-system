@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const jwt = require('jsonwebtoken');
 const appointments = require('./appointments.js')
 const staff = require('./staff.js')
 const patients = require('./patients.js')
@@ -78,6 +79,39 @@ router.get('/users', (req, res) => {
             sendError(err, res);
         });
 });
+
+router.post('/login', (req, res) => {
+    const user = req.body;
+    const token = jwt.sign({ user }, '13118866' );
+    res.json({
+        token: token
+    });
+});
+
+router.get('/protected', ensureToken, (req, res) => {
+    jwt.verify(req.token, '13118866', (err, data) => {
+        if( err ) {
+            res.sendStatus(403);
+        } else {
+            res.json({
+                text: 'protected shit bro',
+                data: data
+            });
+        }
+    });
+});
+
+function ensureToken(req, res, next) {
+    const bearerHeader = req.headers["authorization"];
+    if( typeof bearerHeader !== 'undefined') {
+        const bearer = bearerHeader.split(" ");
+        const bearerToken = bearer[1];
+        req.token = bearerToken;
+        next();
+    } else {
+        res.sendStatus(403);
+    }
+}
 
 // STAFF COLLECTION
 // var staffModel = mongoose.model('staff', staffSchema, 'staff');
