@@ -13,7 +13,7 @@ let response = {
 
 var patientModel = mongoose.model('patients', patientSchema, 'patients');
 var testPatient = {
-    patient_id: 100,
+    // patient_id: 100,
     forename: 'test',
     surname: 'hazlewood',
     address: [{
@@ -55,6 +55,7 @@ router.get('/', function (req, res) {
         console.log(err);
     });
 })
+
 router.get('/:id', function (req, res) {
     patientModel.findOne({ 'patient_id': req.params.id }, function (err, patients) {
         if (!err) {
@@ -82,7 +83,19 @@ router.get('/:id', function (req, res) {
     })
 })
 
-// patientModel.create(testPatient, function(err) {
+router.post('/new-patient', (req, res) => {
+    const patient = req.body;
+
+    patientModel.create(patient, (err) => {
+        if (err) {
+            console.log('Error saving patient data');
+        } else {
+            res.send('Patient saved to DB');
+        }
+    });
+});
+
+// patientModel.create(testPatient, function (err) {
 //     if (err) {
 //         console.log('Error Inserting New Patient Data');
 //         if (err.name == 'ValidationError') {

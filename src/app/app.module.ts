@@ -20,6 +20,7 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import { NewAppointmentComponent } from './new-appointment/new-appointment.component';
 import { AppointmentsService } from './services/appointments.service';
 import { StaffService } from './services/staff.service';
+import { LoginComponent } from './auth/login/login.component';
 
 const appRoutes: Routes = [
   { path: 'home', component: DashboardComponent },
@@ -27,6 +28,7 @@ const appRoutes: Routes = [
   { path: 'patients-list', component: PatientListComponent },
   { path: 'new-appointment', component: NewAppointmentComponent },
   { path: 'appointments-list', component: AppointmentsComponent },
+  { path: 'login', component: LoginComponent },
   { path: 'admin', component:  AdminPanelComponent},
   { path: '',
     redirectTo: '/home',
@@ -46,7 +48,8 @@ const appRoutes: Routes = [
     PatientListComponent,
     AppointmentsComponent,
     AdminPanelComponent,
-    NewAppointmentComponent
+    NewAppointmentComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
