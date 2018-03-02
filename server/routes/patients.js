@@ -1,3 +1,8 @@
+// 
+//  TODO:
+//      - Implement JWT middleware for routes
+//      - Fix client side logging in. 
+// 
 const express = require('express');
 const router = express.Router();
 const mongoose = require('mongoose');
@@ -17,13 +22,13 @@ var testPatient = {
     // patient_id: 100,
     forename: 'test',
     surname: 'hazlewood',
-    address: [{
+    address: {
         line1: '2b',
         line2: 'davenport ave',
         town_city: 'manchester',
         postcode: 'M20 3EY'
-    }],
-    clinical_notes: [{
+    },
+    clinical_notes: {
         diagnosis: 'he\'s a sick cunt',
         notes: 'loads of notes here',
         last_accessed: new Date(),
@@ -39,7 +44,7 @@ var testPatient = {
                 unit: 'mg/day'
             }
         ]
-    }],
+    },
     user_name: 'joshhaz',
     password: 'testPass'
 }
@@ -100,19 +105,34 @@ router.post('/new-patient', (req, res) => {
 
 router.post('/login', (req, res) => {
     const user = req.body;
+    const username = user.username
+    const password = user.password
 
-    patientModel.findOne({ 'username': user.user_name }, (err, patient) => {
-        if (err) {
-            return handleError(err);
+    patientModel.findOne({ 'user_name': username }, function (err, patient) {
+        if (!err) {
+            // find returns an array - check if empty then send to 404
+            if (patient === null) {
+                response.status = 404;
+                response.data = null;
+                response.message = `Username ${username} not found`;
+                res.json(response);
+            } else { // continue with response if it's found
+                if (password === patient.password) {
+                    response.status = 200;
+                    response.data = patient;
+                    response.message = `User ${patient.user_name} logged in.`;
+                    console.log(response.message);
+                    res.json(response);
+                }
+
+            }
         } else {
-            console.log(patient.clinical_notes.medications);
-            // console.log(patient.clinical_notes.diagnosis);
-            const token = jwt.sign({ patient }, '13118866');
-            res.json({
-                token: token
-            });
+            console.log(err);
         }
     })
+        .catch(err => {
+            console.log(err);
+        })
 });
 
 router.get('/protected', ensureToken, (req, res) => {
