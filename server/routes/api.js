@@ -8,8 +8,6 @@ const patients = require('./patients.js')
 //Import the mongoose module
 const mongoose = require('mongoose');
 const autoIncrement = require('mongoose-auto-increment');
-// var staffSchema = mongoose.model('staff').schema;
-// const StaffSchema = require('../schemas/staff.js');
 const staffSchema = require('../schemas/staff');
 const patientSchema = require('../schemas/patient');
 const appointmentsSchema = require('../schemas/appointments');

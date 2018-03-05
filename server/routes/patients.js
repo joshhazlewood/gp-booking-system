@@ -49,7 +49,8 @@ var testPatient = {
     password: 'testPass'
 }
 
-router.get('/', function (req, res) {
+router.get('/all-patients', ensureToken, function (req, res) {
+    resetResponse();
     patientModel.find({}, function (err, patients) {
         if (!err) {
             response.data = patients;
@@ -64,7 +65,8 @@ router.get('/', function (req, res) {
     });
 })
 
-router.get('/:id', function (req, res) {
+router.get('id/:id', function (req, res) {
+    resetResponse();
     patientModel.findOne({ 'patient_id': req.params.id }, function (err, patients) {
         if (!err) {
             // find returns an array - check if empty then send to 404
@@ -92,6 +94,7 @@ router.get('/:id', function (req, res) {
 })
 
 router.post('/new-patient', (req, res) => {
+    resetResponse();
     const patient = req.body;
 
     patientModel.create(patient, (err) => {
@@ -104,6 +107,7 @@ router.post('/new-patient', (req, res) => {
 });
 
 router.post('/login', (req, res) => {
+    resetResponse();
     const user = req.body;
     const username = user.username
     const password = user.password
@@ -118,13 +122,22 @@ router.post('/login', (req, res) => {
                 res.json(response);
             } else { // continue with response if it's found
                 if (password === patient.password) {
+                    expiresAt = Math.floor(Date.now() / 1000) + (60 * 30);
+                    const token = jwt.sign({
+                        exp: expiresAt,
+                        data: { user_name: username }
+                    }, '13118866');
+
                     response.status = 200;
-                    response.data = patient;
                     response.message = `User ${patient.user_name} logged in.`;
-                    console.log(response.message);
+                    response.data = token;
+
+                    res.json(response);
+                } else {
+                    response.status = 401;
+                    response.data = "Incorrect password.";
                     res.json(response);
                 }
-
             }
         } else {
             console.log(err);
@@ -136,6 +149,7 @@ router.post('/login', (req, res) => {
 });
 
 router.get('/protected', ensureToken, (req, res) => {
+    resetResponse();
     jwt.verify(req.token, '13118866', (err, data) => {
         console.log(data);
         if (err) {
@@ -159,6 +173,12 @@ function ensureToken(req, res, next) {
     } else {
         res.sendStatus(403);
     }
+}
+
+function resetResponse() {
+    response.status = 200;
+    response.data = [];
+    response.message = null;
 }
 
 // patientModel.create(testPatient, function (err) {
