@@ -4,9 +4,6 @@
       <div class="column"></div>
       <div class="column is-half has-text-centered">
         <div class="box">
-          <!-- <h2>
-            Login
-          </h2> -->
           <form [formGroup]="form" novalidate>
             <div class="field">
               <p class="control has-icons-left has-icons-right">
@@ -14,9 +11,6 @@
                 <span class="icon is-small is-left">
                   <i class="fas fa-envelope"></i>
                 </span>
-                <!-- <span class="icon is-small is-right">
-                  <i class="fas fa-check"></i>
-                </span> -->
               </p>
             </div>
             <div class="field">
@@ -26,6 +20,16 @@
                   <i class="fas fa-lock"></i>
                 </span>
               </p>
+            </div>
+            <div class="field">
+              <label class="checkbox">
+                <input type="checkbox">
+                Patient
+              </label>
+              <label class="checkbox">
+                <input type="checkbox">
+                Staff
+              </label>
             </div>
             <div class="field">
               <p class="control">

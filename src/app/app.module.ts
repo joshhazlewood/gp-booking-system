@@ -20,6 +20,7 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import { NewAppointmentComponent } from './new-appointment/new-appointment.component';
 import { AppointmentsService } from './services/appointments.service';
 import { StaffService } from './services/staff.service';
+import { AuthService } from './services/auth.service';
 import { LoginComponent } from './auth/login/login.component';
 
 const appRoutes: Routes = [
@@ -66,7 +67,8 @@ const appRoutes: Routes = [
   providers: [
     DataService,
     AppointmentsService,
-    StaffService
+    StaffService,
+    AuthService
   ],
   bootstrap: [AppComponent]
 })

@@ -49,7 +49,7 @@ var testPatient = {
     password: 'testPass'
 }
 
-router.get('/all-patients', ensureToken, function (req, res) {
+router.get('/all-patients', ensureToken, (req, res) => {
     resetResponse();
     patientModel.find({}, function (err, patients) {
         if (!err) {
@@ -65,7 +65,7 @@ router.get('/all-patients', ensureToken, function (req, res) {
     });
 })
 
-router.get('id/:id', function (req, res) {
+router.get('id/:id', (req, res) => {
     resetResponse();
     patientModel.findOne({ 'patient_id': req.params.id }, function (err, patients) {
         if (!err) {
@@ -112,7 +112,7 @@ router.post('/login', (req, res) => {
     const username = user.username
     const password = user.password
 
-    patientModel.findOne({ 'user_name': username }, function (err, patient) {
+    patientModel.findOne({ 'user_name': username }, (err, patient) => {
         if (!err) {
             // find returns an array - check if empty then send to 404
             if (patient === null) {
@@ -130,7 +130,10 @@ router.post('/login', (req, res) => {
 
                     response.status = 200;
                     response.message = `User ${patient.user_name} logged in.`;
-                    response.data = token;
+                    response.data = {
+                        id_token: token,
+                        expires_at: expiresAt
+                    }
 
                     res.json(response);
                 } else {

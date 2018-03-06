@@ -25,6 +25,7 @@ export class LoginComponent implements OnInit {
         Validators.minLength(1),
         Validators.maxLength(2)
       ]]
+
     })
   }
 
@@ -32,13 +33,13 @@ export class LoginComponent implements OnInit {
     const val = this.form.value;
 
     if (val.email && val.password) {
-      // this.authService.login(val.email && val.password)
-      // .subscribe(
-      //   () => {
-      //     console.log('User is logged in');
-      //     this.router.navigateByUrl('/home');
-      //   }
-      // );
+      this.authService.login(val.email, val.password)
+      .subscribe(
+        () => {
+          console.log(`User ${val.email} is logged in`);
+          this.router.navigateByUrl('/patients');
+        }
+      );
     }
   }
 
