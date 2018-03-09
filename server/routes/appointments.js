@@ -22,7 +22,7 @@ appointmentsSchema.plugin(autoIncrement.plugin, {
     startAt: 1    
 });
 
-router.get('/', function (req, res) {
+router.get('/all-appointments', ensureToken, (req, res) => {
     appointmentsModel.find({}, function (err, appointments) {
         if (!err) {
             response.data = appointments;
@@ -37,13 +37,6 @@ router.get('/', function (req, res) {
 router.post('/', function(req, res) {
     console.log(req.body);
     res.json(req.body);
-    // res.send('POST request to the homepage');
-    // date = req.params.date;
-    // doctor = req.params.doctor;
-
-    // console.log(date);
-    // console.log(doctor);
-    // appointmentsModel.create
 });
 
 router.get('/id/:id', function (req, res) {
@@ -90,6 +83,39 @@ router.get('/date/:date', function(req, res) {
         }
     });
 });
+
+router.get('/protected', ensureToken, (req, res) => {
+    resetResponse();
+    jwt.verify(req.token, '13118866', (err, data) => {
+        console.log(data);
+        if (err) {
+            res.sendStatus(403);
+        } else {
+            res.json({
+                text: 'protected shit bro',
+                data: data
+            });
+        }
+    });
+});
+
+function ensureToken(req, res, next) {
+    const bearerHeader = req.headers["authorization"];
+    if (typeof bearerHeader !== 'undefined') {
+        const bearer = bearerHeader.split(" ");
+        const bearerToken = bearer[1];
+        req.token = bearerToken;
+        next();
+    } else {
+        res.sendStatus(403);
+    }
+}
+
+function resetResponse() {
+    response.status = 200;
+    response.data = [];
+    response.message = null;
+}
 
 
 // var testAppointment = {

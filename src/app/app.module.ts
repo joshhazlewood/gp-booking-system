@@ -1,10 +1,12 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
-import { HttpModule } from '@angular/http';
+// import { HttpModule } from '@angular/http';
 import { Http } from '@angular/http';
 import { RouterModule, Routes } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AuthInterceptor } from './auth/auth-interceptor';
 
 import { MyDatePickerModule } from 'mydatepicker';
 
@@ -55,7 +57,7 @@ const appRoutes: Routes = [
   imports: [
     BrowserModule,
     HttpClientModule,
-    HttpModule,
+    // HttpModule,
     RouterModule.forRoot(
       appRoutes,
       { enableTracing: false } // <-- debugging purposes only
@@ -68,7 +70,12 @@ const appRoutes: Routes = [
     DataService,
     AppointmentsService,
     StaffService,
-    AuthService
+    AuthService, 
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true
+    }
   ],
   bootstrap: [AppComponent]
 })

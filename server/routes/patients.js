@@ -134,7 +134,7 @@ router.post('/login', (req, res) => {
                         id_token: token,
                         expires_at: expiresAt
                     }
-
+                    console.log(response.message);
                     res.json(response);
                 } else {
                     response.status = 401;

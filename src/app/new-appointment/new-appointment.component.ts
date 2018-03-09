@@ -9,6 +9,7 @@ import { TakenAppointment } from '../models/taken-appointment';
 import { Appointment } from '../models/appointment';
 import { AppointmentsService } from '../services/appointments.service';
 import { StaffService } from '../services/staff.service';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-new-appointment',
@@ -28,6 +29,9 @@ export class NewAppointmentComponent implements OnInit {
   // private doctors = ['doc1', 'doc2', 'doc3', 'doc4'];
   private doctors = [];
 
+  // interceptor test
+  private patientData = '';
+
   public myDatePickerOptions: IMyDpOptions = {
     // other options...
     dateFormat: 'dd/mm/yyyy',
@@ -36,7 +40,8 @@ export class NewAppointmentComponent implements OnInit {
 
   public myForm: FormGroup;
 
-  constructor(private formBuilder: FormBuilder, private appointmentsService: AppointmentsService, private staffService: StaffService) { }
+  constructor(private formBuilder: FormBuilder, private appointmentsService: AppointmentsService, private staffService: StaffService,
+    private authService: AuthService) { }
 
   ngOnInit() {
     this.myForm = this.formBuilder.group({
@@ -62,6 +67,12 @@ export class NewAppointmentComponent implements OnInit {
       console.log(err);
     }, () => {
       console.log(this.doctors);
+    });
+
+
+    // INTERCEPTOR TESTING
+    this.authService.tokenTest().subscribe( (res) => {
+      this.patientData = res['data'].toS;
     });
   }
 

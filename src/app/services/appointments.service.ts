@@ -15,7 +15,7 @@ export class AppointmentsService {
   }
 
   getAppointments() {
-    return this.http.get(this.baseUrl);
+    return this.http.get(this.baseUrl + '/all-appointments');
   }
 
   getAppointmentsOnDate(date: Date) {

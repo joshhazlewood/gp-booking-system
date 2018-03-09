@@ -13,6 +13,10 @@
       </div>
     </form>
     <br>
+    <!-- <div>
+      <p>Patient Data</p>
+      <p>{{patientData}}</p>
+    </div> -->
     <ng-container *ngIf="availableAppointmentsFound">
       <div class="columns content is-multiline is-tablet">
         <div class="column is-one-quarter-desktop has-text-centered" *ngFor="let app of sortedAppointments; let index = i">

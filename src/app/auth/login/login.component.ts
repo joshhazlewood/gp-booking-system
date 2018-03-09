@@ -10,12 +10,13 @@ import { AuthService } from '../../services/auth.service';
 })
 export class LoginComponent implements OnInit {
 
-  form: FormGroup;
+  loginForm: FormGroup;
+  errors: string[];
 
   constructor(private fb: FormBuilder,
     private authService: AuthService,
     private router: Router) {
-    this.form = this.fb.group({
+    this.loginForm = this.fb.group({
       email: ['', [
         Validators.required,
         Validators.email
@@ -23,24 +24,42 @@ export class LoginComponent implements OnInit {
       password: ['', [
         Validators.required,
         Validators.minLength(1),
-        Validators.maxLength(2)
-      ]]
-
-    })
+        Validators.maxLength(50)
+      ]],
+      userType: ['', Validators.required]
+    });
+    this.errors = [];
   }
 
   login() {
-    const val = this.form.value;
+    this.errors = [];
+    const val = this.loginForm.value;
 
-    if (val.email && val.password) {
-      this.authService.login(val.email, val.password)
-      .subscribe(
-        () => {
-          console.log(`User ${val.email} is logged in`);
-          this.router.navigateByUrl('/patients');
-        }
-      );
+    if (this.loginForm.valid) {
+
+      if (val.userType === 'patient') {
+        this.authService.login(val.email, val.password, val.userType)
+          .subscribe(
+            (data) => {
+              let status = data['status'];
+              if (status === 200) {
+                console.log('Logged in');
+                this.router.navigateByUrl('/new-appointment');
+              } else if (status.toString().startsWith(4)) {
+                let error = 'Incorrect username or password';
+                console.log(error);
+                this.errors.push(error);
+              }
+            }
+          );
+      } else if (val.userType === 'staff') {
+        //  COMPLETE THIS FOR STAFF
+      }
     }
+  }
+
+  isFormValidAndTouched(): boolean {
+    return this.loginForm.valid && this.loginForm.touched;
   }
 
   ngOnInit() {
