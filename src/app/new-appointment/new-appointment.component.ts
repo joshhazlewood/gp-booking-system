@@ -65,8 +65,6 @@ export class NewAppointmentComponent implements OnInit {
       }
     }, (err) => {
       console.log(err);
-    }, () => {
-      console.log(this.doctors);
     });
 
 

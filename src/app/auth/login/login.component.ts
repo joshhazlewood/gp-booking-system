@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router'
+import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
 
@@ -36,25 +36,20 @@ export class LoginComponent implements OnInit {
     const val = this.loginForm.value;
 
     if (this.loginForm.valid) {
-
-      if (val.userType === 'patient') {
-        this.authService.login(val.email, val.password, val.userType)
-          .subscribe(
-            (data) => {
-              let status = data['status'];
-              if (status === 200) {
-                console.log('Logged in');
-                this.router.navigateByUrl('/new-appointment');
-              } else if (status.toString().startsWith(4)) {
-                let error = 'Incorrect username or password';
-                console.log(error);
-                this.errors.push(error);
-              }
+      this.authService.login(val.email, val.password, val.userType)
+        .subscribe(
+          (data) => {
+            let status = data['status'];
+            if (status === 200) {              
+              this.authService.setSession(data['data']);
+              this.router.navigateByUrl('/new-appointment');
+            } else if (status.toString().startsWith(4)) {
+              let error = 'Incorrect username or password';
+              console.log(error);
+              this.errors.push(error);
             }
-          );
-      } else if (val.userType === 'staff') {
-        //  COMPLETE THIS FOR STAFF
-      }
+          }
+        );
     }
   }
 

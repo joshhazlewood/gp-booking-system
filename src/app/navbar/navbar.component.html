@@ -47,7 +47,7 @@
         </span>
         New Appointment
       </a>
-      <a class="navbar-item" routerLink="/admin">
+      <a class="navbar-item" *ngIf="getUserType() === 'admin'" routerLink="/admin">
         <span class="icon">
           <i class="fas fa-wrench"></i>
         </span>

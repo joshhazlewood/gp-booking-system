@@ -11,7 +11,6 @@ export class NavbarComponent implements OnInit {
   private loggedIn: boolean;
 
   constructor(private authService: AuthService) {
-    // This block of code 
     document.addEventListener('DOMContentLoaded', function () {
 
       // Get all "navbar-burger" elements
@@ -39,13 +38,21 @@ export class NavbarComponent implements OnInit {
 
     this.authService.isLoggedIn()
       .subscribe((data) => {
-        console.log(data);
         this.loggedIn = data;
       });
   }
 
   isLoggedIn() {
     return this.loggedIn;
+  }
+
+  getUserType() {
+    const user = this.authService.getUser();
+    if(user !== undefined) {
+      return user.user_role;
+      // return 'admin';
+    }
+    return 'none';
   }
 
   logUserOut() {

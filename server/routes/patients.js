@@ -49,7 +49,7 @@ var testPatient = {
     password: 'testPass'
 }
 
-router.get('/all-patients', ensureToken, (req, res) => {
+router.get('/all-patients', ensureAndVerifyToken, (req, res) => {
     resetResponse();
     patientModel.find({}, function (err, patients) {
         if (!err) {
@@ -63,9 +63,9 @@ router.get('/all-patients', ensureToken, (req, res) => {
     }).catch(err => {
         console.log(err);
     });
-})
+});
 
-router.get('id/:id', (req, res) => {
+router.get('id/:id', ensureAndVerifyToken, (req, res) => {
     resetResponse();
     patientModel.findOne({ 'patient_id': req.params.id }, function (err, patients) {
         if (!err) {
@@ -91,7 +91,7 @@ router.get('id/:id', (req, res) => {
     })).catch(err => {
         console.log(err);
     })
-})
+});
 
 router.post('/new-patient', (req, res) => {
     resetResponse();
@@ -109,8 +109,8 @@ router.post('/new-patient', (req, res) => {
 router.post('/login', (req, res) => {
     resetResponse();
     const user = req.body;
-    const username = user.username
-    const password = user.password
+    const username = user.username;
+    const password = user.password;
 
     patientModel.findOne({ 'user_name': username }, (err, patient) => {
         if (!err) {
@@ -118,27 +118,36 @@ router.post('/login', (req, res) => {
             if (patient === null) {
                 response.status = 404;
                 response.data = null;
-                response.message = `Username ${username} not found`;
                 res.json(response);
             } else { // continue with response if it's found
                 if (password === patient.password) {
-                    expiresAt = Math.floor(Date.now() / 1000) + (60 * 30);
-                    const token = jwt.sign({
-                        exp: expiresAt,
-                        data: { user_name: username }
-                    }, '13118866');
+                    // Expires in 30mins for patients
+                    const expiresIn = (60 * 30);
+                    let tokenData = JSON.stringify({
+                        user_id: patient._id
+                        // user_name: username,
+                        // pretty_id: patient.patient_id,
+                        // user_role: 'patient'
+                    });
+
+                    const token = jwt.sign(
+                        {
+                            data: tokenData
+                        },
+                        '13118866',
+                        {
+                            expiresIn
+                        }
+                    );
 
                     response.status = 200;
-                    response.message = `User ${patient.user_name} logged in.`;
                     response.data = {
                         id_token: token,
-                        expires_at: expiresAt
+                        expires_in: expiresIn
                     }
-                    console.log(response.message);
                     res.json(response);
                 } else {
                     response.status = 401;
-                    response.data = "Incorrect password.";
                     res.json(response);
                 }
             }
@@ -151,7 +160,37 @@ router.post('/login', (req, res) => {
         })
 });
 
-router.get('/protected', ensureToken, (req, res) => {
+router.get('/user-data/:id', ensureAndVerifyToken, function (req, res) {
+    resetResponse();
+    const id = req.params.id;
+    let idIsValid = mongoose.Types.ObjectId.isValid(id)
+    if (idIsValid) {
+        patientModel.findById({ _id: req.params.id }, '_id patient_id user_name', function (err, patient) {
+            if (err) {
+                handleError(err);
+                response.status = 404;
+                response.data = null;
+                res.json(response);
+            } else {
+                response.status = 200;
+                console.log(patient);
+                response.data = patient;
+                res.json(response);
+            }
+        })
+            .catch(err => {
+                handleError(err);
+            });
+    } else {
+        response.status = 422;
+        response.data = null;
+        response.message = "Incorrect format for user_id";
+        res.json(response);
+    }
+});
+
+
+router.get('/protected', ensureAndVerifyToken, (req, res) => {
     resetResponse();
     jwt.verify(req.token, '13118866', (err, data) => {
         console.log(data);
@@ -166,17 +205,27 @@ router.get('/protected', ensureToken, (req, res) => {
     });
 });
 
-function ensureToken(req, res, next) {
+function ensureAndVerifyToken(req, res, next) {
     const bearerHeader = req.headers["authorization"];
     if (typeof bearerHeader !== 'undefined') {
         const bearer = bearerHeader.split(" ");
         const bearerToken = bearer[1];
         req.token = bearerToken;
-        next();
+        jwt.verify(req.token, '13118866', (err, data) => {
+            if (err) {
+                res.sendStatus(401);
+            } else {
+                console.log(req.token);
+                next();
+            }
+        })
+        // next();
     } else {
         res.sendStatus(403);
     }
 }
+
+//  WRITE MIDDLEWARE TO CHECK USERTYPE=DOCTOR/ADMIN BEFORE
 
 function resetResponse() {
     response.status = 200;

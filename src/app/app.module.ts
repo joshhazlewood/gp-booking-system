@@ -24,6 +24,7 @@ import { AppointmentsService } from './services/appointments.service';
 import { StaffService } from './services/staff.service';
 import { AuthService } from './services/auth.service';
 import { LoginComponent } from './auth/login/login.component';
+import { AuthGuardService } from './services/auth-guard.service';
 
 const appRoutes: Routes = [
   { path: 'home', component: DashboardComponent },
@@ -32,7 +33,14 @@ const appRoutes: Routes = [
   { path: 'new-appointment', component: NewAppointmentComponent },
   { path: 'appointments-list', component: AppointmentsComponent },
   { path: 'login', component: LoginComponent },
-  { path: 'admin', component:  AdminPanelComponent},
+  { 
+    path: 'admin',
+    component: AdminPanelComponent,
+    canActivate: [AuthGuardService],
+    data: { 
+      expectedRole: 'admin'
+    }
+  },
   { path: '',
     redirectTo: '/home',
     pathMatch: 'full'
@@ -70,7 +78,8 @@ const appRoutes: Routes = [
     DataService,
     AppointmentsService,
     StaffService,
-    AuthService, 
+    AuthService,
+    AuthGuardService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,
