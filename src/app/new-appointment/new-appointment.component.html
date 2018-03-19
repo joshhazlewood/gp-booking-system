@@ -1,5 +1,5 @@
 <section class="section">
-  <div class="container">
+  <div class="container-fluid">
     <h1 class="title">Book an appointment</h1>
     <p>Please select or type a date.</p>
     <form [formGroup]="myForm" novalidate>
@@ -8,7 +8,7 @@
           <my-date-picker name="date" placeholder="dd/mm/yyyy" [options]="myDatePickerOptions" formControlName="myDate"></my-date-picker>
         </div>
         <div class="control">
-          <input class="button is-info" type="submit" (click)="findAppointments()" value="Search for appointments" [attr.disabled]='!isFormValidAndTouched() === true ? true : null'>
+          <input class="button is-info is-fullwidth" type="submit" id="searchButton" (click)="findAppointments()" value="Search for appointments" [attr.disabled]='!isFormValidAndTouched() === true ? true : null'>
         </div>
       </div>
     </form>

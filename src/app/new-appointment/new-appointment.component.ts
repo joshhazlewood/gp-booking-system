@@ -52,25 +52,21 @@ export class NewAppointmentComponent implements OnInit {
       myDate: [null, Validators.required]
       // other controls are here...
     });
-    this.staffService.getDoctors().subscribe( (res) => {
+
+    // Get all the doctors ready for appointments
+    this.staffService.getDoctors().subscribe((res) => {
       let dataIsNull = false;
 
       const data = res['data'];
-      if ( data === null ) {
+      if (data === null) {
         dataIsNull = true;
       } else {
-        this.doctors = data.map( (app) => {
+        this.doctors = data.map((app) => {
           return [app.staff_id, app.forename + ' ' + app.surname];
         });
       }
     }, (err) => {
       console.log(err);
-    });
-
-
-    // INTERCEPTOR TESTING
-    this.authService.tokenTest().subscribe( (res) => {
-      this.patientData = res['data'].toS;
     });
   }
 
@@ -80,29 +76,31 @@ export class NewAppointmentComponent implements OnInit {
     this.appointmentsService.getAppointmentsOnDate(date).subscribe(res => {
       console.log('no err');
       const data = res['data'];
-      if ( data === null ) {
+      if (data === null) {
         dataIsNull = true;
       } else {
-        this.takenAppointments = data.map( (app) => {
+        this.takenAppointments = data.map((app) => {
           return new TakenAppointment(
             app.staff_name,
             app.start_time,
           );
         });
       }
-    }, (err) => {
-      console.log(err);
-    }, () => {
-      if ( dataIsNull ) {
-        this.availableAppointments = this.potentialAppointments;
-        this.sortedAppointments = this.sortAppointmentsByTimeAndDocName(this.availableAppointments);
-        this.availableAppointmentsFound = true;
-      } else {
-        this.availableAppointments = this.removeExistingAppointments(this.potentialAppointments, this.takenAppointments);
-        this.sortedAppointments = this.sortAppointmentsByTimeAndDocName(this.availableAppointments);
-        this.availableAppointmentsFound = true;
-      }
-    });
+    },
+      (err) => {
+        console.log(err);
+      },
+      () => {
+        if (dataIsNull) {
+          this.availableAppointments = this.potentialAppointments;
+          this.sortedAppointments = this.sortAppointmentsByTimeAndDocName(this.availableAppointments);
+          this.availableAppointmentsFound = true;
+        } else {
+          this.availableAppointments = this.removeExistingAppointments(this.potentialAppointments, this.takenAppointments);
+          this.sortedAppointments = this.sortAppointmentsByTimeAndDocName(this.availableAppointments);
+          this.availableAppointmentsFound = true;
+        }
+      });
   }
 
   setDate(): void {
@@ -200,10 +198,10 @@ export class NewAppointmentComponent implements OnInit {
   }
 
   bookAppointment(appointment: PotentialAppointment) {
-    // console.log(appointment);
-    this.appointmentsService.createNewAppointment(appointment).subscribe(data => {
-      console.log(data);
-    });
+    console.log(appointment);
+    // this.appointmentsService.createNewAppointment(appointment).subscribe(data => {
+    //   console.log(data);
+    // });
   }
 
 }

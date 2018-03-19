@@ -35,24 +35,24 @@ export class AuthService {
     return this.http.get('/api/patients/all-patients');
   }
 
-  public setSession(authResult) {
-    const expiresAt = moment()
-      .add(authResult.expires_in, 's')
-      .format('YYYY-MM-DD HH:mm:ss');
-    let decodedToken = jwtDecode(authResult.id_token);
-    const parsedToken = JSON.parse(decodedToken.data);
-    const user_id = parsedToken.user_id;
-    // this.user = 
-    // this.user = {
-    //   user_id: parsedToken.user_id,
-    //   user_name: parsedToken.user_name,
-    //   user_role: parsedToken.user_role
-    // }
+  // public setSession(authResult) {
+  //   const expiresAt = moment()
+  //     .add(authResult.expires_in, 's')
+  //     .format('YYYY-MM-DD HH:mm:ss');
+  //   let decodedToken = jwtDecode(authResult.id_token);
+  //   const parsedToken = JSON.parse(decodedToken.data);
+  //   const user_id = parsedToken.user_id;
+  //   // this.user = 
+  //   // this.user = {
+  //   //   user_id: parsedToken.user_id,
+  //   //   user_name: parsedToken.user_name,
+  //   //   user_role: parsedToken.user_role
+  //   // }
 
-    localStorage.setItem('id_token', authResult.id_token);
-    localStorage.setItem("expires_at", expiresAt);
-    console.log(this.getUserDetails(user_id));
-  }
+  //   localStorage.setItem('id_token', authResult.id_token);
+  //   localStorage.setItem("expires_at", expiresAt);
+  //   this.getDetailsAndSetUser(user_id);
+  // }
 
   logout() {
     localStorage.removeItem("id_token");
@@ -65,8 +65,8 @@ export class AuthService {
       setInterval(() => {
         const value = this.getExpiration() !== null && moment().isBefore(this.getExpiration());
         observer.next(value);
-      }, 1000)
-    })
+      }, 1000);
+    });
   }
 
   public getLoggedInAsBool(): boolean {
@@ -86,26 +86,38 @@ export class AuthService {
     return this.user;
   }
 
-  private getUserDetails(user_id: string) {
-    if (this.userType === 'patient') {
-      const res = this.http.get(`/api/patients/user-data/${user_id}`)
-        .subscribe(res => {
-          console.log(res['data']); 
-          return res;
-        });
-        return res;
-      // return this.http.post('/api/patients/login', { "username": email, "password": password });
-    } else if (this.userType === 'staff') {
-      // return this.http.post('/api/staff/login', { "username": email, "password": password });
-      console.log('usertype');
-    }
-
-
-
-    // return {
-    //     user_id: parsedToken.user_id,
-    //     user_name: parsedToken.user_name,
-    //     user_role: parsedToken.user_role
-    //   }
+  public setUser(user: User) {
+    this.user = user;
   }
+
+  // private getDetailsAndSetUser(user_id: string) {
+  //   if (this.userType === 'patient') {
+  //     const res = this.http.get(`/api/patients/user-data/${user_id}`)
+  //       .subscribe(res => {
+  //         const userData = res['data'];
+  //         console.log(userData);
+  //         this.user = {
+  //           user_id: userData._id,
+  //           user_name: userData.user_name,
+  //           user_role: 'patient'
+  //         };
+  //         // return res;
+  //         console.log(this.user);
+  //       });
+  //     // return res;
+  //   } else if (this.userType === 'staff') {
+  //     const res = this.http.get(`/api/staff/user-data/${user_id}`)
+  //       .subscribe(res => {
+  //         const userData = res['data'];
+  //         console.log(userData);
+  //         this.user = {
+  //           user_id: userData._id,
+  //           user_name: userData.user_name,
+  //           user_role: userData.staff_role
+  //         };
+  //         // return res;
+  //         console.log(this.user);
+  //       });
+  //   }
+  // }
 }

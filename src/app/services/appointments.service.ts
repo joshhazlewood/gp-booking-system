@@ -8,11 +8,6 @@ export class AppointmentsService {
 
   baseUrl: string = '/api/appointments';
   constructor(private http: HttpClient) { }
-  httpOptions = {
-    headers: new HttpHeaders({
-      'Content-Type':  'application/json'
-    })
-  }
 
   getAppointments() {
     return this.http.get(this.baseUrl + '/all-appointments');
@@ -23,9 +18,7 @@ export class AppointmentsService {
   }
 
   createNewAppointment(appData) {
-    console.log('appdata = ');
-    console.log(appData);
-    return this.http.post("/api/appointments" , appData, this.httpOptions);
+    return this.http.post("/api/appointments" , appData);
   }
 
 }
