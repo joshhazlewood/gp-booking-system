@@ -1,41 +1,64 @@
 <section class="section">
-  <div class="container-fluid">
-    <h1 class="title">Book an appointment</h1>
-    <p>Please select or type a date.</p>
-    <form [formGroup]="myForm" novalidate>
-      <div class="field has-addons">
-        <div class="control">
-          <my-date-picker name="date" placeholder="dd/mm/yyyy" [options]="myDatePickerOptions" formControlName="myDate"></my-date-picker>
-        </div>
-        <div class="control">
-          <input class="button is-info is-fullwidth" type="submit" id="searchButton" (click)="findAppointments()" value="Search for appointments" [attr.disabled]='!isFormValidAndTouched() === true ? true : null'>
-        </div>
-      </div>
-    </form>
-    <br>
-    <!-- <div>
-      <p>Patient Data</p>
-      <p>{{patientData}}</p>
-    </div> -->
-    <ng-container *ngIf="availableAppointmentsFound">
-      <div class="columns content is-multiline is-tablet">
-        <div class="column is-one-quarter-desktop has-text-centered" *ngFor="let app of sortedAppointments; let index = i">
-          <div class="box is-light">
-            <p>
-              <strong>{{ app.date.toLocaleTimeString().substr(0, 5)}} - {{ app.doctor }}</strong>
-            </p>
-            <nav class="level">
-              <p class="level-item has-text-centered">
-                {{ app.date.toUTCString().substr(0, 17) }}
-              </p>
-              <p class="level-item has-text-centered">
-                <input type="submit" value="Book" class="button is-info" (click)="bookAppointment(app)">
-              </p>
-            </nav>
+  <div class="columns">
+    <div class="column is-6 is-offset-3">
+      <div class="container-fluid">
+        <h1 class="title">Book an appointment</h1>
+        <p>Please select or enter a date.</p>
+        <form [formGroup]="myForm" novalidate>
+          <div class="field">
+            <div class="control">
+              <my-date-picker name="date" placeholder="dd/mm/yyyy" [options]="myDatePickerOptions" formControlName="myDate"></my-date-picker>
+            </div>
           </div>
-        </div>
+          <div class="field">
+            <div class="control">
+              <input class="button is-info is-fullwidth" type="submit" id="searchButton" (click)="findAppointments()" value="Search for appointments"
+                [attr.disabled]='!isFormValidAndTouched() === true ? true : null'>
+            </div>
+          </div>
+        </form>
       </div>
-    </ng-container>
-    <br>
+      <br>
+      <ng-container *ngIf="availableAppointmentsFound">
+        <table class="table is-bordered is-striped is-hoverable is-fullwidth">
+          <thead>
+            <tr>
+              <th>Doctor</th>
+              <th>Start Time</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let app of sortedAppointments; let index = i">
+              <td>{{app.doctor}}</td>
+              <td>{{app.date.toLocaleTimeString().substr(0, 5)}}</td>
+              <td>
+                <input type="submit" value="Book" class="button is-fullwidth is-info is-outlined" (click)="bookAppointment(app)">
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+        <!-- <div class="columns content is-multiline is-tablet">
+            <div class="column is-one-quarter-desktop has-text-centered" *ngFor="let app of sortedAppointments; let index = i">
+              <div class="box is-light">
+                <p>
+                  <strong>{{ app.date.toLocaleTimeString().substr(0, 5)}} - {{ app.doctor }}</strong>
+                </p>
+                <nav class="level">
+                  <p class="level-item has-text-centered">
+                    {{ app.date.toUTCString().substr(0, 17) }}
+                  </p>
+                  <p class="level-item has-text-centered">
+                    <input type="submit" value="Book" class="button is-info" (click)="bookAppointment(app)">
+                  </p>
+                </nav>
+              </div>
+            </div>
+          </div> -->
+      </ng-container>
+
+    </div>
   </div>
+
 </section>
