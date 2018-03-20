@@ -9,11 +9,11 @@ const staffSchema = require('../schemas/staff');
 var staffModel = mongoose.model('staff', staffSchema, 'staff');
 
 var testStaff = {
-    staff_id: 50,
-    forename: 'josh',
+    // staff_id: 50,
+    forename: 'samuel',
     surname: 'hazlewood',
     staff_role: 'doctor',
-    user_name: 'joshhaz',
+    user_name: 'sam@test.com',
     password: 'test'
 };
 
@@ -59,9 +59,8 @@ router.get('/id/:id', function (req, res) {
 });
 
 router.get('/doctors', function (req, res) {
-    staffModel.find({ 'staff_role': 'doctor' }, 'forename surname staff_id', function (err, staff) {
+    staffModel.find({ 'staff_role': 'doctor' }, '_id staff_id forename surname', function (err, staff) {
         if (!err) {
-            // console.log(staff.length);
             // find returns an array - check if empty then send to 404
             if (staff.length === 0) {
                 response.status = 404;
@@ -73,7 +72,10 @@ router.get('/doctors', function (req, res) {
                 res.json(response);
             }
         } else {
-            console.log(err);
+            handleError(err);
+            response.status = 500;
+                response.data = staff;
+                res.json(response);
         }
     })
 })

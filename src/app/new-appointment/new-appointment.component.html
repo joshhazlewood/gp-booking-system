@@ -30,7 +30,7 @@
           </thead>
           <tbody>
             <tr *ngFor="let app of sortedAppointments; let index = i">
-              <td>{{app.doctor}}</td>
+              <td class="is-capitalized">{{app.doctor.getFullName()}}</td>
               <td>{{app.date.toLocaleTimeString().substr(0, 5)}}</td>
               <td>
                 <input type="submit" value="Book" class="button is-fullwidth is-info is-outlined" (click)="bookAppointment(app)">

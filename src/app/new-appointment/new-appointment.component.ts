@@ -7,9 +7,11 @@ import { IMyDate } from '../../../node_modules/mydatepicker/dist/interfaces/my-d
 import { PotentialAppointment } from '../models/potential-appointment';
 import { TakenAppointment } from '../models/taken-appointment';
 import { Appointment } from '../models/appointment';
+import { Doctor } from '../models/doctor';
 import { AppointmentsService } from '../services/appointments.service';
 import { StaffService } from '../services/staff.service';
 import { AuthService } from '../services/auth.service';
+import { User } from '../services/interfaces/user';
 
 @Component({
   selector: 'app-new-appointment',
@@ -26,11 +28,9 @@ export class NewAppointmentComponent implements OnInit {
   private availableAppointments: PotentialAppointment[];
   private sortedAppointments;
 
-  // private doctors = ['doc1', 'doc2', 'doc3', 'doc4'];
   private doctors = [];
-
-  // interceptor test
-  private patientData = '';
+  private user: User = null;
+  private isLoggedIn: boolean = null;
 
   public myDatePickerOptions: IMyDpOptions = {
     // other options...
@@ -56,25 +56,55 @@ export class NewAppointmentComponent implements OnInit {
     // Get all the doctors ready for appointments
     this.staffService.getDoctors().subscribe((res) => {
       let dataIsNull = false;
+      if (res['status'] === 200) {
+        const data = res['data'];
 
-      const data = res['data'];
-      if (data === null) {
-        dataIsNull = true;
-      } else {
-        this.doctors = data.map((app) => {
-          return [app.staff_id, app.forename + ' ' + app.surname];
+        this.doctors = data.map((doc) => {
+          const { _id, staff_id, forename, surname } = doc;
+          return new Doctor(_id, staff_id, forename, surname);
         });
+      } else {
+        dataIsNull = true;
       }
     }, (err) => {
       console.log(err);
     });
+    console.log('initialised');
+
+    this.authService.isLoggedIn().subscribe(
+      value => {
+        this.isLoggedIn = true;
+
+        if (value === true) {
+
+          if (this.user === null) {
+            const user_id = this.authService.getToken()['user_id'];
+            // console.log(user_id);
+            this.authService.getUserDetails(user_id).subscribe(
+              res => {
+                if (res['status'] === 200) {
+                  const { _id, user_name } = res['data'];
+                  this.user = {
+                    user_id: _id,
+                    user_name: user_name,
+                    user_role: 'patient'
+                  };
+                  console.log(this.user);
+                }
+              }
+            );
+          }
+        } else {
+          console.log('setting null');
+          this.user = null;
+        }
+      }
+    );
   }
 
   getAppointmentsAndRemoveExisting(date: Date): void {
     let dataIsNull = false;
-
     this.appointmentsService.getAppointmentsOnDate(date).subscribe(res => {
-      console.log('no err');
       const data = res['data'];
       if (data === null) {
         dataIsNull = true;
@@ -142,9 +172,12 @@ export class NewAppointmentComponent implements OnInit {
       for (let i = 0; i < 17; i++) {
         const appointment = new PotentialAppointment();
         const hour: number = startHour + (i * 0.5);
+        const docForename = doc.forename;
+        const docSurname = doc.surname;
+        const docName = this.concatName(docForename, docSurname);
 
-        appointment.staff_id = doc[0];
-        appointment.doctor = doc[1];
+        appointment.staff_id = doc._id;
+        appointment.doctor = doc;
 
         if (this.isOnTheHour(hour)) {
           appointment.date = new Date(selectedYear, selectedMonth, selectedDay, hour);
@@ -156,6 +189,7 @@ export class NewAppointmentComponent implements OnInit {
       }
     });
     //  pass in the selected day to pull relevant appointments from the DB
+    console.log('triggers getAppAndRemoveExisitng');
     this.getAppointmentsAndRemoveExisting(new Date(selectedYear, selectedMonth, selectedDay));
   }
 
@@ -166,9 +200,9 @@ export class NewAppointmentComponent implements OnInit {
       } else if (date1.date > date2.date) {
         return 1;
       } else {
-        if (date1.doctor < date2.doctor) {
+        if (date1.doctor.getFullName() < date2.doctor.getFullName()) {
           return -1;
-        } else if (date1.doctor > date2.doctor) {
+        } else if (date1.doctor.getFullName() > date2.doctor.getFullName()) {
           return 1;
         }
         return 0;
@@ -182,7 +216,7 @@ export class NewAppointmentComponent implements OnInit {
       //  Returns NOT of takenAppointments.some because we filter out if
       //  the potential appointment is at the same time as any other appointment today.
       const appNotTaken = !takenAppointments.some((takenApp) => {
-        const appTaken = (app.date.getTime() === new Date(takenApp.start_time).getTime() && app.doctor === takenApp.doctor);
+        const appTaken = (app.date.getTime() === new Date(takenApp.start_time).getTime() && app.doctor.getFullName() === takenApp.doctor);
         if (appTaken) {
           return true;
         }
@@ -197,9 +231,22 @@ export class NewAppointmentComponent implements OnInit {
     return Number.isInteger(hour);
   }
 
+  concatName(forename, surname): string {
+    const fullName = `${forename} ${surname}`;
+    return fullName;
+  }
+
   bookAppointment(appointment: PotentialAppointment) {
     console.log(appointment);
-    // this.appointmentsService.createNewAppointment(appointment).subscribe(data => {
+    // const user = this.authService.getUser();
+    console.log(this.user);
+    // const patient_id = user.user_id;
+    // const staff_id = appointment.doctor._id;
+    // const start_time = appointment.date;
+    // // const end_time = '';
+    // const newApp = new Appointment(patient_id, staff_id, start_time);
+    // // console.log(newApp);
+    // this.appointmentsService.createNewAppointment(newApp).subscribe(data => {
     //   console.log(data);
     // });
   }

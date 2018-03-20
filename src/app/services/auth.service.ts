@@ -35,25 +35,6 @@ export class AuthService {
     return this.http.get('/api/patients/all-patients');
   }
 
-  // public setSession(authResult) {
-  //   const expiresAt = moment()
-  //     .add(authResult.expires_in, 's')
-  //     .format('YYYY-MM-DD HH:mm:ss');
-  //   let decodedToken = jwtDecode(authResult.id_token);
-  //   const parsedToken = JSON.parse(decodedToken.data);
-  //   const user_id = parsedToken.user_id;
-  //   // this.user = 
-  //   // this.user = {
-  //   //   user_id: parsedToken.user_id,
-  //   //   user_name: parsedToken.user_name,
-  //   //   user_role: parsedToken.user_role
-  //   // }
-
-  //   localStorage.setItem('id_token', authResult.id_token);
-  //   localStorage.setItem("expires_at", expiresAt);
-  //   this.getDetailsAndSetUser(user_id);
-  // }
-
   logout() {
     localStorage.removeItem("id_token");
     localStorage.removeItem("expires_at");
@@ -88,6 +69,17 @@ export class AuthService {
 
   public setUser(user: User) {
     this.user = user;
+  }
+
+  public getUserDetails(user_id) {
+    return this.http.get(`/api/patients/user-data/${user_id}`)
+  }
+
+  public getToken() {
+    const token = localStorage.getItem("id_token");
+    const decodedToken = jwtDecode(token);
+    const parsedToken = JSON.parse(decodedToken.data);
+    return parsedToken;
   }
 
   // private getDetailsAndSetUser(user_id: string) {

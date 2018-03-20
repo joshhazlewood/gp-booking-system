@@ -118,14 +118,14 @@ function resetResponse() {
 }
 
 
-// var testAppointment = {
-//     appointment_id: 50,
-//     patient_id : 20,
-//     staff_id: 30,
-//     staff_name: 'josh hazlewood',
-//     start_time: new Date(2018, 1, 17, 16),
-//     end_time: new Date(2018, 1, 17, 16, 30)
-// }
+var testAppointment = {
+    appointment_id: 50,
+    patient_id : 20,
+    staff_id: 30,
+    staff_name: 'josh hazlewood',
+    start_time: new Date(2018, 2, 21, 16),
+    end_time: new Date(2018, 2, 21, 16, 30)
+}
 
 // console.log(testAppointment);
 // appointmentsModel.create(testAppointment, function(err) {
