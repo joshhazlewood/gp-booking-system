@@ -15,7 +15,7 @@
   </div>
 
   <div id="navbar-data" class="navbar-menu">
-    <!-- navbar start, navbar end -->
+    
     <div class="navbar-start">
       <a class="navbar-item" routerLink="/home" routerLinkActive="active">
         <span class="icon">
@@ -23,37 +23,37 @@
         </span>
         Home
       </a>
-      <a class="navbar-item" routerLink="/staff-list">
-        <span class="icon">
-          <i class="fas fa-user-md"></i>
-        </span>
-        Staff
-      </a>
-      <a class="navbar-item" *ngIf="getUserType() === 'doctor'" routerLink="/appointments-list">
-        <span class="icon">
-          <i class="far fa-calendar-alt"></i>
-        </span>
-        Appointments
-      </a>
-      <a class="navbar-item" *ngIf="userIsDoctorOrAdmin()" routerLink="/patients-list">
-        <span class="icon">
-          <i class="fas fa-users"></i>
-        </span>
-        Patients
-      </a>
-      <a class="navbar-item" *ngIf="getUserType() === 'patient'" routerLink="/new-appointment">
-        <span class="icon">
-          <i class="far fa-calendar-plus"></i>
-        </span>
-        New Appointment
-      </a>
-      <a class="navbar-item" *ngIf="getUserType() === 'admin'" routerLink="/admin">
-        <span class="icon">
-          <i class="fas fa-wrench"></i>
-        </span>
-        Admin
-      </a>
+      <ng-container *ngIf="isLoggedIn()">
+        <a class="navbar-item" routerLink="/new-appointment" *ngIf="getUserType() === 'patient'">
+          <span class="icon">
+            <i class="far fa-calendar-plus"></i>
+          </span>
+          New Appointment
+        </a>
+
+        <ng-container *ngIf="userIsDoctorOrAdmin()">
+          <a class="navbar-item" routerLink="/appointments-list">
+            <span class="icon">
+              <i class="far fa-calendar-alt"></i>
+            </span>
+            Appointments
+          </a>
+          <a class="navbar-item" routerLink="/patients-list">
+            <span class="icon">
+              <i class="fas fa-users"></i>
+            </span>
+            Patients
+          </a>
+          <a class="navbar-item" *ngIf="getUserType() === 'admin'" routerLink="/admin">
+            <span class="icon">
+              <i class="fas fa-wrench"></i>
+            </span>
+            Admin
+          </a>
+        </ng-container>
+      </ng-container>
     </div>
+
     <div class="navbar-end">
       <a *ngIf="!isLoggedIn()" class="navbar-item" routerLink="/login">
         <span class="icon">
@@ -69,4 +69,5 @@
       </a>
     </div>
   </div>
+
 </nav>

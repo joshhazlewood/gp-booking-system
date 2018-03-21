@@ -71,8 +71,9 @@ export class AuthService {
     this.user = user;
   }
 
-  public getUserDetails(user_id) {
-    return this.http.get(`/api/patients/user-data/${user_id}`)
+  public getUserDetails() {
+    const user_id = this.getToken()['user_id'];
+    return this.http.get(`/api/patients/user-data/${user_id}`);
   }
 
   public getToken() {

@@ -1,5 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+
+import { User } from '../services/interfaces/user';
+
 import { AuthService } from '../services/auth.service';
+
+import { Observable } from 'rxjs/Rx';
 
 @Component({
   selector: 'app-navbar',
@@ -35,22 +40,16 @@ export class NavbarComponent implements OnInit {
         });
       }
     });
-
-    this.authService.isLoggedIn()
-      .subscribe((data) => {
-        this.loggedIn = data;
-      });
   }
 
   isLoggedIn() {
     return this.loggedIn;
   }
 
-  getUserType() {
+  getUserType(): string {
     const user = this.authService.getUser();
-    if(user !== undefined) {
+    if (user !== null) {
       return user.user_role;
-      // return 'admin';
     }
     return 'none';
   }
@@ -61,10 +60,15 @@ export class NavbarComponent implements OnInit {
   }
 
   logUserOut() {
-    this.authService.logout(); 
+    console.log('logging out');
+    this.authService.logout();
   }
 
   ngOnInit() {
+    this.authService.isLoggedIn()
+      .subscribe((response) => {
+        this.loggedIn = response;
+      });
   }
 
 }
