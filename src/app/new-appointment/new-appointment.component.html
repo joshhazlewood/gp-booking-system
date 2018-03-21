@@ -19,6 +19,11 @@
         </form>
       </div>
       <br>
+
+      <div class="notification is-warning" *ngFor="let error of errors; let index = i">
+        <a class="delete" (click)="removeErrMsg(i)"></a>
+        <p>{{error}}</p>
+      </div>
       <ng-container *ngIf="availableAppointmentsFound">
         <table class="table is-bordered is-striped is-hoverable is-fullwidth">
           <thead>
@@ -38,6 +43,42 @@
             </tr>
           </tbody>
         </table>
+
+        <div class="modal" [ngClass]="{ 'is-active' : showModal === true }">
+          <div class="modal-background"></div>
+          <div class="modal-content box">
+            <div class="columns">
+              <div class="column">
+                <ng-container *ngIf="confirmApp">
+                  <p class="is-capitalized">
+                    <span class="icon is-left">
+                      <i class="fas fa-user-md"></i>
+                    </span>
+                    {{this.appToConfirm.doctor.getFullName()}}
+                  </p>
+                  <p>
+                    <span class="icon is-left">
+                      <i class="far fa-calendar"></i>
+                    </span>
+                    {{this.appToConfirm.date.toLocaleDateString()}}
+                  </p>
+                  <p>
+                    <span class="icon is-left">
+                      <i class="far fa-clock"></i>
+                    </span>
+                    {{this.appToConfirm.date.toLocaleTimeString()}}
+                  </p>
+                </ng-container>
+              </div>
+              <div class="column">
+                <p>All appointments are scheduled to last 30 mins.</p>
+                <p>Please try to arrive to the surgery 5 minutes before your appointment is due to start.</p>
+              </div>
+            </div>
+            <input type="submit" value="confirm" class="button is-fullwidth is-info is-outlined" (click)="completeAppointment()">
+          </div>
+          <button class="modal-close is-large" (click)="closeModal()" aria-label="close"></button>
+        </div>
 
         <!-- <div class="columns content is-multiline is-tablet">
             <div class="column is-one-quarter-desktop has-text-centered" *ngFor="let app of sortedAppointments; let index = i">

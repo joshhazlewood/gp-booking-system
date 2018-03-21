@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { Validators } from '@angular/forms';
 
@@ -27,10 +28,14 @@ export class NewAppointmentComponent implements OnInit {
   private takenAppointments: TakenAppointment[];
   private availableAppointments: PotentialAppointment[];
   private sortedAppointments;
+  private appToConfirm: PotentialAppointment = null;
 
   private doctors = [];
+  private errors: string[] = null;
   private user: User = null;
   private isLoggedIn: boolean = null;
+  private showModal: boolean = null;
+  private confirmApp: boolean = null;
 
   public myDatePickerOptions: IMyDpOptions = {
     // other options...
@@ -40,8 +45,12 @@ export class NewAppointmentComponent implements OnInit {
 
   public myForm: FormGroup;
 
-  constructor(private formBuilder: FormBuilder, private appointmentsService: AppointmentsService, private staffService: StaffService,
-    private authService: AuthService) { }
+  constructor(
+    private formBuilder: FormBuilder,
+    private appointmentsService: AppointmentsService,
+    private staffService: StaffService,
+    private authService: AuthService,
+    private router: Router) { }
 
   ngOnInit() {
     this.myForm = this.formBuilder.group({
@@ -52,6 +61,8 @@ export class NewAppointmentComponent implements OnInit {
       myDate: [null, Validators.required]
       // other controls are here...
     });
+    this.confirmApp = false;
+    this.errors = [];
 
     // Get all the doctors ready for appointments
     this.staffService.getDoctors().subscribe((res) => {
@@ -111,7 +122,7 @@ export class NewAppointmentComponent implements OnInit {
       } else {
         this.takenAppointments = data.map((app) => {
           return new TakenAppointment(
-            app.staff_name,
+            app.staff_id,
             app.start_time,
           );
         });
@@ -216,7 +227,7 @@ export class NewAppointmentComponent implements OnInit {
       //  Returns NOT of takenAppointments.some because we filter out if
       //  the potential appointment is at the same time as any other appointment today.
       const appNotTaken = !takenAppointments.some((takenApp) => {
-        const appTaken = (app.date.getTime() === new Date(takenApp.start_time).getTime() && app.doctor.getFullName() === takenApp.doctor);
+        const appTaken = (app.date.getTime() === new Date(takenApp.start_time).getTime() && app.doctor._id === takenApp.doctor_id);
         if (appTaken) {
           return true;
         }
@@ -239,7 +250,11 @@ export class NewAppointmentComponent implements OnInit {
   bookAppointment(appointment: PotentialAppointment) {
     console.log(appointment);
     // const user = this.authService.getUser();
-    console.log(this.user);
+    this.showModal = true;
+    this.confirmApp = true;
+    this.appToConfirm = appointment;
+    this.appToConfirm.patient_id = this.user.user_id;
+
     // const patient_id = user.user_id;
     // const staff_id = appointment.doctor._id;
     // const start_time = appointment.date;
@@ -249,6 +264,36 @@ export class NewAppointmentComponent implements OnInit {
     // this.appointmentsService.createNewAppointment(newApp).subscribe(data => {
     //   console.log(data);
     // });
+  }
+
+  completeAppointment() {
+    this.appointmentsService.createNewAppointment(this.appToConfirm).subscribe(
+      res => {
+        const status = res['status'];
+        if (status === 200) {
+          this.appointmentsService.confirmationData = this.appToConfirm;
+          this.router.navigateByUrl('/confirm-app');
+          console.log('Created appointment');
+        } else if (status === 409) {
+          this.errors.push('Sorry, that appointment has already been taken. Please try another.');
+          this.closeModal();
+          this.findAppointments();
+          console.log('Appointment already taken');
+        } else {
+          console.log('Server error');
+          this.findAppointments();
+        }
+      }
+    );
+  }
+
+  closeModal() {
+    this.showModal = false;
+    this.confirmApp = false;
+  }
+
+  removeErrMsg(index) {
+    this.errors.splice(index, 1);
   }
 
 }

@@ -19,7 +19,7 @@ autoIncrement.initialize(mongoose.connection);
 appointmentsSchema.plugin(autoIncrement.plugin, {
     model: 'appointmentsModel',
     field: 'appointment_id',
-    startAt: 1    
+    startAt: 1
 });
 
 router.get('/all-appointments', ensureToken, (req, res) => {
@@ -34,21 +34,81 @@ router.get('/all-appointments', ensureToken, (req, res) => {
 });
 
 
-router.post('/', function(req, res) {
-    console.log(req.body);
-    res.json(req.body);
+router.post('/', ensureToken, function (req, res) {
+    resetResponse();
+    // console.log(req.body);
+    // res.json(req.body);
+    const appTaken = false;
+    const { doctor, date, patient_id } = req['body'];
+    const doc_id = doctor['_id'];
+
+    const appointment = {
+        patient_id: patient_id,
+        staff_id: doc_id,
+        start_time: date
+    };
+    // console.log(appointment);
+
+    appointmentsModel.findOne({
+        'start_time': date,
+        'staff_id': doc_id
+    },
+        function (err, app) {
+            console.log(app);
+            if (err) {
+                console.log(err);
+                response.status = 500;
+                res.json(response);
+                // res.status(500).send();
+            } else {
+                if (app === null) {
+                    appointmentsModel.create(appointment, function (err) {
+                        if (err) {
+                            console.log('Error saving appointment data');
+                            response.status = 500;
+                            res.json(response);
+                        } else {
+                            console.log('Saved appointment to DB');
+                            response.status = 200;
+                            res.json(response);
+                        }
+                    });
+                } else {
+                    console.log('Appointment already taken!');
+                    response.status = 409;
+                    res.json(response);
+                }
+            }
+            // if (!err) {
+            //     // appTaken = true;
+            //     //  app is found so send back error.
+            //     console.log('Appointment already exists!');
+            //     console.log(app);
+            //     res.status(409).send();
+            // } else {
+            // appointmentsModel.create(appointment, function (err) {
+            //     if (err) {
+            //         console.log('Error saving patient data');
+            //         res.status(500).send();
+            //     } else {
+            //         res.status(200).send();
+            //     }
+            // });
+            // }
+        });
+
 });
 
 router.get('/id/:id', function (req, res) {
     appointmentsModel.find({ 'appointment_id': req.params.id }, function (err, appointment) {
         if (!err) {
-            console.log(appointment.length);
+            // console.log(appointment.length);
             // find returns an array - check if empty then send to 404
             if (appointment.length === 0) {
                 response.status = 404;
                 response.data = null;
                 res.json(response);
-            } else { 
+            } else {
                 // continue with response if it's found
                 response.status = 200;
                 response.data = appointment;
@@ -60,19 +120,19 @@ router.get('/id/:id', function (req, res) {
     });
 });
 
-router.get('/date/:date', function(req, res) {
+router.get('/date/:date', function (req, res) {
     date = req.params.date;
     dateToFind = new moment(date);
     dateToFindPlusOneDay = new moment(date);
     dateToFindPlusOneDay = dateToFindPlusOneDay.add(1, 'd');
 
-    appointmentsModel.find({'start_time': { '$gte' : dateToFind.toDate(), '$lt': dateToFindPlusOneDay.toDate() }}, function (err, appointments ) {
+    appointmentsModel.find({ 'start_time': { '$gte': dateToFind.toDate(), '$lt': dateToFindPlusOneDay.toDate() } }, function (err, appointments) {
         if (!err) {
             if (appointments.length === 0) {
                 response.status = 404;
                 response.data = null;
                 res.json(response);
-            } else { 
+            } else {
                 // continue with response if it's found
                 response.status = 200;
                 response.data = appointments;
@@ -120,7 +180,7 @@ function resetResponse() {
 
 var testAppointment = {
     appointment_id: 50,
-    patient_id : 20,
+    patient_id: 20,
     staff_id: 30,
     staff_name: 'josh hazlewood',
     start_time: new Date(2018, 2, 21, 16),

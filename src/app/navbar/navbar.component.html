@@ -29,19 +29,19 @@
         </span>
         Staff
       </a>
-      <a class="navbar-item" routerLink="/appointments-list">
+      <a class="navbar-item" *ngIf="getUserType() === 'doctor'" routerLink="/appointments-list">
         <span class="icon">
           <i class="far fa-calendar-alt"></i>
         </span>
         Appointments
       </a>
-      <a class="navbar-item" routerLink="/patients-list">
+      <a class="navbar-item" *ngIf="userIsDoctorOrAdmin()" routerLink="/patients-list">
         <span class="icon">
           <i class="fas fa-users"></i>
         </span>
         Patients
       </a>
-      <a class="navbar-item" routerLink="/new-appointment">
+      <a class="navbar-item" *ngIf="getUserType() === 'patient'" routerLink="/new-appointment">
         <span class="icon">
           <i class="far fa-calendar-plus"></i>
         </span>

@@ -7,7 +7,11 @@ import { HttpHeaders } from '@angular/common/http';
 export class AppointmentsService {
 
   baseUrl: string = '/api/appointments';
-  constructor(private http: HttpClient) { }
+  confirmationData = null;
+
+  constructor(private http: HttpClient) { 
+    this.confirmationData = {};
+  }
 
   getAppointments() {
     return this.http.get(this.baseUrl + '/all-appointments');

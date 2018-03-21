@@ -55,6 +55,11 @@ export class NavbarComponent implements OnInit {
     return 'none';
   }
 
+  userIsDoctorOrAdmin(): boolean {
+    const value = this.getUserType() === 'doctor' || this.getUserType() === 'admin'
+    return value;
+  }
+
   logUserOut() {
     this.authService.logout(); 
   }

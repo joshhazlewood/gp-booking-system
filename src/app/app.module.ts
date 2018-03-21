@@ -25,11 +25,13 @@ import { StaffService } from './services/staff.service';
 import { AuthService } from './services/auth.service';
 import { LoginComponent } from './auth/login/login.component';
 import { AuthGuardService } from './services/auth-guard.service';
+import { ConfirmAppComponent } from './confirm-app/confirm-app.component';
 
 const appRoutes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'home', component: DashboardComponent },
   { path: 'new-appointment', component: NewAppointmentComponent },
+  { path: 'confirm-app', component: ConfirmAppComponent },
   { path: 'staff-list', component: StaffListComponent },
   { path: 'patients-list', component: PatientListComponent },
   { path: 'appointments-list', component: AppointmentsComponent },
@@ -60,7 +62,8 @@ const appRoutes: Routes = [
     AppointmentsComponent,
     AdminPanelComponent,
     NewAppointmentComponent,
-    LoginComponent
+    LoginComponent,
+    ConfirmAppComponent
   ],
   imports: [
     BrowserModule,
