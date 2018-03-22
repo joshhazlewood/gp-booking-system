@@ -39,18 +39,16 @@ router.get('/all-appointments', ensureToken, (req, res) => {
 
 router.post('/', ensureToken, function (req, res) {
     resetResponse();
-    // console.log(req.body);
-    // res.json(req.body);
     const appTaken = false;
     const { doctor, date, patient_id } = req['body'];
     const doc_id = doctor['_id'];
-
+    const end_time = moment(date).add(30, 'm');
     const appointment = {
         patient: patient_id,
         staff: doc_id,
-        start_time: date
+        start_time: date,
+        end_time
     };
-    // console.log(appointment);
 
     appointmentsModel.findOne({
         'start_time': date,
@@ -61,7 +59,6 @@ router.post('/', ensureToken, function (req, res) {
                 console.log(err);
                 response.status = 500;
                 res.json(response);
-                // res.status(500).send();
             } else {
                 if (app === null) {
                     appointmentsModel.create(appointment, function (err) {
@@ -81,22 +78,6 @@ router.post('/', ensureToken, function (req, res) {
                     res.json(response);
                 }
             }
-            // if (!err) {
-            //     // appTaken = true;
-            //     //  app is found so send back error.
-            //     console.log('Appointment already exists!');
-            //     console.log(app);
-            //     res.status(409).send();
-            // } else {
-            // appointmentsModel.create(appointment, function (err) {
-            //     if (err) {
-            //         console.log('Error saving patient data');
-            //         res.status(500).send();
-            //     } else {
-            //         res.status(200).send();
-            //     }
-            // });
-            // }
         });
 
 });
@@ -104,7 +85,6 @@ router.post('/', ensureToken, function (req, res) {
 router.get('/id/:id', function (req, res) {
     appointmentsModel.find({ 'appointment_id': req.params.id }, function (err, appointment) {
         if (!err) {
-            // console.log(appointment.length);
             // find returns an array - check if empty then send to 404
             if (appointment.length === 0) {
                 response.status = 404;
@@ -153,9 +133,14 @@ router.get('/app-as-event/:doctor_id', ensureToken, (req, res) => {
     appointmentsModel.find({ 'staff': doc_id }).
     populate('patient', '_id forename surname').
     populate('staff', '_id forename surname').
-    exec(function(err, app) {
+    exec(function(err, appointments) {
         if (err) return handleError(err);
-        console.log(app);
+        else {
+            // continue with response if it's found
+            response.status = 200;
+            response.data = appointments;
+            res.json(response);
+        }
     });
 });
 

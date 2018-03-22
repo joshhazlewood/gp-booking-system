@@ -77,7 +77,7 @@ export class LoginComponent implements OnInit {
     const expiresAt = moment()
       .add(authResult.expires_in, 's')
       .format('YYYY-MM-DD HH:mm:ss');
-    let decodedToken = jwtDecode(authResult.id_token);
+    const decodedToken = jwtDecode(authResult.id_token);
     const parsedToken = JSON.parse(decodedToken.data);
     const user_id = parsedToken.user_id;
     // this.user = 
@@ -88,7 +88,7 @@ export class LoginComponent implements OnInit {
     // }
 
     localStorage.setItem('id_token', authResult.id_token);
-    localStorage.setItem("expires_at", expiresAt);
+    localStorage.setItem('expires_at', expiresAt);
     this.getDetailsAndSetUser(user_id);
   }
 

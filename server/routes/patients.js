@@ -109,14 +109,11 @@ router.post('/new-patient', (req, res) => {
 router.post('/login', (req, res) => {
     resetResponse();
     const user = req.body;
-    console.log(user);
     const username = user.username;
     const password = user.password;
-    console.log(username);
     patientModel.findOne({ 'user_name': username }, (err, patient) => {
         if (!err) {
             // find returns an array - check if empty then send to 404
-            console.log(patient);
             if (patient === null) {
                 response.status = 404;
                 response.data = null;
@@ -175,7 +172,6 @@ router.get('/user-data/:id', ensureAndVerifyToken, function (req, res) {
                 res.json(response);
             } else {
                 response.status = 200;
-                console.log(patient);
                 response.data = patient;
                 res.json(response);
             }
@@ -195,7 +191,6 @@ router.get('/user-data/:id', ensureAndVerifyToken, function (req, res) {
 router.get('/protected', ensureAndVerifyToken, (req, res) => {
     resetResponse();
     jwt.verify(req.token, '13118866', (err, data) => {
-        console.log(data);
         if (err) {
             res.sendStatus(403);
         } else {
@@ -217,7 +212,7 @@ function ensureAndVerifyToken(req, res, next) {
             if (err) {
                 res.sendStatus(401);
             } else {
-                console.log(req.token);
+                console.log('verified token');
                 next();
             }
         })
