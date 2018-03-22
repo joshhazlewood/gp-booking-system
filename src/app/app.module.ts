@@ -30,11 +30,31 @@ import { ConfirmAppComponent } from './confirm-app/confirm-app.component';
 const appRoutes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'home', component: DashboardComponent },
-  { path: 'new-appointment', component: NewAppointmentComponent },
+  { 
+    path: 'new-appointment', 
+    component: NewAppointmentComponent,
+    canActivate: [AuthGuardService],
+    data: {
+      expectedRole: 'patient'
+    }
+  },
   { path: 'confirm-app', component: ConfirmAppComponent },
   { path: 'staff-list', component: StaffListComponent },
-  { path: 'patients-list', component: PatientListComponent },
-  { path: 'appointments-list', component: AppointmentsComponent },
+  { path: 'patients-list',
+    component: PatientListComponent,
+    canActivate: [AuthGuardService],
+    data: {
+      expectedRole: 'doctor'
+    }  
+  },
+  { 
+    path: 'appointments-list',
+    component: AppointmentsComponent,
+    canActivate: [AuthGuardService],
+    data: {
+      expectedRole: 'doctor'
+    }
+  },
   { 
     path: 'admin',
     component: AdminPanelComponent,
@@ -44,7 +64,7 @@ const appRoutes: Routes = [
     }
   },
   { path: '',
-    redirectTo: '/login',
+    redirectTo: '/home',
     pathMatch: 'full'
   },
   { path: '**', component: PageNotFoundComponent }

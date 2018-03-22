@@ -1,5 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+
+import { User } from '../services/interfaces/user';
+
 import { AuthService } from '../services/auth.service';
+
+import { Observable } from 'rxjs/Rx';
 
 @Component({
   selector: 'app-navbar',
@@ -9,6 +14,7 @@ import { AuthService } from '../services/auth.service';
 export class NavbarComponent implements OnInit {
 
   private loggedIn: boolean;
+  private userType: string = null;
 
   constructor(private authService: AuthService) {
     document.addEventListener('DOMContentLoaded', function () {
@@ -35,36 +41,46 @@ export class NavbarComponent implements OnInit {
         });
       }
     });
-
-    this.authService.isLoggedIn()
-      .subscribe((data) => {
-        this.loggedIn = data;
-      });
   }
 
   isLoggedIn() {
     return this.loggedIn;
   }
 
-  getUserType() {
-    const user = this.authService.getUser();
-    if(user !== undefined) {
-      return user.user_role;
-      // return 'admin';
+  getUserType(): string {
+    if (this.userType !== null) {
+      return this.userType;
+    } else {
+      return 'none';
     }
-    return 'none';
   }
 
   userIsDoctorOrAdmin(): boolean {
-    const value = this.getUserType() === 'doctor' || this.getUserType() === 'admin'
+    const value = this.getUserType() === 'doctor' || this.getUserType() === 'admin';
     return value;
   }
 
   logUserOut() {
-    this.authService.logout(); 
+    this.userType = null;
+    this.loggedIn = false;
+    this.authService.logout();
   }
 
   ngOnInit() {
+    this.loggedIn = this.authService.getLoggedInAsBool();
+
+    this.authService.isLoggedIn()
+      .subscribe((response) => {
+        this.loggedIn = response;
+        if (this.loggedIn === true && this.userType === null) {
+          this.userType = this.authService.getUserType();
+          console.log(this.userType);
+        }
+      });
+
+    // if(this.loggedIn) {
+    //   this.get
+    // }
   }
 
 }

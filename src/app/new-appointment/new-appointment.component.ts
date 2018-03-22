@@ -65,7 +65,7 @@ export class NewAppointmentComponent implements OnInit {
     this.errors = [];
 
     // Get all the doctors ready for appointments
-    this.staffService.getDoctors().subscribe((res) => {
+    this.staffService.getDoctors().first().subscribe((res) => {
       let dataIsNull = false;
       if (res['status'] === 200) {
         const data = res['data'];
@@ -82,7 +82,7 @@ export class NewAppointmentComponent implements OnInit {
     });
     console.log('initialised');
 
-    this.authService.isLoggedIn().subscribe(
+    this.authService.isLoggedIn().first().subscribe(
       value => {
         this.isLoggedIn = true;
 
@@ -91,7 +91,7 @@ export class NewAppointmentComponent implements OnInit {
           if (this.user === null) {
             const user_id = this.authService.getToken()['user_id'];
             // console.log(user_id);
-            this.authService.getUserDetails(user_id).subscribe(
+            this.authService.getUserDetails().first().subscribe(
               res => {
                 if (res['status'] === 200) {
                   const { _id, user_name } = res['data'];
@@ -115,7 +115,7 @@ export class NewAppointmentComponent implements OnInit {
 
   getAppointmentsAndRemoveExisting(date: Date): void {
     let dataIsNull = false;
-    this.appointmentsService.getAppointmentsOnDate(date).subscribe(res => {
+    this.appointmentsService.getAppointmentsOnDate(date).first().subscribe(res => {
       const data = res['data'];
       if (data === null) {
         dataIsNull = true;

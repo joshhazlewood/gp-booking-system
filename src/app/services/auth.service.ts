@@ -71,8 +71,9 @@ export class AuthService {
     this.user = user;
   }
 
-  public getUserDetails(user_id) {
-    return this.http.get(`/api/patients/user-data/${user_id}`)
+  public getUserDetails() {
+    const user_id = this.getToken()['user_id'];
+    return this.http.get(`/api/patients/user-data/${user_id}`);
   }
 
   public getToken() {
@@ -80,6 +81,13 @@ export class AuthService {
     const decodedToken = jwtDecode(token);
     const parsedToken = JSON.parse(decodedToken.data);
     return parsedToken;
+  }
+
+  getUserType() {
+    const token = this.getToken();
+    const user_role = token['user_role'];
+    console.log(user_role);
+    return user_role;
   }
 
   // private getDetailsAndSetUser(user_id: string) {

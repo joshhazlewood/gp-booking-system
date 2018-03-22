@@ -124,10 +124,10 @@ router.post('/login', (req, res) => {
                     // Expires in 30mins for patients
                     const expiresIn = (60 * 30);
                     let tokenData = JSON.stringify({
-                        user_id: patient._id
+                        user_id: patient._id,
                         // user_name: username,
                         // pretty_id: patient.patient_id,
-                        // user_role: 'patient'
+                        user_role: 'patient'
                     });
 
                     const token = jwt.sign(
