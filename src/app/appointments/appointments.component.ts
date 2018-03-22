@@ -13,7 +13,7 @@ import { Options } from 'fullcalendar';
 })
 export class AppointmentsComponent implements OnInit {
   private calendarOptions: Options;
-  private appointments: [] = null;
+  private appointments: any[] = null;
   private events: Event[] = null;
   private eventsFound = false;
   private displayEvent: any;
