@@ -7,6 +7,9 @@ const moment = require('moment');
 var appointmentsSchema = require('../schemas/appointments');
 var appointmentsModel = mongoose.model('appointments', appointmentsSchema, 'appointments');
 
+var PatientSchema = require('../schemas/patient');
+var Patient = mongoose.model('Patient', PatientSchema, 'patients');
+
 // Response handling
 let response = {
     status: 200,
@@ -43,8 +46,8 @@ router.post('/', ensureToken, function (req, res) {
     const doc_id = doctor['_id'];
 
     const appointment = {
-        patient_id: patient_id,
-        staff_id: doc_id,
+        patient: patient_id,
+        staff: doc_id,
         start_time: date
     };
     // console.log(appointment);
@@ -54,7 +57,6 @@ router.post('/', ensureToken, function (req, res) {
         'staff_id': doc_id
     },
         function (err, app) {
-            console.log(app);
             if (err) {
                 console.log(err);
                 response.status = 500;
@@ -143,6 +145,23 @@ router.get('/date/:date', function (req, res) {
         }
     });
 });
+
+router.get('/app-as-event/:doctor_id', ensureToken, (req, res) => {
+    resetResponse();
+    const doc_id = req.params.doctor_id;
+
+    appointmentsModel.find({ 'staff': doc_id }).
+    populate('patient', '_id forename surname').
+    populate('staff', '_id forename surname').
+    exec(function(err, app) {
+        if (err) return handleError(err);
+        console.log(app);
+    });
+});
+
+function handleError(err) {
+    console.log(err);
+}
 
 router.get('/protected', ensureToken, (req, res) => {
     resetResponse();

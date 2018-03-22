@@ -1,12 +1,15 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 var autoIncrement = require('mongoose-auto-increment');
+
 var addressSchema = require('../schemas/address');
 var clinicalNotesSchema = require('../schemas/clinical_notes');
+
 
 const patient_idRequiredErrorMsg = 'Patient ID is required';
 const fornameRequiredErrorMsg = 'Forname is required';
 const surnameRequiredErrorMsg = 'Surname is required';
+const addressRequiredErrorMsg = 'Address is required';
 const user_nameRequiredErrorMsg = 'Username is required';
 const passwordRequiredErrorMsg = 'Password is required';
 
@@ -30,7 +33,7 @@ var patientSchema = new Schema({
         required: [true, surnameRequiredErrorMsg]
     },
     address: addressSchema,
-    clinical_notes: clinicalNotesSchema,
+    clinical_notes: [clinicalNotesSchema],
     user_name: {
         type: String,
         min: 1,
@@ -81,7 +84,7 @@ patientSchema.plugin(autoIncrement.plugin, {
 //             unit: 'mg/day'
 //         }]
 //     }],
-//     user_name: 'joshhaz',
+//     user_name: 'joshhaz@gmail.com',
 //     password: 'testPass'
 // });
 

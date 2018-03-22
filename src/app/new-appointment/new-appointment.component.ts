@@ -121,8 +121,9 @@ export class NewAppointmentComponent implements OnInit {
         dataIsNull = true;
       } else {
         this.takenAppointments = data.map((app) => {
+          console.log(app);
           return new TakenAppointment(
-            app.staff_id,
+            app.staff,
             app.start_time,
           );
         });

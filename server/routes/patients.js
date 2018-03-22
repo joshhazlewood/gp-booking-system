@@ -8,7 +8,7 @@ const router = express.Router();
 const mongoose = require('mongoose');
 const jwt = require('jsonwebtoken');
 
-const patientSchema = require('../schemas/patient');
+const PatientSchema = require('../schemas/patient');
 
 // Response handling
 let response = {
@@ -17,7 +17,7 @@ let response = {
     message: null
 };
 
-var patientModel = mongoose.model('patients', patientSchema, 'patients');
+var patientModel = mongoose.model('Patient', PatientSchema, 'patients');
 var testPatient = {
     // patient_id: 100,
     forename: 'test',
@@ -28,7 +28,7 @@ var testPatient = {
         town_city: 'manchester',
         postcode: 'M20 3EY'
     },
-    clinical_notes: {
+    clinical_notes: [{
         diagnosis: 'he\'s a sick cunt',
         notes: 'loads of notes here',
         last_accessed: new Date(),
@@ -44,8 +44,8 @@ var testPatient = {
                 unit: 'mg/day'
             }
         ]
-    },
-    user_name: 'joshhaz',
+    }],
+    user_name: 'joshhaz@gmail.com',
     password: 'testPass'
 }
 
@@ -109,12 +109,14 @@ router.post('/new-patient', (req, res) => {
 router.post('/login', (req, res) => {
     resetResponse();
     const user = req.body;
+    console.log(user);
     const username = user.username;
     const password = user.password;
-
+    console.log(username);
     patientModel.findOne({ 'user_name': username }, (err, patient) => {
         if (!err) {
             // find returns an array - check if empty then send to 404
+            console.log(patient);
             if (patient === null) {
                 response.status = 404;
                 response.data = null;
@@ -244,7 +246,7 @@ function resetResponse() {
 //     } else {
 //         console.log('added to patients collection')
 //     }
-// })
+// });
 
 
 module.exports = router;

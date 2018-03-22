@@ -51,7 +51,7 @@ export class LoginComponent implements OnInit {
         .subscribe(
           (data) => {
             let status = data['status'];
-
+            console.log(status);
             if (status === 200) {
               this.setSession(data['data']);
               // const user = this.authService.getUser();
