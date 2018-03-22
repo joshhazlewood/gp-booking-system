@@ -14,6 +14,7 @@ import { Observable } from 'rxjs/Rx';
 export class NavbarComponent implements OnInit {
 
   private loggedIn: boolean;
+  private userType: string = null;
 
   constructor(private authService: AuthService) {
     document.addEventListener('DOMContentLoaded', function () {
@@ -47,28 +48,39 @@ export class NavbarComponent implements OnInit {
   }
 
   getUserType(): string {
-    const user = this.authService.getUser();
-    if (user !== null) {
-      return user.user_role;
+    if (this.userType !== null) {
+      return this.userType;
+    } else {
+      return 'none';
     }
-    return 'none';
   }
 
   userIsDoctorOrAdmin(): boolean {
-    const value = this.getUserType() === 'doctor' || this.getUserType() === 'admin'
+    const value = this.getUserType() === 'doctor' || this.getUserType() === 'admin';
     return value;
   }
 
   logUserOut() {
-    console.log('logging out');
+    this.userType = null;
+    this.loggedIn = false;
     this.authService.logout();
   }
 
   ngOnInit() {
+    this.loggedIn = this.authService.getLoggedInAsBool();
+
     this.authService.isLoggedIn()
       .subscribe((response) => {
         this.loggedIn = response;
+        if (this.loggedIn === true && this.userType === null) {
+          this.userType = this.authService.getUserType();
+          console.log(this.userType);
+        }
       });
+
+    // if(this.loggedIn) {
+    //   this.get
+    // }
   }
 
 }

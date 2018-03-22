@@ -101,7 +101,7 @@ router.post('/login', (req, res) => {
                         user_id: staffMember._id,
                         // user_name: username,
                         // pretty_id: staffMember.staff_id,
-                        // user_role: staffMember.staff_role
+                        user_role: staffMember.staff_role
                     });
 
                     const token = jwt.sign({
