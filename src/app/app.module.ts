@@ -23,6 +23,7 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import { NewAppointmentComponent } from './new-appointment/new-appointment.component';
 import { AppointmentsService } from './services/appointments.service';
 import { StaffService } from './services/staff.service';
+import { PatientService } from './services/patient.service';
 import { AuthService } from './services/auth.service';
 import { LoginComponent } from './auth/login/login.component';
 import { AuthGuardService } from './services/auth-guard.service';
@@ -105,6 +106,7 @@ const appRoutes: Routes = [
     DataService,
     AppointmentsService,
     StaffService,
+    PatientService,
     AuthService,
     AuthGuardService,
     {

@@ -20,16 +20,16 @@ let response = {
 var patientModel = mongoose.model('Patient', PatientSchema, 'patients');
 var testPatient = {
     // patient_id: 100,
-    forename: 'test',
+    forename: 'ian',
     surname: 'hazlewood',
     address: {
-        line1: '2b',
-        line2: 'davenport ave',
-        town_city: 'manchester',
-        postcode: 'M20 3EY'
+        line1: '9',
+        line2: 'Sutherland Court',
+        town_city: 'Runcorn',
+        postcode: 'WA7 1BW'
     },
     clinical_notes: [{
-        diagnosis: 'he\'s a sick cunt',
+        diagnosis: 'he\'s sick',
         notes: 'loads of notes here',
         last_accessed: new Date(),
         last_accessed_by: 10,
@@ -45,14 +45,23 @@ var testPatient = {
             }
         ]
     }],
-    user_name: 'joshhaz@gmail.com',
+    user_name: 'ian@gmail.com',
     password: 'testPass'
 }
 
 router.get('/all-patients', ensureAndVerifyToken, (req, res) => {
     resetResponse();
-    patientModel.find({}, function (err, patients) {
+    patientModel.find({}, 'patient_id forename surname', function (err, patients) {
         if (!err) {
+            if (patients === null) {
+                response.status = 404;
+                response.data = null;
+                res.json(response);
+            } else {
+                response.status = 200;
+                response.data = patients;
+                res.json(response);
+            }
             response.data = patients;
             res.json(response);
         } else {
