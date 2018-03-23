@@ -1,9 +1,26 @@
 <div class="section">
-  <div class="columns">
-    <div class="column is-6 is-offset-3">
-      <div class="container">
+  <div class="container">
+    <div class="columns is-desktop">
+      <div class="column box is-8 is-offset-2">
         <h1 class="title">Patients</h1>
-      </div>
+          <input class="input" type="text" placehole="Search for patients...">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Patient Name</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>{{}}</td>
+                <td>{{}}</td>
+                <td>{{}}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
     </div>
   </div>
 </div>
