@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { Validators } from '@angular/forms';
@@ -19,7 +19,7 @@ import { User } from '../services/interfaces/user';
   templateUrl: './new-appointment.component.html',
   styleUrls: ['./new-appointment.component.css']
 })
-export class NewAppointmentComponent implements OnInit {
+export class NewAppointmentComponent implements OnInit, OnDestroy {
   private formIsValid = false;
   public availableAppointmentsFound = false;
   private todaysDate = new Date();
@@ -36,6 +36,8 @@ export class NewAppointmentComponent implements OnInit {
   private isLoggedIn: boolean = null;
   private showModal: boolean = null;
   private confirmApp: boolean = null;
+  private doctors$: any = null;
+  private loggedIn$: any = null;
 
   public myDatePickerOptions: IMyDpOptions = {
     // other options...
@@ -65,7 +67,7 @@ export class NewAppointmentComponent implements OnInit {
     this.errors = [];
 
     // Get all the doctors ready for appointments
-    this.staffService.getDoctors().first().subscribe((res) => {
+    this.doctors$ = this.staffService.getDoctors().subscribe((res) => {
       let dataIsNull = false;
       if (res['status'] === 200) {
         const data = res['data'];
@@ -82,16 +84,17 @@ export class NewAppointmentComponent implements OnInit {
     });
     console.log('initialised');
 
-    this.authService.isLoggedIn().first().subscribe(
+    this.loggedIn$ = this.authService.isLoggedIn().subscribe(
       value => {
         this.isLoggedIn = true;
 
         if (value === true) {
 
           if (this.user === null) {
+            console.log('getting user details');
             const user_id = this.authService.getToken()['user_id'];
             // console.log(user_id);
-            this.authService.getUserDetails().first().subscribe(
+            this.authService.getUserDetails().subscribe(
               res => {
                 if (res['status'] === 200) {
                   const { _id, user_name } = res['data'];
@@ -113,9 +116,14 @@ export class NewAppointmentComponent implements OnInit {
     );
   }
 
+  ngOnDestroy() {
+    this.doctors$.unsubscribe();
+    this.loggedIn$.unsubscribe();
+  }
+
   getAppointmentsAndRemoveExisting(date: Date): void {
     let dataIsNull = false;
-    this.appointmentsService.getAppointmentsOnDate(date).first().subscribe(res => {
+    this.appointmentsService.getAppointmentsOnDate(date).subscribe(res => {
       const data = res['data'];
       if (data === null) {
         dataIsNull = true;
