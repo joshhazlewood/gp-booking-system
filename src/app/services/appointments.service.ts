@@ -6,10 +6,10 @@ import { HttpHeaders } from '@angular/common/http';
 @Injectable()
 export class AppointmentsService {
 
-  baseUrl: string = '/api/appointments';
+  baseUrl = '/api/appointments';
   confirmationData = null;
 
-  constructor(private http: HttpClient) { 
+  constructor(private http: HttpClient) {
     this.confirmationData = {};
   }
 
@@ -22,7 +22,11 @@ export class AppointmentsService {
   }
 
   createNewAppointment(appData) {
-    return this.http.post("/api/appointments" , appData);
+    return this.http.post(this.baseUrl , appData);
+  }
+
+  getDocsAppointments(doctor_id) {
+    return this.http.get(this.baseUrl + '/app-as-event/' + doctor_id);
   }
 
 }

@@ -67,6 +67,7 @@ export class NavbarComponent implements OnInit {
   }
 
   ngOnInit() {
+    // SET USER DETAILS FOUND HERE, THEN STOP SUBSCRIBING TO THE NEXT MAYBE?
     this.loggedIn = this.authService.getLoggedInAsBool();
 
     this.authService.isLoggedIn()

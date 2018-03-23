@@ -8,7 +8,7 @@ const router = express.Router();
 const mongoose = require('mongoose');
 const jwt = require('jsonwebtoken');
 
-const patientSchema = require('../schemas/patient');
+const PatientSchema = require('../schemas/patient');
 
 // Response handling
 let response = {
@@ -17,7 +17,7 @@ let response = {
     message: null
 };
 
-var patientModel = mongoose.model('patients', patientSchema, 'patients');
+var patientModel = mongoose.model('Patient', PatientSchema, 'patients');
 var testPatient = {
     // patient_id: 100,
     forename: 'test',
@@ -28,7 +28,7 @@ var testPatient = {
         town_city: 'manchester',
         postcode: 'M20 3EY'
     },
-    clinical_notes: {
+    clinical_notes: [{
         diagnosis: 'he\'s a sick cunt',
         notes: 'loads of notes here',
         last_accessed: new Date(),
@@ -44,8 +44,8 @@ var testPatient = {
                 unit: 'mg/day'
             }
         ]
-    },
-    user_name: 'joshhaz',
+    }],
+    user_name: 'joshhaz@gmail.com',
     password: 'testPass'
 }
 
@@ -111,7 +111,6 @@ router.post('/login', (req, res) => {
     const user = req.body;
     const username = user.username;
     const password = user.password;
-
     patientModel.findOne({ 'user_name': username }, (err, patient) => {
         if (!err) {
             // find returns an array - check if empty then send to 404
@@ -173,7 +172,6 @@ router.get('/user-data/:id', ensureAndVerifyToken, function (req, res) {
                 res.json(response);
             } else {
                 response.status = 200;
-                console.log(patient);
                 response.data = patient;
                 res.json(response);
             }
@@ -193,7 +191,6 @@ router.get('/user-data/:id', ensureAndVerifyToken, function (req, res) {
 router.get('/protected', ensureAndVerifyToken, (req, res) => {
     resetResponse();
     jwt.verify(req.token, '13118866', (err, data) => {
-        console.log(data);
         if (err) {
             res.sendStatus(403);
         } else {
@@ -215,7 +212,7 @@ function ensureAndVerifyToken(req, res, next) {
             if (err) {
                 res.sendStatus(401);
             } else {
-                console.log(req.token);
+                console.log('verified token');
                 next();
             }
         })
@@ -244,7 +241,7 @@ function resetResponse() {
 //     } else {
 //         console.log('added to patients collection')
 //     }
-// })
+// });
 
 
 module.exports = router;

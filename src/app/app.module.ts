@@ -9,6 +9,7 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from './auth/auth-interceptor';
 
 import { MyDatePickerModule } from 'mydatepicker';
+import { FullCalendarModule } from 'ng-fullcalendar';
 
 import { AppComponent } from './app.component';
 import { DataService } from './services/data.service';
@@ -30,8 +31,8 @@ import { ConfirmAppComponent } from './confirm-app/confirm-app.component';
 const appRoutes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'home', component: DashboardComponent },
-  { 
-    path: 'new-appointment', 
+  {
+    path: 'new-appointment',
     component: NewAppointmentComponent,
     canActivate: [AuthGuardService],
     data: {
@@ -40,14 +41,15 @@ const appRoutes: Routes = [
   },
   { path: 'confirm-app', component: ConfirmAppComponent },
   { path: 'staff-list', component: StaffListComponent },
-  { path: 'patients-list',
+  {
+    path: 'patients-list',
     component: PatientListComponent,
     canActivate: [AuthGuardService],
     data: {
       expectedRole: 'doctor'
-    }  
+    }
   },
-  { 
+  {
     path: 'appointments-list',
     component: AppointmentsComponent,
     canActivate: [AuthGuardService],
@@ -55,15 +57,16 @@ const appRoutes: Routes = [
       expectedRole: 'doctor'
     }
   },
-  { 
+  {
     path: 'admin',
     component: AdminPanelComponent,
     canActivate: [AuthGuardService],
-    data: { 
+    data: {
       expectedRole: 'admin'
     }
   },
-  { path: '',
+  {
+    path: '',
     redirectTo: '/home',
     pathMatch: 'full'
   },
@@ -95,7 +98,8 @@ const appRoutes: Routes = [
     ),
     FormsModule,
     ReactiveFormsModule,
-    MyDatePickerModule
+    MyDatePickerModule,
+    FullCalendarModule
   ],
   providers: [
     DataService,

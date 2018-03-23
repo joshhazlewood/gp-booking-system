@@ -2,7 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 
-import { Observable } from 'rxjs/Rx';
+import { Observable } from 'rxjs/observable';
+import { interval } from 'rxjs/observable/interval';
 import { tap } from 'rxjs/operators/tap';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { catchError } from 'rxjs/operators';
@@ -24,10 +25,10 @@ export class AuthService {
   login(email: string, password: string, userType: string) {
     if (userType === 'patient') {
       this.userType = userType;
-      return this.http.post('/api/patients/login', { "username": email, "password": password });
+      return this.http.post('/api/patients/login', { 'username': email, 'password': password });
     } else if (userType === 'staff') {
       this.userType = userType;
-      return this.http.post('/api/staff/login', { "username": email, "password": password });
+      return this.http.post('/api/staff/login', { 'username': email, 'password': password });
     }
   }
 
@@ -36,12 +37,15 @@ export class AuthService {
   }
 
   logout() {
-    localStorage.removeItem("id_token");
-    localStorage.removeItem("expires_at");
+    localStorage.removeItem('id_token');
+    localStorage.removeItem('expires_at');
     this.router.navigateByUrl('/home');
   }
 
   public isLoggedIn(): Observable<boolean> {
+
+    // const source = interval(1000);
+    // const 
     return new Observable<boolean>(observer => {
       setInterval(() => {
         const value = this.getExpiration() !== null && moment().isBefore(this.getExpiration());
@@ -59,7 +63,7 @@ export class AuthService {
   }
 
   getExpiration() {
-    const expiration = localStorage.getItem("expires_at");
+    const expiration = localStorage.getItem('expires_at');
     return expiration;
   }
 
@@ -88,6 +92,11 @@ export class AuthService {
     const user_role = token['user_role'];
     console.log(user_role);
     return user_role;
+  }
+
+  getUserId() {
+    const user_id = this.getToken()['user_id'];
+    return user_id;
   }
 
   // private getDetailsAndSetUser(user_id: string) {

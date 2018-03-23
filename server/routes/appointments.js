@@ -7,6 +7,9 @@ const moment = require('moment');
 var appointmentsSchema = require('../schemas/appointments');
 var appointmentsModel = mongoose.model('appointments', appointmentsSchema, 'appointments');
 
+var PatientSchema = require('../schemas/patient');
+var Patient = mongoose.model('Patient', PatientSchema, 'patients');
+
 // Response handling
 let response = {
     status: 200,
@@ -36,30 +39,26 @@ router.get('/all-appointments', ensureToken, (req, res) => {
 
 router.post('/', ensureToken, function (req, res) {
     resetResponse();
-    // console.log(req.body);
-    // res.json(req.body);
     const appTaken = false;
     const { doctor, date, patient_id } = req['body'];
     const doc_id = doctor['_id'];
-
+    const end_time = moment(date).add(30, 'm');
     const appointment = {
-        patient_id: patient_id,
-        staff_id: doc_id,
-        start_time: date
+        patient: patient_id,
+        staff: doc_id,
+        start_time: date,
+        end_time
     };
-    // console.log(appointment);
 
     appointmentsModel.findOne({
         'start_time': date,
         'staff_id': doc_id
     },
         function (err, app) {
-            console.log(app);
             if (err) {
                 console.log(err);
                 response.status = 500;
                 res.json(response);
-                // res.status(500).send();
             } else {
                 if (app === null) {
                     appointmentsModel.create(appointment, function (err) {
@@ -79,22 +78,6 @@ router.post('/', ensureToken, function (req, res) {
                     res.json(response);
                 }
             }
-            // if (!err) {
-            //     // appTaken = true;
-            //     //  app is found so send back error.
-            //     console.log('Appointment already exists!');
-            //     console.log(app);
-            //     res.status(409).send();
-            // } else {
-            // appointmentsModel.create(appointment, function (err) {
-            //     if (err) {
-            //         console.log('Error saving patient data');
-            //         res.status(500).send();
-            //     } else {
-            //         res.status(200).send();
-            //     }
-            // });
-            // }
         });
 
 });
@@ -102,7 +85,6 @@ router.post('/', ensureToken, function (req, res) {
 router.get('/id/:id', function (req, res) {
     appointmentsModel.find({ 'appointment_id': req.params.id }, function (err, appointment) {
         if (!err) {
-            // console.log(appointment.length);
             // find returns an array - check if empty then send to 404
             if (appointment.length === 0) {
                 response.status = 404;
@@ -143,6 +125,28 @@ router.get('/date/:date', function (req, res) {
         }
     });
 });
+
+router.get('/app-as-event/:doctor_id', ensureToken, (req, res) => {
+    resetResponse();
+    const doc_id = req.params.doctor_id;
+
+    appointmentsModel.find({ 'staff': doc_id }).
+    populate('patient', '_id forename surname').
+    populate('staff', '_id forename surname').
+    exec(function(err, appointments) {
+        if (err) return handleError(err);
+        else {
+            // continue with response if it's found
+            response.status = 200;
+            response.data = appointments;
+            res.json(response);
+        }
+    });
+});
+
+function handleError(err) {
+    console.log(err);
+}
 
 router.get('/protected', ensureToken, (req, res) => {
     resetResponse();

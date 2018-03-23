@@ -1,3 +1,7 @@
-<p>
-  appointments works!
-</p>
+<div class="section">
+  <div class="containter">
+    <div *ngIf="calendarOptions">
+      <ng-fullcalendar #ucCalendar [options]="calendarOptions" (clickButton)="clickButton($event.detail)"></ng-fullcalendar>
+    </div>
+  </div>
+</div>
