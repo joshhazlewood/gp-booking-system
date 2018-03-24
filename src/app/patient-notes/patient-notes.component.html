@@ -4,6 +4,7 @@
       <div class="column box is-8 is-offset-2">
         <h1 class="title">Patient Notes</h1>
         <ng-container *ngIf="patientFound">
+
           <div class="columns">
             <div class="column is-half has-text-centered">
               <p>
@@ -26,7 +27,6 @@
               </p>
             </div>
             <div class="column is-half has-text-centered">
-              <!-- <div class="is-pulled-right"> -->
               <p>
                 <span class="icon is-left">
                   <i class="fas fa-address-card"></i>
@@ -53,20 +53,28 @@
               </p>
             </div>
           </div>
+
           <div class="box">
             <form>
 
               <div class="field">
                 <label class="label">Current Diagnosis</label>
                 <div class="control">
-                  <input class="input" type="text" [(ngModel)]="patient.clinical_notes.diagnosis" name="diagnosis" placeholder="Text input">
+                  <input class="input" type="text" [(ngModel)]="patient.clinical_notes.diagnosis" name="diagnosis" placeholder="Diagnosis...">
+                </div>
+              </div>
+
+              <div class="field">
+                <label class="label">Notes</label>
+                <div class="control">
+                  <textarea class="textarea is-small" [(ngModel)]="patient.clinical_notes.notes" name="notes" placeholder="Notes..."></textarea>
                 </div>
               </div>
 
               <div class="field">
                 <label class="label">Medications</label>
                 <div class="control">
-                  <table class="table is-narrow has-text-centered is-capitalized">
+                  <table class="table is-narrow is-bordered has-text-centered is-capitalized">
                     <thead>
                       <th>Name</th>
                       <th>Amount</th>
@@ -83,12 +91,6 @@
                 </div>
               </div>
 
-              <div class="field">
-                <label class="label">Notes</label>
-                <div class="control">
-                  <textarea class="textarea is-small" placeholder="Textarea"></textarea>
-                </div>
-              </div>
             </form>
           </div>
         </ng-container>

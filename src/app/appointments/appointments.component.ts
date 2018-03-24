@@ -66,7 +66,9 @@ export class AppointmentsComponent implements OnInit {
                   center: 'title',
                   right: 'month,agendaWeek,agendaDay,listMonth'
                 },
-                events: this.events
+                events: this.events,
+                handleWindowResize: true
+                // aspectRatio: 1.85
               };
               console.log(this.events);
             }
