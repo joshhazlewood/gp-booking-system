@@ -28,6 +28,8 @@ import { AuthService } from './services/auth.service';
 import { LoginComponent } from './auth/login/login.component';
 import { AuthGuardService } from './services/auth-guard.service';
 import { ConfirmAppComponent } from './confirm-app/confirm-app.component';
+import { SearchPipe } from './search.pipe';
+import { PatientNotesComponent } from './patient-notes/patient-notes.component';
 
 const appRoutes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -48,6 +50,14 @@ const appRoutes: Routes = [
     canActivate: [AuthGuardService],
     data: {
       expectedRole: 'doctor'
+    }
+  },
+  {
+    path: 'patient-notes',
+    component: PatientNotesComponent,
+    canActivate: [AuthGuardService],
+    data: {
+      expectedRole: 'doctor',
     }
   },
   {
@@ -87,7 +97,9 @@ const appRoutes: Routes = [
     AdminPanelComponent,
     NewAppointmentComponent,
     LoginComponent,
-    ConfirmAppComponent
+    ConfirmAppComponent,
+    SearchPipe,
+    PatientNotesComponent
   ],
   imports: [
     BrowserModule,

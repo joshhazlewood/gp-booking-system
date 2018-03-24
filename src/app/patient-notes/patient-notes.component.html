@@ -1,0 +1,98 @@
+<div class="section">
+  <div class="container">
+    <div class="columns is-mobile">
+      <div class="column box is-8 is-offset-2">
+        <h1 class="title">Patient Notes</h1>
+        <ng-container *ngIf="patientFound">
+          <div class="columns">
+            <div class="column is-half has-text-centered">
+              <p>
+                <span class="icon is-left">
+                  <i class="fas fa-hashtag"></i>
+                </span>
+                {{patient.patient_id}}
+              </p>
+              <p class="is-capitalized">
+                <span class="icon is-left">
+                  <i class="fas fa-user"></i>
+                </span>
+                {{patient.getFullName()}}
+              </p>
+              <p>
+                <span class="icon is-left">
+                  <i class="fas fa-envelope"></i>
+                </span>
+                {{patient.user_name}}
+              </p>
+            </div>
+            <div class="column is-half has-text-centered">
+              <!-- <div class="is-pulled-right"> -->
+              <p>
+                <span class="icon is-left">
+                  <i class="fas fa-address-card"></i>
+                </span>
+                Line 1: {{patient.address.line1}}
+              </p>
+              <p>
+                <span class="icon is-left">
+                  <i class="fas fa-address-card"></i>
+                </span>
+                Line 2: {{patient.address.line2}}
+              </p>
+              <p>
+                <span class="icon is-left">
+                  <i class="fas fa-address-card"></i>
+                </span>
+                Town/City: {{patient.address.town_city}}
+              </p>
+              <p>
+                <span class="icon is-left">
+                  <i class="fas fa-address-card"></i>
+                </span>
+                Postcode: {{patient.address.postcode}}
+              </p>
+            </div>
+          </div>
+          <div class="box">
+            <form>
+
+              <div class="field">
+                <label class="label">Current Diagnosis</label>
+                <div class="control">
+                  <input class="input" type="text" [(ngModel)]="patient.clinical_notes.diagnosis" name="diagnosis" placeholder="Text input">
+                </div>
+              </div>
+
+              <div class="field">
+                <label class="label">Medications</label>
+                <div class="control">
+                  <table class="table is-narrow has-text-centered is-capitalized">
+                    <thead>
+                      <th>Name</th>
+                      <th>Amount</th>
+                      <th>Unit</th>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let medication of patient.clinical_notes.medications">
+                        <td>{{medication.name}}</td>
+                        <td>{{medication.amount}}</td>
+                        <td>{{medication.unit}}</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+
+              <div class="field">
+                <label class="label">Notes</label>
+                <div class="control">
+                  <textarea class="textarea is-small" placeholder="Textarea"></textarea>
+                </div>
+              </div>
+            </form>
+          </div>
+        </ng-container>
+      </div>
+    </div>
+  </div>
+</div>

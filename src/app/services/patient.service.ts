@@ -7,11 +7,16 @@ import { HttpHeaders } from '@angular/common/http';
 export class PatientService {
 
   private baseUrl = '/api/patients';
+  public patient_idToFind: string = null;
 
   constructor(private http: HttpClient) { }
 
   getPatients() {
     return this.http.get(this.baseUrl + '/all-patients');
+  }
+
+  getPatientNotes(patient_id:string) {
+    return this.http.get(`${this.baseUrl}/patient-notes/${patient_id}`);
   }
 
 }

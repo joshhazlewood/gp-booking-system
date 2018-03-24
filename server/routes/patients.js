@@ -20,15 +20,15 @@ let response = {
 var patientModel = mongoose.model('Patient', PatientSchema, 'patients');
 var testPatient = {
     // patient_id: 100,
-    forename: 'ian',
-    surname: 'hazlewood',
+    forename: 'test',
+    surname: 'patient',
     address: {
-        line1: '9',
-        line2: 'Sutherland Court',
-        town_city: 'Runcorn',
-        postcode: 'WA7 1BW'
+        line1: '2B',
+        line2: 'Davenport Ave',
+        town_city: 'Manchester',
+        postcode: 'M20 3EY'
     },
-    clinical_notes: [{
+    clinical_notes: {
         diagnosis: 'he\'s sick',
         notes: 'loads of notes here',
         last_accessed: new Date(),
@@ -44,8 +44,8 @@ var testPatient = {
                 unit: 'mg/day'
             }
         ]
-    }],
-    user_name: 'ian@gmail.com',
+    },
+    user_name: 'test@gmail.com',
     password: 'testPass'
 }
 
@@ -72,6 +72,34 @@ router.get('/all-patients', ensureAndVerifyToken, (req, res) => {
     }).catch(err => {
         console.log(err);
     });
+});
+
+router.get('/patient-notes/:id', ensureAndVerifyToken, (req, res) => {
+    resetResponse();
+    patientModel.findById({ _id: req.params.id }, '-password', function (err, patients) {
+        if (!err) {
+            // find returns an array - check if empty then send to 404
+            if (patients === null) {
+                response.status = 404;
+                response.data = null;
+                res.json(response);
+            } else { // continue with response if it's found
+                response.status = 200;
+                response.data = patients;
+                res.json(response);
+            }
+        } else {
+            console.log(err);
+        }
+    }).then((patients => {
+        if (patients !== null) {
+            console.log('Found patient notes with ID: ' + req.params.id);
+        } else {
+            console.log('No patient notes are found with an ID of ' + req.params.id);
+        }
+    })).catch(err => {
+        console.log(err);
+    })
 });
 
 router.get('id/:id', ensureAndVerifyToken, (req, res) => {

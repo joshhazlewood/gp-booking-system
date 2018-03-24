@@ -1,10 +1,10 @@
 <div class="section">
   <div class="container">
     <div class="columns is-desktop">
-      <div class="column box is-8 is-offset-2">
+      <div class="column is-8 is-offset-2">
         <h1 class="title">Patients</h1>
-          <input class="input" type="text" placehole="Search for patients...">
-          <table class="table">
+          <input class="input" [(ngModel)]="query" type="text" placehole="Search for patients...">
+          <table class="table is-bordered is-striped is-hoverable is-fullwidth" *ngIf="patientsFound">
             <thead>
               <tr>
                 <th>ID</th>
@@ -13,10 +13,10 @@
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td>{{}}</td>
-                <td>{{}}</td>
-                <td>{{}}</td>
+              <tr *ngFor="let patient of patients | search:'patient_id,fullName':query">
+                <td>{{patient.patient_id}}</td>
+                <td>{{patient.fullName}}</td>
+                <td><input type="submit" value="Go to Notes" class="button is-fullwidth is-info is-outlined" (click)="goToNotes(patient)"></td>
               </tr>
             </tbody>
           </table>

@@ -33,7 +33,7 @@ var patientSchema = new Schema({
         required: [true, surnameRequiredErrorMsg]
     },
     address: addressSchema,
-    clinical_notes: [clinicalNotesSchema],
+    clinical_notes: clinicalNotesSchema,
     user_name: {
         type: String,
         min: 1,
