@@ -129,7 +129,6 @@ export class NewAppointmentComponent implements OnInit, OnDestroy {
         dataIsNull = true;
       } else {
         this.takenAppointments = data.map((app) => {
-          console.log(app);
           return new TakenAppointment(
             app.staff,
             app.start_time,
@@ -257,7 +256,6 @@ export class NewAppointmentComponent implements OnInit, OnDestroy {
   }
 
   bookAppointment(appointment: PotentialAppointment) {
-    console.log(appointment);
     // const user = this.authService.getUser();
     this.showModal = true;
     this.confirmApp = true;

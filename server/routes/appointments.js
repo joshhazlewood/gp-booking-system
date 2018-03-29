@@ -37,11 +37,12 @@ router.get('/all-appointments', ensureToken, (req, res) => {
 });
 
 
-router.post('/', ensureToken, function (req, res) {
+router.post('/new-appointment', ensureToken, function (req, res) {
     resetResponse();
     const appTaken = false;
     const { doctor, date, patient_id } = req['body'];
     const doc_id = doctor['_id'];
+    const start_time = moment(date);
     const end_time = moment(date).add(30, 'm');
     const appointment = {
         patient: patient_id,
@@ -52,7 +53,7 @@ router.post('/', ensureToken, function (req, res) {
 
     appointmentsModel.findOne({
         'start_time': date,
-        'staff_id': doc_id
+        'staff': doc_id
     },
         function (err, app) {
             if (err) {
