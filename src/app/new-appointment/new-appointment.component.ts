@@ -185,10 +185,10 @@ export class NewAppointmentComponent implements OnInit, OnDestroy {
     const selectedYear = selectedDate.year;
     const selectedMonth = selectedDate.month - 1;
     const selectedDay = selectedDate.day;
-    const startHour = 9;
+    const startHour = 8.5;
 
     this.doctors.forEach((doc) => {
-      for (let i = 0; i < 17; i++) {
+      for (let i = 0; i < 19; i++) {
         const appointment = new PotentialAppointment();
         const hour: number = startHour + (i * 0.5);
         const docForename = doc.forename;
@@ -200,10 +200,22 @@ export class NewAppointmentComponent implements OnInit, OnDestroy {
 
         if (this.isOnTheHour(hour)) {
           appointment.date = new Date(selectedYear, selectedMonth, selectedDay, hour);
-          this.potentialAppointments.push(appointment);
+          //  Doesn't push to array if appointment time is before now.
+          const timeIsLaterThanNow = this.compareTime(Date.now(), appointment.date) === false;
+          const hourIsNotDuringLunch = appointment.date.getHours() !== 13;
+          console.log(appointment.date.getHours());
+          if (timeIsLaterThanNow && hourIsNotDuringLunch) {
+            this.potentialAppointments.push(appointment);
+          }
         } else {
           appointment.date = new Date(selectedYear, selectedMonth, selectedDay, hour - 0.5, 30);
-          this.potentialAppointments.push(appointment);
+
+          const timeIsLaterThanNow = this.compareTime(Date.now(), appointment.date) === false;
+          console.log(appointment.date.getHours());
+          const hourIsNotDuringLunch = appointment.date.getHours() !== 13;
+          if (timeIsLaterThanNow && hourIsNotDuringLunch) {
+            this.potentialAppointments.push(appointment);
+          }
         }
       }
     });
@@ -228,6 +240,10 @@ export class NewAppointmentComponent implements OnInit, OnDestroy {
       }
     });
     return sortedArray;
+  }
+
+  compareTime(time1, time2) {
+    return time1 > time2;
   }
 
   removeExistingAppointments(appointments: PotentialAppointment[], takenAppointments: TakenAppointment[]): PotentialAppointment[] {
