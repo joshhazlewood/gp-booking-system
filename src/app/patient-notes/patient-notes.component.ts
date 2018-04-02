@@ -15,6 +15,7 @@ export class PatientNotesComponent implements OnInit, OnDestroy {
   private patient_id: string;
   private patientFound = false;
   private patient: Patient = null;
+  private patients$: any = null;
 
   constructor(private patientService: PatientService,
     private router: Router) { }
@@ -25,7 +26,7 @@ export class PatientNotesComponent implements OnInit, OnDestroy {
     console.log(this.patient_id);
 
     if (this.patient_id !== null && this.patient_id !== undefined) {
-      this.patientService.getPatientNotes(this.patient_id).subscribe((data) => {
+      this.patients$ = this.patientService.getPatientNotes(this.patient_id).subscribe((data) => {
         const status = data['status'];
         const patientData = data['data'];
         if (status === 200) {
@@ -55,6 +56,9 @@ export class PatientNotesComponent implements OnInit, OnDestroy {
   // }
 
   ngOnDestroy() {
+    if ( this.patients$ !== null ) {
+      this.patients$.unsubscribe();
+    }
     this.patientService.patient_idToFind = null;
   }
 

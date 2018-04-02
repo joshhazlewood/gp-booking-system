@@ -10,6 +10,8 @@ import { AuthInterceptor } from './auth/auth-interceptor';
 
 import { MyDatePickerModule } from 'mydatepicker';
 import { FullCalendarModule } from 'ng-fullcalendar';
+import { Ng4LoadingSpinnerModule } from 'ng4-loading-spinner';
+import { MomentModule } from 'angular2-moment';
 
 import { AppComponent } from './app.component';
 import { DataService } from './services/data.service';
@@ -112,7 +114,9 @@ const appRoutes: Routes = [
     FormsModule,
     ReactiveFormsModule,
     MyDatePickerModule,
-    FullCalendarModule
+    FullCalendarModule,
+    Ng4LoadingSpinnerModule.forRoot(),
+    MomentModule
   ],
   providers: [
     DataService,

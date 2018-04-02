@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const mongoose = require('mongoose');
 const autoIncrement = require('mongoose-auto-increment');
-const moment = require('moment');
+const moment = require('moment-timezone');
 
 var appointmentsSchema = require('../schemas/appointments');
 var appointmentsModel = mongoose.model('appointments', appointmentsSchema, 'appointments');
@@ -42,17 +42,19 @@ router.post('/new-appointment', ensureToken, function (req, res) {
     const appTaken = false;
     const { doctor, date, patient_id } = req['body'];
     const doc_id = doctor['_id'];
-    const start_time = moment(date);
-    const end_time = moment(date).add(30, 'm');
+
+    const startTime = moment(date);
+    const endTime = moment(date).add(30, 'm');
+
     const appointment = {
         patient: patient_id,
         staff: doc_id,
-        start_time: date,
-        end_time
+        start_time: startTime,
+        end_time: endTime
     };
 
     appointmentsModel.findOne({
-        'start_time': date,
+        'start_time': startTime,
         'staff': doc_id
     },
         function (err, app) {
