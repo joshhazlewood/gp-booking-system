@@ -15,8 +15,13 @@ export class PatientService {
     return this.http.get(this.baseUrl + '/all-patients');
   }
 
-  getPatientNotes(patient_id:string) {
+  getPatientNotes(patient_id: string) {
     return this.http.get(`${this.baseUrl}/patient-notes/${patient_id}`);
   }
+  
+  //  FINISH SAVING NOTES
+  // savePatientNotes(patient_id: string) {
+  //   return this.http.post(`${this.baseUrl}/patient-notes/${patient_id}`);
+  // }
 
 }

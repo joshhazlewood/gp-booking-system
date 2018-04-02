@@ -7,7 +7,7 @@ export class Patient {
     private forename: string;
     private surname: string;
     private address: Address;
-    private clinical_notes: ClinicalNotes;
+    public clinical_notes: ClinicalNotes;
     private user_name: string;
 
     constructor(_id: string,
@@ -30,4 +30,6 @@ export class Patient {
         const fullName = `${this.forename} ${this.surname}`;
         return fullName;
     }
+
+
 }

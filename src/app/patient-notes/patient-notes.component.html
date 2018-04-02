@@ -54,44 +54,59 @@
             </div>
           </div>
 
-          <div class="box">
-            <form>
+          <!-- <div class="card"> -->
+          <form>
 
-              <div class="field">
-                <label class="label">Current Diagnosis</label>
-                <div class="control">
-                  <input class="input" type="text" [(ngModel)]="patient.clinical_notes.diagnosis" name="diagnosis" placeholder="Diagnosis...">
-                </div>
+            <div class="field">
+              <label class="label">Current Diagnosis</label>
+              <div class="control">
+                <input class="input" type="text" [(ngModel)]="patient.clinical_notes.diagnosis" name="diagnosis" placeholder="Diagnosis..."
+                [attr.readonly]='canEditNotes === false ? true : null'>
+              </div>
+            </div>
+
+            <div class="field">
+              <label class="label">Notes</label>
+              <div class="control">
+                <textarea class="textarea is-small" [(ngModel)]="patient.clinical_notes.notes" name="notes" placeholder="Notes..." 
+                [attr.readonly]='canEditNotes === false ? true : null'></textarea>
+              </div>
+            </div>
+
+            <div class="field">
+              <label class="label">Medications</label>
+              <div class="control">
+                <table class="table is-narrow is-bordered has-text-centered is-capitalized">
+                  <thead>
+                    <th>Name</th>
+                    <th>Amount</th>
+                    <th>Unit</th>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let medication of patient.clinical_notes.medications">
+                      <td>{{medication.name}}</td>
+                      <td>{{medication.amount}}</td>
+                      <td>{{medication.unit}}</td>
+                    </tr>
+                  </tbody>
+                </table>
               </div>
 
-              <div class="field">
-                <label class="label">Notes</label>
-                <div class="control">
-                  <textarea class="textarea is-small" [(ngModel)]="patient.clinical_notes.notes" name="notes" placeholder="Notes..."></textarea>
-                </div>
-              </div>
+            </div>
 
-              <div class="field">
-                <label class="label">Medications</label>
-                <div class="control">
-                  <table class="table is-narrow is-bordered has-text-centered is-capitalized">
-                    <thead>
-                      <th>Name</th>
-                      <th>Amount</th>
-                      <th>Unit</th>
-                    </thead>
-                    <tbody>
-                      <tr *ngFor="let medication of patient.clinical_notes.medications">
-                        <td>{{medication.name}}</td>
-                        <td>{{medication.amount}}</td>
-                        <td>{{medication.unit}}</td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
+            <!-- <div class="box"> -->
+            <nav class="level is-mobile">
+              <div class="level-item">
+                <button class="button is-info is-outlined" (click)="editNotes()">Edit Notes</button>
               </div>
-            </form>
-          </div>
+              <div class="level-item">
+                <button class="button is-danger" (click)="saveNotes()" [attr.disabled]='canEditNotes === false ? true : null'>Save</button>
+              </div>
+            </nav>
+            <!-- </div> -->
+
+          </form>
+          <!-- </div> -->
         </ng-container>
       </div>
     </div>

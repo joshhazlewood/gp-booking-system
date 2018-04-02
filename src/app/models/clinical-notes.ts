@@ -1,11 +1,11 @@
-import { Medications } from "./medications";
+import { Medications } from './medications';
 
 export class ClinicalNotes {
-    protected diagnosis: string;
-    protected notes: string;
-    protected last_accessed: Date;
-    protected last_acc_by: number;
-    protected medications: Medications[];
+    public diagnosis: string;
+    public notes: string;
+    private last_accessed: Date;
+    private last_acc_by: number;
+    public medications: Medications[];
 
     constructor(diagnosis, notes, last_accessed, last_acc_by, medications) {
         this.diagnosis = diagnosis;

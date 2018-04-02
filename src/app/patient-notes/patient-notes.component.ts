@@ -16,9 +16,21 @@ export class PatientNotesComponent implements OnInit, OnDestroy {
   private patientFound = false;
   private patient: Patient = null;
   private patients$: any = null;
+  private canEditNotes = false;
 
   constructor(private patientService: PatientService,
     private router: Router) { }
+
+  editNotes() {
+    this.canEditNotes = true;
+  }
+
+  saveNotes() {
+    const notesToSave = this.patient.clinical_notes;
+    this.canEditNotes = false;
+    console.log(notesToSave);
+
+  }
 
   ngOnInit() {
     console.log(this.patientService.patient_idToFind);
@@ -56,7 +68,7 @@ export class PatientNotesComponent implements OnInit, OnDestroy {
   // }
 
   ngOnDestroy() {
-    if ( this.patients$ !== null ) {
+    if (this.patients$ !== null) {
       this.patients$.unsubscribe();
     }
     this.patientService.patient_idToFind = null;

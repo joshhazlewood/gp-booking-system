@@ -64,10 +64,9 @@ export class PatientListComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    if (this.patient_idToFind !== null || this.patient_idToFind !== undefined) {
-      this.patientService.patient_idToFind = null;
-      
-    }
+    // if (this.patient_idToFind !== null || this.patient_idToFind !== undefined) {
+    //   this.patientService.patient_idToFind = null;
+    // }
     this.patients$.unsubscribe();
     // this.loggedIn$.unsubscribe();
   }
