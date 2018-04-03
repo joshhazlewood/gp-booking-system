@@ -20,7 +20,7 @@
       </div>
       <br>
 
-      <div class="notification is-warning" *ngFor="let error of errors; let index = i">
+      <div class="notification is-warning" *ngFor="let error of errors; let i = index">
         <a class="delete" (click)="removeErrMsg(i)"></a>
         <p>{{error}}</p>
       </div>

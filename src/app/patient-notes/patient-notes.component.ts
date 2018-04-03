@@ -18,6 +18,10 @@ export class PatientNotesComponent implements OnInit, OnDestroy {
   private patients$: any = null;
   private canEditNotes = false;
   private editiedNotes: any = null;
+  private newName: string = null;
+  private newAmount: number = null;
+  private newUnit: string = null;
+  private messages: string[] = null;
 
   constructor(private patientService: PatientService,
     private router: Router) { }
@@ -34,17 +38,50 @@ export class PatientNotesComponent implements OnInit, OnDestroy {
         const status = res['status'];
         if (status === 200) {
           console.log('notes updated');
+          this.messages.push('Patient Notes Updated.');
         } else if (status.toString().startsWith(4)) {
-          console.log('error saving data');
+          this.messages.push('Patient Notes failed to save.');
         }
       }
     );
     console.log(notesToSave);
   }
 
+  addMedication() {
+    const valid = this.newName !== null && this.newAmount !== null && this.newUnit !== null;
+    if (valid === true) {
+      const medications = this.patient.clinical_notes.medications;
+      const medication = {
+        name: this.newName,
+        amount: this.newAmount,
+        unit: this.newUnit
+      };
+      medications.push(medication);
+      this.setMedFieldsNull();
+    } else {
+      this.messages.push('Please enter all fields before trying to add a medication');
+    }
+  }
+
+  removeMed(index) {
+    const medications = this.patient.clinical_notes.medications;
+    medications.splice(index, 1);
+  }
+
+  setMedFieldsNull() {
+    this.newName = null;
+    this.newAmount = null;
+    this.newUnit = null;
+  }
+
+  removeMsg(index) {
+    this.messages.splice(index, 1);
+  }
+
   ngOnInit() {
     console.log(this.patientService.patient_idToFind);
     this.patient_id = this.patientService.patient_idToFind;
+    this.messages = [];
     console.log(this.patient_id);
 
     if (this.patient_id !== null && this.patient_id !== undefined) {

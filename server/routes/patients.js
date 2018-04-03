@@ -109,7 +109,7 @@ router.post('/patient-notes/:id', ensureAndVerifyToken, (req, res) => {
         { $set: { clinical_notes: req.body } },
         { new: true }, function (err, patient) {
             if (err) {
-                handleError(err);
+                console.log(err);
                 response.status = 404;
                 response.data = null;
                 res.json(response);
