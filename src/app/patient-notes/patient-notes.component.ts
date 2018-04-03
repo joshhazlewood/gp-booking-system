@@ -17,6 +17,7 @@ export class PatientNotesComponent implements OnInit, OnDestroy {
   private patient: Patient = null;
   private patients$: any = null;
   private canEditNotes = false;
+  private editiedNotes: any = null;
 
   constructor(private patientService: PatientService,
     private router: Router) { }
@@ -28,8 +29,17 @@ export class PatientNotesComponent implements OnInit, OnDestroy {
   saveNotes() {
     const notesToSave = this.patient.clinical_notes;
     this.canEditNotes = false;
+    this.patientService.savePatientNotes(this.patient_id, this.patient.clinical_notes).subscribe(
+      res => {
+        const status = res['status'];
+        if (status === 200) {
+          console.log('notes updated');
+        } else if (status.toString().startsWith(4)) {
+          console.log('error saving data');
+        }
+      }
+    );
     console.log(notesToSave);
-
   }
 
   ngOnInit() {

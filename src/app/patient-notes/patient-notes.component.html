@@ -91,10 +91,20 @@
                   </tbody>
                 </table>
               </div>
-
             </div>
 
-            <!-- <div class="box"> -->
+            <ng-container *ngIf="canEditNotes === true">
+              <p>New Medication</p>
+              <div class="field">
+                  <label class="label">Current Diagnosis</label>
+                  <div class="control">
+                    <input class="input" type="text" [(ngModel)]="patient.clinical_notes.diagnosis" name="diagnosis" placeholder="Diagnosis..."
+                    [attr.readonly]='canEditNotes === false ? true : null'>
+                  </div>
+              </div>
+            </ng-container>
+
+
             <nav class="level is-mobile">
               <div class="level-item">
                 <button class="button is-info is-outlined" (click)="editNotes()">Edit Notes</button>
@@ -103,10 +113,8 @@
                 <button class="button is-danger" (click)="saveNotes()" [attr.disabled]='canEditNotes === false ? true : null'>Save</button>
               </div>
             </nav>
-            <!-- </div> -->
 
           </form>
-          <!-- </div> -->
         </ng-container>
       </div>
     </div>

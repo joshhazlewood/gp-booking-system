@@ -102,6 +102,25 @@ router.get('/patient-notes/:id', ensureAndVerifyToken, (req, res) => {
     })
 });
 
+router.post('/patient-notes/:id', ensureAndVerifyToken, (req, res) => {
+    resetResponse();
+    console.log(req.body);
+    patientModel.findByIdAndUpdate({ _id: req.params.id },
+        { $set: { clinical_notes: req.body } },
+        { new: true }, function (err, patient) {
+            if (err) {
+                handleError(err);
+                response.status = 404;
+                response.data = null;
+                res.json(response);
+            }
+            response.status = 200;
+            response.data = null;
+            res.json(response);
+        }
+    );
+});
+
 router.get('id/:id', ensureAndVerifyToken, (req, res) => {
     resetResponse();
     patientModel.findOne({ 'patient_id': req.params.id }, function (err, patients) {

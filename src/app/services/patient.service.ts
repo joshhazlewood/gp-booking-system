@@ -20,8 +20,8 @@ export class PatientService {
   }
   
   //  FINISH SAVING NOTES
-  // savePatientNotes(patient_id: string) {
-  //   return this.http.post(`${this.baseUrl}/patient-notes/${patient_id}`);
-  // }
+  savePatientNotes(patient_id: string, notes) {
+    return this.http.post(`${this.baseUrl}/patient-notes/${patient_id}`, notes);
+  }
 
 }
