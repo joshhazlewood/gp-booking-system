@@ -44,7 +44,6 @@ export class PatientNotesComponent implements OnInit, OnDestroy {
         }
       }
     );
-    console.log(notesToSave);
   }
 
   addMedication() {
@@ -79,10 +78,8 @@ export class PatientNotesComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    console.log(this.patientService.patient_idToFind);
     this.patient_id = this.patientService.patient_idToFind;
     this.messages = [];
-    console.log(this.patient_id);
 
     if (this.patient_id !== null && this.patient_id !== undefined) {
       this.patients$ = this.patientService.getPatientNotes(this.patient_id).subscribe((data) => {

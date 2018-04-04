@@ -43,7 +43,8 @@ export class NewAppointmentComponent implements OnInit, OnDestroy {
   public myDatePickerOptions: IMyDpOptions = {
     // other options...
     dateFormat: 'dd/mm/yyyy',
-    disableUntil: { year: this.todaysDate.getFullYear(), month: this.todaysDate.getMonth() + 1, day: this.todaysDate.getDate() - 1 }
+    disableUntil: { year: this.todaysDate.getFullYear(), month: this.todaysDate.getMonth() + 1, day: this.todaysDate.getDate() - 1 },
+    disableWeekends: true
   };
 
   public myForm: FormGroup;
@@ -207,7 +208,6 @@ export class NewAppointmentComponent implements OnInit, OnDestroy {
 
         if (this.isOnTheHour(hour)) {
           appointment.date = new Date(selectedYear, selectedMonth, selectedDay, hour);
-          console.log(appointment.date);
           //  Doesn't push to array if appointment time is before now.
           const timeIsLaterThanNow = this.compareTime(Date.now(), appointment.date) === false;
           const hourIsNotDuringLunch = appointment.date.getHours() !== 13;
@@ -226,7 +226,6 @@ export class NewAppointmentComponent implements OnInit, OnDestroy {
       }
     });
     //  pass in the selected day to pull relevant appointments from the DB
-    console.log('triggers getAppAndRemoveExisitng');
     this.getAppointmentsAndRemoveExisting(new Date(selectedYear, selectedMonth, selectedDay));
   }
 
