@@ -1,37 +1,105 @@
 <section class="section">
-  <div class="container">
-    <h1 class="title">Book an appointment</h1>
-    <p>Please select or type a date.</p>
-    <form [formGroup]="myForm" novalidate>
-      <div class="field has-addons">
-        <div class="control">
-          <my-date-picker name="date" placeholder="dd/mm/yyyy" [options]="myDatePickerOptions" formControlName="myDate"></my-date-picker>
-        </div>
-        <div class="control">
-          <input class="button is-info" type="submit" (click)="findAppointments()" value="Search for appointments" [attr.disabled]='!isFormValidAndTouched() === true ? true : null'>
-        </div>
-      </div>
-    </form>
-    <br>
-    <ng-container *ngIf="availableAppointmentsFound">
-      <div class="columns content is-multiline is-tablet">
-        <div class="column is-one-quarter-desktop has-text-centered" *ngFor="let app of sortedAppointments; let index = i">
-          <div class="box is-light">
-            <p>
-              <strong>{{ app.date.toLocaleTimeString().substr(0, 5)}} - {{ app.doctor }}</strong>
-            </p>
-            <nav class="level">
-              <p class="level-item has-text-centered">
-                {{ app.date.toUTCString().substr(0, 17) }}
-              </p>
-              <p class="level-item has-text-centered">
-                <input type="submit" value="Book" class="button is-info" (click)="bookAppointment(app)">
-              </p>
-            </nav>
+  <div class="columns">
+    <div class="column is-6 is-offset-3">
+      <div class="container-fluid">
+        <h1 class="title">Book an appointment</h1>
+        <p>Please select or enter a date.</p>
+        <form [formGroup]="myForm" novalidate>
+          <div class="field">
+            <div class="control">
+              <my-date-picker name="date" placeholder="dd/mm/yyyy" [options]="myDatePickerOptions" formControlName="myDate"></my-date-picker>
+            </div>
           </div>
-        </div>
+          <div class="field">
+            <div class="control">
+              <input class="button is-info is-fullwidth" type="submit" id="searchButton" (click)="findAppointments()" value="Search for appointments"
+                [attr.disabled]='!isFormValidAndTouched() === true ? true : null'>
+            </div>
+          </div>
+        </form>
       </div>
-    </ng-container>
-    <br>
+      <br>
+
+      <div class="notification is-warning" *ngFor="let error of errors; let i = index">
+        <a class="delete" (click)="removeErrMsg(i)"></a>
+        <p>{{error}}</p>
+      </div>
+      <ng-container *ngIf="availableAppointmentsFound">
+        <table class="table is-bordered is-striped is-hoverable is-fullwidth">
+          <thead>
+            <tr>
+              <th>Doctor</th>
+              <th>Start Time</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let app of sortedAppointments; let index = i">
+              <td class="is-capitalized">{{app.doctor.getFullName()}}</td>
+              <td>{{app.date.toLocaleTimeString().substr(0, 5)}}</td>
+              <td>
+                <input type="submit" value="Book" class="button is-fullwidth is-info is-outlined" (click)="bookAppointment(app)">
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="modal" [ngClass]="{ 'is-active' : showModal === true }">
+          <div class="modal-background"></div>
+          <div class="modal-content box">
+            <div class="columns">
+              <div class="column">
+                <ng-container *ngIf="confirmApp">
+                  <p class="is-capitalized">
+                    <span class="icon is-left">
+                      <i class="fas fa-user-md"></i>
+                    </span>
+                    {{this.appToConfirm.doctor.getFullName()}}
+                  </p>
+                  <p>
+                    <span class="icon is-left">
+                      <i class="far fa-calendar"></i>
+                    </span>
+                    {{this.appToConfirm.date.toLocaleDateString()}}
+                  </p>
+                  <p>
+                    <span class="icon is-left">
+                      <i class="far fa-clock"></i>
+                    </span>
+                    {{this.appToConfirm.date.toLocaleTimeString()}}
+                  </p>
+                </ng-container>
+              </div>
+              <div class="column">
+                <p>All appointments are scheduled to last 30 mins.</p>
+                <p>Please try to arrive to the surgery 5 minutes before your appointment is due to start.</p>
+              </div>
+            </div>
+            <input type="submit" value="Confirm" class="button is-fullwidth is-info" (click)="completeAppointment()">
+          </div>
+          <button class="modal-close is-large" (click)="closeModal()" aria-label="close"></button>
+        </div>
+
+        <!-- <div class="columns content is-multiline is-tablet">
+            <div class="column is-one-quarter-desktop has-text-centered" *ngFor="let app of sortedAppointments; let index = i">
+              <div class="box is-light">
+                <p>
+                  <strong>{{ app.date.toLocaleTimeString().substr(0, 5)}} - {{ app.doctor }}</strong>
+                </p>
+                <nav class="level">
+                  <p class="level-item has-text-centered">
+                    {{ app.date.toUTCString().substr(0, 17) }}
+                  </p>
+                  <p class="level-item has-text-centered">
+                    <input type="submit" value="Book" class="button is-info" (click)="bookAppointment(app)">
+                  </p>
+                </nav>
+              </div>
+            </div>
+          </div> -->
+      </ng-container>
+
+    </div>
   </div>
+
 </section>

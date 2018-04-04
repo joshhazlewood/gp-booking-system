@@ -1,0 +1,147 @@
+<div class="section">
+  <div class="container">
+    <div class="columns is-mobile">
+      <div class="column box is-8 is-offset-2">
+        <h1 class="title">Patient Notes</h1>
+        <ng-container *ngIf="patientFound">
+
+          <div class="notification is-warning" *ngFor="let msg of messages; let i = index">
+            <a class="delete" (click)="removeMsg(i)"></a>
+            <p>{{msg}}</p>
+          </div>
+
+          <div class="columns">
+            <div class="column is-half has-text-centered">
+              <p>
+                <span class="icon is-left">
+                  <i class="fas fa-hashtag"></i>
+                </span>
+                {{patient.patient_id}}
+              </p>
+              <p class="is-capitalized">
+                <span class="icon is-left">
+                  <i class="fas fa-user"></i>
+                </span>
+                {{patient.getFullName()}}
+              </p>
+              <p>
+                <span class="icon is-left">
+                  <i class="fas fa-envelope"></i>
+                </span>
+                {{patient.user_name}}
+              </p>
+            </div>
+            <div class="column is-half has-text-centered">
+              <p>
+                <span class="icon is-left">
+                  <i class="fas fa-address-card"></i>
+                </span>
+                Line 1: {{patient.address.line1}}
+              </p>
+              <p>
+                <span class="icon is-left">
+                  <i class="fas fa-address-card"></i>
+                </span>
+                Line 2: {{patient.address.line2}}
+              </p>
+              <p>
+                <span class="icon is-left">
+                  <i class="fas fa-address-card"></i>
+                </span>
+                Town/City: {{patient.address.town_city}}
+              </p>
+              <p>
+                <span class="icon is-left">
+                  <i class="fas fa-address-card"></i>
+                </span>
+                Postcode: {{patient.address.postcode}}
+              </p>
+            </div>
+          </div>
+
+          <!-- <div class="card"> -->
+          <form>
+
+            <div class="field">
+              <label class="label">Current Diagnosis</label>
+              <div class="control">
+                <input class="input" type="text" [(ngModel)]="patient.clinical_notes.diagnosis" name="diagnosis" placeholder="Diagnosis..."
+                  [attr.readonly]='canEditNotes === false ? true : null'>
+              </div>
+            </div>
+
+            <div class="field">
+              <label class="label">Notes</label>
+              <div class="control">
+                <textarea class="textarea is-small" [(ngModel)]="patient.clinical_notes.notes" name="notes" placeholder="Notes..." 
+                  [attr.readonly]='canEditNotes === false ? true : null' spellcheck="false"></textarea>
+              </div>
+            </div>
+
+            <div class="columns">
+              <div class="column is-narrow">
+                <div class="field">
+                  <label class="label">Medications</label>
+                  <div class="control">
+                    <table class="table is-narrow is-bordered has-text-centered is-capitalized">
+                      <thead>
+                        <th>Name</th>
+                        <th>Amount</th>
+                        <th>Unit</th>
+                      </thead>
+                      <tbody>
+                        <tr *ngFor="let medication of patient.clinical_notes.medications; let i = index">
+                          <td>{{medication.name}}</td>
+                          <td>{{medication.amount}}</td>
+                          <td>{{medication.unit}}</td>
+                          <td *ngIf="canEditNotes === true">
+                            <a class="button" (click)="removeMed(i)">
+                              <i class="fas fa-minus-circle"></i>
+                            </a>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+              <div class="column">
+                <ng-container *ngIf="canEditNotes === true">
+                  <div class="field">
+                    <label class="label">Name</label>
+                    <div class="control">
+                      <input class="input is-small" type="text" [(ngModel)]="newName" name="newMedName" placeholder="Name...">
+                    </div>
+                  </div>
+                  <div class="field">
+                    <label class="label">Amount</label>
+                    <div class="control">
+                      <input class="input is-small" type="text" [(ngModel)]="newAmount" name="newMedAmount" placeholder="Amount...">
+                    </div>
+                  </div>
+                  <div class="field">
+                    <label class="label">Unit</label>
+                    <div class="control">
+                      <input class="input is-small" type="text" [(ngModel)]="newUnit" name="newMedUnit" placeholder="Unit...">
+                    </div>
+                  </div>
+                  <button class="button" (click)="addMedication()">Add Medication</button>
+                </ng-container>
+              </div>
+            </div>
+
+            <nav class="level is-mobile">
+              <div class="level-item">
+                <button class="button is-info is-outlined" (click)="editNotes()">Edit Notes</button>
+              </div>
+              <div class="level-item">
+                <button class="button is-danger" (click)="saveNotes()" [attr.disabled]='canEditNotes === false ? true : null'>Save</button>
+              </div>
+            </nav>
+
+          </form>
+        </ng-container>
+      </div>
+    </div>
+  </div>
+</div>

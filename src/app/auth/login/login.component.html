@@ -1,0 +1,48 @@
+<div class="section">
+  <div class="container content">
+    <div class="columns">
+      <div class="column"></div>
+      <div class="column is-half is-narrow-desktop has-text-centered">
+        <div class="box" style="max-width: 450px; margin-left: auto; margin-right: auto;">
+          <form [formGroup]="loginForm" novalidate>
+            <div class="field">
+              <p class="control has-icons-left has-icons-right">
+                <input class="input" type="email" formControlName="email" placeholder="Email">
+                <span class="icon is-small is-left">
+                  <i class="fas fa-envelope"></i>
+                </span>
+              </p>
+            </div>
+            <div class="field">
+              <p class="control has-icons-left">
+                <input class="input" type="password" formControlName="password" placeholder="Password">
+                <span class="icon is-small is-left">
+                  <i class="fas fa-lock"></i>
+                </span>
+              </p>
+            </div>
+            <div class="field">
+              <label class="radio">
+                <input type="radio" name="userType" formControlName="userType" value='patient' checked> Patient
+              </label>
+              <label class="radio">
+                <input type="radio" name="userType" formControlName="userType" value='staff'> Staff
+              </label>
+            </div>
+            <div class="field">
+              <p class="control">
+                <button class="button is-fullwidth is-success" (click)="login()" [attr.disabled]='!isFormValidAndTouched() === true ? true : null'>
+                  Login
+                </button>
+              </p>
+            </div>
+          </form>
+          <p *ngFor="let error of errors">{{error}}</p>
+          <p>Form value: {{ loginForm.value | json }}</p>
+          <p>Form status: {{ loginForm.status | json }}</p>
+        </div>
+      </div>
+      <div class="column"></div>
+    </div>
+  </div>
+</div>

@@ -6,16 +6,15 @@ import { HttpHeaders } from '@angular/common/http';
 @Injectable()
 export class AppointmentsService {
 
-  baseUrl: string = '/api/appointments';
-  constructor(private http: HttpClient) { }
-  httpOptions = {
-    headers: new HttpHeaders({
-      'Content-Type':  'application/json'
-    })
+  baseUrl = '/api/appointments';
+  confirmationData = null;
+
+  constructor(private http: HttpClient) {
+    this.confirmationData = {};
   }
 
   getAppointments() {
-    return this.http.get(this.baseUrl);
+    return this.http.get(this.baseUrl + '/all-appointments');
   }
 
   getAppointmentsOnDate(date: Date) {
@@ -23,9 +22,11 @@ export class AppointmentsService {
   }
 
   createNewAppointment(appData) {
-    console.log('appdata = ');
-    console.log(appData);
-    return this.http.post("/api/appointments" , appData, this.httpOptions);
+    return this.http.post(`${this.baseUrl}/new-appointment/`, appData);
+  }
+
+  getDocsAppointments(doctor_id) {
+    return this.http.get(this.baseUrl + '/app-as-event/' + doctor_id);
   }
 
 }

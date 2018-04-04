@@ -1,3 +1,45 @@
-<p>
-  patient-list works!
-</p>
+<div class="section">
+  <div class="container">
+    <div class="columns is-desktop">
+      <div class="column is-8 is-offset-2">
+        <h1 class="title">Patients</h1>
+        <nav class="level">
+          <div class="level-item">
+            <input class="input is-info" [(ngModel)]="query" type="text" placeholder="Search for patients...">
+          </div>
+        </nav>
+
+        <ng-container *ngIf="patientsFound">
+
+          <table class="table is-bordered is-striped is-hoverable is-fullwidth" *ngIf="(patients | search:'patient_id,fullName':query).length !== 0">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Patient Name</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let patient of patients | search:'patient_id,fullName':query">
+                <td>{{patient.patient_id}}</td>
+                <td>{{patient.fullName}}</td>
+                <td>
+                  <input type="submit" value="Go to Notes" class="button is-fullwidth is-info is-outlined" (click)="goToNotes(patient)">
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+          <ng-container *ngIf="(patients | search:'patient_id,fullName':query).length === 0">
+            <p>
+              Non found with that name or ID.
+            </p>
+          </ng-container>
+
+        </ng-container>
+
+
+      </div>
+    </div>
+  </div>
+</div>

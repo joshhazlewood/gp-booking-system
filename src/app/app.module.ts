@@ -1,12 +1,17 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
-import { HttpModule } from '@angular/http';
+// import { HttpModule } from '@angular/http';
 import { Http } from '@angular/http';
 import { RouterModule, Routes } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AuthInterceptor } from './auth/auth-interceptor';
 
 import { MyDatePickerModule } from 'mydatepicker';
+import { FullCalendarModule } from 'ng-fullcalendar';
+import { Ng4LoadingSpinnerModule } from 'ng4-loading-spinner';
+import { MomentModule } from 'angular2-moment';
 
 import { AppComponent } from './app.component';
 import { DataService } from './services/data.service';
@@ -20,15 +25,61 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import { NewAppointmentComponent } from './new-appointment/new-appointment.component';
 import { AppointmentsService } from './services/appointments.service';
 import { StaffService } from './services/staff.service';
+import { PatientService } from './services/patient.service';
+import { AuthService } from './services/auth.service';
+import { LoginComponent } from './auth/login/login.component';
+import { AuthGuardService } from './services/auth-guard.service';
+import { ConfirmAppComponent } from './confirm-app/confirm-app.component';
+import { SearchPipe } from './search.pipe';
+import { PatientNotesComponent } from './patient-notes/patient-notes.component';
 
 const appRoutes: Routes = [
+  { path: 'login', component: LoginComponent },
   { path: 'home', component: DashboardComponent },
+  {
+    path: 'new-appointment',
+    component: NewAppointmentComponent,
+    canActivate: [AuthGuardService],
+    data: {
+      expectedRole: 'patient'
+    }
+  },
+  { path: 'confirm-app', component: ConfirmAppComponent },
   { path: 'staff-list', component: StaffListComponent },
-  { path: 'patients-list', component: PatientListComponent },
-  { path: 'new-appointment', component: NewAppointmentComponent },
-  { path: 'appointments-list', component: AppointmentsComponent },
-  { path: 'admin', component:  AdminPanelComponent},
-  { path: '',
+  {
+    path: 'patients-list',
+    component: PatientListComponent,
+    canActivate: [AuthGuardService],
+    data: {
+      expectedRole: 'doctor'
+    }
+  },
+  {
+    path: 'patient-notes',
+    component: PatientNotesComponent,
+    canActivate: [AuthGuardService],
+    data: {
+      expectedRole: 'doctor',
+    }
+  },
+  {
+    path: 'appointments-list',
+    component: AppointmentsComponent,
+    canActivate: [AuthGuardService],
+    data: {
+      expectedRole: 'doctor'
+    }
+  },
+  {
+    path: 'admin',
+    component: AdminPanelComponent,
+    canActivate: [AuthGuardService],
+    data: {
+      expectedRole: 'admin'
+    }
+  },
+  {
+    path: '',
     redirectTo: '/home',
     pathMatch: 'full'
   },
@@ -46,24 +97,39 @@ const appRoutes: Routes = [
     PatientListComponent,
     AppointmentsComponent,
     AdminPanelComponent,
-    NewAppointmentComponent
+    NewAppointmentComponent,
+    LoginComponent,
+    ConfirmAppComponent,
+    SearchPipe,
+    PatientNotesComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
-    HttpModule,
+    // HttpModule,
     RouterModule.forRoot(
       appRoutes,
       { enableTracing: false } // <-- debugging purposes only
     ),
     FormsModule,
     ReactiveFormsModule,
-    MyDatePickerModule
+    MyDatePickerModule,
+    FullCalendarModule,
+    Ng4LoadingSpinnerModule.forRoot(),
+    MomentModule
   ],
   providers: [
     DataService,
     AppointmentsService,
-    StaffService
+    StaffService,
+    PatientService,
+    AuthService,
+    AuthGuardService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true
+    }
   ],
   bootstrap: [AppComponent]
 })

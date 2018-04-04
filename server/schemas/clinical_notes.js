@@ -5,6 +5,9 @@ var medicationsSchema = require('../schemas/medications');
 
 const diagnosisRequiredErrorMsg = 'Diagnosis is required.';
 const NotesRequiredErrorMsg = 'Diagnosis is required.';
+const nameRequiredErrorMsg = 'Medication name is required.';
+const amountRequiredErrorMsg = 'Medication amount is required.';
+const unitRequiredErrorMsg = 'Medication unit is required.';
 
 var clinicalNotesSchema = new Schema({
     diagnosis: {

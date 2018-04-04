@@ -1,0 +1,31 @@
+<div class="section">
+  <div class="columns">
+    <div class="column is-6 is-offset-3 container box has-text-centered">
+      <h1 class="title">Booking Confirmed!</h1>
+      <ng-container *ngIf="dataFound">
+        <p class="is-capitalized">
+          <span class="icon is-left">
+            <i class="fas fa-user-md"></i>
+          </span>
+          {{this.confirmationData.doctor.getFullName()}}
+        </p>
+        <p>
+          <span class="icon is-left">
+            <i class="far fa-calendar"></i>
+          </span>
+          {{this.confirmationData.date.toLocaleDateString()}}
+        </p>
+        <p>
+          <span class="icon is-left">
+            <i class="far fa-clock"></i>
+          </span>
+          {{this.confirmationData.date.toLocaleTimeString()}}
+        </p>
+        <p>If you're unable to attend this appointment, please call the office with as much notice as possible. Thank you.</p>
+      </ng-container>
+      <br>
+      <a class="button is-info is-outlined" (click)="goToHome()">Home</a>
+      <a class="button is-info is-outlined" (click)="logout()">Logout</a>
+    </div>
+  </div>
+</div>

@@ -1,5 +1,6 @@
-var mongoose = require('mongoose');
-var Schema = mongoose.Schema;
+const mongoose = require('mongoose');
+const autoIncrement = require('mongoose-auto-increment');
+const Schema = mongoose.Schema;
 
 const staff_idRequiredErrorMsg = 'Staff ID is required';
 const fornameRequiredErrorMsg = 'Forname is required';
@@ -9,12 +10,12 @@ const user_nameRequiredErrorMsg = 'Username is required';
 const passwordRequiredErrorMsg = 'Password is required';
 
 var staffSchema = new Schema({
-    staff_id: {
-        type: Number,
-        min: 1,
-        max: 1000,
-        required: [true, staff_idRequiredErrorMsg]
-    },
+    // staff_id: {
+    //     type: Number,
+    //     min: 1,
+    //     max: 1000,
+    //     required: [true, staff_idRequiredErrorMsg]
+    // },
     forename: {
         type: String,
         min: 1,
@@ -45,6 +46,15 @@ var staffSchema = new Schema({
         max: 100,
         required: [true, passwordRequiredErrorMsg]
     }
+});
+
+autoIncrement.initialize(mongoose.connection);
+
+staffSchema.plugin(autoIncrement.plugin, {
+    model: 'staff',
+    field: 'staff_id',
+    startAt: 1,
+    incrementBy: 1
 });
 
 module.exports = staffSchema;
