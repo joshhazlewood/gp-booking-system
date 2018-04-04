@@ -8,9 +8,9 @@ export class Doctor {
         this.pretty_id = pretty_id;
         this.forename = forename;
         this.surname = surname;
-     }
+    }
 
-     getFullName(): string {
+    getFullName(): string {
         const fullName = `${this.forename} ${this.surname}`;
         return fullName;
     }

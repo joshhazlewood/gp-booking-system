@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { Validators } from '@angular/forms';
 
+import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 import { IMyDpOptions, IMyDateModel } from 'mydatepicker';
 import { IMyDate } from '../../../node_modules/mydatepicker/dist/interfaces/my-date.interface';
 import { PotentialAppointment } from '../models/potential-appointment';
@@ -42,7 +43,8 @@ export class NewAppointmentComponent implements OnInit, OnDestroy {
   public myDatePickerOptions: IMyDpOptions = {
     // other options...
     dateFormat: 'dd/mm/yyyy',
-    disableUntil: { year: this.todaysDate.getFullYear(), month: this.todaysDate.getMonth() + 1, day: this.todaysDate.getDate() - 1 }
+    disableUntil: { year: this.todaysDate.getFullYear(), month: this.todaysDate.getMonth() + 1, day: this.todaysDate.getDate() - 1 },
+    disableWeekends: true
   };
 
   public myForm: FormGroup;
@@ -52,6 +54,7 @@ export class NewAppointmentComponent implements OnInit, OnDestroy {
     private appointmentsService: AppointmentsService,
     private staffService: StaffService,
     private authService: AuthService,
+    private spinnerService: Ng4LoadingSpinnerService,
     private router: Router) { }
 
   ngOnInit() {
@@ -67,6 +70,7 @@ export class NewAppointmentComponent implements OnInit, OnDestroy {
     this.errors = [];
 
     // Get all the doctors ready for appointments
+    this.spinnerService.show();
     this.doctors$ = this.staffService.getDoctors().subscribe((res) => {
       let dataIsNull = false;
       if (res['status'] === 200) {
@@ -96,6 +100,7 @@ export class NewAppointmentComponent implements OnInit, OnDestroy {
             // console.log(user_id);
             this.authService.getUserDetails().subscribe(
               res => {
+                this.spinnerService.hide();
                 if (res['status'] === 200) {
                   const { _id, user_name } = res['data'];
                   this.user = {
@@ -117,19 +122,21 @@ export class NewAppointmentComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
+    this.spinnerService.hide();
     this.doctors$.unsubscribe();
     this.loggedIn$.unsubscribe();
   }
 
   getAppointmentsAndRemoveExisting(date: Date): void {
     let dataIsNull = false;
+    this.spinnerService.show();
     this.appointmentsService.getAppointmentsOnDate(date).subscribe(res => {
+      this.spinnerService.hide();
       const data = res['data'];
       if (data === null) {
         dataIsNull = true;
       } else {
         this.takenAppointments = data.map((app) => {
-          console.log(app);
           return new TakenAppointment(
             app.staff,
             app.start_time,
@@ -186,10 +193,10 @@ export class NewAppointmentComponent implements OnInit, OnDestroy {
     const selectedYear = selectedDate.year;
     const selectedMonth = selectedDate.month - 1;
     const selectedDay = selectedDate.day;
-    const startHour = 9;
+    const startHour = 8.5;
 
     this.doctors.forEach((doc) => {
-      for (let i = 0; i < 17; i++) {
+      for (let i = 0; i < 19; i++) {
         const appointment = new PotentialAppointment();
         const hour: number = startHour + (i * 0.5);
         const docForename = doc.forename;
@@ -201,15 +208,24 @@ export class NewAppointmentComponent implements OnInit, OnDestroy {
 
         if (this.isOnTheHour(hour)) {
           appointment.date = new Date(selectedYear, selectedMonth, selectedDay, hour);
-          this.potentialAppointments.push(appointment);
+          //  Doesn't push to array if appointment time is before now.
+          const timeIsLaterThanNow = this.compareTime(Date.now(), appointment.date) === false;
+          const hourIsNotDuringLunch = appointment.date.getHours() !== 13;
+          if (timeIsLaterThanNow && hourIsNotDuringLunch) {
+            this.potentialAppointments.push(appointment);
+          }
         } else {
           appointment.date = new Date(selectedYear, selectedMonth, selectedDay, hour - 0.5, 30);
-          this.potentialAppointments.push(appointment);
+
+          const timeIsLaterThanNow = this.compareTime(Date.now(), appointment.date) === false;
+          const hourIsNotDuringLunch = appointment.date.getHours() !== 13;
+          if (timeIsLaterThanNow && hourIsNotDuringLunch) {
+            this.potentialAppointments.push(appointment);
+          }
         }
       }
     });
     //  pass in the selected day to pull relevant appointments from the DB
-    console.log('triggers getAppAndRemoveExisitng');
     this.getAppointmentsAndRemoveExisting(new Date(selectedYear, selectedMonth, selectedDay));
   }
 
@@ -229,6 +245,10 @@ export class NewAppointmentComponent implements OnInit, OnDestroy {
       }
     });
     return sortedArray;
+  }
+
+  compareTime(time1, time2) {
+    return time1 > time2;
   }
 
   removeExistingAppointments(appointments: PotentialAppointment[], takenAppointments: TakenAppointment[]): PotentialAppointment[] {
@@ -257,7 +277,6 @@ export class NewAppointmentComponent implements OnInit, OnDestroy {
   }
 
   bookAppointment(appointment: PotentialAppointment) {
-    console.log(appointment);
     // const user = this.authService.getUser();
     this.showModal = true;
     this.confirmApp = true;
@@ -276,8 +295,10 @@ export class NewAppointmentComponent implements OnInit, OnDestroy {
   }
 
   completeAppointment() {
+    this.spinnerService.show();
     this.appointmentsService.createNewAppointment(this.appToConfirm).subscribe(
       res => {
+        this.spinnerService.show();
         const status = res['status'];
         if (status === 200) {
           this.appointmentsService.confirmationData = this.appToConfirm;

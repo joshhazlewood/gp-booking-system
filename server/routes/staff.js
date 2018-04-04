@@ -85,6 +85,7 @@ router.post('/login', (req, res) => {
     const user = req.body;
     const username = user.username
     const password = user.password
+    console.log(user);
 
     staffModel.findOne({ 'user_name': username }, (err, staffMember) => {
         if (!err) {
@@ -117,6 +118,7 @@ router.post('/login', (req, res) => {
                     }
                     res.json(response);
                 } else {
+                    console.log('pw is wrong');
                     response.status = 401;
                     res.json(response);
                 }
@@ -173,7 +175,15 @@ function ensureToken(req, res, next) {
         const bearer = bearerHeader.split(" ");
         const bearerToken = bearer[1];
         req.token = bearerToken;
-        next();
+        jwt.verify(req.token, '13118866', (err, data) => {
+            if (err) {
+                res.sendStatus(401);
+            } else {
+                console.log('verified token');
+                next();
+            }
+        })
+        // next();
     } else {
         res.sendStatus(403);
     }

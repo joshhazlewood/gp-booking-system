@@ -52,10 +52,18 @@ export class LoginComponent implements OnInit {
           (data) => {
             let status = data['status'];
             console.log(status);
+            console.log(status.toString().startsWith(4));
             if (status === 200) {
               this.setSession(data['data']);
               // const user = this.authService.getUser();
+              if (val.userType === 'patient') {
+                this.router.navigateByUrl('/new-appointment');
+              } else {
+                console.log(status);
+                this.router.navigateByUrl('/appointments-list');
+              }
             } else if (status.toString().startsWith(4)) {
+              console.log('error should be shown');
               let error = 'Incorrect username or password';
               this.errors.push(error);
             }
@@ -64,11 +72,11 @@ export class LoginComponent implements OnInit {
             console.log(err);
           },
           () => {
-            if (val.userType === 'patient') {
-              this.router.navigateByUrl('/new-appointment');
-            } else {
-              this.router.navigateByUrl('/staff-list');
-            }
+            // if (val.userType === 'patient') {
+            //   this.router.navigateByUrl('/new-appointment');
+            // } else {
+            //   this.router.navigateByUrl('/staff-list');
+            // }
           });
     }
   }

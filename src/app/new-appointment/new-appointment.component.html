@@ -20,7 +20,7 @@
       </div>
       <br>
 
-      <div class="notification is-warning" *ngFor="let error of errors; let index = i">
+      <div class="notification is-warning" *ngFor="let error of errors; let i = index">
         <a class="delete" (click)="removeErrMsg(i)"></a>
         <p>{{error}}</p>
       </div>
@@ -75,7 +75,7 @@
                 <p>Please try to arrive to the surgery 5 minutes before your appointment is due to start.</p>
               </div>
             </div>
-            <input type="submit" value="Confirm" class="button is-fullwidth is-info is-outlined" (click)="completeAppointment()">
+            <input type="submit" value="Confirm" class="button is-fullwidth is-info" (click)="completeAppointment()">
           </div>
           <button class="modal-close is-large" (click)="closeModal()" aria-label="close"></button>
         </div>

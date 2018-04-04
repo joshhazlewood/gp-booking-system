@@ -22,7 +22,7 @@ export class AppointmentsService {
   }
 
   createNewAppointment(appData) {
-    return this.http.post(this.baseUrl , appData);
+    return this.http.post(`${this.baseUrl}/new-appointment/`, appData);
   }
 
   getDocsAppointments(doctor_id) {

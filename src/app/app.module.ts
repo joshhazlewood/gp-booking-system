@@ -10,6 +10,8 @@ import { AuthInterceptor } from './auth/auth-interceptor';
 
 import { MyDatePickerModule } from 'mydatepicker';
 import { FullCalendarModule } from 'ng-fullcalendar';
+import { Ng4LoadingSpinnerModule } from 'ng4-loading-spinner';
+import { MomentModule } from 'angular2-moment';
 
 import { AppComponent } from './app.component';
 import { DataService } from './services/data.service';
@@ -23,10 +25,13 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import { NewAppointmentComponent } from './new-appointment/new-appointment.component';
 import { AppointmentsService } from './services/appointments.service';
 import { StaffService } from './services/staff.service';
+import { PatientService } from './services/patient.service';
 import { AuthService } from './services/auth.service';
 import { LoginComponent } from './auth/login/login.component';
 import { AuthGuardService } from './services/auth-guard.service';
 import { ConfirmAppComponent } from './confirm-app/confirm-app.component';
+import { SearchPipe } from './search.pipe';
+import { PatientNotesComponent } from './patient-notes/patient-notes.component';
 
 const appRoutes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -47,6 +52,14 @@ const appRoutes: Routes = [
     canActivate: [AuthGuardService],
     data: {
       expectedRole: 'doctor'
+    }
+  },
+  {
+    path: 'patient-notes',
+    component: PatientNotesComponent,
+    canActivate: [AuthGuardService],
+    data: {
+      expectedRole: 'doctor',
     }
   },
   {
@@ -86,7 +99,9 @@ const appRoutes: Routes = [
     AdminPanelComponent,
     NewAppointmentComponent,
     LoginComponent,
-    ConfirmAppComponent
+    ConfirmAppComponent,
+    SearchPipe,
+    PatientNotesComponent
   ],
   imports: [
     BrowserModule,
@@ -99,12 +114,15 @@ const appRoutes: Routes = [
     FormsModule,
     ReactiveFormsModule,
     MyDatePickerModule,
-    FullCalendarModule
+    FullCalendarModule,
+    Ng4LoadingSpinnerModule.forRoot(),
+    MomentModule
   ],
   providers: [
     DataService,
     AppointmentsService,
     StaffService,
+    PatientService,
     AuthService,
     AuthGuardService,
     {

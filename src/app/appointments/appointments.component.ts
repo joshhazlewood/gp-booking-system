@@ -5,6 +5,8 @@ import { AuthService } from '../services/auth.service';
 import { Event } from '../services/interfaces/event';
 import { CalendarComponent } from 'ng-fullcalendar';
 import { Options } from 'fullcalendar';
+import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-appointments',
@@ -21,6 +23,7 @@ export class AppointmentsComponent implements OnInit {
   @ViewChild(CalendarComponent) ucCalendar: CalendarComponent;
 
   constructor(private appointmentsService: AppointmentsService,
+    private spinnerService: Ng4LoadingSpinnerService,
     private authService: AuthService
   ) { }
 
@@ -31,9 +34,11 @@ export class AppointmentsComponent implements OnInit {
 
   ngOnInit() {
     const doc_id = this.authService.getUserId();
+    this.spinnerService.show();
     this.appointmentsService.getDocsAppointments(doc_id)
       .subscribe(
         res => {
+          this.spinnerService.hide();
           if (res['status'] === 200) {
             console.log(res);
             this.appointments = res['data'];
@@ -46,8 +51,13 @@ export class AppointmentsComponent implements OnInit {
                   const fullName = this.getFullName(patientFName, patientSName);
                   const start_time = app['start_time'];
                   const end_time = app['end_time'];
-                  const formatted_start_time = start_time.slice(0, -5);
-                  const formatted_end_time = end_time.slice(0, -5);
+                  
+                  const start_timeAsLocaleString: string = moment(start_time).format().toLocaleString();
+                  const end_timeAsLocaleString: string = moment(end_time).format().toLocaleString();
+
+                  const formatted_start_time = start_timeAsLocaleString.slice(0, -6);
+                  const formatted_end_time = end_timeAsLocaleString.slice(0, -6);
+
                   const event = {
                     title: fullName,
                     start: formatted_start_time,
@@ -66,14 +76,16 @@ export class AppointmentsComponent implements OnInit {
                   center: 'title',
                   right: 'month,agendaWeek,agendaDay,listMonth'
                 },
-                events: this.events
+                events: this.events,
+                handleWindowResize: true
+                // aspectRatio: 1.85
               };
-              console.log(this.events);
             }
           }
         },
         (err) => {
           console.log(err);
+          this.spinnerService.hide();
         },
         () => {
           console.log('finished getting data');

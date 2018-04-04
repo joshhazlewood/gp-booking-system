@@ -43,9 +43,6 @@ export class AuthService {
   }
 
   public isLoggedIn(): Observable<boolean> {
-
-    // const source = interval(1000);
-    // const 
     return new Observable<boolean>(observer => {
       setInterval(() => {
         const value = this.getExpiration() !== null && moment().isBefore(this.getExpiration());

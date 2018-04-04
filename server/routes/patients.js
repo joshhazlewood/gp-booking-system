@@ -21,15 +21,15 @@ var patientModel = mongoose.model('Patient', PatientSchema, 'patients');
 var testPatient = {
     // patient_id: 100,
     forename: 'test',
-    surname: 'hazlewood',
+    surname: 'patient',
     address: {
-        line1: '2b',
-        line2: 'davenport ave',
-        town_city: 'manchester',
+        line1: '2B',
+        line2: 'Davenport Ave',
+        town_city: 'Manchester',
         postcode: 'M20 3EY'
     },
-    clinical_notes: [{
-        diagnosis: 'he\'s a sick cunt',
+    clinical_notes: {
+        diagnosis: 'he\'s sick',
         notes: 'loads of notes here',
         last_accessed: new Date(),
         last_accessed_by: 10,
@@ -44,15 +44,24 @@ var testPatient = {
                 unit: 'mg/day'
             }
         ]
-    }],
-    user_name: 'joshhaz@gmail.com',
+    },
+    user_name: 'test@gmail.com',
     password: 'testPass'
 }
 
 router.get('/all-patients', ensureAndVerifyToken, (req, res) => {
     resetResponse();
-    patientModel.find({}, function (err, patients) {
+    patientModel.find({}, 'patient_id forename surname', function (err, patients) {
         if (!err) {
+            if (patients === null) {
+                response.status = 404;
+                response.data = null;
+                res.json(response);
+            } else {
+                response.status = 200;
+                response.data = patients;
+                res.json(response);
+            }
             response.data = patients;
             res.json(response);
         } else {
@@ -63,6 +72,53 @@ router.get('/all-patients', ensureAndVerifyToken, (req, res) => {
     }).catch(err => {
         console.log(err);
     });
+});
+
+router.get('/patient-notes/:id', ensureAndVerifyToken, (req, res) => {
+    resetResponse();
+    patientModel.findById({ _id: req.params.id }, '-password', function (err, patients) {
+        if (!err) {
+            // find returns an array - check if empty then send to 404
+            if (patients === null) {
+                response.status = 404;
+                response.data = null;
+                res.json(response);
+            } else { // continue with response if it's found
+                response.status = 200;
+                response.data = patients;
+                res.json(response);
+            }
+        } else {
+            console.log(err);
+        }
+    }).then((patients => {
+        if (patients !== null) {
+            console.log('Found patient notes with ID: ' + req.params.id);
+        } else {
+            console.log('No patient notes are found with an ID of ' + req.params.id);
+        }
+    })).catch(err => {
+        console.log(err);
+    })
+});
+
+router.post('/patient-notes/:id', ensureAndVerifyToken, (req, res) => {
+    resetResponse();
+    console.log(req.body);
+    patientModel.findByIdAndUpdate({ _id: req.params.id },
+        { $set: { clinical_notes: req.body } },
+        { new: true }, function (err, patient) {
+            if (err) {
+                console.log(err);
+                response.status = 404;
+                response.data = null;
+                res.json(response);
+            }
+            response.status = 200;
+            response.data = null;
+            res.json(response);
+        }
+    );
 });
 
 router.get('id/:id', ensureAndVerifyToken, (req, res) => {

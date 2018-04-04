@@ -1,6 +1,6 @@
 <div class="section">
-  <div class="containter">
-    <div *ngIf="calendarOptions">
+  <div class="containter columns">
+    <div class="column is-8 is-offset-2" *ngIf="calendarOptions">
       <ng-fullcalendar #ucCalendar [options]="calendarOptions" (clickButton)="clickButton($event.detail)"></ng-fullcalendar>
     </div>
   </div>

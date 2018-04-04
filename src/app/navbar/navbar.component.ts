@@ -75,13 +75,9 @@ export class NavbarComponent implements OnInit {
         this.loggedIn = response;
         if (this.loggedIn === true && this.userType === null) {
           this.userType = this.authService.getUserType();
-          console.log(this.userType);
         }
       });
 
-    // if(this.loggedIn) {
-    //   this.get
-    // }
   }
 
 }

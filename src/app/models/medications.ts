@@ -1,8 +1,8 @@
 export class Medications {
-    protected medication_name: string;
-    protected medication_amount: number;
-    protected medication_unit: string;
-    
+    public name: string;
+    public amount: number;
+    public unit: string;
+
     constructor() {
     }
 }
