@@ -32,7 +32,7 @@ export class NewAppointmentComponent implements OnInit, OnDestroy {
   private appToConfirm: PotentialAppointment = null;
 
   private doctors = [];
-  private errors: string[] = null;
+  public errors: string[] = null;
   private user: User = null;
   private isLoggedIn: boolean = null;
   private showModal: boolean = null;

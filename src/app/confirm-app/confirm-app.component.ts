@@ -11,7 +11,7 @@ import { AppointmentsService } from '../services/appointments.service';
 export class ConfirmAppComponent implements OnInit {
 
   private confirmationData = null;
-  private dataFound = false;
+  public dataFound = false;
 
   constructor(private router: Router,
     private authService: AuthService,

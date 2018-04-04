@@ -13,7 +13,7 @@ import { ClinicalNotes } from '../models/clinical-notes';
 export class PatientNotesComponent implements OnInit, OnDestroy {
 
   private patient_id: string;
-  private patientFound = false;
+  public patientFound = false;
   private patient: Patient = null;
   private patients$: any = null;
   private canEditNotes = false;

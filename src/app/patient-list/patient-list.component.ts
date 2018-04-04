@@ -14,7 +14,8 @@ export class PatientListComponent implements OnInit, OnDestroy {
 
   private patients: any[] = null;
   private patients$: any = null;
-  private patientsFound = false;
+  public patientsFound = false;
+  public query = null;
   private patient_idToFind: string;
 
   constructor(private patientService: PatientService,

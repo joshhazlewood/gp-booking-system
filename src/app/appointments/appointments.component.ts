@@ -14,7 +14,7 @@ import * as moment from 'moment';
   styleUrls: ['./appointments.component.css']
 })
 export class AppointmentsComponent implements OnInit {
-  private calendarOptions: Options;
+  public calendarOptions: Options;
   private appointments: any[] = null;
   private events: Event[] = null;
   private eventsFound = false;
