@@ -22,11 +22,9 @@ export class AuthGuardService implements CanActivate {
       const userType = this.authService.getUserType();
 
       if (userType === undefined) {
-        console.log('undefined here');
         this.router.navigateByUrl('/home');
         return false;
       } else if (expectedRole === 'doctor' && (userType === 'admin' || userType === 'admin' )) {
-        console.log('doc or admin');
         return true;
       } else if (userType !== expectedRole ) {
         this.router.navigateByUrl('/home');

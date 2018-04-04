@@ -22,12 +22,19 @@ export class PatientNotesComponent implements OnInit, OnDestroy {
   private newAmount: number = null;
   private newUnit: string = null;
   private messages: string[] = null;
+  private patientNotesPreEdit: any = null;
 
   constructor(private patientService: PatientService,
     private router: Router) { }
 
   editNotes() {
     this.canEditNotes = true;
+    this.patientNotesPreEdit = {...this.patient.clinical_notes};
+  }
+
+  cancelEdit() {
+    this.patient.clinical_notes = {...this.patientNotesPreEdit};
+    this.canEditNotes = false;
   }
 
   saveNotes() {
@@ -37,7 +44,6 @@ export class PatientNotesComponent implements OnInit, OnDestroy {
       res => {
         const status = res['status'];
         if (status === 200) {
-          console.log('notes updated');
           this.messages.push('Patient Notes Updated.');
         } else if (status.toString().startsWith(4)) {
           this.messages.push('Patient Notes failed to save.');
@@ -95,21 +101,15 @@ export class PatientNotesComponent implements OnInit, OnDestroy {
             clinical_notes['last_acc_by'],
             clinical_notes['medications']
           );
-          console.log(addressObj);
-          console.log(notesObj);
           this.patient = new Patient(_id, patient_id, user_name, forename, surname, addressObj, notesObj);
           this.patientFound = true;
         }
       });
-      console.log('patient found');
     } else {
       this.router.navigateByUrl('/patients-list');
     }
   }
 
-  // getFullName() {
-  //   return this.patient.getFullName();
-  // }
 
   ngOnDestroy() {
     if (this.patients$ !== null) {

@@ -87,7 +87,6 @@ export class AuthService {
   getUserType() {
     const token = this.getToken();
     const user_role = token['user_role'];
-    console.log(user_role);
     return user_role;
   }
 
@@ -96,34 +95,4 @@ export class AuthService {
     return user_id;
   }
 
-  // private getDetailsAndSetUser(user_id: string) {
-  //   if (this.userType === 'patient') {
-  //     const res = this.http.get(`/api/patients/user-data/${user_id}`)
-  //       .subscribe(res => {
-  //         const userData = res['data'];
-  //         console.log(userData);
-  //         this.user = {
-  //           user_id: userData._id,
-  //           user_name: userData.user_name,
-  //           user_role: 'patient'
-  //         };
-  //         // return res;
-  //         console.log(this.user);
-  //       });
-  //     // return res;
-  //   } else if (this.userType === 'staff') {
-  //     const res = this.http.get(`/api/staff/user-data/${user_id}`)
-  //       .subscribe(res => {
-  //         const userData = res['data'];
-  //         console.log(userData);
-  //         this.user = {
-  //           user_id: userData._id,
-  //           user_name: userData.user_name,
-  //           user_role: userData.staff_role
-  //         };
-  //         // return res;
-  //         console.log(this.user);
-  //       });
-  //   }
-  // }
 }

@@ -130,14 +130,11 @@
               </div>
             </div>
 
-            <nav class="level is-mobile">
-              <div class="level-item">
-                <button class="button is-info is-outlined" (click)="editNotes()">Edit Notes</button>
-              </div>
-              <div class="level-item">
-                <button class="button is-danger" (click)="saveNotes()" [attr.disabled]='canEditNotes === false ? true : null'>Save</button>
-              </div>
-            </nav>
+            <div class="buttons">
+              <button class="button is-info is-outlined" (click)="editNotes()" [attr.disabled]='canEditNotes === true ? true : null'>Edit</button>
+              <button class="button is-warning" *ngIf="canEditNotes === true" (click)="cancelEdit()">Cancel</button>
+              <button class="button is-info" (click)="saveNotes()" [attr.disabled]='canEditNotes === false ? true : null'>Save</button>
+            </div>
 
           </form>
         </ng-container>

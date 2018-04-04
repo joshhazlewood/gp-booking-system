@@ -40,7 +40,6 @@ export class AppointmentsComponent implements OnInit {
         res => {
           this.spinnerService.hide();
           if (res['status'] === 200) {
-            console.log(res);
             this.appointments = res['data'];
 
             if (this.appointments !== null) {
@@ -84,11 +83,7 @@ export class AppointmentsComponent implements OnInit {
           }
         },
         (err) => {
-          console.log(err);
           this.spinnerService.hide();
-        },
-        () => {
-          console.log('finished getting data');
         }
       );
   }

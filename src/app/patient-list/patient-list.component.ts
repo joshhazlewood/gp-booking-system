@@ -27,7 +27,6 @@ export class PatientListComponent implements OnInit, OnDestroy {
   }
 
   goToNotes(patient) {
-    console.log(patient._id);
     this.patient_idToFind = patient._id;
     this.patientService.patient_idToFind = this.patient_idToFind;
     this.router.navigateByUrl('/patient-notes');
@@ -36,7 +35,6 @@ export class PatientListComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.patients$ = this.patientService.getPatients().subscribe(
       (data) => {
-        console.log(data);
         const status = data['status'];
         if (status === 200) {
           // this.patients = data['data'];
@@ -50,7 +48,6 @@ export class PatientListComponent implements OnInit, OnDestroy {
             return formattedPatient;
           }
           );
-          console.log(this.patients);
         }
       },
       (err) => {

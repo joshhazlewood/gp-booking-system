@@ -86,7 +86,6 @@ export class NewAppointmentComponent implements OnInit, OnDestroy {
     }, (err) => {
       console.log(err);
     });
-    console.log('initialised');
 
     this.loggedIn$ = this.authService.isLoggedIn().subscribe(
       value => {
@@ -95,9 +94,7 @@ export class NewAppointmentComponent implements OnInit, OnDestroy {
         if (value === true) {
 
           if (this.user === null) {
-            console.log('getting user details');
             const user_id = this.authService.getToken()['user_id'];
-            // console.log(user_id);
             this.authService.getUserDetails().subscribe(
               res => {
                 this.spinnerService.hide();
@@ -108,13 +105,11 @@ export class NewAppointmentComponent implements OnInit, OnDestroy {
                     user_name: user_name,
                     user_role: 'patient'
                   };
-                  console.log(this.user);
                 }
               }
             );
           }
         } else {
-          console.log('setting null');
           this.user = null;
         }
       }
@@ -277,21 +272,10 @@ export class NewAppointmentComponent implements OnInit, OnDestroy {
   }
 
   bookAppointment(appointment: PotentialAppointment) {
-    // const user = this.authService.getUser();
     this.showModal = true;
     this.confirmApp = true;
     this.appToConfirm = appointment;
     this.appToConfirm.patient_id = this.user.user_id;
-
-    // const patient_id = user.user_id;
-    // const staff_id = appointment.doctor._id;
-    // const start_time = appointment.date;
-    // // const end_time = '';
-    // const newApp = new Appointment(patient_id, staff_id, start_time);
-    // // console.log(newApp);
-    // this.appointmentsService.createNewAppointment(newApp).subscribe(data => {
-    //   console.log(data);
-    // });
   }
 
   completeAppointment() {
@@ -303,14 +287,11 @@ export class NewAppointmentComponent implements OnInit, OnDestroy {
         if (status === 200) {
           this.appointmentsService.confirmationData = this.appToConfirm;
           this.router.navigateByUrl('/confirm-app');
-          console.log('Created appointment');
         } else if (status === 409) {
           this.errors.push('Sorry, that appointment has already been taken. Please try another.');
           this.closeModal();
           this.findAppointments();
-          console.log('Appointment already taken');
         } else {
-          console.log('Server error');
           this.findAppointments();
         }
       }
