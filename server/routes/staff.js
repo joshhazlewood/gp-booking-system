@@ -10,10 +10,10 @@ var staffModel = mongoose.model('staff', staffSchema, 'staff');
 
 var testStaff = {
     // staff_id: 50,
-    forename: 'samuel',
-    surname: 'hazlewood',
-    staff_role: 'doctor',
-    user_name: 'sam@test.com',
+    forename: 'test',
+    surname: 'admin',
+    staff_role: 'admin',
+    user_name: 'admin@test.com',
     password: 'test'
 };
 
@@ -78,7 +78,29 @@ router.get('/doctors', function (req, res) {
                 res.json(response);
         }
     })
-})
+});
+
+router.get('/all-staff', function (req, res) {
+    staffModel.find({}, '_id staff_id forename surname', function (err, staff) {
+        if (!err) {
+            // find returns an array - check if empty then send to 404
+            if (staff.length === 0) {
+                response.status = 404;
+                response.data = null;
+                res.json(response);
+            } else { // continue with response if it's found
+                response.status = 200;
+                response.data = staff;
+                res.json(response);
+            }
+        } else {
+            handleError(err);
+            response.status = 500;
+                response.data = staff;
+                res.json(response);
+        }
+    })
+});
 
 router.post('/login', (req, res) => {
     resetResponse();

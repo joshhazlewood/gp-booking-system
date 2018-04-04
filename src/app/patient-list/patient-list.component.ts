@@ -44,7 +44,7 @@ export class PatientListComponent implements OnInit, OnDestroy {
               _id: patient._id,
               patient_id: patient.patient_id,
               fullName: this.getFullName(patient.forename, patient.surname)
-            }
+            };
             return formattedPatient;
           }
           );
