@@ -24,4 +24,12 @@ export class PatientService {
     return this.http.post(`${this.baseUrl}/patient-notes/${patient_id}`, notes);
   }
 
+  getPatientById(patient_id) {
+    return this.http.get(`${this.baseUrl}/patient/${patient_id}`);
+  }
+
+  savePatientById(patient_id, data) {
+    return this.http.post(`${this.baseUrl}/patient/${patient_id}`, data);
+  }
+
 }

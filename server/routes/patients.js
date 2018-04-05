@@ -104,7 +104,6 @@ router.get('/patient-notes/:id', ensureAndVerifyToken, (req, res) => {
 
 router.post('/patient-notes/:id', ensureAndVerifyToken, (req, res) => {
     resetResponse();
-    console.log(req.body);
     patientModel.findByIdAndUpdate({ _id: req.params.id },
         { $set: { clinical_notes: req.body } },
         { new: true }, function (err, patient) {
@@ -218,7 +217,7 @@ router.post('/login', (req, res) => {
 router.get('/user-data/:id', ensureAndVerifyToken, function (req, res) {
     resetResponse();
     const id = req.params.id;
-    let idIsValid = mongoose.Types.ObjectId.isValid(id)
+    let idIsValid = mongoose.Types.ObjectId.isValid(id);
     if (idIsValid) {
         patientModel.findById({ _id: req.params.id }, '_id patient_id user_name', function (err, patient) {
             if (err) {
@@ -243,6 +242,57 @@ router.get('/user-data/:id', ensureAndVerifyToken, function (req, res) {
     }
 });
 
+router.get('/patient/:id', ensureAndVerifyToken, (req, res) => {
+    resetResponse();
+    const id = req.params.id;
+    const idIsValid = mongoose.Types.ObjectId.isValid(id);
+
+    if (idIsValid) {
+        patientModel.findById({ _id: id }, '-password -clinical_notes', function (err, patient) {
+            if (err) {
+                handleError(err);
+                response.status = 404;
+                response.data = null;
+                res.json(response);
+            } else {
+                response.status = 200;
+                response.data = patient;
+                res.json(response);
+            }
+        });
+    }
+
+});
+
+router.post('/patient/:id', ensureAndVerifyToken, (req, res) => {
+    resetResponse();
+
+    const { _id, forename, surname, username, address } = req.body;
+    console.log(req.body);
+    console.log(_id);
+
+    patientModel.findByIdAndUpdate({ _id: req.params.id },
+        {
+            $set: {
+                forename: forename,
+                surname: surname,
+                user_name: username,
+                address: address
+            }
+        },
+        { new: true }, function (err, patient) {
+            if (err) {
+                console.log(err);
+                response.status = 404;
+                response.data = null;
+                res.json(response);
+            }
+            response.status = 200;
+            response.data = null;
+            res.json(response);
+        }
+    );
+})
 
 router.get('/protected', ensureAndVerifyToken, (req, res) => {
     resetResponse();

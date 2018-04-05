@@ -1,0 +1,85 @@
+<div class="section">
+  <div class="container">
+    <div class="columns">
+      <div class="column box is-8 is-offset-2">
+        <ng-container *ngIf="patientFound">
+          <form [formGroup]="patientForm" novalidate autocomplete="off">
+
+            <div class="notification is-warning" *ngFor="let msg of messages; let i = index">
+              <a class="delete" (click)="removeMsg(i)"></a>
+              <p>{{msg}}</p>
+            </div>
+            
+            <div class="columns">
+              <div class="column">
+                <div class="field">
+                  <label class="label">Forename</label>
+                  <div class="control">
+                    <input class="input" type="text" formControlName="forename" [(ngModel)]="patient.forename" [attr.readonly]='isEditable === false ? true : null'
+                      autocomplete="foo">
+                  </div>
+                </div>
+
+                <div class="field">
+                  <label class="label">Surname</label>
+                  <div class="control">
+                    <input class="input" type="text" formControlName="surname" [(ngModel)]="patient.surname" [attr.readonly]='isEditable === false ? true : null'
+                      autocomplete="foo">
+                  </div>
+                </div>
+
+                <div class="field">
+                  <label class="label">Username/Email</label>
+                  <div class="control">
+                    <input class="input" type="text" formControlName="username" [(ngModel)]="patient.username" [attr.readonly]='isEditable === false ? true : null'
+                      autocomplete="foo">
+                  </div>
+                </div>
+              </div>
+              <div class="column">
+                <div class="field">
+                  <label class="label">Line 1</label>
+                  <div class="control">
+                    <input class="input" type="text" formControlName="line1" [(ngModel)]="patient.address.line1" [attr.readonly]='isEditable === false ? true : null'
+                      autocomplete="foo">
+                  </div>
+                </div>
+
+                <div class="field">
+                  <label class="label">Line 2</label>
+                  <div class="control">
+                    <input class="input" type="text" formControlName="line2" [(ngModel)]="patient.address.line2" [attr.readonly]='isEditable === false ? true : null'
+                      (blur)="updateInputState('line2')" (keyup)="updateInputState('line2')" autocomplete="foo">
+                  </div>
+                </div>
+
+                <div class="field">
+                  <label class="label">Town / City</label>
+                  <div class="control">
+                    <input class="input" type="text" formControlName="townCity" [(ngModel)]="patient.address.town_city" [attr.readonly]='isEditable === false ? true : null'
+                      (blur)="updateInputState('townCity')" (keyup)="updateInputState('townCity')" autocomplete="foo">
+                  </div>
+                </div>
+
+                <div class="field">
+                  <label class="label">Postcode</label>
+                  <div class="control">
+                    <input class="input" type="text" formControlName="postcode" [(ngModel)]="patient.address.postcode" [attr.readonly]='isEditable === false ? true : null'
+                      (blur)="updateInputState('postcode')" (keyup)="updateInputState('postcode')" autocomplete="foo">
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+            <div class="buttons is-centered">
+              <button class="button is-info" (click)="makeEditable()" [attr.disabled]='isEditable === true ? true : null'>Edit</button>
+              <button class="button is-warning" *ngIf="isEditable === true" (click)="cancelEdit()">Cancel</button>
+              <button class="button is-danger" [attr.disabled]='isEditable === false ? true : null' (click)="saveDetails()">Save</button>
+            </div>
+          </form>
+        </ng-container>
+      </div>
+    </div>
+  </div>
+</div>
