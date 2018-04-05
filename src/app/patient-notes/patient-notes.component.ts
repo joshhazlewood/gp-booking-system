@@ -29,11 +29,11 @@ export class PatientNotesComponent implements OnInit, OnDestroy {
 
   editNotes() {
     this.canEditNotes = true;
-    this.patientNotesPreEdit = {...this.patient.clinical_notes};
+    this.patientNotesPreEdit = Object.assign({}, this.patient.clinical_notes);
   }
 
   cancelEdit() {
-    this.patient.clinical_notes = {...this.patientNotesPreEdit};
+    this.getPatientData();
     this.canEditNotes = false;
   }
 
@@ -83,10 +83,7 @@ export class PatientNotesComponent implements OnInit, OnDestroy {
     this.messages.splice(index, 1);
   }
 
-  ngOnInit() {
-    this.patient_id = this.patientService.patient_idToFind;
-    this.messages = [];
-
+  getPatientData() {
     if (this.patient_id !== null && this.patient_id !== undefined) {
       this.patients$ = this.patientService.getPatientNotes(this.patient_id).subscribe((data) => {
         const status = data['status'];
@@ -108,6 +105,13 @@ export class PatientNotesComponent implements OnInit, OnDestroy {
     } else {
       this.router.navigateByUrl('/patients-list');
     }
+  }
+
+  ngOnInit() {
+    this.patient_id = this.patientService.patient_idToFind;
+    this.messages = [];
+
+    this.getPatientData();
   }
 
 
