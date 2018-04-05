@@ -11,4 +11,8 @@ export class StaffService {
     return this.http.get('/api/staff/doctors');
   }
 
+  getStaff() {
+    return this.http.get('/api/staff/all-staff');
+  }
+
 }

@@ -14,6 +14,7 @@ import { AppointmentsService } from '../services/appointments.service';
 import { StaffService } from '../services/staff.service';
 import { AuthService } from '../services/auth.service';
 import { User } from '../services/interfaces/user';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-new-appointment',
@@ -22,6 +23,7 @@ import { User } from '../services/interfaces/user';
 })
 export class NewAppointmentComponent implements OnInit, OnDestroy {
   private formIsValid = false;
+  public patientHasAppOnSelectedDay = false;
   public availableAppointmentsFound = false;
   private todaysDate = new Date();
 
@@ -44,6 +46,11 @@ export class NewAppointmentComponent implements OnInit, OnDestroy {
     // other options...
     dateFormat: 'dd/mm/yyyy',
     disableUntil: { year: this.todaysDate.getFullYear(), month: this.todaysDate.getMonth() + 1, day: this.todaysDate.getDate() - 1 },
+    disableSince: {
+      year: moment(this.todaysDate).add(3, 'M').year(),
+      month: moment(this.todaysDate).add(3, 'M').month(),
+      day: moment(this.todaysDate).add(3, 'M').date() + 1,
+    },
     disableWeekends: true
   };
 
@@ -58,6 +65,7 @@ export class NewAppointmentComponent implements OnInit, OnDestroy {
     private router: Router) { }
 
   ngOnInit() {
+    console.log(moment(this.todaysDate).add(3, 'M').date());
     this.myForm = this.formBuilder.group({
       // Empty string or null means no initial value. Can be also specific date for
       // example: {date: {year: 2018, month: 10, day: 9}} which sets this date to initial
@@ -70,7 +78,7 @@ export class NewAppointmentComponent implements OnInit, OnDestroy {
     this.errors = [];
 
     // Get all the doctors ready for appointments
-    this.spinnerService.show();
+    this.showSpinner();
     this.doctors$ = this.staffService.getDoctors().subscribe((res) => {
       let dataIsNull = false;
       if (res['status'] === 200) {
@@ -97,7 +105,7 @@ export class NewAppointmentComponent implements OnInit, OnDestroy {
             const user_id = this.authService.getToken()['user_id'];
             this.authService.getUserDetails().subscribe(
               res => {
-                this.spinnerService.hide();
+                this.hideSpinner();
                 if (res['status'] === 200) {
                   const { _id, user_name } = res['data'];
                   this.user = {
@@ -117,21 +125,24 @@ export class NewAppointmentComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.spinnerService.hide();
+    this.hideSpinner();
     this.doctors$.unsubscribe();
     this.loggedIn$.unsubscribe();
   }
 
   getAppointmentsAndRemoveExisting(date: Date): void {
     let dataIsNull = false;
-    this.spinnerService.show();
+    this.patientHasAppOnSelectedDay = false;
     this.appointmentsService.getAppointmentsOnDate(date).subscribe(res => {
-      this.spinnerService.hide();
       const data = res['data'];
+
       if (data === null) {
         dataIsNull = true;
       } else {
         this.takenAppointments = data.map((app) => {
+          if (app.patient === this.user.user_id) {
+            this.patientHasAppOnSelectedDay = true;
+          }
           return new TakenAppointment(
             app.staff,
             app.start_time,
@@ -147,13 +158,16 @@ export class NewAppointmentComponent implements OnInit, OnDestroy {
           this.availableAppointments = this.potentialAppointments;
           this.sortedAppointments = this.sortAppointmentsByTimeAndDocName(this.availableAppointments);
           this.availableAppointmentsFound = true;
+          this.hideSpinner();
         } else {
           this.availableAppointments = this.removeExistingAppointments(this.potentialAppointments, this.takenAppointments);
           this.sortedAppointments = this.sortAppointmentsByTimeAndDocName(this.availableAppointments);
           this.availableAppointmentsFound = true;
+          this.hideSpinner();
         }
       });
   }
+
 
   setDate(): void {
     // Set today date using the patchValue function
@@ -182,6 +196,7 @@ export class NewAppointmentComponent implements OnInit, OnDestroy {
   }
 
   findAppointments(): void {
+    this.showSpinner();
     this.potentialAppointments = new Array<PotentialAppointment>();
 
     const selectedDate = this.myForm.get('myDate').value['date'];
@@ -279,10 +294,10 @@ export class NewAppointmentComponent implements OnInit, OnDestroy {
   }
 
   completeAppointment() {
-    this.spinnerService.show();
+    this.showSpinner();
     this.appointmentsService.createNewAppointment(this.appToConfirm).subscribe(
       res => {
-        this.spinnerService.show();
+        this.hideSpinner();
         const status = res['status'];
         if (status === 200) {
           this.appointmentsService.confirmationData = this.appToConfirm;
@@ -305,6 +320,14 @@ export class NewAppointmentComponent implements OnInit, OnDestroy {
 
   removeErrMsg(index) {
     this.errors.splice(index, 1);
+  }
+
+  showSpinner() {
+    this.spinnerService.show();
+  }
+
+  hideSpinner() {
+    this.spinnerService.hide();
   }
 
 }

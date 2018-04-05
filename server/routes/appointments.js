@@ -53,17 +53,42 @@ router.post('/new-appointment', ensureToken, function (req, res) {
         end_time: endTime
     };
 
-    appointmentsModel.findOne({
-        'start_time': startTime,
-        'staff': doc_id
+    appointmentsModel.find({
+        'start_time': startTime
     },
-        function (err, app) {
+        function (err, appointments) {
             if (err) {
                 console.log(err);
                 response.status = 500;
                 res.json(response);
+            }
+
+            //  No other appointments at this time so create appointment
+            if (appointments.length === 0) {
+                appointmentsModel.create(appointment, function (err) {
+                    if (err) {
+                        console.log('Error saving appointment data');
+                        response.status = 500;
+                        res.json(response);
+                    } else {
+                        console.log('Saved appointment to DB');
+                        response.status = 200;
+                        res.json(response);
+                    }
+                });
             } else {
-                if (app === null) {
+                const doctorTaken = false;
+                appointments.forEach(app => {
+                    if (appointment.staff === app.staff) {
+                        doctorTaken = true;
+                    }
+                });
+
+                if (doctorTaken === true) {
+                    console.log('Appointment already taken!');
+                    response.status = 409;
+                    res.json(response);
+                } else if (doctorTaken === false) {
                     appointmentsModel.create(appointment, function (err) {
                         if (err) {
                             console.log('Error saving appointment data');
@@ -75,14 +100,9 @@ router.post('/new-appointment', ensureToken, function (req, res) {
                             res.json(response);
                         }
                     });
-                } else {
-                    console.log('Appointment already taken!');
-                    response.status = 409;
-                    res.json(response);
                 }
             }
         });
-
 });
 
 router.get('/id/:id', function (req, res) {
@@ -134,17 +154,17 @@ router.get('/app-as-event/:doctor_id', ensureToken, (req, res) => {
     const doc_id = req.params.doctor_id;
 
     appointmentsModel.find({ 'staff': doc_id }).
-    populate('patient', '_id forename surname').
-    populate('staff', '_id forename surname').
-    exec(function(err, appointments) {
-        if (err) return handleError(err);
-        else {
-            // continue with response if it's found
-            response.status = 200;
-            response.data = appointments;
-            res.json(response);
-        }
-    });
+        populate('patient', '_id forename surname').
+        populate('staff', '_id forename surname').
+        exec(function (err, appointments) {
+            if (err) return handleError(err);
+            else {
+                // continue with response if it's found
+                response.status = 200;
+                response.data = appointments;
+                res.json(response);
+            }
+        });
 });
 
 function handleError(err) {
