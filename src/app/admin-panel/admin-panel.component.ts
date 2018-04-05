@@ -96,4 +96,8 @@ export class AdminPanelComponent implements OnInit {
     this.router.navigateByUrl(`/edit-patient/${patient._id}`);
   }
 
+  editStaff(staff) {
+    this.router.navigateByUrl(`/edit-staff/${staff._id}`);
+  }
+
 }

@@ -1,3 +1,49 @@
-<p>
-  edit-staff works!
-</p>
+<div class="section">
+  <div class="container">
+    <ng-container *ngIf="staffMemberFound">
+      <div class="columns">
+        <div class="column box is-8 is-offset-2">
+
+          <form [formGroup]="staffForm" novalidate>
+
+            <div class="notification is-warning" *ngFor="let msg of messages; let i = index">
+              <a class="delete" (click)="removeMsg(i)"></a>
+              <p>{{msg}}</p>
+            </div>
+
+            <div class="field">
+              <label class="label">Forename</label>
+              <div class="control">
+                <input class="input" type="text" formControlName="forename" [(ngModel)]="staffMember.forename" [attr.readonly]='isEditable === false ? true : null'
+                  autocomplete="foo">
+              </div>
+            </div>
+
+            <div class="field">
+              <label class="label">Surname</label>
+              <div class="control">
+                <input class="input" type="text" formControlName="surname" [(ngModel)]="staffMember.surname" [attr.readonly]='isEditable === false ? true : null'
+                  autocomplete="foo">
+              </div>
+            </div>
+
+            <div class="field">
+              <label class="label">Username/Email</label>
+              <div class="control">
+                <input class="input" type="text" formControlName="username" [(ngModel)]="staffMember.username" [attr.readonly]='isEditable === false ? true : null'
+                  autocomplete="foo">
+              </div>
+            </div>
+
+            <div class="select">
+              <select [(ngModel)]="staffMember.user_role" formControlName="user_role">
+                <option *ngFor="let role of roles" [value]="role">{{role}}</option>
+              </select>
+            </div>
+
+          </form>
+        </div>
+      </div>
+    </ng-container>
+  </div>
+</div>

@@ -154,6 +154,30 @@ router.post('/login', (req, res) => {
         })
 });
 
+router.get('/staffMember/:id', ensureToken, (req, res) => {
+    resetResponse();
+    const id = req.params.id;
+    const idIsValid = mongoose.Types.ObjectId.isValid(id);
+
+    if (idIsValid) {
+        console.log('valid');
+        staffModel.findById({ _id: id }, '-password -staff_id', function (err, staff) {
+            if (err) {
+                handleError(err);
+                response.status = 404;
+                response.data = null;
+                res.json(response);
+            } else {
+                response.status = 200;
+                console.log(response);
+                response.data = staff;
+                res.json(response);
+            }
+        });
+    }
+
+});
+
 router.get('/user-data/:id', ensureToken, function (req, res) {
     resetResponse();
     const id = req.params.id;

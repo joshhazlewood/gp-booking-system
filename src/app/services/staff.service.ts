@@ -15,4 +15,8 @@ export class StaffService {
     return this.http.get('/api/staff/all-staff');
   }
 
+  getStaffById(_id) {
+    return this.http.get(`/api/staff/staffMember/${_id}`);
+  }
+
 }
