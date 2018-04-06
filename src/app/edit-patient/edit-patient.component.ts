@@ -32,12 +32,16 @@ export class EditPatientComponent implements OnInit, OnDestroy {
     private router: Router) {
     this.patientForm = this.fb.group({
       forename: ['', [
-        Validators.required
+        Validators.required,
+        Validators.minLength(1),
+        Validators.maxLength(50),
+        Validators.pattern(/^\D+$/)
       ]],
       surname: ['', [
         Validators.required,
         Validators.minLength(1),
-        Validators.maxLength(50)
+        Validators.maxLength(50),
+        Validators.pattern(/^\D+$/)
       ]],
       username: ['', [
         Validators.required,
@@ -160,8 +164,27 @@ export class EditPatientComponent implements OnInit, OnDestroy {
     );
   }
 
+  isEditableAndValid() {
+    const value = this.isEditable && this.patientForm.valid;
+    return value;
+  }
+
   removeMsg(index) {
     this.messages.splice(index, 1);
   }
+
+  get forename() { return this.patientForm.get('forename'); }
+
+  get surname() { return this.patientForm.get('surname'); }
+
+  get username() { return this.patientForm.get('username'); }
+
+  get line1() { return this.patientForm.get('line1'); }
+
+  get line2() { return this.patientForm.get('line2'); }
+
+  get townCity() { return this.patientForm.get('townCity'); }
+
+  get postcode() { return this.patientForm.get('postcode'); }
 
 }

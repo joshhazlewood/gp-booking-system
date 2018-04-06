@@ -32,12 +32,16 @@ export class EditStaffComponent implements OnInit, OnDestroy {
     private router: Router) {
     this.staffForm = this.fb.group({
       forename: ['', [
-        Validators.required
+        Validators.required,
+        Validators.minLength(1),
+        Validators.maxLength(50),
+        Validators.pattern(/^\D+$/)
       ]],
       surname: ['', [
         Validators.required,
         Validators.minLength(1),
-        Validators.maxLength(50)
+        Validators.maxLength(100),
+        Validators.pattern(/^\D+$/)
       ]],
       username: ['', [
         Validators.required,
@@ -84,8 +88,54 @@ export class EditStaffComponent implements OnInit, OnDestroy {
       });
   }
 
-  ngOnDestroy() {
+  saveStaffData() {
+    this.staffService.saveStaffById(this.staffToFind, this.staffMember).subscribe(
+      (data) => {
+        const status = data['status'];
+        if (status === 200) {
+          this.isEditable = false;
+          this.messages.push('Staff member data was successfully updated.');
+        }
+      },
+      (err) => {
+        this.messages.push('Error updating staff member data.');
+      }
+    );
+  }
 
+  makeEditable() {
+    this.messages = [];
+    this.isEditable = true;
+  }
+
+  cancelEdit() {
+    this.messages = [];
+    this.getStaffData();
+    Object.keys(this.staffForm.controls).forEach(key => {
+      this.staffForm.controls[key].enable();
+    });
+    this.isEditable = false;
+  }
+
+  removeMsg(index) {
+    this.messages.splice(index, 1);
+  }
+
+  isEditableAndValid() {
+    const value = this.isEditable && this.staffForm.valid;
+    return value;
+  }
+
+  get forename() { return this.staffForm.get('forename'); }
+
+  get surname() { return this.staffForm.get('surname'); }
+
+  get username() { return this.staffForm.get('username'); }
+
+  get user_role() { return this.staffForm.get('user_role'); }
+
+  ngOnDestroy() {
+    this.staffMember$.unsubscribe();
   }
 
 }

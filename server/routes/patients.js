@@ -268,8 +268,6 @@ router.post('/patient/:id', ensureAndVerifyToken, (req, res) => {
     resetResponse();
 
     const { _id, forename, surname, username, address } = req.body;
-    console.log(req.body);
-    console.log(_id);
 
     patientModel.findByIdAndUpdate({ _id: req.params.id },
         {
@@ -292,7 +290,7 @@ router.post('/patient/:id', ensureAndVerifyToken, (req, res) => {
             res.json(response);
         }
     );
-})
+});
 
 router.get('/protected', ensureAndVerifyToken, (req, res) => {
     resetResponse();
