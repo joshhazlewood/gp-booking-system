@@ -19,28 +19,27 @@ export class NewPatientComponent implements OnInit {
   public errors: string[];
 
   private patient: PatientProfile = null;
-  public isEditable: boolean = null;
-  private messages: string[] = null;
+  public messages: string[] = null;
 
   constructor(private patientService: PatientService,
     private activatedRoute: ActivatedRoute,
     private spinnerService: Ng4LoadingSpinnerService,
     private fb: FormBuilder,
-    private router: Router) { 
-      this.createForm();
-    }
+    private router: Router) {
+    this.createForm();
+  }
 
   ngOnInit() {
-    this.messages= [];
+    this.messages = [];
     this.newPatientForm.setValue({
-      forename:    'testOne',
-      surname:    'testOne',
+      forename: 'testOne',
+      surname: 'testOne',
       username: 'testOne@test.com',
       line1: '1b',
       line2: 'brook road',
       townCity: 'Manchester',
       postcode: 'M14 6GG'
-   });
+    });
   }
 
   isValid() {
@@ -101,12 +100,12 @@ export class NewPatientComponent implements OnInit {
     console.log(this.newPatientForm.value);
     const data = this.newPatientForm.value;
     this.patientService.createPatient(data).subscribe(
-      (data) => {
-        console.log(data);
-        const status = data['status'];
-        if(status === 200) {
+      (resp) => {
+        console.log(resp);
+        const status = resp['status'];
+        if (status === 200) {
           this.messages.push('Patient was saved to the database.');
-        } else if( status.toString().startsWith('4')) {
+        } else if (status.toString().startsWith('4')) {
           this.messages.push('Error adding patient to the database. Email could already be in use.');
         }
       }
