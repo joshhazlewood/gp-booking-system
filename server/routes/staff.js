@@ -154,6 +154,57 @@ router.post('/login', (req, res) => {
         })
 });
 
+router.get('/staffMember/:id', ensureToken, (req, res) => {
+    resetResponse();
+    const id = req.params.id;
+    const idIsValid = mongoose.Types.ObjectId.isValid(id);
+
+    if (idIsValid) {
+        console.log('valid');
+        staffModel.findById({ _id: id }, '-password -staff_id', function (err, staff) {
+            if (err) {
+                handleError(err);
+                response.status = 404;
+                response.data = null;
+                res.json(response);
+            } else {
+                response.status = 200;
+                console.log(response);
+                response.data = staff;
+                res.json(response);
+            }
+        });
+    }
+
+});
+
+router.post('/staffMember/:id', ensureToken, (req, res) => {
+    resetResponse();
+
+    const { _id, forename, surname, username, user_role } = req.body;
+
+    staffModel.findByIdAndUpdate({ _id: req.params.id },
+        {
+            $set: {
+                forename: forename,
+                surname: surname,
+                user_name: username,
+                user_role: user_role
+            }
+        },
+        { new: true }, function (err, staff) {
+            if (err) {
+                response.status = 404;
+                response.data = null;
+                res.json(response);
+            }
+            response.status = 200;
+            response.data = null;
+            res.json(response);
+        }
+    );
+});
+
 router.get('/user-data/:id', ensureToken, function (req, res) {
     resetResponse();
     const id = req.params.id;

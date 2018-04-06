@@ -1,0 +1,94 @@
+<div class="section">
+  <div class="container">
+    <ng-container *ngIf="staffMemberFound">
+      <div class="columns">
+        <div class="column box is-8 is-offset-2">
+
+          <form [formGroup]="staffForm" novalidate>
+
+            <div class="notification is-warning" *ngFor="let msg of messages; let i = index">
+              <a class="delete" (click)="removeMsg(i)"></a>
+              <p>{{msg}}</p>
+            </div>
+
+            <div class="field">
+              <label class="label">Forename</label>
+              <div class="control">
+                <input class="input" type="text" formControlName="forename" [(ngModel)]="staffMember.forename" [attr.readonly]='isEditable === false ? true : null'
+                  autocomplete="foo">
+              </div>
+            </div>
+
+            <div *ngIf="forename.errors && (forename.dirty || forename.touched)">
+              <p class="help is-danger pad-bottom" *ngIf="forename.errors.required && (forename.dirty || forename.touched)">
+                Forename is required.
+              </p>
+              <p class="help is-danger pad-bottom" *ngIf="forename.errors.minlength && !forename.pristine">
+                Forename must be at least 1 character.
+              </p>
+              <p class="help is-danger pad-bottom" *ngIf="forename.errors.maxlength && !forename.pristine">
+                Forename must be 50 characters or less.
+              </p>
+              <p class="help is-danger pad-bottom" *ngIf="forename.errors.pattern && !forename.pristine">
+                Forename cannot contain numbers.
+              </p>
+            </div>
+
+            <div class="field">
+              <label class="label">Surname</label>
+              <div class="control">
+                <input class="input" type="text" formControlName="surname" [(ngModel)]="staffMember.surname" [attr.readonly]='isEditable === false ? true : null'
+                  autocomplete="foo">
+              </div>
+            </div>
+
+            <div *ngIf="surname.errors && (surname.dirty || surname.touched)">
+              <p class="help is-danger pad-bottom" *ngIf="surname.errors.required && (surname.dirty || surname.touched)">
+                Surname is required.
+              </p>
+              <p class="help is-danger pad-bottom" *ngIf="surname.errors.minlength && !surname.pristine">
+                Surname must be at least 1 character.
+              </p>
+              <p class="help is-danger pad-bottom" *ngIf="surname.errors.maxlength && !surname.pristine">
+                Surname must be 100 characters or less.
+              </p>
+              <p class="help is-danger pad-bottom" *ngIf="surname.errors.pattern && !surname.pristine">
+                Surname cannot contain numbers.
+              </p>
+            </div>
+
+          <div class="field">
+              <label class="label">Username/Email</label>
+              <div class="control">
+                <input class="input" type="text" formControlName="username" [(ngModel)]="staffMember.username" [attr.readonly]='isEditable === false ? true : null'
+                  autocomplete="foo">
+              </div>
+            </div>
+
+            <div *ngIf="username.errors && (username.dirty || username.touched)">
+              <p class="help is-danger pad-bottom" *ngIf="username.errors.required">
+                Username is required.
+              </p>
+              <p class="help is-danger pad-bottom" *ngIf="username.invalid && username.value.length > 0">
+                Please enter a valid Email/Username.
+              </p>
+            </div>
+
+            <div class="select">
+              <select [(ngModel)]="staffMember.user_role" formControlName="user_role">
+                <option *ngFor="let role of roles" [value]="role">{{role}}</option>
+              </select>
+            </div>
+
+            <div class="buttons is-centered">
+              <button class="button is-info" (click)="makeEditable()" [attr.disabled]='isEditable === true ? true : null'>Edit</button>
+              <button class="button is-warning" *ngIf="isEditable === true" (click)="cancelEdit()">Cancel</button>
+              <button class="button is-danger" [attr.disabled]='isEditableAndValid() === false ? true : null' (click)="saveStaffData()">Save</button>
+            </div>
+
+          </form>
+        </div>
+      </div>
+    </ng-container>
+  </div>
+</div>
