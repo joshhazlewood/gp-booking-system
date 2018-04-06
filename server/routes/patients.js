@@ -150,13 +150,39 @@ router.get('id/:id', ensureAndVerifyToken, (req, res) => {
 
 router.post('/new-patient', (req, res) => {
     resetResponse();
-    const patient = req.body;
 
-    patientModel.create(patient, (err) => {
+    const { forename, surname, username, line1, line2, townCity, postcode } = req.body;
+
+    // var patient Model = mongoose.model("patient", patientSchema);
+    var newPatient = new patientModel({
+        // patient_id: 100,
+        forename: forename,
+        surname: surname,
+        address: {
+            line1: line1,
+            line2: line2,
+            town_city: townCity,
+            postcode: postcode
+        },
+        clinical_notes: {
+            diagnosis: '',
+            notes: '',
+            medications: []
+        },
+        user_name: username,
+        password: 'testPass'
+    });
+
+    newPatient.save({ setDefaultsOnInsert: true }, function (err, resp) {
         if (err) {
-            console.log('Error saving patient data');
+            console.log(err);
+            response.status = 404;
+            response.data = null;
+            res.json(response);
         } else {
-            res.send('Patient saved to DB');
+            response.status = 200;
+            response.data = null;
+            res.json(response);
         }
     });
 });

@@ -34,6 +34,8 @@ import { SearchPipe } from './search.pipe';
 import { PatientNotesComponent } from './patient-notes/patient-notes.component';
 import { EditPatientComponent } from './edit-patient/edit-patient.component';
 import { EditStaffComponent } from './edit-staff/edit-staff.component';
+import { NewStaffComponent } from './new-staff/new-staff.component';
+import { NewPatientComponent } from './new-patient/new-patient.component';
 
 const appRoutes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -97,6 +99,22 @@ const appRoutes: Routes = [
     }
   },
   {
+    path: 'new-staff',
+    component: NewStaffComponent,
+    canActivate: [AuthGuardService],
+    data: {
+      expectedRole: 'admin'
+    }
+  },
+  {
+    path: 'new-patient',
+    component: NewPatientComponent,
+    canActivate: [AuthGuardService],
+    data: {
+      expectedRole: 'admin'
+    }
+  },
+  {
     path: '',
     redirectTo: '/home',
     pathMatch: 'full'
@@ -121,7 +139,9 @@ const appRoutes: Routes = [
     SearchPipe,
     PatientNotesComponent,
     EditPatientComponent,
-    EditStaffComponent
+    EditStaffComponent,
+    NewStaffComponent,
+    NewPatientComponent
   ],
   imports: [
     BrowserModule,

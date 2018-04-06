@@ -16,7 +16,7 @@
                   <label class="label">Forename</label>
                   <div class="control">
                     <input class="input" type="text" formControlName="forename" [(ngModel)]="patient.forename" [attr.readonly]='isEditable === false ? true : null'
-                      autocomplete="foo">
+                      (blur)="updateInputState('forename')" (keyup)="updateInputState('forename')" autocomplete="foo">
                   </div>
                 </div>
 
@@ -39,7 +39,7 @@
                   <label class="label">Surname</label>
                   <div class="control">
                     <input class="input" type="text" formControlName="surname" [(ngModel)]="patient.surname" [attr.readonly]='isEditable === false ? true : null'
-                      autocomplete="foo">
+                      (blur)="updateInputState('surname')" (keyup)="updateInputState('surname')" autocomplete="foo">
                   </div>
                 </div>
 
@@ -62,7 +62,7 @@
                   <label class="label">Username/Email</label>
                   <div class="control">
                     <input class="input" type="text" formControlName="username" [(ngModel)]="patient.username" [attr.readonly]='isEditable === false ? true : null'
-                      autocomplete="foo">
+                      (blur)="updateInputState('username')" (keyup)="updateInputState('username')" autocomplete="foo">
                   </div>
                 </div>
 
@@ -81,7 +81,7 @@
                   <label class="label">Line 1</label>
                   <div class="control">
                     <input class="input" type="text" formControlName="line1" [(ngModel)]="patient.address.line1" [attr.readonly]='isEditable === false ? true : null'
-                      autocomplete="foo">
+                      (blur)="updateInputState('line1')" (keyup)="updateInputState('line1')" autocomplete="foo">
                   </div>
                 </div>
 
@@ -96,7 +96,7 @@
                     Line 1 must be 50 characters or less.
                   </p>
                   <p class="help is-danger pad-bottom" *ngIf="line1.errors.pattern && !line1.pristine">
-                    Line 1 cannot contain numbers.
+                    Line 1 cannot contain special characters.
                   </p>
                 </div>
 
@@ -119,7 +119,7 @@
                     Line 2 must be 50 characters or less.
                   </p>
                   <p class="help is-danger pad-bottom" *ngIf="line2.errors.pattern && !line2.pristine">
-                    Line 2 cannot contain numbers.
+                    Line 2 cannot contain special characters.
                   </p>
                 </div>
 

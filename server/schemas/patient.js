@@ -7,7 +7,7 @@ var clinicalNotesSchema = require('../schemas/clinical_notes');
 
 
 const patient_idRequiredErrorMsg = 'Patient ID is required';
-const fornameRequiredErrorMsg = 'Forname is required';
+const forenameRequiredErrorMsg = 'Forname is required';
 const surnameRequiredErrorMsg = 'Surname is required';
 const addressRequiredErrorMsg = 'Address is required';
 const user_nameRequiredErrorMsg = 'Username is required';
@@ -24,7 +24,7 @@ var patientSchema = new Schema({
         type: String,
         min: 1,
         max: 50,
-        required: [true, fornameRequiredErrorMsg]
+        required: [true, forenameRequiredErrorMsg]
     },
     surname: {
         type: String,
@@ -38,6 +38,7 @@ var patientSchema = new Schema({
         type: String,
         min: 1,
         max: 100,
+        unique: true,
         required: [true, user_nameRequiredErrorMsg]
     },
     password: {

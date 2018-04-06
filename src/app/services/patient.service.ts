@@ -32,4 +32,8 @@ export class PatientService {
     return this.http.post(`${this.baseUrl}/patient/${_id}`, data);
   }
 
+  createPatient(data) {
+    return this.http.post(`${this.baseUrl}/new-patient`, data);
+  }
+
 }

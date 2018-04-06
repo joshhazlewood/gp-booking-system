@@ -10,19 +10,19 @@ const medicationsSchema = new Schema({
         type: String,
         min: 1,
         max: 100,
-        required: [true, nameRequiredErrorMsg]
+        default: ''
     },
     amount: {
-        type: Number,
+        type: String,
         min: 1,
-        max: 6,
-        required: [true, amountRequiredErrorMsg]
+        max: 100,
+        default: ''
     },
     unit: {
         type: String,
         min: 1,
         max: 50,
-        required: [true, unitRequiredErrorMsg]
+        default: ''
     }
 });
 
