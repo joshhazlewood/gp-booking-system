@@ -1,30 +1,30 @@
-import { Injectable } from '@angular/core';
-import { Http, Headers, RequestOptions, Response } from '@angular/http';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient } from "@angular/common/http";
+import { Injectable } from "@angular/core";
+import { Headers, Http, RequestOptions, Response } from "@angular/http";
 
 @Injectable()
 export class StaffService {
 
   constructor(private http: HttpClient) { }
 
-  getDoctors() {
-    return this.http.get('/api/staff/doctors');
+  public getDoctors() {
+    return this.http.get("/api/staff/doctors");
   }
 
-  getStaff() {
-    return this.http.get('/api/staff/all-staff');
+  public getStaff() {
+    return this.http.get("/api/staff/all-staff");
   }
 
-  getStaffById(_id) {
-    return this.http.get(`/api/staff/staffMember/${_id}`);
+  public getStaffById(id) {
+    return this.http.get(`/api/staff/staffMember/${id}`);
   }
 
-  saveStaffById(_id, patient) {
-    return this.http.post(`/api/staff/staffMember/${_id}`, patient);
+  public saveStaffById(id, patient) {
+    return this.http.post(`/api/staff/staffMember/${id}`, patient);
   }
 
-  createStaff(data) {
-    return this.http.post('/api/staff/new-staff', data);
+  public createStaff(data) {
+    return this.http.post("/api/staff/new-staff", data);
   }
 
 }
