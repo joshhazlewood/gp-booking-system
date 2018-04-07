@@ -217,7 +217,6 @@ router.post('/login', (req, res) => {
                         }
                     );
 
-                    // response.status = 200;
                     data = {
                         id_token: token,
                         expires_in: expiresIn
