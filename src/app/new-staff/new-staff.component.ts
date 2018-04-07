@@ -20,15 +20,15 @@ export class NewStaffComponent implements OnInit {
 
   private staff: StaffProfile = null;
   public messages: string[] = null;
-  public roles = ['doctor', 'admin'];
+  public roles = ['admin', 'doctor'];
 
   constructor(private staffService: StaffService,
     private activatedRoute: ActivatedRoute,
     private spinnerService: Ng4LoadingSpinnerService,
     private fb: FormBuilder,
     private router: Router) {
-      this.createForm();
-     }
+    this.createForm();
+  }
 
   ngOnInit() {
     this.messages = [];
@@ -52,8 +52,22 @@ export class NewStaffComponent implements OnInit {
         Validators.required,
         Validators.email
       ]],
-      staff_role: ['', Validators.required]
-    });
+      staff_role: ['', Validators.required],
+      password: ['', [
+        Validators.required,
+        Validators.minLength(4),
+        Validators.maxLength(50)
+      ]],
+      passwordConfirm: ['', [
+        Validators.required,
+        Validators.minLength(4),
+        Validators.maxLength(50)
+      ]]
+    }, { validator: this.areEqual });
+  }
+
+  private areEqual(group: FormGroup) {
+    return group.get('password').value === group.get('passwordConfirm').value ? null : { mismatch: true };
   }
 
   isValid() {
@@ -103,4 +117,7 @@ export class NewStaffComponent implements OnInit {
 
   get staff_role() { return this.newStaffForm.get('staff_role'); }
 
+  get password() { return this.newStaffForm.get('password'); }
+
+  get passwordConfirm() { return this.newStaffForm.get('passwordConfirm'); }
 }

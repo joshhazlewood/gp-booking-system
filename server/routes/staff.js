@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const mongoose = require('mongoose');
 const jwt = require('jsonwebtoken');
+var bcrypt = require('bcrypt');
 
 const staffSchema = require('../schemas/staff');
 
@@ -74,8 +75,8 @@ router.get('/doctors', function (req, res) {
         } else {
             handleError(err);
             response.status = 500;
-                response.data = staff;
-                res.json(response);
+            response.data = staff;
+            res.json(response);
         }
     })
 });
@@ -96,8 +97,8 @@ router.get('/all-staff', function (req, res) {
         } else {
             handleError(err);
             response.status = 500;
-                response.data = staff;
-                res.json(response);
+            response.data = staff;
+            res.json(response);
         }
     })
 });
@@ -117,7 +118,9 @@ router.post('/login', (req, res) => {
                 response.data = null;
                 res.json(response);
             } else { // continue with response if it's found
-                if (password === staffMember.password) {
+                const hash = staffMember.password;
+                const passwordMatches = bcrypt.compareSync(password, hash);
+                if (passwordMatches) {
                     // Expires in 9 hours for staff
                     const expiresIn = (60 * 60 * 9);
                     let tokenData = JSON.stringify({
@@ -236,7 +239,10 @@ router.get('/user-data/:id', ensureToken, function (req, res) {
 router.post('/new-staff', (req, res) => {
     resetResponse();
 
-    const { forename, surname, username, staff_role } = req.body;
+    const { forename, surname, username, staff_role, password } = req.body;
+
+    const saltRounds = 10;
+    var hash = bcrypt.hashSync(password, saltRounds);
 
     var newStaff = new staffModel({
         // patient_id: 100,
@@ -244,10 +250,10 @@ router.post('/new-staff', (req, res) => {
         surname: surname,
         user_name: username,
         staff_role: staff_role,
-        password: 'testPass'
+        password: hash
     });
 
-    newStaff.save( function (err, resp) {
+    newStaff.save(function (err, resp) {
         if (err) {
             console.log(err);
             response.status = 404;

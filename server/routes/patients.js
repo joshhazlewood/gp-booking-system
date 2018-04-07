@@ -7,6 +7,7 @@ const express = require('express');
 const router = express.Router();
 const mongoose = require('mongoose');
 const jwt = require('jsonwebtoken');
+var bcrypt = require('bcrypt');
 
 const PatientSchema = require('../schemas/patient');
 
@@ -53,7 +54,7 @@ router.get('/all-patients', ensureAndVerifyToken, (req, res) => {
     resetResponse();
     patientModel.find({}, 'patient_id forename surname', function (err, patients) {
         if (!err) {
-            if (patients === null) {
+            if (patients.length === 0) {
                 response.status = 404;
                 response.data = null;
                 res.json(response);
@@ -62,8 +63,8 @@ router.get('/all-patients', ensureAndVerifyToken, (req, res) => {
                 response.data = patients;
                 res.json(response);
             }
-            response.data = patients;
-            res.json(response);
+            // response.data = patients;
+            // res.json(response);
         } else {
             console.log(err);
         }
@@ -151,7 +152,10 @@ router.get('id/:id', ensureAndVerifyToken, (req, res) => {
 router.post('/new-patient', (req, res) => {
     resetResponse();
 
-    const { forename, surname, username, line1, line2, townCity, postcode } = req.body;
+    const { forename, surname, username, line1, line2, townCity, postcode, password } = req.body;
+
+    const saltRounds = 10;
+    var hash = bcrypt.hashSync(password, saltRounds);
 
     // var patient Model = mongoose.model("patient", patientSchema);
     var newPatient = new patientModel({
@@ -170,7 +174,7 @@ router.post('/new-patient', (req, res) => {
             medications: []
         },
         user_name: username,
-        password: 'testPass'
+        password: hash
     });
 
     newPatient.save({ setDefaultsOnInsert: true }, function (err, resp) {
@@ -200,7 +204,9 @@ router.post('/login', (req, res) => {
                 response.data = null;
                 res.json(response);
             } else { // continue with response if it's found
-                if (password === patient.password) {
+                const hash = patient.password;
+                const passwordMatches = bcrypt.compareSync(password, hash);
+                if (passwordMatches) {
                     // Expires in 30mins for patients
                     const expiresIn = (60 * 30);
                     let tokenData = JSON.stringify({
