@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const mongoose = require('mongoose');
 const jwt = require('jsonwebtoken');
+var bcrypt = require('bcrypt');
 
 const staffSchema = require('../schemas/staff');
 
@@ -74,8 +75,8 @@ router.get('/doctors', function (req, res) {
         } else {
             handleError(err);
             response.status = 500;
-                response.data = staff;
-                res.json(response);
+            response.data = staff;
+            res.json(response);
         }
     })
 });
@@ -96,8 +97,8 @@ router.get('/all-staff', function (req, res) {
         } else {
             handleError(err);
             response.status = 500;
-                response.data = staff;
-                res.json(response);
+            response.data = staff;
+            res.json(response);
         }
     })
 });
@@ -117,7 +118,9 @@ router.post('/login', (req, res) => {
                 response.data = null;
                 res.json(response);
             } else { // continue with response if it's found
-                if (password === staffMember.password) {
+                const hash = staffMember.password;
+                const passwordMatches = bcrypt.compareSync(password, hash);
+                if (passwordMatches) {
                     // Expires in 9 hours for staff
                     const expiresIn = (60 * 60 * 9);
                     let tokenData = JSON.stringify({
@@ -154,6 +157,57 @@ router.post('/login', (req, res) => {
         })
 });
 
+router.get('/staffMember/:id', ensureToken, (req, res) => {
+    resetResponse();
+    const id = req.params.id;
+    const idIsValid = mongoose.Types.ObjectId.isValid(id);
+
+    if (idIsValid) {
+        console.log('valid');
+        staffModel.findById({ _id: id }, '-password -staff_id', function (err, staff) {
+            if (err) {
+                handleError(err);
+                response.status = 404;
+                response.data = null;
+                res.json(response);
+            } else {
+                response.status = 200;
+                console.log(response);
+                response.data = staff;
+                res.json(response);
+            }
+        });
+    }
+
+});
+
+router.post('/staffMember/:id', ensureToken, (req, res) => {
+    resetResponse();
+
+    const { _id, forename, surname, username, user_role } = req.body;
+
+    staffModel.findByIdAndUpdate({ _id: req.params.id },
+        {
+            $set: {
+                forename: forename,
+                surname: surname,
+                user_name: username,
+                user_role: user_role
+            }
+        },
+        { new: true }, function (err, staff) {
+            if (err) {
+                response.status = 404;
+                response.data = null;
+                res.json(response);
+            }
+            response.status = 200;
+            response.data = null;
+            res.json(response);
+        }
+    );
+});
+
 router.get('/user-data/:id', ensureToken, function (req, res) {
     resetResponse();
     const id = req.params.id;
@@ -180,6 +234,37 @@ router.get('/user-data/:id', ensureToken, function (req, res) {
         response.message = "Incorrect format for user_id";
         res.json(response);
     }
+});
+
+router.post('/new-staff', (req, res) => {
+    resetResponse();
+
+    const { forename, surname, username, staff_role, password } = req.body;
+
+    const saltRounds = 10;
+    var hash = bcrypt.hashSync(password, saltRounds);
+
+    var newStaff = new staffModel({
+        // patient_id: 100,
+        forename: forename,
+        surname: surname,
+        user_name: username,
+        staff_role: staff_role,
+        password: hash
+    });
+
+    newStaff.save(function (err, resp) {
+        if (err) {
+            console.log(err);
+            response.status = 404;
+            response.data = null;
+            res.json(response);
+        } else {
+            response.status = 200;
+            response.data = null;
+            res.json(response);
+        }
+    });
 });
 
 function handleError(err) {

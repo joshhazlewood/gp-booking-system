@@ -53,7 +53,6 @@ export class LoginComponent implements OnInit {
             let status = data['status'];
             if (status === 200) {
               this.setSession(data['data']);
-              // const user = this.authService.getUser();
               if (val.userType === 'patient') {
                 this.router.navigateByUrl('/new-appointment');
               } else {

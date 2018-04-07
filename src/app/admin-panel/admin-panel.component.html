@@ -14,11 +14,17 @@
     <ng-container *ngIf="activeTab === 'patient'">
       <div class="columns">
         <div class="column is-8 is-offset-2">
+          <div class="columns">
+            <div class="column is-6 is-offset-3 lower-padding">
+              <button class="button is-fullwidth is-info" (click)="goToNewPatientComponent()">Add Patient</button>
+            </div>
+          </div>
           <nav class="level">
             <div class="level-item">
               <input class="input is-info" [(ngModel)]="patientQuery" type="text" placeholder="Search for patients...">
             </div>
           </nav>
+
           <ng-container *ngIf="patientsFound">
 
             <table class="table is-striped is-hoverable is-fullwidth" *ngIf="(patients | search:'patient_id,fullName':patientQuery).length !== 0">
@@ -51,43 +57,50 @@
       </div>
     </ng-container>
     <ng-container *ngIf="activeTab === 'staff'">
-        <div class="columns">
-            <div class="column is-8 is-offset-2">
-              <nav class="level">
-                <div class="level-item">
-                  <input class="input is-info" [(ngModel)]="staffQuery" type="text" placeholder="Search for staff members...">
-                </div>
-              </nav>
-              <ng-container *ngIf="staffFound">
-    
-                <table class="table is-striped is-hoverable is-fullwidth" *ngIf="(staff | search:'staff_id,fullName':staffQuery).length !== 0">
-                  <thead>
-                    <tr>
-                      <th>ID</th>
-                      <th>Patient Name</th>
-                      <th></th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr *ngFor="let staffMember of staff | search:'patient_id,fullName':staffQuery">
-                      <td>{{staffMember.staff_id}}</td>
-                      <td>{{staffMember.fullName}}</td>
-                      <td>
-                        <input type="submit" value="Edit" class="button is-fullwidth is-info is-outlined" (click)="editStaff(staffMember)">
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-    
-                <ng-container *ngIf="(staff | search:'staff_id,fullName':staffQuery).length === 0">
-                  <p>
-                    Non found with that name or ID.
-                  </p>
-                </ng-container>
-    
-              </ng-container>
+      <div class="columns">
+        <div class="column is-8 is-offset-2">
+
+          <div class="columns">
+            <div class="column is-6 is-offset-3 lower-padding">
+              <button class="button is-fullwidth is-info" (click)="goToNewStaffComponent()">Add Staff</button>
             </div>
           </div>
+
+          <nav class="level">
+            <div class="level-item">
+              <input class="input is-info" [(ngModel)]="staffQuery" type="text" placeholder="Search for staff members...">
+            </div>
+          </nav>
+          <ng-container *ngIf="staffFound">
+
+            <table class="table is-striped is-hoverable is-fullwidth" *ngIf="(staff | search:'staff_id,fullName':staffQuery).length !== 0">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Patient Name</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let staffMember of staff | search:'patient_id,fullName':staffQuery">
+                  <td>{{staffMember.staff_id}}</td>
+                  <td>{{staffMember.fullName}}</td>
+                  <td>
+                    <input type="submit" value="Edit" class="button is-fullwidth is-info is-outlined" (click)="editStaff(staffMember)">
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+
+            <ng-container *ngIf="(staff | search:'staff_id,fullName':staffQuery).length === 0">
+              <p>
+                Non found with that name or ID.
+              </p>
+            </ng-container>
+
+          </ng-container>
+        </div>
+      </div>
     </ng-container>
   </div>
 </div>

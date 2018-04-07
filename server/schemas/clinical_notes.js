@@ -14,15 +14,18 @@ var clinicalNotesSchema = new Schema({
         type: String,
         min: 1,
         max: 250,
-        required: [true, diagnosisRequiredErrorMsg]
+        default: ''
     },
     notes: {
         type: String,
         min: 1,
-        max: 1000
+        max: 1000,
+        default: ''
     },
-    last_accessed: Date,
-    last_accessed_by: Number,
+    // last_accessed: {
+    //     Date
+    // },
+    // last_accessed_by: Number,
     medications: [medicationsSchema]
 });
 

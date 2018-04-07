@@ -1,0 +1,248 @@
+<div class="section">
+  <div class="container">
+    <div class="columns">
+      <div class="column box is-8 is-offset-2">
+
+        <app-messages [messages]="messages"></app-messages>
+
+        <form [formGroup]="newPatientForm">
+          <div class="columns">
+            <div class="column">
+              <div class="field">
+                <label class="label">Forename</label>
+                <div class="control">
+                  <input class="input" type="text" formControlName="forename" (blur)="updateInputState('forename')" (keyup)="updateInputState('forename')"
+                    autocomplete="foo" [ngClass]="{
+                      'is-success' : forename.valid || (forename.dirty || forename.touched),
+                      'is-danger' : forename.invalid && (forename.dirty || forename.touched)
+                    }">
+                </div>
+              </div>
+
+              <div *ngIf="forename.errors && (forename.dirty || forename.touched)">
+                <p class="help is-danger pad-bottom" *ngIf="forename.errors.required && (forename.dirty || forename.touched)">
+                  Forename is required.
+                </p>
+                <p class="help is-danger pad-bottom" *ngIf="forename.errors.minlength && !forename.pristine">
+                  Forename must be at least 1 character.
+                </p>
+                <p class="help is-danger pad-bottom" *ngIf="forename.errors.maxlength && !forename.pristine">
+                  Forename must be 50 characters or less.
+                </p>
+                <p class="help is-danger pad-bottom" *ngIf="forename.errors.pattern && !forename.pristine">
+                  Forename cannot contain numbers.
+                </p>
+              </div>
+
+              <div class="field">
+                <label class="label">Surname</label>
+                <div class="control">
+                  <input class="input" type="text" formControlName="surname" (blur)="updateInputState('surname')" (keyup)="updateInputState('surname')"
+                    autocomplete="foo" [ngClass]="{
+                      'is-success' : surname.valid || (surname.dirty || surname.touched),
+                      'is-danger' : surname.invalid && (surname.dirty || surname.touched)
+                    }">
+                </div>
+              </div>
+
+              <div *ngIf="surname.errors && (surname.dirty || surname.touched)">
+                <p class="help is-danger pad-bottom" *ngIf="surname.errors.required && (surname.dirty || surname.touched)">
+                  Surname is required.
+                </p>
+                <p class="help is-danger pad-bottom" *ngIf="surname.errors.minlength && !surname.pristine">
+                  Surname must be at least 1 character.
+                </p>
+                <p class="help is-danger pad-bottom" *ngIf="surname.errors.maxlength && !surname.pristine">
+                  Surname must be 100 characters or less.
+                </p>
+                <p class="help is-danger pad-bottom" *ngIf="surname.errors.pattern && !surname.pristine">
+                  Surname cannot contain numbers.
+                </p>
+              </div>
+
+              <div class="field">
+                <label class="label">Username/Email</label>
+                <div class="control">
+                  <input class="input" type="text" formControlName="username" (blur)="updateInputState('username')" (keyup)="updateInputState('username')"
+                    autocomplete="foo" [ngClass]="{
+                      'is-success' : username.valid || (username.dirty || username.touched),
+                      'is-danger' : username.invalid && (username.dirty || username.touched)
+                    }">
+                </div>
+              </div>
+
+              <div *ngIf="username.errors && (username.dirty || username.touched)">
+                <p class="help is-danger pad-bottom" *ngIf="username.errors.required">
+                  Username is required.
+                </p>
+                <p class="help is-danger pad-bottom" *ngIf="username.invalid && username.value.length > 0">
+                  Please enter a valid Email/Username.
+                </p>
+              </div>
+
+              <div class="field">
+                <label class="label">Password</label>
+                <div class="control">
+                  <input class="input" type="password" formControlName="password" (blur)="updateInputState('password')" (keyup)="updateInputState('password')"
+                    autocomplete="foo" [ngClass]="{
+                        'is-success' : password.valid || (password.dirty || password.touched),
+                        'is-danger' : (password.invalid && password.touched) || newPatientForm?.errors?.mismatch && (passwordConfirm?.dirty || passwordConfirm?.touched)
+                      }">
+                </div>
+              </div>
+
+              <div *ngIf="password.errors && (password.dirty || password.touched)">
+                <p class="help is-danger pad-bottom" *ngIf="password.errors.required">
+                  Password is required.
+                </p>
+                <p class="help is-danger pad-bottom" *ngIf="password.invalid">
+                  Password must be between 4 and 50 characters.
+                </p>
+              </div>
+
+              <div class="field">
+                <label class="label">Confirm Password</label>
+                <div class="control">
+                  <input class="input" type="password" formControlName="passwordConfirm" (blur)="updateInputState('passwordConfirm')" (keyup)="updateInputState('passwordConfirm')"
+                    autocomplete="foo" [ngClass]="{
+                        'is-success' : passwordConfirm.valid || (passwordConfirm.dirty || passwordConfirm.touched),
+                        'is-danger' : (passwordConfirm.invalid && password.touched) || newPatientForm?.errors?.mismatch && (passwordConfirm?.dirty || passwordConfirm?.touched)
+                      }">
+                </div>
+              </div>
+
+              <div *ngIf="passwordConfirm.errors && (passwordConfirm.dirty || passwordConfirm.touched)">
+                <p class="help is-danger pad-bottom" *ngIf="passwordConfirm.errors.required">
+                  Password confirmation is required.
+                </p>
+                <p class="help is-danger pad-bottom" *ngIf="passwordConfirm.invalid">
+                  Password must be between 4 and 50 characters.
+                </p>
+              </div>
+
+              <ng-container *ngIf="passwordConfirm.touched">
+                <div *ngIf="newPatientForm?.errors?.mismatch">
+                  <p class="help is-danger pad-bottom">
+                    Passwords do not match.
+                  </p>
+                </div>
+              </ng-container>
+
+              <p>{{newPatientForm?.errors?.mismatch}}</p>
+
+            </div>
+            <div class="column">
+              <div class="field">
+                <label class="label">Line 1</label>
+                <div class="control">
+                  <input class="input" type="text" formControlName="line1" (blur)="updateInputState('line1')" (keyup)="updateInputState('line1')"
+                    autocomplete="foo" [ngClass]="{
+                      'is-success' : line1.valid || (line1.dirty || line1.touched),
+                      'is-danger' : line1.invalid && (line1.dirty || line1.touched)
+                    }">
+                </div>
+              </div>
+
+              <div *ngIf="line1.errors && (line1.dirty || line1.touched)">
+                <p class="help is-danger pad-bottom" *ngIf="line1.errors.required && (line1.dirty || line1.touched)">
+                  Line 1 is required.
+                </p>
+                <p class="help is-danger pad-bottom" *ngIf="line1.errors.minlength && !line1.pristine">
+                  Line 1 must be at least 1 character.
+                </p>
+                <p class="help is-danger pad-bottom" *ngIf="line1.errors.maxlength && !line1.pristine">
+                  Line 1 must be 50 characters or less.
+                </p>
+                <p class="help is-danger pad-bottom" *ngIf="line1.errors.pattern && !line1.pristine">
+                  Line 1 cannot contain special characters.
+                </p>
+              </div>
+
+              <div class="field">
+                <label class="label">Line 2</label>
+                <div class="control">
+                  <input class="input" type="text" formControlName="line2" (blur)="updateInputState('line2')" (keyup)="updateInputState('line2')"
+                    autocomplete="foo" [ngClass]="{
+                      'is-success' : line2.valid || (line2.dirty || line2.touched),
+                      'is-danger' : line2.invalid && (line2.dirty || line2.touched)
+                    }">
+                </div>
+              </div>
+
+              <div *ngIf="line2.errors && (line2.dirty || line2.touched)">
+                <p class="help is-danger pad-bottom" *ngIf="line2.errors.required && (line2.dirty || line2.touched)">
+                  Line 2 is required.
+                </p>
+                <p class="help is-danger pad-bottom" *ngIf="line2.errors.minlength && !line2.pristine">
+                  Line 2 must be at least 1 character.
+                </p>
+                <p class="help is-danger pad-bottom" *ngIf="line2.errors.maxlength && !line2.pristine">
+                  Line 2 must be 50 characters or less.
+                </p>
+                <p class="help is-danger pad-bottom" *ngIf="line2.errors.pattern && !line2.pristine">
+                  Line 2 cannot contain special characters.
+                </p>
+              </div>
+
+              <div class="field">
+                <label class="label">Town / City</label>
+                <div class="control">
+                  <input class="input" type="text" formControlName="townCity" (blur)="updateInputState('townCity')" (keyup)="updateInputState('townCity')"
+                    autocomplete="foo" [ngClass]="{
+                      'is-success' : townCity.valid || (townCity.dirty || townCity.touched),
+                      'is-danger' : townCity.invalid && (townCity.dirty || townCity.touched)
+                    }">
+                </div>
+              </div>
+
+              <div *ngIf="townCity.errors && (townCity.dirty || townCity.touched)">
+                <p class="help is-danger pad-bottom" *ngIf="townCity.errors.required && (townCity.dirty || townCity.touched)">
+                  Town / City is required.
+                </p>
+                <p class="help is-danger pad-bottom" *ngIf="townCity.errors.minlength && !townCity.pristine">
+                  Town / City must be at least 1 character.
+                </p>
+                <p class="help is-danger pad-bottom" *ngIf="townCity.errors.maxlength && !townCity.pristine">
+                  Town / City must be 50 characters or less.
+                </p>
+                <p class="help is-danger pad-bottom" *ngIf="townCity.errors.pattern && !townCity.pristine">
+                  Town / City cannot contain numbers.
+                </p>
+              </div>
+
+              <div class="field">
+                <label class="label">Postcode</label>
+                <div class="control">
+                  <input class="input" type="text" formControlName="postcode" (blur)="updateInputState('postcode')" (keyup)="updateInputState('postcode')"
+                    autocomplete="foo" [ngClass]="{
+                      'is-success' : postcode.valid || (postcode.dirty || postcode.touched),
+                      'is-danger' : postcode.invalid && (postcode.dirty || postcode.touched)
+                    }">
+                </div>
+              </div>
+
+              <div *ngIf="postcode.errors && (postcode.dirty || postcode.touched)">
+                <p class="help is-danger pad-bottom" *ngIf="postcode.errors.required && (postcode.dirty || postcode.touched)">
+                  Postcode is required.
+                </p>
+                <p class="help is-danger pad-bottom" *ngIf="postcode.errors.minlength && !postcode.pristine">
+                  Postcode must be at least 1 character.
+                </p>
+                <p class="help is-danger pad-bottom" *ngIf="postcode.errors.maxlength && !postcode.pristine">
+                  Postcode must be 50 characters or less.
+                </p>
+                <p class="help is-danger pad-bottom" *ngIf="postcode.errors.pattern && !postcode.pristine">
+                  Postcode is invalid.
+                </p>
+              </div>
+
+            </div>
+          </div>
+          <div class="buttons is-centered">
+            <button class="button is-danger" [attr.disabled]='isValid() === false ? true : null' (click)="saveDetails()">Add Patient</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

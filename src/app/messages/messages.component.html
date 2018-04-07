@@ -1,0 +1,4 @@
+<div class="notification is-warning" id="messages" *ngFor="let msg of messages; let i = index">
+  <a class="delete" (click)="removeMsg(i)"></a>
+  <p>{{msg}}</p>
+</div>

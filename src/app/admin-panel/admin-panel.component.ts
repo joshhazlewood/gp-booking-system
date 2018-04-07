@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { PatientService } from '../services/patient.service';
 import { StaffService } from '../services/staff.service';
@@ -24,7 +26,10 @@ export class AdminPanelComponent implements OnInit {
 
   constructor(private patientService: PatientService,
     private staffService: StaffService,
-    private spinnerService: Ng4LoadingSpinnerService) { }
+    private spinnerService: Ng4LoadingSpinnerService,
+    private router: Router) {
+
+  }
 
   ngOnInit() {
     this.activeTab = 'patient';
@@ -69,6 +74,8 @@ export class AdminPanelComponent implements OnInit {
           }
           );
           this.staffFound = true;
+        } else if (status.toString().startsWith('4')) {
+          console.log('Error connecting to database.')
         }
       },
       (err) => {
@@ -87,4 +94,19 @@ export class AdminPanelComponent implements OnInit {
     return fullName;
   }
 
+  editPatient(patient) {
+    this.router.navigateByUrl(`/edit-patient/${patient._id}`);
+  }
+
+  editStaff(staff) {
+    this.router.navigateByUrl(`/edit-staff/${staff._id}`);
+  }
+
+  goToNewPatientComponent() {
+    this.router.navigateByUrl('/new-patient');
+  }
+
+  goToNewStaffComponent() {
+    this.router.navigateByUrl('/new-staff');
+  }
 }

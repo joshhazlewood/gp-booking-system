@@ -1,6 +1,8 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 
+import { MessagesComponent } from '../messages/messages.component';
+
 import { Patient } from '../models/patient';
 import { Address } from '../models/address';
 import { PatientService } from '../services/patient.service';
@@ -21,19 +23,24 @@ export class PatientNotesComponent implements OnInit, OnDestroy {
   private newName: string = null;
   private newAmount: number = null;
   private newUnit: string = null;
-  private messages: string[] = null;
+  private messages: Array<string> = null;
   private patientNotesPreEdit: any = null;
 
   constructor(private patientService: PatientService,
     private router: Router) { }
 
+  ngOnInit() {
+    this.patient_id = this.patientService.patient_idToFind;
+    this.messages = [];
+    this.getPatientData();
+  }
   editNotes() {
     this.canEditNotes = true;
-    this.patientNotesPreEdit = {...this.patient.clinical_notes};
+    this.patientNotesPreEdit = Object.assign({}, this.patient.clinical_notes);
   }
 
   cancelEdit() {
-    this.patient.clinical_notes = {...this.patientNotesPreEdit};
+    this.getPatientData();
     this.canEditNotes = false;
   }
 
@@ -44,9 +51,11 @@ export class PatientNotesComponent implements OnInit, OnDestroy {
       res => {
         const status = res['status'];
         if (status === 200) {
-          this.messages.push('Patient Notes Updated.');
+          const msg = 'Patient Notes Updated.';
+          this.pushMsgAndRemoveAfterInterval(msg);
         } else if (status.toString().startsWith(4)) {
-          this.messages.push('Patient Notes failed to save.');
+          const msg = 'Patient Notes failed to save.';
+          this.pushMsgAndRemoveAfterInterval(msg);
         }
       }
     );
@@ -64,7 +73,8 @@ export class PatientNotesComponent implements OnInit, OnDestroy {
       medications.push(medication);
       this.setMedFieldsNull();
     } else {
-      this.messages.push('Please enter all fields before trying to add a medication');
+      const msg = 'Please enter all fields before trying to add a medication';
+      this.pushMsgAndRemoveAfterInterval(msg);
     }
   }
 
@@ -83,10 +93,7 @@ export class PatientNotesComponent implements OnInit, OnDestroy {
     this.messages.splice(index, 1);
   }
 
-  ngOnInit() {
-    this.patient_id = this.patientService.patient_idToFind;
-    this.messages = [];
-
+  getPatientData() {
     if (this.patient_id !== null && this.patient_id !== undefined) {
       this.patients$ = this.patientService.getPatientNotes(this.patient_id).subscribe((data) => {
         const status = data['status'];
@@ -110,6 +117,12 @@ export class PatientNotesComponent implements OnInit, OnDestroy {
     }
   }
 
+  pushMsgAndRemoveAfterInterval(msg: string) {
+    this.messages.push(msg);
+    setTimeout(() => {
+      this.messages.pop();
+    }, 3000);
+  }
 
   ngOnDestroy() {
     if (this.patients$ !== null) {

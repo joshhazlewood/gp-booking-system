@@ -1,8 +1,8 @@
 export class Address {
-    protected line1: string;
-    protected line2: string;
-    protected town_city: string;
-    protected postcode: string;
+    public line1: string;
+    public line2: string;
+    public town_city: string;
+    public postcode: string;
 
     constructor(line1, line2, town_city, postcode) {
         this.line1 = line1;

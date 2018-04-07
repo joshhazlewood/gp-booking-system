@@ -7,6 +7,7 @@ const express = require('express');
 const router = express.Router();
 const mongoose = require('mongoose');
 const jwt = require('jsonwebtoken');
+var bcrypt = require('bcrypt');
 
 const PatientSchema = require('../schemas/patient');
 
@@ -53,7 +54,7 @@ router.get('/all-patients', ensureAndVerifyToken, (req, res) => {
     resetResponse();
     patientModel.find({}, 'patient_id forename surname', function (err, patients) {
         if (!err) {
-            if (patients === null) {
+            if (patients.length === 0) {
                 response.status = 404;
                 response.data = null;
                 res.json(response);
@@ -62,8 +63,8 @@ router.get('/all-patients', ensureAndVerifyToken, (req, res) => {
                 response.data = patients;
                 res.json(response);
             }
-            response.data = patients;
-            res.json(response);
+            // response.data = patients;
+            // res.json(response);
         } else {
             console.log(err);
         }
@@ -104,7 +105,6 @@ router.get('/patient-notes/:id', ensureAndVerifyToken, (req, res) => {
 
 router.post('/patient-notes/:id', ensureAndVerifyToken, (req, res) => {
     resetResponse();
-    console.log(req.body);
     patientModel.findByIdAndUpdate({ _id: req.params.id },
         { $set: { clinical_notes: req.body } },
         { new: true }, function (err, patient) {
@@ -151,13 +151,42 @@ router.get('id/:id', ensureAndVerifyToken, (req, res) => {
 
 router.post('/new-patient', (req, res) => {
     resetResponse();
-    const patient = req.body;
 
-    patientModel.create(patient, (err) => {
+    const { forename, surname, username, line1, line2, townCity, postcode, password } = req.body;
+
+    const saltRounds = 10;
+    var hash = bcrypt.hashSync(password, saltRounds);
+
+    // var patient Model = mongoose.model("patient", patientSchema);
+    var newPatient = new patientModel({
+        // patient_id: 100,
+        forename: forename,
+        surname: surname,
+        address: {
+            line1: line1,
+            line2: line2,
+            town_city: townCity,
+            postcode: postcode
+        },
+        clinical_notes: {
+            diagnosis: '',
+            notes: '',
+            medications: []
+        },
+        user_name: username,
+        password: hash
+    });
+
+    newPatient.save({ setDefaultsOnInsert: true }, function (err, resp) {
         if (err) {
-            console.log('Error saving patient data');
+            console.log(err);
+            response.status = 404;
+            response.data = null;
+            res.json(response);
         } else {
-            res.send('Patient saved to DB');
+            response.status = 200;
+            response.data = null;
+            res.json(response);
         }
     });
 });
@@ -175,7 +204,9 @@ router.post('/login', (req, res) => {
                 response.data = null;
                 res.json(response);
             } else { // continue with response if it's found
-                if (password === patient.password) {
+                const hash = patient.password;
+                const passwordMatches = bcrypt.compareSync(password, hash);
+                if (passwordMatches) {
                     // Expires in 30mins for patients
                     const expiresIn = (60 * 30);
                     let tokenData = JSON.stringify({
@@ -218,7 +249,7 @@ router.post('/login', (req, res) => {
 router.get('/user-data/:id', ensureAndVerifyToken, function (req, res) {
     resetResponse();
     const id = req.params.id;
-    let idIsValid = mongoose.Types.ObjectId.isValid(id)
+    let idIsValid = mongoose.Types.ObjectId.isValid(id);
     if (idIsValid) {
         patientModel.findById({ _id: req.params.id }, '_id patient_id user_name', function (err, patient) {
             if (err) {
@@ -243,6 +274,55 @@ router.get('/user-data/:id', ensureAndVerifyToken, function (req, res) {
     }
 });
 
+router.get('/patient/:id', ensureAndVerifyToken, (req, res) => {
+    resetResponse();
+    const id = req.params.id;
+    const idIsValid = mongoose.Types.ObjectId.isValid(id);
+
+    if (idIsValid) {
+        patientModel.findById({ _id: id }, '-password -clinical_notes', function (err, patient) {
+            if (err) {
+                handleError(err);
+                response.status = 404;
+                response.data = null;
+                res.json(response);
+            } else {
+                response.status = 200;
+                response.data = patient;
+                res.json(response);
+            }
+        });
+    }
+
+});
+
+router.patch('/patient/:id', ensureAndVerifyToken, (req, res) => {
+    resetResponse();
+
+    const { _id, forename, surname, username, address } = req.body;
+
+    patientModel.findByIdAndUpdate({ _id: req.params.id },
+        {
+            $set: {
+                forename: forename,
+                surname: surname,
+                user_name: username,
+                address: address
+            }
+        },
+        { new: true }, function (err, patient) {
+            if (err) {
+                console.log(err);
+                response.status = 404;
+                response.data = null;
+                res.json(response);
+            }
+            response.status = 200;
+            response.data = null;
+            res.json(response);
+        }
+    );
+});
 
 router.get('/protected', ensureAndVerifyToken, (req, res) => {
     resetResponse();

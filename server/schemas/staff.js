@@ -38,6 +38,7 @@ var staffSchema = new Schema({
         type: String,
         min: 1,
         max: 100,
+        unique: true,
         required: [true, user_nameRequiredErrorMsg]
     },
     password: {

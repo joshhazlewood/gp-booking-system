@@ -15,4 +15,16 @@ export class StaffService {
     return this.http.get('/api/staff/all-staff');
   }
 
+  getStaffById(_id) {
+    return this.http.get(`/api/staff/staffMember/${_id}`);
+  }
+
+  saveStaffById(_id, patient) {
+    return this.http.post(`/api/staff/staffMember/${_id}`, patient);
+  }
+
+  createStaff(data) {
+    return this.http.post('/api/staff/new-staff', data);
+  }
+
 }
