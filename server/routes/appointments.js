@@ -9,6 +9,7 @@ var appointmentsModel = mongoose.model('appointments', appointmentsSchema, 'appo
 
 var PatientSchema = require('../schemas/patient');
 var Patient = mongoose.model('Patient', PatientSchema, 'patients');
+const Response = require('../response');
 
 // Response handling
 let response = {
@@ -28,10 +29,12 @@ appointmentsSchema.plugin(autoIncrement.plugin, {
 router.get('/all-appointments', ensureToken, (req, res) => {
     appointmentsModel.find({}, function (err, appointments) {
         if (!err) {
-            response.data = appointments;
-            res.json(response);
+            const resp = new Response(200, appointments);
+            res.json(resp);
         } else {
             console.log(err);
+            const resp = new Response(404);
+            res.json(resp);
         }
     });
 });
@@ -59,8 +62,8 @@ router.post('/new-appointment', ensureToken, function (req, res) {
         function (err, appointments) {
             if (err) {
                 console.log(err);
-                response.status = 500;
-                res.json(response);
+                const resp = new Response(500);
+                res.json(resp);
             }
 
             //  No other appointments at this time so create appointment
@@ -68,12 +71,12 @@ router.post('/new-appointment', ensureToken, function (req, res) {
                 appointmentsModel.create(appointment, function (err) {
                     if (err) {
                         console.log('Error saving appointment data');
-                        response.status = 500;
-                        res.json(response);
+                        const resp = new Response(500);
+                        res.json(resp);
                     } else {
                         console.log('Saved appointment to DB');
-                        response.status = 200;
-                        res.json(response);
+                        const resp = new Response(200);
+                        res.json(resp);
                     }
                 });
             } else {
@@ -86,18 +89,18 @@ router.post('/new-appointment', ensureToken, function (req, res) {
 
                 if (doctorTaken === true) {
                     console.log('Appointment already taken!');
-                    response.status = 409;
-                    res.json(response);
+                    const resp = new Response(409);
+                    res.json(resp);
                 } else if (doctorTaken === false) {
                     appointmentsModel.create(appointment, function (err) {
                         if (err) {
                             console.log('Error saving appointment data');
-                            response.status = 500;
-                            res.json(response);
+                            const resp = new Response(500);
+                            res.json(resp);
                         } else {
                             console.log('Saved appointment to DB');
-                            response.status = 200;
-                            res.json(response);
+                            const resp = new Response(200);
+                            res.json(resp);
                         }
                     });
                 }
@@ -110,17 +113,17 @@ router.get('/id/:id', function (req, res) {
         if (!err) {
             // find returns an array - check if empty then send to 404
             if (appointment.length === 0) {
-                response.status = 404;
-                response.data = null;
-                res.json(response);
+                const resp = new Response(404);
+                res.json(resp);
             } else {
                 // continue with response if it's found
-                response.status = 200;
-                response.data = appointment;
-                res.json(response);
+                const resp = new Response(200, appointment);
+                res.json(resp);
             }
         } else {
             console.log(err);
+            const resp = new Response(500);
+            res.json(resp);
         }
     });
 });
@@ -134,17 +137,17 @@ router.get('/date/:date', function (req, res) {
     appointmentsModel.find({ 'start_time': { '$gte': dateToFind.toDate(), '$lt': dateToFindPlusOneDay.toDate() } }, function (err, appointments) {
         if (!err) {
             if (appointments.length === 0) {
-                response.status = 404;
-                response.data = null;
-                res.json(response);
+                const resp = new Response(404);
+                res.json(resp);
             } else {
                 // continue with response if it's found
-                response.status = 200;
-                response.data = appointments;
-                res.json(response);
+                const resp = new Response(200, appointments);
+                res.json(resp);
             }
         } else {
             console.log(err);
+            const resp = new Response(500);
+            res.json(resp);
         }
     });
 });
@@ -157,12 +160,14 @@ router.get('/app-as-event/:doctor_id', ensureToken, (req, res) => {
         populate('patient', '_id forename surname').
         populate('staff', '_id forename surname').
         exec(function (err, appointments) {
-            if (err) return handleError(err);
-            else {
+            if (err) {
+                console.log(err);
+                const resp = new Response(500);
+                res.json(resp);
+            } else {
                 // continue with response if it's found
-                response.status = 200;
-                response.data = appointments;
-                res.json(response);
+                const resp = new Response(200, appointments);
+                res.json(resp);
             }
         });
 });
@@ -176,10 +181,11 @@ router.get('/protected', ensureToken, (req, res) => {
     jwt.verify(req.token, '13118866', (err, data) => {
         console.log(data);
         if (err) {
-            res.sendStatus(403);
+            const resp = new Response(403);
+            res.json(resp);
         } else {
             res.json({
-                text: 'protected shit bro',
+                text: 'protected route',
                 data: data
             });
         }
@@ -194,7 +200,8 @@ function ensureToken(req, res, next) {
         req.token = bearerToken;
         next();
     } else {
-        res.sendStatus(403);
+        const resp = new Response(403);
+        res.json(resp);
     }
 }
 

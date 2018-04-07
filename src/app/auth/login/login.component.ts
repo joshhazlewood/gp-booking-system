@@ -50,7 +50,8 @@ export class LoginComponent implements OnInit {
       this.authService.login(val.email, val.password, val.userType)
         .subscribe(
           (data) => {
-            let status = data['status'];
+            const status = data['status'];
+            console.log(data);
             if (status === 200) {
               this.setSession(data['data']);
               if (val.userType === 'patient') {
@@ -59,7 +60,7 @@ export class LoginComponent implements OnInit {
                 this.router.navigateByUrl('/appointments-list');
               }
             } else if (status.toString().startsWith(4)) {
-              let error = 'Incorrect username or password';
+              const error = 'Incorrect username or password';
               this.errors.push(error);
             }
           },

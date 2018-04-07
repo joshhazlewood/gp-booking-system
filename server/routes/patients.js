@@ -8,6 +8,7 @@ const router = express.Router();
 const mongoose = require('mongoose');
 const jwt = require('jsonwebtoken');
 var bcrypt = require('bcrypt');
+const Response = require('../response');
 
 const PatientSchema = require('../schemas/patient');
 
@@ -55,18 +56,15 @@ router.get('/all-patients', ensureAndVerifyToken, (req, res) => {
     patientModel.find({}, 'patient_id forename surname', function (err, patients) {
         if (!err) {
             if (patients.length === 0) {
-                response.status = 404;
-                response.data = null;
-                res.json(response);
+                const resp = new Response(404);
+                res.json(resp);
             } else {
-                response.status = 200;
-                response.data = patients;
-                res.json(response);
+                const resp = new Response(200, patients);
+                res.json(resp);
             }
-            // response.data = patients;
-            // res.json(response);
         } else {
             console.log(err);
+            const resp = new Response(500);
         }
     }).then((patients) => {
         console.log('Found patients.');
@@ -81,16 +79,16 @@ router.get('/patient-notes/:id', ensureAndVerifyToken, (req, res) => {
         if (!err) {
             // find returns an array - check if empty then send to 404
             if (patients === null) {
-                response.status = 404;
-                response.data = null;
-                res.json(response);
+                const resp = new Response(404);
+                res.json(resp);
             } else { // continue with response if it's found
-                response.status = 200;
-                response.data = patients;
-                res.json(response);
+                const resp = new Response(200, patients);
+                res.json(resp);
             }
         } else {
             console.log(err);
+            const resp = new Response(500);
+            res.json(resp);
         }
     }).then((patients => {
         if (patients !== null) {
@@ -109,14 +107,11 @@ router.post('/patient-notes/:id', ensureAndVerifyToken, (req, res) => {
         { $set: { clinical_notes: req.body } },
         { new: true }, function (err, patient) {
             if (err) {
-                console.log(err);
-                response.status = 404;
-                response.data = null;
-                res.json(response);
+                const resp = new Response(404);
+                res.json(resp);
             }
-            response.status = 200;
-            response.data = null;
-            res.json(response);
+            const resp = new Response(200);
+            res.json(resp);
         }
     );
 });
@@ -127,16 +122,15 @@ router.get('id/:id', ensureAndVerifyToken, (req, res) => {
         if (!err) {
             // find returns an array - check if empty then send to 404
             if (patients === null) {
-                response.status = 404;
-                response.data = null;
-                res.json(response);
+                const resp = new Response(404);
+                res.json(resp);
             } else { // continue with response if it's found
-                response.status = 200;
-                response.data = patients;
-                res.json(response);
+                const resp = new Response(200, patients);
+                res.json(resp);
             }
         } else {
-            console.log(err);
+            const resp = new Response(500);
+            res.json(resp);
         }
     }).then((patients => {
         if (patients !== null) {
@@ -180,13 +174,11 @@ router.post('/new-patient', (req, res) => {
     newPatient.save({ setDefaultsOnInsert: true }, function (err, resp) {
         if (err) {
             console.log(err);
-            response.status = 404;
-            response.data = null;
-            res.json(response);
+            const resp = new Response(409);
+            res.json(resp);
         } else {
-            response.status = 200;
-            response.data = null;
-            res.json(response);
+            const resp = new Response(200);
+            res.json(resp);
         }
     });
 });
@@ -200,9 +192,8 @@ router.post('/login', (req, res) => {
         if (!err) {
             // find returns an array - check if empty then send to 404
             if (patient === null) {
-                response.status = 404;
-                response.data = null;
-                res.json(response);
+                const resp = new Response(404);
+                res.json(resp);
             } else { // continue with response if it's found
                 const hash = patient.password;
                 const passwordMatches = bcrypt.compareSync(password, hash);
@@ -226,15 +217,16 @@ router.post('/login', (req, res) => {
                         }
                     );
 
-                    response.status = 200;
-                    response.data = {
+                    // response.status = 200;
+                    data = {
                         id_token: token,
                         expires_in: expiresIn
                     }
-                    res.json(response);
+                    const resp = new Response(200, data);
+                    res.json(resp);
                 } else {
-                    response.status = 401;
-                    res.json(response);
+                    const resp = new Response(401);
+                    res.json(resp);
                 }
             }
         } else {
@@ -253,24 +245,22 @@ router.get('/user-data/:id', ensureAndVerifyToken, function (req, res) {
     if (idIsValid) {
         patientModel.findById({ _id: req.params.id }, '_id patient_id user_name', function (err, patient) {
             if (err) {
-                handleError(err);
-                response.status = 404;
-                response.data = null;
-                res.json(response);
+                console.log(err);
+                const resp = new Response(404);
+                res.json(resp);
             } else {
-                response.status = 200;
-                response.data = patient;
-                res.json(response);
+                const resp = new Response(200, patient);
+                res.json(resp);
             }
         })
             .catch(err => {
                 handleError(err);
             });
     } else {
-        response.status = 422;
-        response.data = null;
-        response.message = "Incorrect format for user_id";
-        res.json(response);
+        const data = null;
+        const message = "Incorrect format for user_id";
+        const resp = new Response(422, message);
+        res.json(resp);
     }
 });
 
@@ -282,14 +272,12 @@ router.get('/patient/:id', ensureAndVerifyToken, (req, res) => {
     if (idIsValid) {
         patientModel.findById({ _id: id }, '-password -clinical_notes', function (err, patient) {
             if (err) {
-                handleError(err);
-                response.status = 404;
-                response.data = null;
-                res.json(response);
+                console.log(err);
+                const resp = new Response(404);
+                res.json(resp);
             } else {
-                response.status = 200;
-                response.data = patient;
-                res.json(response);
+                const resp = new Response(200, patient);
+                res.json(resp);
             }
         });
     }
@@ -313,13 +301,11 @@ router.patch('/patient/:id', ensureAndVerifyToken, (req, res) => {
         { new: true }, function (err, patient) {
             if (err) {
                 console.log(err);
-                response.status = 404;
-                response.data = null;
-                res.json(response);
+                const resp = new Response(404);
+                res.json(resp);
             }
-            response.status = 200;
-            response.data = null;
-            res.json(response);
+            const resp = new Response(200);
+            res.json(resp);
         }
     );
 });

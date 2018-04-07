@@ -4,6 +4,7 @@ const mongoose = require('mongoose');
 const jwt = require('jsonwebtoken');
 var bcrypt = require('bcrypt');
 
+const Response = require('../response');
 const staffSchema = require('../schemas/staff');
 
 // STAFF COLLECTION
@@ -28,10 +29,12 @@ let response = {
 router.get('/', function (req, res) {
     staffModel.find({}, function (err, staff) {
         if (!err) {
-            response.data = staff;
-            res.json(response);
+            const resp = new Response(200, staff);
+            res.json(resp);
         } else {
             console.log(err);
+            const resp = new Response(404);
+            res.json(resp);
         }
     });
 });
@@ -42,19 +45,16 @@ router.get('/id/:id', function (req, res) {
             console.log(staff.length);
             // find returns an array - check if empty then send to 404
             if (staff.length === 0) {
-                response.status = 404;
-                response.data = null;
-                res.json(response);
+                const resp = new Response(404);
+                res.json(resp);
             } else { // continue with response if it's found
-                response.status = 200;
-                response.data = staff;
-                res.json(response);
+                const resp = new Response(200, staff);
+                res.json(resp);
             }
         } else {
             console.log(err);
-            response.status = 500;
-            response.data = null
-            res.json(response);
+            const resp = new Response(500);
+            res.json(resp);
         }
     })
 });
@@ -64,19 +64,16 @@ router.get('/doctors', function (req, res) {
         if (!err) {
             // find returns an array - check if empty then send to 404
             if (staff.length === 0) {
-                response.status = 404;
-                response.data = null;
-                res.json(response);
+                const resp = new Response(404);
+                res.json(resp);
             } else { // continue with response if it's found
-                response.status = 200;
-                response.data = staff;
-                res.json(response);
+                const resp = new Response(200, staff);
+                res.json(resp);
             }
         } else {
             handleError(err);
-            response.status = 500;
-            response.data = staff;
-            res.json(response);
+            const resp = new Response(500, staff);
+            res.json(resp);
         }
     })
 });
@@ -86,19 +83,16 @@ router.get('/all-staff', function (req, res) {
         if (!err) {
             // find returns an array - check if empty then send to 404
             if (staff.length === 0) {
-                response.status = 404;
-                response.data = null;
-                res.json(response);
+                const resp = new Response(404);
+                res.json(resp);
             } else { // continue with response if it's found
-                response.status = 200;
-                response.data = staff;
-                res.json(response);
+                const resp = new Response(200, staff);
+                res.json(resp);
             }
         } else {
             handleError(err);
-            response.status = 500;
-            response.data = staff;
-            res.json(response);
+            const resp = new Response(500, staff);
+            res.json(resp);
         }
     })
 });
@@ -114,9 +108,8 @@ router.post('/login', (req, res) => {
         if (!err) {
             // find returns an array - check if empty then send to 404
             if (staffMember === null) {
-                response.status = 404;
-                response.data = null;
-                res.json(response);
+                const resp = new Response(404);
+                res.json(resp);
             } else { // continue with response if it's found
                 const hash = staffMember.password;
                 const passwordMatches = bcrypt.compareSync(password, hash);
@@ -136,20 +129,22 @@ router.post('/login', (req, res) => {
                             expiresIn
                         });
 
-                    response.status = 200;
-                    response.data = {
+                    const data = {
                         id_token: token,
                         expires_in: expiresIn
                     }
-                    res.json(response);
+
+                    const resp = new Response(200, data);
+                    res.json(resp);
                 } else {
-                    console.log('pw is wrong');
-                    response.status = 401;
-                    res.json(response);
+                    const resp = new Response(401);
+                    res.json(resp);
                 }
             }
         } else {
             console.log(err);
+            const resp = new Response(404);
+            res.json(resp);
         }
     })
         .catch(err => {
@@ -167,14 +162,11 @@ router.get('/staffMember/:id', ensureToken, (req, res) => {
         staffModel.findById({ _id: id }, '-password -staff_id', function (err, staff) {
             if (err) {
                 handleError(err);
-                response.status = 404;
-                response.data = null;
-                res.json(response);
+                const resp = new Response(404);
+                res.json(resp);
             } else {
-                response.status = 200;
-                console.log(response);
-                response.data = staff;
-                res.json(response);
+                const resp = new Response(200, staff);
+                res.json(resp);
             }
         });
     }
@@ -197,13 +189,11 @@ router.post('/staffMember/:id', ensureToken, (req, res) => {
         },
         { new: true }, function (err, staff) {
             if (err) {
-                response.status = 404;
-                response.data = null;
-                res.json(response);
+                const resp = new Response(404);
+                res.json(resp);
             }
-            response.status = 200;
-            response.data = null;
-            res.json(response);
+            const resp = new Response(200);
+            res.json(resp);
         }
     );
 });
@@ -216,23 +206,20 @@ router.get('/user-data/:id', ensureToken, function (req, res) {
         staffModel.findById({ _id: req.params.id }, '_id staff_id staff_role user_name', function (err, staffMember) {
             if (err) {
                 handleError(err);
-                response.status = 404;
-                response.data = null;
-                res.json(response);
+                const resp = new Response(404);
+                res.json(resp);
             } else {
-                response.status = 200;
-                response.data = staffMember;
-                res.json(response);
+                const resp = new Response(200, staffMember);
+                res.json(resp);
             }
         })
             .catch(err => {
                 handleError(err);
             });
     } else {
-        response.status = 422;
-        response.data = null;
-        response.message = "Incorrect format for user_id";
-        res.json(response);
+        const message = "Incorrect format for user_id";
+        const resp = new Response(422, null, message);
+        res.json(resp);
     }
 });
 
@@ -256,13 +243,11 @@ router.post('/new-staff', (req, res) => {
     newStaff.save(function (err, resp) {
         if (err) {
             console.log(err);
-            response.status = 404;
-            response.data = null;
-            res.json(response);
+            const resp = new Response(404);
+            res.json(resp);
         } else {
-            response.status = 200;
-            response.data = null;
-            res.json(response);
+            const resp = new Response(200);
+            res.json(resp);
         }
     });
 });
