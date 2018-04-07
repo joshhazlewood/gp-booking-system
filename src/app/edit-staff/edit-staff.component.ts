@@ -47,7 +47,7 @@ export class EditStaffComponent implements OnInit, OnDestroy {
         Validators.required,
         Validators.email
       ]],
-      user_role: ['', [
+      staff_role: ['', [
         Validators.required
       ]]
     });

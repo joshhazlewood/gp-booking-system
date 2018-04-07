@@ -233,6 +233,34 @@ router.get('/user-data/:id', ensureToken, function (req, res) {
     }
 });
 
+router.post('/new-staff', (req, res) => {
+    resetResponse();
+
+    const { forename, surname, username, staff_role } = req.body;
+
+    var newStaff = new staffModel({
+        // patient_id: 100,
+        forename: forename,
+        surname: surname,
+        user_name: username,
+        staff_role: staff_role,
+        password: 'testPass'
+    });
+
+    newStaff.save( function (err, resp) {
+        if (err) {
+            console.log(err);
+            response.status = 404;
+            response.data = null;
+            res.json(response);
+        } else {
+            response.status = 200;
+            response.data = null;
+            res.json(response);
+        }
+    });
+});
+
 function handleError(err) {
     console.log(err);
 }

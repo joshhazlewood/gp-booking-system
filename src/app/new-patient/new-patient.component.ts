@@ -20,7 +20,6 @@ export class NewPatientComponent implements OnInit {
   public errors: string[];
 
   private patient: PatientProfile = null;
-  public isEditable: boolean = null;
   public messages: string[] = null;
 
   constructor(private patientService: PatientService,
@@ -33,15 +32,15 @@ export class NewPatientComponent implements OnInit {
 
   ngOnInit() {
     this.messages = [];
-    // this.newPatientForm.setValue({
-    //   forename: 'testFour',
-    //   surname: 'testFour',
-    //   username: 'testFour@test.com',
-    //   line1: '1b',
-    //   line2: 'brook road',
-    //   townCity: 'Manchester',
-    //   postcode: 'M14 6GG'
-    // });
+    this.newPatientForm.setValue({
+      forename: 'testOne',
+      surname: 'testOne',
+      username: 'testOne@test.com',
+      line1: '1b',
+      line2: 'brook road',
+      townCity: 'Manchester',
+      postcode: 'M14 6GG'
+    });
   }
 
   isValid() {
@@ -117,9 +116,9 @@ export class NewPatientComponent implements OnInit {
     console.log(this.newPatientForm.value);
     const data = this.newPatientForm.value;
     this.patientService.createPatient(data).subscribe(
-      (data) => {
-        console.log(data);
-        const status = data['status'];
+      (resp) => {
+        console.log(resp);
+        const status = resp['status'];
         if (status === 200) {
           this.messages.push('Patient was saved to the database.');
         } else if (status.toString().startsWith('4')) {

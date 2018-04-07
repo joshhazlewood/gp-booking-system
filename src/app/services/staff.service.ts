@@ -23,4 +23,8 @@ export class StaffService {
     return this.http.post(`/api/staff/staffMember/${_id}`, patient);
   }
 
+  createStaff(data) {
+    return this.http.post('/api/staff/new-staff', data);
+  }
+
 }
