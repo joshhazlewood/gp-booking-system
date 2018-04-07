@@ -2,6 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
+import { MessagesComponent } from '../messages/messages.component';
 import { PatientService } from '../services/patient.service';
 import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 import { PatientProfile } from '../models/patient-profile';
@@ -22,7 +23,7 @@ export class EditPatientComponent implements OnInit, OnDestroy {
   private patient: PatientProfile = null;
   public patientFound: boolean = null;
   public isEditable: boolean = null;
-  private messages: string[] = null;
+  private messages: Array<string> = null;
 
   constructor(private patientService: PatientService,
     private activatedRoute: ActivatedRoute,
@@ -149,18 +150,30 @@ export class EditPatientComponent implements OnInit, OnDestroy {
     console.log(this.patient);
     this.patientService.savePatientById(this.patientToFind, this.patient).subscribe(
       (data) => {
-        const status = data['status'];
+        const status: number = data['status'];
         console.log(status);
         if (status === 200) {
           this.isEditable = false;
-          this.messages.push('Patient data was successfully updated.');
+          const msg = 'Patient data was successfully updated.';
+          this.pushMsgAndRemoveAfterInterval(msg);
+        } else if (status.toString().startsWith('4')) {
+          const msg = 'Server Error';
+          this.pushMsgAndRemoveAfterInterval(msg);
         }
       },
       (err) => {
         console.log('error');
-        this.messages.push('Error updating patient data.');
+        const msg = 'Error updating patient data.';
+        this.pushMsgAndRemoveAfterInterval(msg);
       }
     );
+  }
+
+  pushMsgAndRemoveAfterInterval(msg: string) {
+    this.messages.push(msg);
+    setTimeout(() => {
+      this.messages.pop();
+    }, 3000);
   }
 
   isEditableAndValid() {

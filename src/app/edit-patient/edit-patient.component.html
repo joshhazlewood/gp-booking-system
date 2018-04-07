@@ -5,10 +5,7 @@
         <ng-container *ngIf="patientFound">
           <form [formGroup]="patientForm" novalidate autocomplete="off">
 
-            <div class="notification is-warning" *ngFor="let msg of messages; let i = index">
-              <a class="delete" (click)="removeMsg(i)"></a>
-              <p>{{msg}}</p>
-            </div>
+            <app-messages [messages]="messages"></app-messages>
 
             <div class="columns">
               <div class="column">

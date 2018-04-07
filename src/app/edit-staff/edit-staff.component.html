@@ -6,10 +6,7 @@
 
           <form [formGroup]="staffForm" novalidate>
 
-            <div class="notification is-warning" *ngFor="let msg of messages; let i = index">
-              <a class="delete" (click)="removeMsg(i)"></a>
-              <p>{{msg}}</p>
-            </div>
+            <app-messages [messages]="messages"></app-messages>
 
             <div class="field">
               <label class="label">Forename</label>

@@ -2,6 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
+import { MessagesComponent } from '../messages/messages.component';
 import { StaffService } from '../services/staff.service';
 import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 
@@ -75,10 +76,6 @@ export class NewStaffComponent implements OnInit {
     return valid;
   }
 
-  removeMsg(index) {
-    this.messages.splice(index, 1);
-  }
-
   saveDetails() {
     console.log(this.newStaffForm.value);
     const data = this.newStaffForm.value;
@@ -87,12 +84,21 @@ export class NewStaffComponent implements OnInit {
         console.log(resp);
         const status = resp['status'];
         if (status === 200) {
-          this.messages.push('Staff member was saved to the database.');
+          const msg = 'Staff member was saved to the database.';
+          this.pushMsgAndRemoveAfterInterval(msg);
         } else if (status.toString().startsWith('4')) {
-          this.messages.push('Error adding staff member to the database. This is most likey because the email is already in use.');
+          const msg = 'Error adding staff member to the database. This is most likey because the email is already in use.';
+          this.pushMsgAndRemoveAfterInterval(msg);
         }
       }
     );
+  }
+
+  pushMsgAndRemoveAfterInterval(msg: string) {
+    this.messages.push(msg);
+    setTimeout(() => {
+      this.messages.pop();
+    }, 3000);
   }
 
   updateInputState(input: string) {

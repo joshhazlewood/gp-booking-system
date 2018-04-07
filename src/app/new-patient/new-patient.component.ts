@@ -2,6 +2,8 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
+import { MessagesComponent } from '../messages/messages.component';
+
 import { PatientService } from '../services/patient.service';
 import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 
@@ -20,7 +22,7 @@ export class NewPatientComponent implements OnInit {
   public errors: string[];
 
   private patient: PatientProfile = null;
-  public messages: string[] = null;
+  public messages: Array<string> = null;
 
   constructor(private patientService: PatientService,
     private activatedRoute: ActivatedRoute,
@@ -39,7 +41,9 @@ export class NewPatientComponent implements OnInit {
       line1: '1b',
       line2: 'brook road',
       townCity: 'Manchester',
-      postcode: 'M14 6GG'
+      postcode: 'M14 6GG',
+      password: '',
+      passwordConfirm: '',
     });
   }
 
@@ -120,12 +124,21 @@ export class NewPatientComponent implements OnInit {
         console.log(resp);
         const status = resp['status'];
         if (status === 200) {
-          this.messages.push('Patient was saved to the database.');
+          const msg = 'Patient was saved to the database.';
+          this.pushMsgAndRemoveAfterInterval(msg);
         } else if (status.toString().startsWith('4')) {
-          this.messages.push('Error adding patient to the database. Email could already be in use.');
+          const msg = 'Error adding patient to the database. Email could already be in use.';
+          this.pushMsgAndRemoveAfterInterval(msg);
         }
       }
     );
+  }
+
+  pushMsgAndRemoveAfterInterval(msg: string) {
+    this.messages.push(msg);
+    setTimeout(() => {
+      this.messages.pop();
+    }, 3000);
   }
 
   updateInputState(input: string) {

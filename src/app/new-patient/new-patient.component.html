@@ -3,10 +3,7 @@
     <div class="columns">
       <div class="column box is-8 is-offset-2">
 
-        <div class="notification is-warning" *ngFor="let msg of messages; let i = index">
-          <a class="delete" (click)="removeMsg(i)"></a>
-          <p>{{msg}}</p>
-        </div>
+        <app-messages [messages]="messages"></app-messages>
 
         <form [formGroup]="newPatientForm">
           <div class="columns">

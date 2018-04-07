@@ -3,6 +3,8 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
+import { MessagesComponent } from '../messages/messages.component';
+
 import { StaffService } from '../services/staff.service';
 import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 import { StaffProfile } from '../models/staff-profile';
@@ -22,7 +24,7 @@ export class EditStaffComponent implements OnInit, OnDestroy {
   private staffMember: StaffProfile = null;
   public staffMemberFound: boolean = null;
   public isEditable: boolean = null;
-  private messages: string[] = null;
+  private messages: Array<string> = null;
   public roles = ['doctor', 'admin'];
 
   constructor(private staffService: StaffService,
@@ -94,13 +96,23 @@ export class EditStaffComponent implements OnInit, OnDestroy {
         const status = data['status'];
         if (status === 200) {
           this.isEditable = false;
-          this.messages.push('Staff member data was successfully updated.');
+          const msg = 'Staff member data was successfully updated.';
+          this.pushMsgAndRemoveAfterInterval(msg);
+
         }
       },
       (err) => {
-        this.messages.push('Error updating staff member data.');
+        const msg = 'Error updating staff member data.';
+        this.pushMsgAndRemoveAfterInterval(msg);
       }
     );
+  }
+
+  pushMsgAndRemoveAfterInterval(msg: string) {
+    this.messages.push(msg);
+    setTimeout(() => {
+      this.messages.pop();
+    }, 3000);
   }
 
   makeEditable() {

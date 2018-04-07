@@ -36,6 +36,7 @@ import { EditPatientComponent } from './edit-patient/edit-patient.component';
 import { EditStaffComponent } from './edit-staff/edit-staff.component';
 import { NewStaffComponent } from './new-staff/new-staff.component';
 import { NewPatientComponent } from './new-patient/new-patient.component';
+import { MessagesComponent } from './messages/messages.component';
 
 const appRoutes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -141,7 +142,8 @@ const appRoutes: Routes = [
     EditPatientComponent,
     EditStaffComponent,
     NewStaffComponent,
-    NewPatientComponent
+    NewPatientComponent,
+    MessagesComponent
   ],
   imports: [
     BrowserModule,

@@ -5,10 +5,7 @@
         <h1 class="title">Patient Notes</h1>
         <ng-container *ngIf="patientFound">
 
-          <div class="notification is-warning" *ngFor="let msg of messages; let i = index">
-            <a class="delete" (click)="removeMsg(i)"></a>
-            <p>{{msg}}</p>
-          </div>
+          <app-messages [messages]="messages"></app-messages>
 
           <div class="columns">
             <div class="column is-half has-text-centered">
@@ -73,8 +70,8 @@
             <div class="field">
               <label class="label">Notes</label>
               <div class="control">
-                <textarea class="textarea is-small" [(ngModel)]="patient.clinical_notes.notes" name="notes" placeholder="Notes..." 
-                  [attr.readonly]='canEditNotes === false ? true : null' spellcheck="false"></textarea>
+                <textarea class="textarea is-small" [(ngModel)]="patient.clinical_notes.notes" name="notes" placeholder="Notes..." [attr.readonly]='canEditNotes === false ? true : null'
+                  spellcheck="false"></textarea>
               </div>
             </div>
 
