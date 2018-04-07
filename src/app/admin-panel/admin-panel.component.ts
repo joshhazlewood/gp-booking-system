@@ -74,6 +74,8 @@ export class AdminPanelComponent implements OnInit {
           }
           );
           this.staffFound = true;
+        } else if (status.toString().startsWith('4')) {
+          console.log('Error connecting to database.')
         }
       },
       (err) => {

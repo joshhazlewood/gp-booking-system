@@ -43,7 +43,7 @@ var patientSchema = new Schema({
     },
     password: {
         type: String,
-        min: 1,
+        min: 4,
         max: 100,
         required: [true, passwordRequiredErrorMsg]
     }

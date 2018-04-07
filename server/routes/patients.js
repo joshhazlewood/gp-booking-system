@@ -290,7 +290,7 @@ router.get('/patient/:id', ensureAndVerifyToken, (req, res) => {
 
 });
 
-router.post('/patient/:id', ensureAndVerifyToken, (req, res) => {
+router.patch('/patient/:id', ensureAndVerifyToken, (req, res) => {
     resetResponse();
 
     const { _id, forename, surname, username, address } = req.body;

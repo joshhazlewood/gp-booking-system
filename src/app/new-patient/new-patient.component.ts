@@ -16,31 +16,32 @@ import { Address } from '../models/address';
 export class NewPatientComponent implements OnInit {
 
   public newPatientForm: FormGroup;
+  public passwordsForm: FormGroup;
   public errors: string[];
 
   private patient: PatientProfile = null;
   public isEditable: boolean = null;
-  private messages: string[] = null;
+  public messages: string[] = null;
 
   constructor(private patientService: PatientService,
     private activatedRoute: ActivatedRoute,
     private spinnerService: Ng4LoadingSpinnerService,
     private fb: FormBuilder,
-    private router: Router) { 
-      this.createForm();
-    }
+    private router: Router) {
+    this.createForm();
+  }
 
   ngOnInit() {
-    this.messages= [];
-    this.newPatientForm.setValue({
-      forename:    'testOne',
-      surname:    'testOne',
-      username: 'testOne@test.com',
-      line1: '1b',
-      line2: 'brook road',
-      townCity: 'Manchester',
-      postcode: 'M14 6GG'
-   });
+    this.messages = [];
+    // this.newPatientForm.setValue({
+    //   forename: 'testFour',
+    //   surname: 'testFour',
+    //   username: 'testFour@test.com',
+    //   line1: '1b',
+    //   line2: 'brook road',
+    //   townCity: 'Manchester',
+    //   postcode: 'M14 6GG'
+    // });
   }
 
   isValid() {
@@ -53,6 +54,7 @@ export class NewPatientComponent implements OnInit {
   }
 
   createForm() {
+
     this.newPatientForm = this.fb.group({
       forename: ['', [
         Validators.required,
@@ -69,6 +71,16 @@ export class NewPatientComponent implements OnInit {
       username: ['', [
         Validators.required,
         Validators.email
+      ]],
+      password: ['', [
+        Validators.required,
+        Validators.minLength(4),
+        Validators.maxLength(50)
+      ]],
+      passwordConfirm: ['', [
+        Validators.required,
+        Validators.minLength(4),
+        Validators.maxLength(50)
       ]],
       line1: ['', [
         Validators.required,
@@ -94,7 +106,11 @@ export class NewPatientComponent implements OnInit {
         Validators.maxLength(50),
         Validators.pattern(/^([Gg][Ii][Rr] 0[Aa]{2})|((([A-Za-z][0-9]{1,2})|(([A-Za-z][A-Ha-hJ-Yj-y][0-9]{1,2})|(([A-Za-z][0-9][A-Za-z])|([A-Za-z][A-Ha-hJ-Yj-y][0-9]?[A-Za-z]))))\s?[0-9][A-Za-z]{2})$/)
       ]]
-    });
+    }, { validator: this.areEqual });
+  }
+
+  private areEqual(group: FormGroup) {
+    return group.get('password').value === group.get('passwordConfirm').value ? null : { mismatch: true };
   }
 
   saveDetails() {
@@ -104,9 +120,9 @@ export class NewPatientComponent implements OnInit {
       (data) => {
         console.log(data);
         const status = data['status'];
-        if(status === 200) {
+        if (status === 200) {
           this.messages.push('Patient was saved to the database.');
-        } else if( status.toString().startsWith('4')) {
+        } else if (status.toString().startsWith('4')) {
           this.messages.push('Error adding patient to the database. Email could already be in use.');
         }
       }
@@ -140,5 +156,9 @@ export class NewPatientComponent implements OnInit {
   get townCity() { return this.newPatientForm.get('townCity'); }
 
   get postcode() { return this.newPatientForm.get('postcode'); }
+
+  get password() { return this.newPatientForm.get('password'); }
+
+  get passwordConfirm() { return this.newPatientForm.get('passwordConfirm'); }
 
 }

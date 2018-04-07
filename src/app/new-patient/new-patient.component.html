@@ -83,6 +83,56 @@
                 </p>
               </div>
 
+              <div class="field">
+                <label class="label">Password</label>
+                <div class="control">
+                  <input class="input" type="password" formControlName="password" (blur)="updateInputState('password')" (keyup)="updateInputState('password')"
+                    autocomplete="foo" [ngClass]="{
+                        'is-success' : password.valid || (password.dirty || password.touched),
+                        'is-danger' : (password.invalid && password.touched) || newPatientForm?.errors?.mismatch && (passwordConfirm?.dirty || passwordConfirm?.touched)
+                      }">
+                </div>
+              </div>
+
+              <div *ngIf="password.errors && (password.dirty || password.touched)">
+                <p class="help is-danger pad-bottom" *ngIf="password.errors.required">
+                  Password is required.
+                </p>
+                <p class="help is-danger pad-bottom" *ngIf="password.invalid">
+                  Password must be between 4 and 50 characters.
+                </p>
+              </div>
+
+              <div class="field">
+                <label class="label">Confirm Password</label>
+                <div class="control">
+                  <input class="input" type="password" formControlName="passwordConfirm" (blur)="updateInputState('passwordConfirm')" (keyup)="updateInputState('passwordConfirm')"
+                    autocomplete="foo" [ngClass]="{
+                        'is-success' : passwordConfirm.valid || (passwordConfirm.dirty || passwordConfirm.touched),
+                        'is-danger' : (passwordConfirm.invalid && password.touched) || newPatientForm?.errors?.mismatch && (passwordConfirm?.dirty || passwordConfirm?.touched)
+                      }">
+                </div>
+              </div>
+
+              <div *ngIf="passwordConfirm.errors && (passwordConfirm.dirty || passwordConfirm.touched)">
+                <p class="help is-danger pad-bottom" *ngIf="passwordConfirm.errors.required">
+                  Password confirmation is required.
+                </p>
+                <p class="help is-danger pad-bottom" *ngIf="passwordConfirm.invalid">
+                  Password must be between 4 and 50 characters.
+                </p>
+              </div>
+
+              <ng-container *ngIf="passwordConfirm.touched">
+                <div *ngIf="newPatientForm?.errors?.mismatch">
+                  <p class="help is-danger pad-bottom">
+                    Passwords do not match.
+                  </p>
+                </div>
+              </ng-container>
+
+              <p>{{newPatientForm?.errors?.mismatch}}</p>
+
             </div>
             <div class="column">
               <div class="field">

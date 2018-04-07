@@ -29,7 +29,7 @@ export class PatientService {
   }
 
   savePatientById(_id, data) {
-    return this.http.post(`${this.baseUrl}/patient/${_id}`, data);
+    return this.http.patch(`${this.baseUrl}/patient/${_id}`, data);
   }
 
   createPatient(data) {
