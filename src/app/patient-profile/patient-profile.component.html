@@ -3,9 +3,8 @@
     <div class="columns">
       <div class="column box is-8 is-offset-2">
         <app-messages [messages]="messages"></app-messages>
-        <p>{{userFound}}</p>
         <ng-container *ngIf="userFound === true">
-          <div class="columns">
+          <div class="columns is-mobile">
             <div class="column">
               <p class="is-size-4">User Details</p>
               <p>Patient ID: {{user.patient_id}}</p>
@@ -27,9 +26,41 @@
               <p>No upcoming appointments.</p>
             </div>
             <ng-template #appointmentsList>
-              <p class="is-size-4">Your Appointments</p>
+              <div class="columns">
+                <div class="column"></div>
+                <div class="column is-narrow has-text-centered">
+                  <p class="is-size-4">Your Appointments</p>
+                </div>
+                <div class="column"></div>
+              </div>
+              <br>
               <div class="box" *ngFor="let appointment of appointments">
-                {{appointment.start_time}}
+                <div class="columns is-mobile">
+                  <div class="column">
+                    <p>
+                      <span class="icon">
+                        <i class="far fa-calendar"></i>
+                      </span>
+                      {{appointment.start_time.toLocaleDateString()}}
+                    </p>
+                  </div>
+                  <div class="column">
+                    <p>
+                      <span class="icon">
+                        <i class="far fa-clock"></i>
+                      </span>
+                      {{appointment.start_time.toLocaleTimeString()}}
+                    </p>
+                  </div>
+                  <div class="column">
+                    <p class="is-capitalized">
+                      <span class="icon">
+                        <i class="fas fa-user-md"></i>
+                      </span>
+                      {{appointment.doctor}}
+                    </p>
+                  </div>
+                </div>
               </div>
             </ng-template>
           </ng-container>

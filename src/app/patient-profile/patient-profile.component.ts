@@ -1,11 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } from "@angular/core";
 
-import { AuthService } from "../services/auth.service";
-import { PatientService } from "../services/patient.service";
-import { AppointmentsService } from "../services/appointments.service";
-import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
-import { PatientProfile } from "../models/patient-profile";
 import { Address } from "../models/address";
+import { AppointmentsService } from "../services/appointments.service";
+import { AuthService } from "../services/auth.service";
+import { Ng4LoadingSpinnerService } from "ng4-loading-spinner";
+import { PatientProfile } from "../models/patient-profile";
+import { PatientService } from "../services/patient.service";
+
+import { IAppointment as Appointment } from "../services/interfaces/appointment";
 
 @Component({
   selector: 'app-patient-profile',
@@ -14,50 +16,60 @@ import { Address } from "../models/address";
 })
 export class PatientProfileComponent implements OnInit {
 
-  private userId: string = null;
   public messages: string[] = null;
   public user: PatientProfile = null;
   public userFound: boolean = null;
   public appointmentsFound: boolean = null;
   public hasNoAppointments: boolean = null;
   public appointments: any[];
+  private userId: string = null;
 
   constructor(private patientService: PatientService, private authService: AuthService, private spinnerService: Ng4LoadingSpinnerService,
     private appointmentsService: AppointmentsService) { }
 
-  ngOnInit() {
+  public ngOnInit() {
     this.userFound = false;
     this.appointmentsFound = false;
     this.spinnerService.show();
     this.messages = [];
+    this.appointments = [];
     this.userId = this.authService.getUserId();
     console.log(this.userId);
     this.getPatientData();
     this.getAppointmentsData();
   }
 
-  getPatientData() {
+  public getFullName(forename: string, surname: string): string {
+    const fullName = `${forename} ${surname}`;
+    return fullName;
+  }
+
+  public removeMsg(index) {
+    this.messages.splice(index, 1);
+  }
+
+  private getPatientData() {
     this.patientService.getPatientById(this.userId).subscribe(
       (response) => {
-        const status: number = response['status'];
+        const status: number = response["status"];
         if (status === 200) {
-          const data = response['data'];
-          const rawAddress = data['address'];
+          const data = response["data"];
+          const rawAddress = data["address"];
 
-          let address: Address = {
+          const address: Address = {
             line1: rawAddress.line1,
             line2: rawAddress.line2,
-            town_city: rawAddress.town_city,
             postcode: rawAddress.postcode,
+            town_city: rawAddress.town_city,
           };
           this.user = {
             _id: data._id,
-            patient_id: data.patient_id,
+            address: address,
             forename: data.forename,
+            patient_id: data.patient_id,
             surname: data.surname,
             username: data.user_name,
-            address: address,
-          }
+          };
           this.userFound = true;
           this.spinnerService.hide();
         } else if (status.toString().startsWith("4")) {
@@ -74,11 +86,11 @@ export class PatientProfileComponent implements OnInit {
         const msg = "Error getting user profile data. Please refresh the page.";
         this.pushMsgAndRemoveAfterInterval(msg);
         this.spinnerService.hide();
-      }
+      },
     );
   }
 
-  getAppointmentsData() {
+  private getAppointmentsData() {
     this.spinnerService.show();
     console.log('getting apps');
     this.appointmentsService.getPatientsAppointments(this.userId).subscribe(
@@ -87,7 +99,18 @@ export class PatientProfileComponent implements OnInit {
         const status: number = response['status'];
         if (status === 200) {
           const data = response['data'];
-          this.appointments = data;
+          // this.appointments = data;
+          if (data.length > 0) {
+            data.forEach((element) => {
+              const docName = this.getFullName(element["staff"].forename, element["staff"].surname);
+              const app: Appointment = {
+                doctor: docName,
+                start_time: new Date(element.start_time),
+              };
+              this.appointments.push(app);
+            });
+            console.log(this.appointments);
+          }
           this.appointmentsFound = true;
           this.spinnerService.hide();
         } else if (status.toString().startsWith("4")) {
@@ -98,23 +121,15 @@ export class PatientProfileComponent implements OnInit {
       },
       (err) => {
         console.log(err);
-      }
+      },
     );
   }
 
-  removeMsg(index) {
-    this.messages.splice(index, 1);
-  }
-
-  pushMsgAndRemoveAfterInterval(msg: string) {
+  private pushMsgAndRemoveAfterInterval(msg: string) {
     this.messages.push(msg);
     setTimeout(() => {
       this.messages.pop();
     }, 3000);
   }
 
-  public getFullName(forename: string, surname: string): string {
-    const fullName = `${forename} ${surname}`;
-    return fullName;
-  }
 }
