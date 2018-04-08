@@ -22,8 +22,15 @@
             </div>
           </div>
           <ng-container *ngIf="appointmentsFound">
-            <div *ngIf="appointments.length === 0; else appointmentsList">
-              <p>No upcoming appointments.</p>
+            <div *ngIf="hasNoAppointments; else appointmentsList">
+              <div class="columns">
+                <div class="column"></div>
+                <div class="column is-narrow has-text-centered">
+                  <p class="is-size-4">Your Appointments</p>
+                  <p style="margin-top: 0.75em; margin-bottom: 0.75em;">You don't have any upcoming or previous appointments.</p>
+                </div>
+                <div class="column"></div>
+              </div>
             </div>
             <ng-template #appointmentsList>
               <div class="columns">

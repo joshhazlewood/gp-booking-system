@@ -34,7 +34,6 @@ export class PatientProfileComponent implements OnInit {
     this.messages = [];
     this.appointments = [];
     this.userId = this.authService.getUserId();
-    console.log(this.userId);
     this.getPatientData();
     this.getAppointmentsData();
   }
@@ -92,7 +91,6 @@ export class PatientProfileComponent implements OnInit {
 
   private getAppointmentsData() {
     this.spinnerService.show();
-    console.log('getting apps');
     this.appointmentsService.getPatientsAppointments(this.userId).subscribe(
       (response) => {
         console.log(response);
@@ -109,18 +107,18 @@ export class PatientProfileComponent implements OnInit {
               };
               this.appointments.push(app);
             });
-            console.log(this.appointments);
           }
-          this.appointmentsFound = true;
           this.spinnerService.hide();
         } else if (status.toString().startsWith("4")) {
-          const msg = "Error getting user profile data. Please refresh the page.";
-          this.pushMsgAndRemoveAfterInterval(msg);
+          this.hasNoAppointments = true;
           this.spinnerService.hide();
         }
+        this.appointmentsFound = true;
       },
       (err) => {
-        console.log(err);
+        const msg = "Error getting user profile data. Please refresh the page.";
+        this.pushMsgAndRemoveAfterInterval(msg);
+        this.spinnerService.hide();
       },
     );
   }

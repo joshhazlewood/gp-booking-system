@@ -102,7 +102,6 @@ router.post('/login', (req, res) => {
     const user = req.body;
     const username = user.username
     const password = user.password
-    console.log(user);
 
     staffModel.findOne({ 'user_name': username }, (err, staffMember) => {
         if (!err) {
