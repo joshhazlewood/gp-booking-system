@@ -24,12 +24,22 @@
         Home
       </a>
       <ng-container *ngIf="isLoggedIn()">
-        <a class="navbar-item" routerLink="/new-appointment" *ngIf="getUserType() === 'patient'">
-          <span class="icon">
-            <i class="far fa-calendar-plus"></i>
-          </span>
-          New Appointment
-        </a>
+        <ng-container *ngIf="getUserType() === 'patient'">
+          <a class="navbar-item" routerLink="/new-appointment" >
+            <span class="icon">
+              <i class="far fa-calendar-plus"></i>
+            </span>
+            New Appointment
+          </a>
+  
+          <!-- <a class="navbar-item" routerLink="/patient-profile">
+            <span class="icon">
+                <i class="fas fa-user-circle"></i>
+            </span>
+            My Profile
+          </a> -->
+
+        </ng-container>
 
         <ng-container *ngIf="userIsDoctorOrAdmin()">
           <a class="navbar-item" routerLink="/appointments-list">
@@ -55,6 +65,12 @@
     </div>
 
     <div class="navbar-end">
+        <a class="navbar-item" *ngIf="getUserType() === 'patient'" routerLink="/patient-profile">
+          <span class="icon">
+              <i class="fas fa-user-circle"></i>
+          </span>
+          My Profile
+        </a>
       <a *ngIf="!isLoggedIn()" class="navbar-item" routerLink="/login">
         <span class="icon">
           <i class="fas fa-sign-out-alt"></i>

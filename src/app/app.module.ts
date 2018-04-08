@@ -37,6 +37,7 @@ import { EditStaffComponent } from './edit-staff/edit-staff.component';
 import { NewStaffComponent } from './new-staff/new-staff.component';
 import { NewPatientComponent } from './new-patient/new-patient.component';
 import { MessagesComponent } from './messages/messages.component';
+import { PatientProfileComponent } from './patient-profile/patient-profile.component';
 
 const appRoutes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -116,6 +117,14 @@ const appRoutes: Routes = [
     }
   },
   {
+    path: 'patient-profile',
+    component: PatientProfileComponent,
+    canActivate: [AuthGuardService],
+    data: {
+      expectedRole: 'patient'
+    }
+  },
+  {
     path: '',
     redirectTo: '/home',
     pathMatch: 'full'
@@ -143,7 +152,8 @@ const appRoutes: Routes = [
     EditStaffComponent,
     NewStaffComponent,
     NewPatientComponent,
-    MessagesComponent
+    MessagesComponent,
+    PatientProfileComponent
   ],
   imports: [
     BrowserModule,

@@ -25,8 +25,12 @@ export class AppointmentsService {
     return this.http.post(`${this.baseUrl}/new-appointment/`, appData);
   }
 
-  getDocsAppointments(doctor_id) {
-    return this.http.get(this.baseUrl + '/app-as-event/' + doctor_id);
+  getDocsAppointments(doctorId) {
+    return this.http.get(`${this.baseUrl}/app-as-event/${doctorId}`);
+  }
+
+  getPatientsAppointments(patientId) {
+    return this.http.get(`${this.baseUrl}/patient/${patientId}`);
   }
 
 }

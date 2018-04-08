@@ -1,0 +1,40 @@
+<div class="section">
+  <div class="container">
+    <div class="columns">
+      <div class="column box is-8 is-offset-2">
+        <app-messages [messages]="messages"></app-messages>
+        <p>{{userFound}}</p>
+        <ng-container *ngIf="userFound === true">
+          <div class="columns">
+            <div class="column">
+              <p class="is-size-4">User Details</p>
+              <p>Patient ID: {{user.patient_id}}</p>
+              <p>Full name:</p>
+              <p class="is-capitalized">{{getFullName(user.forename, user.surname)}}</p>
+              <p class="is-capitalized">Username/Email:</p>
+              <p>{{user.username}}</p>
+            </div>
+            <div class="column">
+              <p class="is-size-4">Address</p>
+              <p class="is-capitalized">{{user.address.line1}}</p>
+              <p class="is-capitalized">{{user.address.line2}}</p>
+              <p class="is-capitalized">{{user.address.town_city}}</p>
+              <p class="is-capitalized">{{user.address.postcode}}</p>
+            </div>
+          </div>
+          <ng-container *ngIf="appointmentsFound">
+            <div *ngIf="appointments.length === 0; else appointmentsList">
+              <p>No upcoming appointments.</p>
+            </div>
+            <ng-template #appointmentsList>
+              <p class="is-size-4">Your Appointments</p>
+              <div class="box" *ngFor="let appointment of appointments">
+                {{appointment.start_time}}
+              </div>
+            </ng-template>
+          </ng-container>
+        </ng-container>
+      </div>
+    </div>
+  </div>
+</div>

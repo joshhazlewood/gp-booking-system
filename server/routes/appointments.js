@@ -172,6 +172,31 @@ router.get('/app-as-event/:doctor_id', ensureToken, (req, res) => {
         });
 });
 
+router.get('/patient/:patient_id', ensureToken, (req, res) => {
+    const patient_id = req.params.patient_id;
+    console.log('hitting endpoint');
+
+    appointmentsModel.find({ patient: patient_id }).
+        populate('staff', 'forename surname').
+        exec(function (err, appointments) {
+            if (err) {
+                console.log(err);
+                const resp = new Response(500);
+                res.json(resp);
+            }
+            if (appointments.length > 0) {
+                const resp = new Response(200, appointments);
+                res.json(resp);
+                console.log('sending appointments');
+                console.log(appointments);
+            } else {
+                const resp = new Response(404, null, 'No appointments found by that _id');
+                console.log('appointments empty');
+                res.json(resp);
+            }
+        })
+});
+
 function handleError(err) {
     console.log(err);
 }
