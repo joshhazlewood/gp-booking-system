@@ -20,7 +20,7 @@ export class StaffService {
   }
 
   public saveStaffById(id, patient) {
-    return this.http.post(`/api/staff/staffMember/${id}`, patient);
+    return this.http.patch(`/api/staff/staffMember/${id}`, patient);
   }
 
   public createStaff(data) {

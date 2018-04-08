@@ -102,7 +102,6 @@ router.post('/login', (req, res) => {
     const user = req.body;
     const username = user.username
     const password = user.password
-    console.log(user);
 
     staffModel.findOne({ 'user_name': username }, (err, staffMember) => {
         if (!err) {
@@ -173,7 +172,7 @@ router.get('/staffMember/:id', ensureToken, (req, res) => {
 
 });
 
-router.post('/staffMember/:id', ensureToken, (req, res) => {
+router.patch('/staffMember/:id', ensureToken, (req, res) => {
     resetResponse();
 
     const { _id, forename, surname, username, user_role } = req.body;
@@ -201,7 +200,7 @@ router.post('/staffMember/:id', ensureToken, (req, res) => {
 router.get('/user-data/:id', ensureToken, function (req, res) {
     resetResponse();
     const id = req.params.id;
-    let idIsValid = mongoose.Types.ObjectId.isValid(id)
+    let idIsValid = mongoose.Types.ObjectId.isValid(id);
     if (idIsValid) {
         staffModel.findById({ _id: req.params.id }, '_id staff_id staff_role user_name', function (err, staffMember) {
             if (err) {

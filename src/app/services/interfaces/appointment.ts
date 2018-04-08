@@ -1,8 +1,4 @@
-export interface Appointment {
-    appointment_id: number;
-    patient_id: number;
-    staff_id: number;
+export interface IAppointment {
+    doctor: string;
     start_time: Date;
-    end_time: Date;
-
 }
