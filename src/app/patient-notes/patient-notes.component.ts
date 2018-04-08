@@ -1,20 +1,23 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, OnInit, OnDestroy } from "@angular/core";
+import { Router } from "@angular/router";
 
-import { MessagesComponent } from '../messages/messages.component';
+import { MessagesComponent } from "../messages/messages.component";
 
-import { Patient } from '../models/patient';
-import { Address } from '../models/address';
-import { PatientService } from '../services/patient.service';
-import { ClinicalNotes } from '../models/clinical-notes';
+import { Address } from "../models/address";
+import { ClinicalNotes } from "../models/clinical-notes";
+import { Patient } from "../models/patient";
+
+import { AuthService } from "../services/auth.service";
+import { PatientService } from "../services/patient.service";
 @Component({
-  selector: 'app-patient-notes',
-  templateUrl: './patient-notes.component.html',
-  styleUrls: ['./patient-notes.component.css']
+  selector: "app-patient-notes",
+  templateUrl: "./patient-notes.component.html",
+  styleUrls: ["./patient-notes.component.css"]
 })
 export class PatientNotesComponent implements OnInit, OnDestroy {
 
   private patient_id: string;
+  private staffId: string;
   public patientFound = false;
   private patient: Patient = null;
   private patients$: any = null;
@@ -27,10 +30,12 @@ export class PatientNotesComponent implements OnInit, OnDestroy {
   private patientNotesPreEdit: any = null;
 
   constructor(private patientService: PatientService,
+    private authService: AuthService,
     private router: Router) { }
 
   ngOnInit() {
     this.patient_id = this.patientService.patient_idToFind;
+    this.staffId = this.authService.getUserId();
     this.messages = [];
     this.getPatientData();
   }
@@ -47,14 +52,14 @@ export class PatientNotesComponent implements OnInit, OnDestroy {
   saveNotes() {
     const notesToSave = this.patient.clinical_notes;
     this.canEditNotes = false;
-    this.patientService.savePatientNotes(this.patient_id, this.patient.clinical_notes).subscribe(
-      res => {
-        const status = res['status'];
+    this.patientService.savePatientNotes(this.patient_id, this.staffId, this.patient.clinical_notes).subscribe(
+      (res) => {
+        const status = res["status"];
         if (status === 200) {
-          const msg = 'Patient Notes Updated.';
+          const msg = "Patient Notes Updated.";
           this.pushMsgAndRemoveAfterInterval(msg);
         } else if (status.toString().startsWith(4)) {
-          const msg = 'Patient Notes failed to save.';
+          const msg = "Patient Notes failed to save.";
           this.pushMsgAndRemoveAfterInterval(msg);
         }
       }
@@ -73,7 +78,7 @@ export class PatientNotesComponent implements OnInit, OnDestroy {
       medications.push(medication);
       this.setMedFieldsNull();
     } else {
-      const msg = 'Please enter all fields before trying to add a medication';
+      const msg = "Please enter all fields before trying to add a medication";
       this.pushMsgAndRemoveAfterInterval(msg);
     }
   }
@@ -95,25 +100,25 @@ export class PatientNotesComponent implements OnInit, OnDestroy {
 
   getPatientData() {
     if (this.patient_id !== null && this.patient_id !== undefined) {
-      this.patients$ = this.patientService.getPatientNotes(this.patient_id).subscribe((data) => {
-        const status = data['status'];
-        const patientData = data['data'];
+      this.patients$ = this.patientService.getPatientNotes(this.patient_id, this.staffId).subscribe((data) => {
+        const status = data["status"];
+        const patientData = data["data"];
         if (status === 200) {
           const { _id, patient_id, forename, surname, user_name, address, clinical_notes } = patientData;
-          const addressObj = new Address(address['line1'], address['line2'], address['town_city'], address['postcode']);
+          const addressObj = new Address(address["line1"], address["line2"], address["town_city"], address["postcode"]);
           const notesObj = new ClinicalNotes(
-            clinical_notes['diagnosis'],
-            clinical_notes['notes'],
-            clinical_notes['last_accessed'],
-            clinical_notes['last_acc_by'],
-            clinical_notes['medications']
+            clinical_notes["diagnosis"],
+            clinical_notes["notes"],
+            clinical_notes["last_accessed"],
+            clinical_notes["last_acc_by"],
+            clinical_notes["medications"]
           );
           this.patient = new Patient(_id, patient_id, user_name, forename, surname, addressObj, notesObj);
           this.patientFound = true;
         }
       });
     } else {
-      this.router.navigateByUrl('/patients-list');
+      this.router.navigateByUrl("/patients-list");
     }
   }
 

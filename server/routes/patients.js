@@ -1,25 +1,45 @@
-// 
-//  TODO:
-//      - Implement JWT middleware for routes
-//      - Fix client side logging in. 
-// 
 const express = require('express');
 const router = express.Router();
 const mongoose = require('mongoose');
 const jwt = require('jsonwebtoken');
 var bcrypt = require('bcrypt');
 const Response = require('../response');
+const winston = require('winston');
+const staffSchema = require('../schemas/staff');
+var staff = mongoose.model('staff', staffSchema, 'staff');
+const { createLogger, format, transports } = require('winston');
+const { combine, timestamp, prettyPrint, simple } = format;
 
 const PatientSchema = require('../schemas/patient');
-
-// Response handling
-let response = {
-    status: 200,
-    data: [],
-    message: null
-};
-
 var patientModel = mongoose.model('Patient', PatientSchema, 'patients');
+
+const customLevels = {
+    levels: {
+        accessed: 1,
+        changed: 0
+    }
+}
+
+const accessLogger = winston.createLogger({
+    level: 'accessed',
+    format: combine(
+        timestamp(),
+        prettyPrint()
+    ),
+    levels: customLevels.levels,
+    transports: [
+        new winston.transports.File({
+            filename: 'access.log',
+            level: 'accessed'
+        }),
+        new winston.transports.File({
+            filename: './logs/changed.log',
+            level: 'changed'
+        })
+    ]
+});
+
+
 var testPatient = {
     // patient_id: 100,
     forename: 'test',
@@ -52,7 +72,6 @@ var testPatient = {
 }
 
 router.get('/all-patients', ensureAndVerifyToken, (req, res) => {
-    resetResponse();
     patientModel.find({}, 'patient_id forename surname', function (err, patients) {
         if (!err) {
             if (patients.length === 0) {
@@ -73,8 +92,20 @@ router.get('/all-patients', ensureAndVerifyToken, (req, res) => {
     });
 });
 
-router.get('/patient-notes/:id', ensureAndVerifyToken, (req, res) => {
-    resetResponse();
+router.get('/patient-notes/:id/:staffId', ensureAndVerifyToken, (req, res) => {
+    const staffId = req.params.staffId;
+    let staffUsername = null;
+    let staffRole = null;
+
+    staff.findById({ _id: staffId }, 'user_name staff_role', function (err, staffMember) {
+        if (err) {
+            console.log(err);
+        } else {
+            staffUsername = staffMember.user_name;
+            staffRole = staffMember.staff_role;
+        }
+    });
+
     patientModel.findById({ _id: req.params.id }, '-password', function (err, patients) {
         if (!err) {
             // find returns an array - check if empty then send to 404
@@ -82,6 +113,10 @@ router.get('/patient-notes/:id', ensureAndVerifyToken, (req, res) => {
                 const resp = new Response(404);
                 res.json(resp);
             } else { // continue with response if it's found
+                if (staffUsername !== null && staffRole !== null) {
+                    const message = `${staffRole} ${staffUsername} accessed patient ${patients.user_name} notes.`;
+                    accessLogger.accessed(message);
+                }
                 const resp = new Response(200, patients);
                 res.json(resp);
             }
@@ -90,19 +125,24 @@ router.get('/patient-notes/:id', ensureAndVerifyToken, (req, res) => {
             const resp = new Response(500);
             res.json(resp);
         }
-    }).then((patients => {
-        if (patients !== null) {
-            console.log('Found patient notes with ID: ' + req.params.id);
-        } else {
-            console.log('No patient notes are found with an ID of ' + req.params.id);
-        }
-    })).catch(err => {
-        console.log(err);
-    })
+    });
 });
 
-router.post('/patient-notes/:id', ensureAndVerifyToken, (req, res) => {
-    resetResponse();
+router.post('/patient-notes/:id/:staffId', ensureAndVerifyToken, (req, res) => {
+    const staffId = req.params.staffId;
+    let staffUsername = null;
+    let staffRole = null;
+
+    staff.findById({ _id: staffId }, 'user_name staff_role', function (err, staffMember) {
+        if (err) {
+            console.log(err);
+        } else {
+            console.log(staffMember);
+            staffUsername = staffMember.user_name;
+            staffRole = staffMember.staff_role;
+        }
+    });
+
     patientModel.findByIdAndUpdate({ _id: req.params.id },
         { $set: { clinical_notes: req.body } },
         { new: true }, function (err, patient) {
@@ -110,6 +150,8 @@ router.post('/patient-notes/:id', ensureAndVerifyToken, (req, res) => {
                 const resp = new Response(404);
                 res.json(resp);
             }
+            const changedMessage = `${staffRole} ${staffUsername} modified patient ${patient.user_name} notes.`;
+            accessLogger.changed(changedMessage);
             const resp = new Response(200);
             res.json(resp);
         }
@@ -117,7 +159,6 @@ router.post('/patient-notes/:id', ensureAndVerifyToken, (req, res) => {
 });
 
 router.get('id/:id', ensureAndVerifyToken, (req, res) => {
-    resetResponse();
     patientModel.findOne({ 'patient_id': req.params.id }, function (err, patients) {
         if (!err) {
             // find returns an array - check if empty then send to 404
@@ -144,7 +185,6 @@ router.get('id/:id', ensureAndVerifyToken, (req, res) => {
 });
 
 router.post('/new-patient', (req, res) => {
-    resetResponse();
 
     const { forename, surname, username, line1, line2, townCity, postcode, password } = req.body;
 
@@ -184,7 +224,6 @@ router.post('/new-patient', (req, res) => {
 });
 
 router.post('/login', (req, res) => {
-    resetResponse();
     const user = req.body;
     const username = user.username;
     const password = user.password;
@@ -238,7 +277,6 @@ router.post('/login', (req, res) => {
 });
 
 router.get('/user-data/:id', ensureAndVerifyToken, function (req, res) {
-    resetResponse();
     const id = req.params.id;
     let idIsValid = mongoose.Types.ObjectId.isValid(id);
     if (idIsValid) {
@@ -264,7 +302,6 @@ router.get('/user-data/:id', ensureAndVerifyToken, function (req, res) {
 });
 
 router.get('/patient/:id', ensureAndVerifyToken, (req, res) => {
-    resetResponse();
     const id = req.params.id;
     const idIsValid = mongoose.Types.ObjectId.isValid(id);
 
@@ -284,7 +321,6 @@ router.get('/patient/:id', ensureAndVerifyToken, (req, res) => {
 });
 
 router.patch('/patient/:id', ensureAndVerifyToken, (req, res) => {
-    resetResponse();
 
     const { _id, forename, surname, username, address } = req.body;
 
@@ -310,7 +346,6 @@ router.patch('/patient/:id', ensureAndVerifyToken, (req, res) => {
 });
 
 router.get('/protected', ensureAndVerifyToken, (req, res) => {
-    resetResponse();
     jwt.verify(req.token, '13118866', (err, data) => {
         if (err) {
             res.sendStatus(403);
@@ -341,14 +376,6 @@ function ensureAndVerifyToken(req, res, next) {
     } else {
         res.sendStatus(403);
     }
-}
-
-//  WRITE MIDDLEWARE TO CHECK USERTYPE=DOCTOR/ADMIN BEFORE
-
-function resetResponse() {
-    response.status = 200;
-    response.data = [];
-    response.message = null;
 }
 
 // patientModel.create(testPatient, function (err) {

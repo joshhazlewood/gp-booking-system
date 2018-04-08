@@ -1,13 +1,12 @@
-import { Injectable } from '@angular/core';
-import { Http, Headers, RequestOptions, Response } from '@angular/http';
-import { HttpClient } from '@angular/common/http';
-import { HttpHeaders } from '@angular/common/http';
+import { Injectable } from "@angular/core";
+import { Headers, Http, RequestOptions, Response } from "@angular/http";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
 
 @Injectable()
 export class PatientService {
 
-  private baseUrl = '/api/patients';
   public patient_idToFind: string = null;
+  private baseUrl = "/api/patients";
 
   constructor(private http: HttpClient) { }
 
@@ -15,13 +14,13 @@ export class PatientService {
     return this.http.get(this.baseUrl + '/all-patients');
   }
 
-  getPatientNotes(_id: string) {
-    return this.http.get(`${this.baseUrl}/patient-notes/${_id}`);
+  getPatientNotes(_id: string, staffId: string) {
+    return this.http.get(`${this.baseUrl}/patient-notes/${_id}/${staffId}`);
   }
 
   //  FINISH SAVING NOTES
-  savePatientNotes(_id: string, notes) {
-    return this.http.post(`${this.baseUrl}/patient-notes/${_id}`, notes);
+  savePatientNotes(_id: string, staffId: string, notes) {
+    return this.http.post(`${this.baseUrl}/patient-notes/${_id}/${staffId}`, notes);
   }
 
   getPatientById(_id) {
