@@ -1,0 +1,1249 @@
+
+ERROR: src/app/admin-panel/admin-panel.component.spec.ts[1, 50]: ' should be "
+ERROR: src/app/admin-panel/admin-panel.component.spec.ts[3, 37]: ' should be "
+ERROR: src/app/admin-panel/admin-panel.component.spec.ts[5, 10]: ' should be "
+ERROR: src/app/admin-panel/admin-panel.component.spec.ts[11, 44]: Missing trailing comma
+ERROR: src/app/admin-panel/admin-panel.component.spec.ts[22, 6]: ' should be "
+ERROR: src/app/admin-panel/admin-panel.component.ts[1, 35]: ' should be "
+ERROR: src/app/admin-panel/admin-panel.component.ts[2, 24]: ' should be "
+ERROR: src/app/admin-panel/admin-panel.component.ts[3, 1]: Import sources within a group must be alphabetized.
+ERROR: src/app/admin-panel/admin-panel.component.ts[3, 52]: ' should be "
+ERROR: src/app/admin-panel/admin-panel.component.ts[5, 32]: ' should be "
+ERROR: src/app/admin-panel/admin-panel.component.ts[6, 30]: ' should be "
+ERROR: src/app/admin-panel/admin-panel.component.ts[7, 1]: Import sources within a group must be alphabetized.
+ERROR: src/app/admin-panel/admin-panel.component.ts[7, 28]: ' should be "
+ERROR: src/app/admin-panel/admin-panel.component.ts[8, 1]: Import sources within a group must be alphabetized.
+ERROR: src/app/admin-panel/admin-panel.component.ts[8, 42]: ' should be "
+ERROR: src/app/admin-panel/admin-panel.component.ts[11, 13]: ' should be "
+ERROR: src/app/admin-panel/admin-panel.component.ts[12, 16]: ' should be "
+ERROR: src/app/admin-panel/admin-panel.component.ts[13, 3]: The key 'styleUrls' is not sorted alphabetically
+ERROR: src/app/admin-panel/admin-panel.component.ts[13, 15]: ' should be "
+ERROR: src/app/admin-panel/admin-panel.component.ts[13, 45]: Missing trailing comma
+ERROR: src/app/admin-panel/admin-panel.component.ts[19, 3]: Declaration of public instance field not allowed after declaration of private instance field. Instead, this should come at the beginning of the class/interface.
+ERROR: src/app/admin-panel/admin-panel.component.ts[21, 3]: Declaration of public instance field not allowed after declaration of private instance field. Instead, this should come at the beginning of the class/interface.
+ERROR: src/app/admin-panel/admin-panel.component.ts[22, 3]: Declaration of public instance field not allowed after declaration of private instance field. Instead, this should come at the beginning of the class/interface.
+ERROR: src/app/admin-panel/admin-panel.component.ts[23, 3]: Declaration of public instance field not allowed after declaration of private instance field. Instead, this should come at the beginning of the class/interface.
+ERROR: src/app/admin-panel/admin-panel.component.ts[24, 3]: Declaration of public instance field not allowed after declaration of private instance field. Instead, this should come at the beginning of the class/interface.
+ERROR: src/app/admin-panel/admin-panel.component.ts[25, 3]: Declaration of public instance field not allowed after declaration of private instance field. Instead, this should come at the beginning of the class/interface.
+ERROR: src/app/admin-panel/admin-panel.component.ts[28, 5]: parameters are not aligned
+ERROR: src/app/admin-panel/admin-panel.component.ts[29, 5]: parameters are not aligned
+ERROR: src/app/admin-panel/admin-panel.component.ts[30, 5]: parameters are not aligned
+ERROR: src/app/admin-panel/admin-panel.component.ts[34, 3]: The class method 'ngOnInit' must be marked either 'private', 'public', or 'protected'
+ERROR: src/app/admin-panel/admin-panel.component.ts[35, 22]: ' should be "
+ERROR: src/app/admin-panel/admin-panel.component.ts[39, 29]: object access via string literals is disallowed
+ERROR: src/app/admin-panel/admin-panel.component.ts[39, 29]: ' should be "
+ERROR: src/app/admin-panel/admin-panel.component.ts[42, 32]: ' should be "
+ERROR: src/app/admin-panel/admin-panel.component.ts[42, 32]: object access via string literals is disallowed
+ERROR: src/app/admin-panel/admin-panel.component.ts[47, 15]: The key 'fullName' is not sorted alphabetically
+ERROR: src/app/admin-panel/admin-panel.component.ts[47, 76]: Missing trailing comma
+ERROR: src/app/admin-panel/admin-panel.component.ts[50, 12]: Missing trailing comma
+ERROR: src/app/admin-panel/admin-panel.component.ts[57, 9]: Calls to 'console.log' are not allowed.
+ERROR: src/app/admin-panel/admin-panel.component.ts[58, 8]: Missing trailing comma
+ERROR: src/app/admin-panel/admin-panel.component.ts[63, 29]: object access via string literals is disallowed
+ERROR: src/app/admin-panel/admin-panel.component.ts[63, 29]: ' should be "
+ERROR: src/app/admin-panel/admin-panel.component.ts[66, 32]: object access via string literals is disallowed
+ERROR: src/app/admin-panel/admin-panel.component.ts[66, 32]: ' should be "
+ERROR: src/app/admin-panel/admin-panel.component.ts[71, 15]: The key 'fullName' is not sorted alphabetically
+ERROR: src/app/admin-panel/admin-panel.component.ts[71, 84]: Missing trailing comma
+ERROR: src/app/admin-panel/admin-panel.component.ts[74, 12]: Missing trailing comma
+ERROR: src/app/admin-panel/admin-panel.component.ts[77, 49]: ' should be "
+ERROR: src/app/admin-panel/admin-panel.component.ts[78, 11]: Calls to 'console.log' are not allowed.
+ERROR: src/app/admin-panel/admin-panel.component.ts[78, 23]: ' should be "
+ERROR: src/app/admin-panel/admin-panel.component.ts[78, 55]: Missing semicolon
+ERROR: src/app/admin-panel/admin-panel.component.ts[83, 9]: Calls to 'console.log' are not allowed.
+ERROR: src/app/admin-panel/admin-panel.component.ts[84, 8]: Missing trailing comma
+ERROR: src/app/admin-panel/admin-panel.component.ts[88, 3]: The class method 'showTab' must be marked either 'private', 'public', or 'protected'
+ERROR: src/app/admin-panel/admin-panel.component.ts[92, 3]: The class method 'getFullName' must be marked either 'private', 'public', or 'protected'
+ERROR: src/app/admin-panel/admin-panel.component.ts[97, 3]: The class method 'editPatient' must be marked either 'private', 'public', or 'protected'
+ERROR: src/app/admin-panel/admin-panel.component.ts[101, 3]: The class method 'editStaff' must be marked either 'private', 'public', or 'protected'
+ERROR: src/app/admin-panel/admin-panel.component.ts[105, 3]: The class method 'goToNewPatientComponent' must be marked either 'private', 'public', or 'protected'
+ERROR: src/app/admin-panel/admin-panel.component.ts[106, 31]: ' should be "
+ERROR: src/app/admin-panel/admin-panel.component.ts[109, 3]: The class method 'goToNewStaffComponent' must be marked either 'private', 'public', or 'protected'
+ERROR: src/app/admin-panel/admin-panel.component.ts[110, 31]: ' should be "
+ERROR: src/app/app.component.spec.ts[1, 10]: Named imports must be alphabetized.
+ERROR: src/app/app.component.spec.ts[1, 32]: ' should be "
+ERROR: src/app/app.component.spec.ts[2, 30]: ' should be "
+ERROR: src/app/app.component.spec.ts[3, 10]: ' should be "
+ERROR: src/app/app.component.spec.ts[7, 21]: Missing trailing comma
+ERROR: src/app/app.component.spec.ts[11, 6]: ' should be "
+ERROR: src/app/app.component.spec.ts[19, 31]: ' should be "
+ERROR: src/app/app.component.spec.ts[21, 6]: ' should be "
+ERROR: src/app/app.component.spec.ts[25, 35]: ' should be "
+ERROR: src/app/app.component.spec.ts[25, 64]: ' should be "
+ERROR: src/app/app.component.ts[1, 27]: ' should be "
+ERROR: src/app/app.component.ts[2, 29]: ' should be "
+ERROR: src/app/app.component.ts[3, 1]: Import sources within a group must be alphabetized.
+ERROR: src/app/app.component.ts[3, 24]: ' should be "
+ERROR: src/app/app.component.ts[6, 13]: ' should be "
+ERROR: src/app/app.component.ts[7, 16]: ' should be "
+ERROR: src/app/app.component.ts[8, 3]: The key 'styleUrls' is not sorted alphabetically
+ERROR: src/app/app.component.ts[8, 15]: ' should be "
+ERROR: src/app/app.component.ts[8, 37]: Missing trailing comma
+ERROR: src/app/app.component.ts[11, 3]: The class property 'title' must be marked either 'private', 'public', or 'protected'
+ERROR: src/app/app.component.ts[11, 11]: ' should be "
+ERROR: src/app/app.component.ts[14, 3]: The class property 'users' must be marked either 'private', 'public', or 'protected'
+ERROR: src/app/app.component.ts[14, 10]: Array type using 'Array<T>' is forbidden for simple types. Use 'T[]' instead.
+ERROR: src/app/app.component.ts[17, 23]: variable name must be in lowerCamelCase, PascalCase or UPPER_CASE
+ERROR: src/app/app.module.ts[1, 31]: ' should be "
+ERROR: src/app/app.module.ts[2, 1]: Import sources within a group must be alphabetized.
+ERROR: src/app/app.module.ts[2, 26]: ' should be "
+ERROR: src/app/app.module.ts[3, 1]: Import sources within a group must be alphabetized.
+ERROR: src/app/app.module.ts[3, 34]: ' should be "
+ERROR: src/app/app.module.ts[5, 22]: ' should be "
+ERROR: src/app/app.module.ts[6, 38]: ' should be "
+ERROR: src/app/app.module.ts[7, 1]: Import sources within a group must be alphabetized.
+ERROR: src/app/app.module.ts[7, 50]: ' should be "
+ERROR: src/app/app.module.ts[8, 1]: Import sources within a group must be alphabetized.
+ERROR: src/app/app.module.ts[8, 35]: ' should be "
+ERROR: src/app/app.module.ts[9, 33]: ' should be "
+ERROR: src/app/app.module.ts[11, 36]: ' should be "
+ERROR: src/app/app.module.ts[12, 36]: ' should be "
+ERROR: src/app/app.module.ts[13, 41]: ' should be "
+ERROR: src/app/app.module.ts[14, 1]: Import sources within a group must be alphabetized.
+ERROR: src/app/app.module.ts[14, 30]: ' should be "
+ERROR: src/app/app.module.ts[16, 30]: ' should be "
+ERROR: src/app/app.module.ts[17, 29]: ' should be "
+ERROR: src/app/app.module.ts[18, 1]: Import sources within a group must be alphabetized.
+ERROR: src/app/app.module.ts[18, 36]: ' should be "
+ERROR: src/app/app.module.ts[19, 33]: ' should be "
+ERROR: src/app/app.module.ts[20, 36]: ' should be "
+ERROR: src/app/app.module.ts[21, 1]: Import sources within a group must be alphabetized.
+ERROR: src/app/app.module.ts[21, 38]: ' should be "
+ERROR: src/app/app.module.ts[22, 1]: Import sources within a group must be alphabetized.
+ERROR: src/app/app.module.ts[22, 39]: ' should be "
+ERROR: src/app/app.module.ts[23, 1]: Import sources within a group must be alphabetized.
+ERROR: src/app/app.module.ts[23, 37]: ' should be "
+ERROR: src/app/app.module.ts[24, 39]: ' should be "
+ERROR: src/app/app.module.ts[25, 1]: Import sources within a group must be alphabetized.
+ERROR: src/app/app.module.ts[25, 41]: ' should be "
+ERROR: src/app/app.module.ts[26, 37]: ' should be "
+ERROR: src/app/app.module.ts[27, 30]: ' should be "
+ERROR: src/app/app.module.ts[28, 1]: Import sources within a group must be alphabetized.
+ERROR: src/app/app.module.ts[28, 32]: ' should be "
+ERROR: src/app/app.module.ts[29, 1]: Import sources within a group must be alphabetized.
+ERROR: src/app/app.module.ts[29, 29]: ' should be "
+ERROR: src/app/app.module.ts[30, 1]: Import sources within a group must be alphabetized.
+ERROR: src/app/app.module.ts[30, 32]: ' should be "
+ERROR: src/app/app.module.ts[31, 34]: ' should be "
+ERROR: src/app/app.module.ts[32, 1]: Import sources within a group must be alphabetized.
+ERROR: src/app/app.module.ts[32, 37]: ' should be "
+ERROR: src/app/app.module.ts[33, 28]: ' should be "
+ERROR: src/app/app.module.ts[34, 1]: Import sources within a group must be alphabetized.
+ERROR: src/app/app.module.ts[34, 39]: ' should be "
+ERROR: src/app/app.module.ts[35, 1]: Import sources within a group must be alphabetized.
+ERROR: src/app/app.module.ts[35, 38]: ' should be "
+ERROR: src/app/app.module.ts[36, 36]: ' should be "
+ERROR: src/app/app.module.ts[37, 35]: ' should be "
+ERROR: src/app/app.module.ts[38, 1]: Import sources within a group must be alphabetized.
+ERROR: src/app/app.module.ts[38, 37]: ' should be "
+ERROR: src/app/app.module.ts[39, 1]: Import sources within a group must be alphabetized.
+ERROR: src/app/app.module.ts[39, 35]: ' should be "
+ERROR: src/app/app.module.ts[40, 41]: ' should be "
+ERROR: src/app/app.module.ts[43, 11]: ' should be "
+ERROR: src/app/app.module.ts[44, 11]: ' should be "
+ERROR: src/app/app.module.ts[46, 11]: ' should be "
+ERROR: src/app/app.module.ts[47, 5]: The key 'component' is not sorted alphabetically
+ERROR: src/app/app.module.ts[50, 21]: ' should be "
+ERROR: src/app/app.module.ts[50, 30]: Missing trailing comma
+ERROR: src/app/app.module.ts[51, 6]: Missing trailing comma
+ERROR: src/app/app.module.ts[53, 11]: ' should be "
+ERROR: src/app/app.module.ts[54, 11]: ' should be "
+ERROR: src/app/app.module.ts[56, 11]: ' should be "
+ERROR: src/app/app.module.ts[57, 5]: The key 'component' is not sorted alphabetically
+ERROR: src/app/app.module.ts[60, 21]: ' should be "
+ERROR: src/app/app.module.ts[60, 29]: Missing trailing comma
+ERROR: src/app/app.module.ts[61, 6]: Missing trailing comma
+ERROR: src/app/app.module.ts[64, 11]: ' should be "
+ERROR: src/app/app.module.ts[65, 5]: The key 'component' is not sorted alphabetically
+ERROR: src/app/app.module.ts[68, 21]: ' should be "
+ERROR: src/app/app.module.ts[69, 6]: Missing trailing comma
+ERROR: src/app/app.module.ts[72, 11]: ' should be "
+ERROR: src/app/app.module.ts[73, 5]: The key 'component' is not sorted alphabetically
+ERROR: src/app/app.module.ts[76, 21]: ' should be "
+ERROR: src/app/app.module.ts[76, 29]: Missing trailing comma
+ERROR: src/app/app.module.ts[77, 6]: Missing trailing comma
+ERROR: src/app/app.module.ts[80, 11]: ' should be "
+ERROR: src/app/app.module.ts[81, 5]: The key 'component' is not sorted alphabetically
+ERROR: src/app/app.module.ts[84, 21]: ' should be "
+ERROR: src/app/app.module.ts[84, 28]: Missing trailing comma
+ERROR: src/app/app.module.ts[85, 6]: Missing trailing comma
+ERROR: src/app/app.module.ts[88, 11]: ' should be "
+ERROR: src/app/app.module.ts[89, 5]: The key 'component' is not sorted alphabetically
+ERROR: src/app/app.module.ts[92, 21]: ' should be "
+ERROR: src/app/app.module.ts[92, 28]: Missing trailing comma
+ERROR: src/app/app.module.ts[93, 6]: Missing trailing comma
+ERROR: src/app/app.module.ts[96, 11]: ' should be "
+ERROR: src/app/app.module.ts[97, 5]: The key 'component' is not sorted alphabetically
+ERROR: src/app/app.module.ts[100, 21]: ' should be "
+ERROR: src/app/app.module.ts[100, 28]: Missing trailing comma
+ERROR: src/app/app.module.ts[101, 6]: Missing trailing comma
+ERROR: src/app/app.module.ts[104, 11]: ' should be "
+ERROR: src/app/app.module.ts[105, 5]: The key 'component' is not sorted alphabetically
+ERROR: src/app/app.module.ts[108, 21]: ' should be "
+ERROR: src/app/app.module.ts[108, 28]: Missing trailing comma
+ERROR: src/app/app.module.ts[109, 6]: Missing trailing comma
+ERROR: src/app/app.module.ts[112, 11]: ' should be "
+ERROR: src/app/app.module.ts[113, 5]: The key 'component' is not sorted alphabetically
+ERROR: src/app/app.module.ts[116, 21]: ' should be "
+ERROR: src/app/app.module.ts[116, 28]: Missing trailing comma
+ERROR: src/app/app.module.ts[117, 6]: Missing trailing comma
+ERROR: src/app/app.module.ts[120, 11]: ' should be "
+ERROR: src/app/app.module.ts[121, 5]: The key 'component' is not sorted alphabetically
+ERROR: src/app/app.module.ts[124, 21]: ' should be "
+ERROR: src/app/app.module.ts[124, 30]: Missing trailing comma
+ERROR: src/app/app.module.ts[125, 6]: Missing trailing comma
+ERROR: src/app/app.module.ts[128, 11]: ' should be "
+ERROR: src/app/app.module.ts[129, 17]: ' should be "
+ERROR: src/app/app.module.ts[130, 5]: The key 'pathMatch' is not sorted alphabetically
+ERROR: src/app/app.module.ts[130, 16]: ' should be "
+ERROR: src/app/app.module.ts[130, 22]: Missing trailing comma
+ERROR: src/app/app.module.ts[132, 11]: ' should be "
+ERROR: src/app/app.module.ts[132, 51]: Missing trailing comma
+ERROR: src/app/app.module.ts[135, 1]: Consecutive blank lines are forbidden
+ERROR: src/app/app.module.ts[156, 28]: Missing trailing comma
+ERROR: src/app/app.module.ts[164, 31]: Missing trailing comma
+ERROR: src/app/app.module.ts[171, 17]: Missing trailing comma
+ERROR: src/app/app.module.ts[183, 7]: The key 'multi' is not sorted alphabetically
+ERROR: src/app/app.module.ts[183, 18]: Missing trailing comma
+ERROR: src/app/app.module.ts[184, 6]: Missing trailing comma
+ERROR: src/app/app.module.ts[186, 3]: The key 'bootstrap' is not sorted alphabetically
+ERROR: src/app/app.module.ts[186, 28]: Missing trailing comma
+ERROR: src/app/appointments/appointments.component.spec.ts[1, 50]: ' should be "
+ERROR: src/app/appointments/appointments.component.spec.ts[3, 39]: ' should be "
+ERROR: src/app/appointments/appointments.component.spec.ts[5, 10]: ' should be "
+ERROR: src/app/appointments/appointments.component.spec.ts[11, 46]: Missing trailing comma
+ERROR: src/app/appointments/appointments.component.spec.ts[22, 6]: ' should be "
+ERROR: src/app/appointments/appointments.component.ts[1, 46]: ' should be "
+ERROR: src/app/appointments/appointments.component.ts[3, 37]: ' should be "
+ERROR: src/app/appointments/appointments.component.ts[4, 29]: ' should be "
+ERROR: src/app/appointments/appointments.component.ts[5, 23]: ' should be "
+ERROR: src/app/appointments/appointments.component.ts[6, 1]: Import sources within a group must be alphabetized.
+ERROR: src/app/appointments/appointments.component.ts[6, 35]: ' should be "
+ERROR: src/app/appointments/appointments.component.ts[7, 1]: Import sources within a group must be alphabetized.
+ERROR: src/app/appointments/appointments.component.ts[7, 25]: ' should be "
+ERROR: src/app/appointments/appointments.component.ts[8, 42]: ' should be "
+ERROR: src/app/appointments/appointments.component.ts[9, 1]: Import sources within a group must be alphabetized.
+ERROR: src/app/appointments/appointments.component.ts[9, 25]: ' should be "
+ERROR: src/app/appointments/appointments.component.ts[12, 13]: ' should be "
+ERROR: src/app/appointments/appointments.component.ts[13, 16]: ' should be "
+ERROR: src/app/appointments/appointments.component.ts[14, 3]: The key 'styleUrls' is not sorted alphabetically
+ERROR: src/app/appointments/appointments.component.ts[14, 15]: ' should be "
+ERROR: src/app/appointments/appointments.component.ts[14, 46]: Missing trailing comma
+ERROR: src/app/appointments/appointments.component.ts[23, 3]: Declaration of public instance field not allowed after declaration of private instance field. Instead, this should come at the beginning of the class/interface.
+ERROR: src/app/appointments/appointments.component.ts[23, 33]: The class property 'ucCalendar' must be marked either 'private', 'public', or 'protected'
+ERROR: src/app/appointments/appointments.component.ts[26, 5]: parameters are not aligned
+ERROR: src/app/appointments/appointments.component.ts[27, 5]: parameters are not aligned
+ERROR: src/app/appointments/appointments.component.ts[27, 37]: Missing trailing comma
+ERROR: src/app/appointments/appointments.component.ts[30, 3]: The class method 'getFullName' must be marked either 'private', 'public', or 'protected'
+ERROR: src/app/appointments/appointments.component.ts[35, 3]: The class method 'ngOnInit' must be marked either 'private', 'public', or 'protected'
+ERROR: src/app/appointments/appointments.component.ts[36, 11]: variable name must be in lowerCamelCase, PascalCase or UPPER_CASE
+ERROR: src/app/appointments/appointments.component.ts[40, 9]: Parentheses are required around the parameters of an arrow function definition
+ERROR: src/app/appointments/appointments.component.ts[42, 19]: object access via string literals is disallowed
+ERROR: src/app/appointments/appointments.component.ts[42, 19]: ' should be "
+ERROR: src/app/appointments/appointments.component.ts[43, 37]: ' should be "
+ERROR: src/app/appointments/appointments.component.ts[43, 37]: object access via string literals is disallowed
+ERROR: src/app/appointments/appointments.component.ts[47, 17]: Parentheses are required around the parameters of an arrow function definition
+ERROR: src/app/appointments/appointments.component.ts[48, 44]: object access via string literals is disallowed
+ERROR: src/app/appointments/appointments.component.ts[48, 44]: ' should be "
+ERROR: src/app/appointments/appointments.component.ts[48, 55]: ' should be "
+ERROR: src/app/appointments/appointments.component.ts[48, 55]: object access via string literals is disallowed
+ERROR: src/app/appointments/appointments.component.ts[49, 44]: ' should be "
+ERROR: src/app/appointments/appointments.component.ts[49, 44]: object access via string literals is disallowed
+ERROR: src/app/appointments/appointments.component.ts[49, 55]: object access via string literals is disallowed
+ERROR: src/app/appointments/appointments.component.ts[49, 55]: ' should be "
+ERROR: src/app/appointments/appointments.component.ts[51, 25]: variable name must be in lowerCamelCase, PascalCase or UPPER_CASE
+ERROR: src/app/appointments/appointments.component.ts[51, 42]: ' should be "
+ERROR: src/app/appointments/appointments.component.ts[51, 42]: object access via string literals is disallowed
+ERROR: src/app/appointments/appointments.component.ts[52, 25]: variable name must be in lowerCamelCase, PascalCase or UPPER_CASE
+ERROR: src/app/appointments/appointments.component.ts[52, 40]: ' should be "
+ERROR: src/app/appointments/appointments.component.ts[52, 40]: object access via string literals is disallowed
+ERROR: src/app/appointments/appointments.component.ts[53, 1]: trailing whitespace
+ERROR: src/app/appointments/appointments.component.ts[54, 25]: variable name must be in lowerCamelCase, PascalCase or UPPER_CASE
+ERROR: src/app/appointments/appointments.component.ts[55, 25]: variable name must be in lowerCamelCase, PascalCase or UPPER_CASE
+ERROR: src/app/appointments/appointments.component.ts[57, 25]: variable name must be in lowerCamelCase, PascalCase or UPPER_CASE
+ERROR: src/app/appointments/appointments.component.ts[58, 25]: variable name must be in lowerCamelCase, PascalCase or UPPER_CASE
+ERROR: src/app/appointments/appointments.component.ts[62, 21]: The key 'start' is not sorted alphabetically
+ERROR: src/app/appointments/appointments.component.ts[63, 44]: Missing trailing comma
+ERROR: src/app/appointments/appointments.component.ts[67, 18]: Missing trailing comma
+ERROR: src/app/appointments/appointments.component.ts[74, 25]: ' should be "
+ERROR: src/app/appointments/appointments.component.ts[75, 19]: The key 'center' is not sorted alphabetically
+ERROR: src/app/appointments/appointments.component.ts[75, 27]: ' should be "
+ERROR: src/app/appointments/appointments.component.ts[76, 26]: ' should be "
+ERROR: src/app/appointments/appointments.component.ts[76, 64]: Missing trailing comma
+ERROR: src/app/appointments/appointments.component.ts[78, 17]: The key 'events' is not sorted alphabetically
+ERROR: src/app/appointments/appointments.component.ts[79, 41]: Missing trailing comma
+ERROR: src/app/appointments/appointments.component.ts[87, 10]: Missing trailing comma
+ERROR: src/app/appointments/appointments.component.ts[91, 3]: The class method 'clickButton' must be marked either 'private', 'public', or 'protected'
+ERROR: src/app/auth-guard.service.spec.ts[1, 10]: Named imports must be alphabetized.
+ERROR: src/app/auth-guard.service.spec.ts[1, 33]: ' should be "
+ERROR: src/app/auth-guard.service.spec.ts[3, 34]: ' should be "
+ERROR: src/app/auth-guard.service.spec.ts[5, 10]: ' should be "
+ERROR: src/app/auth-guard.service.spec.ts[8, 36]: Missing trailing comma
+ERROR: src/app/auth-guard.service.spec.ts[12, 6]: ' should be "
+ERROR: src/app/auth/auth-interceptor.ts[1, 28]: ' should be "
+ERROR: src/app/auth/auth-interceptor.ts[2, 1]: Import sources within a group must be alphabetized.
+ERROR: src/app/auth/auth-interceptor.ts[2, 10]: Named imports must be alphabetized.
+ERROR: src/app/auth/auth-interceptor.ts[2, 70]: ' should be "
+ERROR: src/app/auth/auth-interceptor.ts[3, 28]: ' should be "
+ERROR: src/app/auth/auth-interceptor.ts[8, 5]: The class method 'intercept' must be marked either 'private', 'public', or 'protected'
+ERROR: src/app/auth/auth-interceptor.ts[9, 9]: parameters are not aligned
+ERROR: src/app/auth/auth-interceptor.ts[16, 41]: Missing trailing comma
+ERROR: src/app/auth/auth-interceptor.ts[21, 9]: misplaced 'else'
+ERROR: src/app/auth/login/login.component.spec.ts[1, 50]: ' should be "
+ERROR: src/app/auth/login/login.component.spec.ts[3, 32]: ' should be "
+ERROR: src/app/auth/login/login.component.spec.ts[5, 10]: ' should be "
+ERROR: src/app/auth/login/login.component.spec.ts[11, 39]: Missing trailing comma
+ERROR: src/app/auth/login/login.component.spec.ts[22, 6]: ' should be "
+ERROR: src/app/auth/login/login.component.ts[25, 5]: parameters are not aligned
+ERROR: src/app/auth/login/login.component.ts[26, 5]: parameters are not aligned
+ERROR: src/app/auth/login/login.component.ts[27, 5]: parameters are not aligned
+ERROR: src/app/auth/login/login.component.ts[27, 29]: Missing trailing comma
+ERROR: src/app/auth/login/login.component.ts[57, 33]: object access via string literals is disallowed
+ERROR: src/app/auth/login/login.component.ts[59, 36]: object access via string literals is disallowed
+ERROR: src/app/auth/login/login.component.ts[80, 19]: trailing whitespace
+ERROR: src/app/auth/login/login.component.ts[95, 20]: Shadowed name: 'res'
+ERROR: src/app/auth/login/login.component.ts[95, 20]: Parentheses are required around the parameters of an arrow function definition
+ERROR: src/app/auth/login/login.component.ts[96, 32]: object access via string literals is disallowed
+ERROR: src/app/auth/login/login.component.ts[107, 20]: Shadowed name: 'res'
+ERROR: src/app/auth/login/login.component.ts[107, 20]: Parentheses are required around the parameters of an arrow function definition
+ERROR: src/app/auth/login/login.component.ts[108, 32]: object access via string literals is disallowed
+ERROR: src/app/confirm-app/confirm-app.component.spec.ts[1, 50]: ' should be "
+ERROR: src/app/confirm-app/confirm-app.component.spec.ts[3, 37]: ' should be "
+ERROR: src/app/confirm-app/confirm-app.component.spec.ts[5, 10]: ' should be "
+ERROR: src/app/confirm-app/confirm-app.component.spec.ts[11, 44]: Missing trailing comma
+ERROR: src/app/confirm-app/confirm-app.component.spec.ts[22, 6]: ' should be "
+ERROR: src/app/confirm-app/confirm-app.component.ts[1, 35]: ' should be "
+ERROR: src/app/confirm-app/confirm-app.component.ts[2, 24]: ' should be "
+ERROR: src/app/confirm-app/confirm-app.component.ts[3, 29]: ' should be "
+ERROR: src/app/confirm-app/confirm-app.component.ts[4, 1]: Import sources within a group must be alphabetized.
+ERROR: src/app/confirm-app/confirm-app.component.ts[4, 37]: ' should be "
+ERROR: src/app/confirm-app/confirm-app.component.ts[7, 13]: ' should be "
+ERROR: src/app/confirm-app/confirm-app.component.ts[8, 16]: ' should be "
+ERROR: src/app/confirm-app/confirm-app.component.ts[9, 3]: The key 'styleUrls' is not sorted alphabetically
+ERROR: src/app/confirm-app/confirm-app.component.ts[9, 15]: ' should be "
+ERROR: src/app/confirm-app/confirm-app.component.ts[9, 45]: Missing trailing comma
+ERROR: src/app/confirm-app/confirm-app.component.ts[14, 3]: Declaration of public instance field not allowed after declaration of private instance field. Instead, this should come at the beginning of the class/interface.
+ERROR: src/app/confirm-app/confirm-app.component.ts[17, 5]: parameters are not aligned
+ERROR: src/app/confirm-app/confirm-app.component.ts[18, 5]: parameters are not aligned
+ERROR: src/app/confirm-app/confirm-app.component.ts[18, 53]: Missing trailing comma
+ERROR: src/app/confirm-app/confirm-app.component.ts[21, 3]: The class method 'ngOnInit' must be marked either 'private', 'public', or 'protected'
+ERROR: src/app/confirm-app/confirm-app.component.ts[23, 7]: missing whitespace
+ERROR: src/app/confirm-app/confirm-app.component.ts[29, 3]: The class method 'isEmptyObject' must be marked either 'private', 'public', or 'protected'
+ERROR: src/app/confirm-app/confirm-app.component.ts[33, 3]: The class method 'goToHome' must be marked either 'private', 'public', or 'protected'
+ERROR: src/app/confirm-app/confirm-app.component.ts[34, 31]: ' should be "
+ERROR: src/app/confirm-app/confirm-app.component.ts[37, 3]: The class method 'logout' must be marked either 'private', 'public', or 'protected'
+ERROR: src/app/dashboard/dashboard.component.spec.ts[1, 50]: ' should be "
+ERROR: src/app/dashboard/dashboard.component.spec.ts[3, 36]: ' should be "
+ERROR: src/app/dashboard/dashboard.component.spec.ts[5, 10]: ' should be "
+ERROR: src/app/dashboard/dashboard.component.spec.ts[11, 43]: Missing trailing comma
+ERROR: src/app/dashboard/dashboard.component.spec.ts[22, 6]: ' should be "
+ERROR: src/app/dashboard/dashboard.component.ts[1, 35]: ' should be "
+ERROR: src/app/dashboard/dashboard.component.ts[4, 13]: ' should be "
+ERROR: src/app/dashboard/dashboard.component.ts[5, 16]: ' should be "
+ERROR: src/app/dashboard/dashboard.component.ts[6, 3]: The key 'styleUrls' is not sorted alphabetically
+ERROR: src/app/dashboard/dashboard.component.ts[6, 15]: ' should be "
+ERROR: src/app/dashboard/dashboard.component.ts[6, 43]: Missing trailing comma
+ERROR: src/app/dashboard/dashboard.component.ts[10, 17]: block is empty
+ERROR: src/app/dashboard/dashboard.component.ts[12, 3]: The class method 'ngOnInit' must be marked either 'private', 'public', or 'protected'
+ERROR: src/app/dashboard/dashboard.component.ts[12, 14]: block is empty
+ERROR: src/app/edit-patient/edit-patient.component.spec.ts[1, 50]: ' should be "
+ERROR: src/app/edit-patient/edit-patient.component.spec.ts[3, 38]: ' should be "
+ERROR: src/app/edit-patient/edit-patient.component.spec.ts[5, 10]: ' should be "
+ERROR: src/app/edit-patient/edit-patient.component.spec.ts[11, 45]: Missing trailing comma
+ERROR: src/app/edit-patient/edit-patient.component.spec.ts[22, 6]: ' should be "
+ERROR: src/app/edit-patient/edit-patient.component.ts[1, 21]: Named imports must be alphabetized.
+ERROR: src/app/edit-patient/edit-patient.component.ts[1, 46]: ' should be "
+ERROR: src/app/edit-patient/edit-patient.component.ts[2, 10]: Named imports must be alphabetized.
+ERROR: src/app/edit-patient/edit-patient.component.ts[2, 40]: ' should be "
+ERROR: src/app/edit-patient/edit-patient.component.ts[3, 1]: Import sources within a group must be alphabetized.
+ERROR: src/app/edit-patient/edit-patient.component.ts[3, 52]: ' should be "
+ERROR: src/app/edit-patient/edit-patient.component.ts[5, 35]: ' should be "
+ERROR: src/app/edit-patient/edit-patient.component.ts[6, 32]: ' should be "
+ERROR: src/app/edit-patient/edit-patient.component.ts[7, 1]: Import sources within a group must be alphabetized.
+ERROR: src/app/edit-patient/edit-patient.component.ts[7, 42]: ' should be "
+ERROR: src/app/edit-patient/edit-patient.component.ts[8, 32]: ' should be "
+ERROR: src/app/edit-patient/edit-patient.component.ts[9, 1]: Import sources within a group must be alphabetized.
+ERROR: src/app/edit-patient/edit-patient.component.ts[9, 25]: ' should be "
+ERROR: src/app/edit-patient/edit-patient.component.ts[12, 13]: ' should be "
+ERROR: src/app/edit-patient/edit-patient.component.ts[13, 16]: ' should be "
+ERROR: src/app/edit-patient/edit-patient.component.ts[14, 3]: The key 'styleUrls' is not sorted alphabetically
+ERROR: src/app/edit-patient/edit-patient.component.ts[14, 15]: ' should be "
+ERROR: src/app/edit-patient/edit-patient.component.ts[14, 46]: Missing trailing comma
+ERROR: src/app/edit-patient/edit-patient.component.ts[24, 3]: Declaration of public instance field not allowed after declaration of private instance field. Instead, this should come at the beginning of the class/interface.
+ERROR: src/app/edit-patient/edit-patient.component.ts[25, 3]: Declaration of public instance field not allowed after declaration of private instance field. Instead, this should come at the beginning of the class/interface.
+ERROR: src/app/edit-patient/edit-patient.component.ts[26, 21]: Array type using 'Array<T>' is forbidden for simple types. Use 'T[]' instead.
+ERROR: src/app/edit-patient/edit-patient.component.ts[29, 5]: parameters are not aligned
+ERROR: src/app/edit-patient/edit-patient.component.ts[30, 5]: parameters are not aligned
+ERROR: src/app/edit-patient/edit-patient.component.ts[31, 5]: parameters are not aligned
+ERROR: src/app/edit-patient/edit-patient.component.ts[32, 5]: parameters are not aligned
+ERROR: src/app/edit-patient/edit-patient.component.ts[34, 18]: ' should be "
+ERROR: src/app/edit-patient/edit-patient.component.ts[38, 36]: Missing trailing comma
+ERROR: src/app/edit-patient/edit-patient.component.ts[40, 17]: ' should be "
+ERROR: src/app/edit-patient/edit-patient.component.ts[44, 36]: Missing trailing comma
+ERROR: src/app/edit-patient/edit-patient.component.ts[46, 18]: ' should be "
+ERROR: src/app/edit-patient/edit-patient.component.ts[48, 25]: Missing trailing comma
+ERROR: src/app/edit-patient/edit-patient.component.ts[50, 7]: The key 'line1' is not sorted alphabetically
+ERROR: src/app/edit-patient/edit-patient.component.ts[50, 15]: ' should be "
+ERROR: src/app/edit-patient/edit-patient.component.ts[54, 33]: Missing trailing comma
+ERROR: src/app/edit-patient/edit-patient.component.ts[56, 15]: ' should be "
+ERROR: src/app/edit-patient/edit-patient.component.ts[60, 33]: Missing trailing comma
+ERROR: src/app/edit-patient/edit-patient.component.ts[62, 18]: ' should be "
+ERROR: src/app/edit-patient/edit-patient.component.ts[66, 33]: Missing trailing comma
+ERROR: src/app/edit-patient/edit-patient.component.ts[68, 18]: ' should be "
+ERROR: src/app/edit-patient/edit-patient.component.ts[72, 1]: Exceeds maximum line length of 120
+ERROR: src/app/edit-patient/edit-patient.component.ts[72, 202]: Missing trailing comma
+ERROR: src/app/edit-patient/edit-patient.component.ts[73, 9]: Missing trailing comma
+ERROR: src/app/edit-patient/edit-patient.component.ts[77, 3]: The class method 'ngOnInit' must be marked either 'private', 'public', or 'protected'
+ERROR: src/app/edit-patient/edit-patient.component.ts[80, 62]: object access via string literals is disallowed
+ERROR: src/app/edit-patient/edit-patient.component.ts[80, 62]: ' should be "
+ERROR: src/app/edit-patient/edit-patient.component.ts[84, 3]: The class method 'ngOnDestroy' must be marked either 'private', 'public', or 'protected'
+ERROR: src/app/edit-patient/edit-patient.component.ts[90, 3]: The class method 'getPatientData' must be marked either 'private', 'public', or 'protected'
+ERROR: src/app/edit-patient/edit-patient.component.ts[93, 29]: object access via string literals is disallowed
+ERROR: src/app/edit-patient/edit-patient.component.ts[93, 29]: ' should be "
+ERROR: src/app/edit-patient/edit-patient.component.ts[96, 32]: ' should be "
+ERROR: src/app/edit-patient/edit-patient.component.ts[96, 32]: object access via string literals is disallowed
+ERROR: src/app/edit-patient/edit-patient.component.ts[97, 39]: ' should be "
+ERROR: src/app/edit-patient/edit-patient.component.ts[97, 39]: object access via string literals is disallowed
+ERROR: src/app/edit-patient/edit-patient.component.ts[102, 33]: Missing trailing comma
+ERROR: src/app/edit-patient/edit-patient.component.ts[110, 20]: Missing trailing comma
+ERROR: src/app/edit-patient/edit-patient.component.ts[117, 9]: Calls to 'console.log' are not allowed.
+ERROR: src/app/edit-patient/edit-patient.component.ts[121, 3]: The class method 'makeEditable' must be marked either 'private', 'public', or 'protected'
+ERROR: src/app/edit-patient/edit-patient.component.ts[126, 3]: The class method 'cancelEdit' must be marked either 'private', 'public', or 'protected'
+ERROR: src/app/edit-patient/edit-patient.component.ts[129, 52]: Parentheses are required around the parameters of an arrow function definition
+ERROR: src/app/edit-patient/edit-patient.component.ts[135, 3]: The class method 'updateInputState' must be marked either 'private', 'public', or 'protected'
+ERROR: src/app/edit-patient/edit-patient.component.ts[137, 54]: Parentheses are required around the parameters of an arrow function definition
+ERROR: src/app/edit-patient/edit-patient.component.ts[141, 54]: Parentheses are required around the parameters of an arrow function definition
+ERROR: src/app/edit-patient/edit-patient.component.ts[149, 3]: The class method 'saveDetails' must be marked either 'private', 'public', or 'protected'
+ERROR: src/app/edit-patient/edit-patient.component.ts[150, 5]: Calls to 'console.log' are not allowed.
+ERROR: src/app/edit-patient/edit-patient.component.ts[153, 37]: object access via string literals is disallowed
+ERROR: src/app/edit-patient/edit-patient.component.ts[153, 37]: ' should be "
+ERROR: src/app/edit-patient/edit-patient.component.ts[154, 9]: Calls to 'console.log' are not allowed.
+ERROR: src/app/edit-patient/edit-patient.component.ts[157, 23]: ' should be "
+ERROR: src/app/edit-patient/edit-patient.component.ts[159, 49]: ' should be "
+ERROR: src/app/edit-patient/edit-patient.component.ts[160, 23]: ' should be "
+ERROR: src/app/edit-patient/edit-patient.component.ts[165, 9]: Calls to 'console.log' are not allowed.
+ERROR: src/app/edit-patient/edit-patient.component.ts[165, 21]: ' should be "
+ERROR: src/app/edit-patient/edit-patient.component.ts[166, 21]: ' should be "
+ERROR: src/app/edit-patient/edit-patient.component.ts[168, 8]: Missing trailing comma
+ERROR: src/app/edit-patient/edit-patient.component.ts[172, 3]: The class method 'pushMsgAndRemoveAfterInterval' must be marked either 'private', 'public', or 'protected'
+ERROR: src/app/edit-patient/edit-patient.component.ts[179, 3]: The class method 'isEditableAndValid' must be marked either 'private', 'public', or 'protected'
+ERROR: src/app/edit-patient/edit-patient.component.ts[184, 3]: The class method 'removeMsg' must be marked either 'private', 'public', or 'protected'
+ERROR: src/app/edit-patient/edit-patient.component.ts[188, 48]: ' should be "
+ERROR: src/app/edit-patient/edit-patient.component.ts[190, 47]: ' should be "
+ERROR: src/app/edit-patient/edit-patient.component.ts[192, 48]: ' should be "
+ERROR: src/app/edit-patient/edit-patient.component.ts[194, 45]: ' should be "
+ERROR: src/app/edit-patient/edit-patient.component.ts[196, 45]: ' should be "
+ERROR: src/app/edit-patient/edit-patient.component.ts[198, 48]: ' should be "
+ERROR: src/app/edit-patient/edit-patient.component.ts[200, 48]: ' should be "
+ERROR: src/app/edit-staff/edit-staff.component.spec.ts[1, 50]: ' should be "
+ERROR: src/app/edit-staff/edit-staff.component.spec.ts[3, 36]: ' should be "
+ERROR: src/app/edit-staff/edit-staff.component.spec.ts[5, 10]: ' should be "
+ERROR: src/app/edit-staff/edit-staff.component.spec.ts[11, 43]: Missing trailing comma
+ERROR: src/app/edit-staff/edit-staff.component.spec.ts[22, 6]: ' should be "
+ERROR: src/app/edit-staff/edit-staff.component.ts[1, 21]: Named imports must be alphabetized.
+ERROR: src/app/edit-staff/edit-staff.component.ts[1, 46]: ' should be "
+ERROR: src/app/edit-staff/edit-staff.component.ts[3, 10]: Named imports must be alphabetized.
+ERROR: src/app/edit-staff/edit-staff.component.ts[3, 40]: ' should be "
+ERROR: src/app/edit-staff/edit-staff.component.ts[4, 1]: Import sources within a group must be alphabetized.
+ERROR: src/app/edit-staff/edit-staff.component.ts[4, 52]: ' should be "
+ERROR: src/app/edit-staff/edit-staff.component.ts[6, 35]: ' should be "
+ERROR: src/app/edit-staff/edit-staff.component.ts[8, 30]: ' should be "
+ERROR: src/app/edit-staff/edit-staff.component.ts[9, 1]: Import sources within a group must be alphabetized.
+ERROR: src/app/edit-staff/edit-staff.component.ts[9, 42]: ' should be "
+ERROR: src/app/edit-staff/edit-staff.component.ts[10, 30]: ' should be "
+ERROR: src/app/edit-staff/edit-staff.component.ts[13, 13]: ' should be "
+ERROR: src/app/edit-staff/edit-staff.component.ts[14, 16]: ' should be "
+ERROR: src/app/edit-staff/edit-staff.component.ts[15, 3]: The key 'styleUrls' is not sorted alphabetically
+ERROR: src/app/edit-staff/edit-staff.component.ts[15, 15]: ' should be "
+ERROR: src/app/edit-staff/edit-staff.component.ts[15, 44]: Missing trailing comma
+ERROR: src/app/edit-staff/edit-staff.component.ts[25, 3]: Declaration of public instance field not allowed after declaration of private instance field. Instead, this should come at the beginning of the class/interface.
+ERROR: src/app/edit-staff/edit-staff.component.ts[26, 3]: Declaration of public instance field not allowed after declaration of private instance field. Instead, this should come at the beginning of the class/interface.
+ERROR: src/app/edit-staff/edit-staff.component.ts[27, 21]: Array type using 'Array<T>' is forbidden for simple types. Use 'T[]' instead.
+ERROR: src/app/edit-staff/edit-staff.component.ts[28, 3]: Declaration of public instance field not allowed after declaration of private instance field. Instead, this should come at the beginning of the class/interface.
+ERROR: src/app/edit-staff/edit-staff.component.ts[28, 19]: ' should be "
+ERROR: src/app/edit-staff/edit-staff.component.ts[28, 29]: ' should be "
+ERROR: src/app/edit-staff/edit-staff.component.ts[31, 5]: parameters are not aligned
+ERROR: src/app/edit-staff/edit-staff.component.ts[32, 5]: parameters are not aligned
+ERROR: src/app/edit-staff/edit-staff.component.ts[33, 5]: parameters are not aligned
+ERROR: src/app/edit-staff/edit-staff.component.ts[34, 5]: parameters are not aligned
+ERROR: src/app/edit-staff/edit-staff.component.ts[36, 18]: ' should be "
+ERROR: src/app/edit-staff/edit-staff.component.ts[40, 36]: Missing trailing comma
+ERROR: src/app/edit-staff/edit-staff.component.ts[42, 17]: ' should be "
+ERROR: src/app/edit-staff/edit-staff.component.ts[46, 36]: Missing trailing comma
+ERROR: src/app/edit-staff/edit-staff.component.ts[48, 18]: ' should be "
+ERROR: src/app/edit-staff/edit-staff.component.ts[50, 25]: Missing trailing comma
+ERROR: src/app/edit-staff/edit-staff.component.ts[52, 7]: The key 'staff_role' is not sorted alphabetically
+ERROR: src/app/edit-staff/edit-staff.component.ts[52, 20]: ' should be "
+ERROR: src/app/edit-staff/edit-staff.component.ts[53, 28]: Missing trailing comma
+ERROR: src/app/edit-staff/edit-staff.component.ts[54, 9]: Missing trailing comma
+ERROR: src/app/edit-staff/edit-staff.component.ts[58, 3]: The class method 'ngOnInit' must be marked either 'private', 'public', or 'protected'
+ERROR: src/app/edit-staff/edit-staff.component.ts[62, 60]: ' should be "
+ERROR: src/app/edit-staff/edit-staff.component.ts[62, 60]: object access via string literals is disallowed
+ERROR: src/app/edit-staff/edit-staff.component.ts[66, 3]: The class method 'getStaffData' must be marked either 'private', 'public', or 'protected'
+ERROR: src/app/edit-staff/edit-staff.component.ts[67, 5]: Calls to 'console.log' are not allowed.
+ERROR: src/app/edit-staff/edit-staff.component.ts[70, 29]: object access via string literals is disallowed
+ERROR: src/app/edit-staff/edit-staff.component.ts[70, 29]: ' should be "
+ERROR: src/app/edit-staff/edit-staff.component.ts[73, 32]: ' should be "
+ERROR: src/app/edit-staff/edit-staff.component.ts[73, 32]: object access via string literals is disallowed
+ERROR: src/app/edit-staff/edit-staff.component.ts[74, 11]: Calls to 'console.log' are not allowed.
+ERROR: src/app/edit-staff/edit-staff.component.ts[81, 30]: Missing trailing comma
+ERROR: src/app/edit-staff/edit-staff.component.ts[84, 11]: Calls to 'console.log' are not allowed.
+ERROR: src/app/edit-staff/edit-staff.component.ts[84, 23]: ' should be "
+ERROR: src/app/edit-staff/edit-staff.component.ts[89, 9]: Calls to 'console.log' are not allowed.
+ERROR: src/app/edit-staff/edit-staff.component.ts[93, 3]: The class method 'saveStaffData' must be marked either 'private', 'public', or 'protected'
+ERROR: src/app/edit-staff/edit-staff.component.ts[96, 29]: ' should be "
+ERROR: src/app/edit-staff/edit-staff.component.ts[96, 29]: object access via string literals is disallowed
+ERROR: src/app/edit-staff/edit-staff.component.ts[99, 23]: ' should be "
+ERROR: src/app/edit-staff/edit-staff.component.ts[105, 21]: ' should be "
+ERROR: src/app/edit-staff/edit-staff.component.ts[107, 8]: Missing trailing comma
+ERROR: src/app/edit-staff/edit-staff.component.ts[111, 3]: The class method 'pushMsgAndRemoveAfterInterval' must be marked either 'private', 'public', or 'protected'
+ERROR: src/app/edit-staff/edit-staff.component.ts[118, 3]: The class method 'makeEditable' must be marked either 'private', 'public', or 'protected'
+ERROR: src/app/edit-staff/edit-staff.component.ts[123, 3]: The class method 'cancelEdit' must be marked either 'private', 'public', or 'protected'
+ERROR: src/app/edit-staff/edit-staff.component.ts[126, 50]: Parentheses are required around the parameters of an arrow function definition
+ERROR: src/app/edit-staff/edit-staff.component.ts[132, 3]: The class method 'removeMsg' must be marked either 'private', 'public', or 'protected'
+ERROR: src/app/edit-staff/edit-staff.component.ts[136, 3]: The class method 'isEditableAndValid' must be marked either 'private', 'public', or 'protected'
+ERROR: src/app/edit-staff/edit-staff.component.ts[141, 46]: ' should be "
+ERROR: src/app/edit-staff/edit-staff.component.ts[143, 45]: ' should be "
+ERROR: src/app/edit-staff/edit-staff.component.ts[145, 46]: ' should be "
+ERROR: src/app/edit-staff/edit-staff.component.ts[147, 47]: ' should be "
+ERROR: src/app/edit-staff/edit-staff.component.ts[149, 3]: The class method 'ngOnDestroy' must be marked either 'private', 'public', or 'protected'
+ERROR: src/app/messages/messages.component.spec.ts[1, 50]: ' should be "
+ERROR: src/app/messages/messages.component.spec.ts[3, 35]: ' should be "
+ERROR: src/app/messages/messages.component.spec.ts[5, 10]: ' should be "
+ERROR: src/app/messages/messages.component.spec.ts[11, 42]: Missing trailing comma
+ERROR: src/app/messages/messages.component.spec.ts[22, 6]: ' should be "
+ERROR: src/app/messages/messages.component.ts[1, 34]: ' should be "
+ERROR: src/app/messages/messages.component.ts[4, 13]: ' should be "
+ERROR: src/app/messages/messages.component.ts[5, 16]: ' should be "
+ERROR: src/app/messages/messages.component.ts[6, 3]: The key 'styleUrls' is not sorted alphabetically
+ERROR: src/app/messages/messages.component.ts[6, 15]: ' should be "
+ERROR: src/app/messages/messages.component.ts[6, 42]: Missing trailing comma
+ERROR: src/app/messages/messages.component.ts[10, 12]: The class property 'messages' must be marked either 'private', 'public', or 'protected'
+ERROR: src/app/messages/messages.component.ts[12, 17]: block is empty
+ERROR: src/app/messages/messages.component.ts[14, 3]: The class method 'removeMsg' must be marked either 'private', 'public', or 'protected'
+ERROR: src/app/models/address.ts[4, 12]: variable name must be in lowerCamelCase, PascalCase or UPPER_CASE
+ERROR: src/app/models/address.ts[7, 31]: variable name must be in lowerCamelCase, PascalCase or UPPER_CASE
+ERROR: src/app/models/appointment.ts[8, 25]: variable name must be in lowerCamelCase, PascalCase or UPPER_CASE
+ERROR: src/app/models/appointment.ts[9, 9]: parameters are not aligned
+ERROR: src/app/models/appointment.ts[9, 16]: variable name must be in lowerCamelCase, PascalCase or UPPER_CASE
+ERROR: src/app/models/appointment.ts[9, 41]: variable name must be in lowerCamelCase, PascalCase or UPPER_CASE
+ERROR: src/app/models/appointment.ts[9, 66]: variable name must be in lowerCamelCase, PascalCase or UPPER_CASE
+ERROR: src/app/models/clinical-notes.ts[1, 29]: ' should be "
+ERROR: src/app/models/clinical-notes.ts[6, 13]: variable name must be in lowerCamelCase, PascalCase or UPPER_CASE
+ERROR: src/app/models/clinical-notes.ts[7, 13]: variable name must be in lowerCamelCase, PascalCase or UPPER_CASE
+ERROR: src/app/models/clinical-notes.ts[8, 5]: Declaration of public instance field not allowed after declaration of private instance field. Instead, this should come at the beginning of the class/interface.
+ERROR: src/app/models/clinical-notes.ts[10, 35]: variable name must be in lowerCamelCase, PascalCase or UPPER_CASE
+ERROR: src/app/models/clinical-notes.ts[10, 50]: variable name must be in lowerCamelCase, PascalCase or UPPER_CASE
+ERROR: src/app/models/doctor.ts[2, 12]: variable name must be in lowerCamelCase, PascalCase or UPPER_CASE
+ERROR: src/app/models/doctor.ts[3, 12]: variable name must be in lowerCamelCase, PascalCase or UPPER_CASE
+ERROR: src/app/models/doctor.ts[6, 17]: variable name must be in lowerCamelCase, PascalCase or UPPER_CASE
+ERROR: src/app/models/doctor.ts[6, 30]: variable name must be in lowerCamelCase, PascalCase or UPPER_CASE
+ERROR: src/app/models/doctor.ts[13, 5]: The class method 'getFullName' must be marked either 'private', 'public', or 'protected'
+ERROR: src/app/models/medications.ts[6, 19]: block is empty
+ERROR: src/app/models/patient-profile.ts[1, 25]: ' should be "
+ERROR: src/app/models/patient-profile.ts[5, 24]: variable name must be in lowerCamelCase, PascalCase or UPPER_CASE
+ERROR: src/app/models/patient-profile.ts[6, 9]: parameters are not aligned
+ERROR: src/app/models/patient-profile.ts[6, 16]: variable name must be in lowerCamelCase, PascalCase or UPPER_CASE
+ERROR: src/app/models/patient-profile.ts[7, 9]: parameters are not aligned
+ERROR: src/app/models/patient-profile.ts[8, 9]: parameters are not aligned
+ERROR: src/app/models/patient-profile.ts[9, 9]: parameters are not aligned
+ERROR: src/app/models/patient-profile.ts[10, 9]: parameters are not aligned
+ERROR: src/app/models/patient.ts[1, 31]: ' should be "
+ERROR: src/app/models/patient.ts[2, 1]: Import sources within a group must be alphabetized.
+ERROR: src/app/models/patient.ts[2, 25]: ' should be "
+ERROR: src/app/models/patient.ts[5, 13]: variable name must be in lowerCamelCase, PascalCase or UPPER_CASE
+ERROR: src/app/models/patient.ts[6, 13]: variable name must be in lowerCamelCase, PascalCase or UPPER_CASE
+ERROR: src/app/models/patient.ts[10, 5]: Declaration of public instance field not allowed after declaration of private instance field. Instead, this should come at the beginning of the class/interface.
+ERROR: src/app/models/patient.ts[10, 12]: variable name must be in lowerCamelCase, PascalCase or UPPER_CASE
+ERROR: src/app/models/patient.ts[11, 13]: variable name must be in lowerCamelCase, PascalCase or UPPER_CASE
+ERROR: src/app/models/patient.ts[13, 17]: variable name must be in lowerCamelCase, PascalCase or UPPER_CASE
+ERROR: src/app/models/patient.ts[14, 9]: parameters are not aligned
+ERROR: src/app/models/patient.ts[14, 9]: variable name must be in lowerCamelCase, PascalCase or UPPER_CASE
+ERROR: src/app/models/patient.ts[15, 9]: variable name must be in lowerCamelCase, PascalCase or UPPER_CASE
+ERROR: src/app/models/patient.ts[15, 9]: parameters are not aligned
+ERROR: src/app/models/patient.ts[16, 9]: parameters are not aligned
+ERROR: src/app/models/patient.ts[17, 9]: parameters are not aligned
+ERROR: src/app/models/patient.ts[18, 9]: parameters are not aligned
+ERROR: src/app/models/patient.ts[19, 9]: variable name must be in lowerCamelCase, PascalCase or UPPER_CASE
+ERROR: src/app/models/patient.ts[19, 9]: parameters are not aligned
+ERROR: src/app/models/patient.ts[29, 5]: The class method 'getFullName' must be marked either 'private', 'public', or 'protected'
+ERROR: src/app/models/patient.ts[34, 1]: Consecutive blank lines are forbidden
+ERROR: src/app/models/potential-appointment.ts[1, 24]: ' should be "
+ERROR: src/app/models/potential-appointment.ts[5, 12]: variable name must be in lowerCamelCase, PascalCase or UPPER_CASE
+ERROR: src/app/models/potential-appointment.ts[6, 12]: variable name must be in lowerCamelCase, PascalCase or UPPER_CASE
+ERROR: src/app/models/potential-appointment.ts[8, 19]: block is empty
+ERROR: src/app/models/potential-appointment.ts[12, 1]: Consecutive blank lines are forbidden
+ERROR: src/app/models/staff-profile.ts[2, 24]: variable name must be in lowerCamelCase, PascalCase or UPPER_CASE
+ERROR: src/app/models/staff-profile.ts[3, 9]: parameters are not aligned
+ERROR: src/app/models/staff-profile.ts[3, 16]: variable name must be in lowerCamelCase, PascalCase or UPPER_CASE
+ERROR: src/app/models/staff-profile.ts[4, 9]: parameters are not aligned
+ERROR: src/app/models/staff-profile.ts[5, 9]: parameters are not aligned
+ERROR: src/app/models/staff-profile.ts[6, 9]: parameters are not aligned
+ERROR: src/app/models/staff-profile.ts[6, 32]: Missing trailing comma
+ERROR: src/app/models/staff.ts[2, 13]: variable name must be in lowerCamelCase, PascalCase or UPPER_CASE
+ERROR: src/app/models/staff.ts[5, 13]: variable name must be in lowerCamelCase, PascalCase or UPPER_CASE
+ERROR: src/app/models/staff.ts[6, 13]: variable name must be in lowerCamelCase, PascalCase or UPPER_CASE
+ERROR: src/app/models/staff.ts[9, 19]: block is empty
+ERROR: src/app/models/taken-appointment.ts[2, 12]: variable name must be in lowerCamelCase, PascalCase or UPPER_CASE
+ERROR: src/app/models/taken-appointment.ts[3, 12]: variable name must be in lowerCamelCase, PascalCase or UPPER_CASE
+ERROR: src/app/models/taken-appointment.ts[4, 17]: variable name must be in lowerCamelCase, PascalCase or UPPER_CASE
+ERROR: src/app/models/taken-appointment.ts[4, 36]: variable name must be in lowerCamelCase, PascalCase or UPPER_CASE
+ERROR: src/app/navbar/navbar.component.spec.ts[1, 50]: ' should be "
+ERROR: src/app/navbar/navbar.component.spec.ts[3, 33]: ' should be "
+ERROR: src/app/navbar/navbar.component.spec.ts[5, 10]: ' should be "
+ERROR: src/app/navbar/navbar.component.spec.ts[11, 40]: Missing trailing comma
+ERROR: src/app/navbar/navbar.component.spec.ts[22, 6]: ' should be "
+ERROR: src/app/navbar/navbar.component.ts[1, 35]: ' should be "
+ERROR: src/app/navbar/navbar.component.ts[3, 22]: ' should be "
+ERROR: src/app/navbar/navbar.component.ts[5, 29]: ' should be "
+ERROR: src/app/navbar/navbar.component.ts[7, 28]: ' should be "
+ERROR: src/app/navbar/navbar.component.ts[10, 13]: ' should be "
+ERROR: src/app/navbar/navbar.component.ts[11, 16]: ' should be "
+ERROR: src/app/navbar/navbar.component.ts[12, 3]: The key 'styleUrls' is not sorted alphabetically
+ERROR: src/app/navbar/navbar.component.ts[12, 15]: ' should be "
+ERROR: src/app/navbar/navbar.component.ts[12, 40]: Missing trailing comma
+ERROR: src/app/navbar/navbar.component.ts[20, 31]: ' should be "
+ERROR: src/app/navbar/navbar.component.ts[20, 51]: non-arrow functions are forbidden
+ERROR: src/app/navbar/navbar.component.ts[20, 59]: Spaces before function parens are disallowed
+ERROR: src/app/navbar/navbar.component.ts[23, 11]: Identifier '$navbarBurgers' is never reassigned; use 'const' instead of 'let'.
+ERROR: src/app/navbar/navbar.component.ts[23, 81]: ' should be "
+ERROR: src/app/navbar/navbar.component.ts[29, 32]: non-arrow functions are forbidden
+ERROR: src/app/navbar/navbar.component.ts[29, 40]: Spaces before function parens are disallowed
+ERROR: src/app/navbar/navbar.component.ts[30, 32]: ' should be "
+ERROR: src/app/navbar/navbar.component.ts[30, 41]: non-arrow functions are forbidden
+ERROR: src/app/navbar/navbar.component.ts[30, 49]: Spaces before function parens are disallowed
+ERROR: src/app/navbar/navbar.component.ts[33, 17]: Identifier 'target' is never reassigned; use 'const' instead of 'let'.
+ERROR: src/app/navbar/navbar.component.ts[34, 17]: Identifier '$target' is never reassigned; use 'const' instead of 'let'.
+ERROR: src/app/navbar/navbar.component.ts[37, 34]: ' should be "
+ERROR: src/app/navbar/navbar.component.ts[38, 38]: ' should be "
+ERROR: src/app/navbar/navbar.component.ts[46, 3]: The class method 'isLoggedIn' must be marked either 'private', 'public', or 'protected'
+ERROR: src/app/navbar/navbar.component.ts[50, 3]: The class method 'getUserType' must be marked either 'private', 'public', or 'protected'
+ERROR: src/app/navbar/navbar.component.ts[54, 14]: ' should be "
+ERROR: src/app/navbar/navbar.component.ts[58, 3]: The class method 'userIsDoctorOrAdmin' must be marked either 'private', 'public', or 'protected'
+ERROR: src/app/navbar/navbar.component.ts[59, 42]: ' should be "
+ERROR: src/app/navbar/navbar.component.ts[59, 77]: ' should be "
+ERROR: src/app/navbar/navbar.component.ts[63, 3]: The class method 'logUserOut' must be marked either 'private', 'public', or 'protected'
+ERROR: src/app/navbar/navbar.component.ts[69, 3]: The class method 'ngOnInit' must be marked either 'private', 'public', or 'protected'
+ERROR: src/app/new-appointment/new-appointment.component.spec.ts[1, 50]: ' should be "
+ERROR: src/app/new-appointment/new-appointment.component.spec.ts[3, 41]: ' should be "
+ERROR: src/app/new-appointment/new-appointment.component.spec.ts[5, 10]: ' should be "
+ERROR: src/app/new-appointment/new-appointment.component.spec.ts[11, 48]: Missing trailing comma
+ERROR: src/app/new-appointment/new-appointment.component.spec.ts[22, 6]: ' should be "
+ERROR: src/app/new-appointment/new-appointment.component.ts[1, 21]: Named imports must be alphabetized.
+ERROR: src/app/new-appointment/new-appointment.component.ts[1, 46]: ' should be "
+ERROR: src/app/new-appointment/new-appointment.component.ts[2, 24]: ' should be "
+ERROR: src/app/new-appointment/new-appointment.component.ts[3, 1]: Import sources within a group must be alphabetized.
+ERROR: src/app/new-appointment/new-appointment.component.ts[3, 10]: Named imports must be alphabetized.
+ERROR: src/app/new-appointment/new-appointment.component.ts[3, 40]: ' should be "
+ERROR: src/app/new-appointment/new-appointment.component.ts[4, 28]: ' should be "
+ERROR: src/app/new-appointment/new-appointment.component.ts[6, 42]: ' should be "
+ERROR: src/app/new-appointment/new-appointment.component.ts[7, 1]: Import sources within a group must be alphabetized.
+ERROR: src/app/new-appointment/new-appointment.component.ts[7, 10]: Named imports must be alphabetized.
+ERROR: src/app/new-appointment/new-appointment.component.ts[7, 44]: ' should be "
+ERROR: src/app/new-appointment/new-appointment.component.ts[8, 25]: ' should be "
+ERROR: src/app/new-appointment/new-appointment.component.ts[9, 38]: ' should be "
+ERROR: src/app/new-appointment/new-appointment.component.ts[10, 34]: ' should be "
+ERROR: src/app/new-appointment/new-appointment.component.ts[11, 1]: Import sources within a group must be alphabetized.
+ERROR: src/app/new-appointment/new-appointment.component.ts[11, 29]: ' should be "
+ERROR: src/app/new-appointment/new-appointment.component.ts[12, 24]: ' should be "
+ERROR: src/app/new-appointment/new-appointment.component.ts[13, 37]: ' should be "
+ERROR: src/app/new-appointment/new-appointment.component.ts[14, 30]: ' should be "
+ERROR: src/app/new-appointment/new-appointment.component.ts[15, 1]: Import sources within a group must be alphabetized.
+ERROR: src/app/new-appointment/new-appointment.component.ts[15, 29]: ' should be "
+ERROR: src/app/new-appointment/new-appointment.component.ts[16, 22]: ' should be "
+ERROR: src/app/new-appointment/new-appointment.component.ts[17, 1]: Import sources within a group must be alphabetized.
+ERROR: src/app/new-appointment/new-appointment.component.ts[17, 25]: ' should be "
+ERROR: src/app/new-appointment/new-appointment.component.ts[20, 13]: ' should be "
+ERROR: src/app/new-appointment/new-appointment.component.ts[21, 16]: ' should be "
+ERROR: src/app/new-appointment/new-appointment.component.ts[22, 3]: The key 'styleUrls' is not sorted alphabetically
+ERROR: src/app/new-appointment/new-appointment.component.ts[22, 15]: ' should be "
+ERROR: src/app/new-appointment/new-appointment.component.ts[22, 49]: Missing trailing comma
+ERROR: src/app/new-appointment/new-appointment.component.ts[26, 3]: Declaration of public instance field not allowed after declaration of private instance field. Instead, this should come at the beginning of the class/interface.
+ERROR: src/app/new-appointment/new-appointment.component.ts[27, 3]: Declaration of public instance field not allowed after declaration of private instance field. Instead, this should come at the beginning of the class/interface.
+ERROR: src/app/new-appointment/new-appointment.component.ts[37, 3]: Declaration of public instance field not allowed after declaration of private instance field. Instead, this should come at the beginning of the class/interface.
+ERROR: src/app/new-appointment/new-appointment.component.ts[45, 3]: Declaration of public instance field not allowed after declaration of private instance field. Instead, this should come at the beginning of the class/interface.
+ERROR: src/app/new-appointment/new-appointment.component.ts[47, 17]: ' should be "
+ERROR: src/app/new-appointment/new-appointment.component.ts[48, 1]: Exceeds maximum line length of 120
+ERROR: src/app/new-appointment/new-appointment.component.ts[49, 5]: The key 'disableSince' is not sorted alphabetically
+ERROR: src/app/new-appointment/new-appointment.component.ts[50, 44]: ' should be "
+ERROR: src/app/new-appointment/new-appointment.component.ts[51, 7]: The key 'month' is not sorted alphabetically
+ERROR: src/app/new-appointment/new-appointment.component.ts[51, 45]: ' should be "
+ERROR: src/app/new-appointment/new-appointment.component.ts[52, 43]: ' should be "
+ERROR: src/app/new-appointment/new-appointment.component.ts[54, 26]: Missing trailing comma
+ERROR: src/app/new-appointment/new-appointment.component.ts[57, 3]: Declaration of public instance field not allowed after declaration of private instance field. Instead, this should come at the beginning of the class/interface.
+ERROR: src/app/new-appointment/new-appointment.component.ts[67, 3]: The class method 'ngOnInit' must be marked either 'private', 'public', or 'protected'
+ERROR: src/app/new-appointment/new-appointment.component.ts[68, 5]: Calls to 'console.log' are not allowed.
+ERROR: src/app/new-appointment/new-appointment.component.ts[68, 48]: ' should be "
+ERROR: src/app/new-appointment/new-appointment.component.ts[74, 42]: Missing trailing comma
+ERROR: src/app/new-appointment/new-appointment.component.ts[84, 15]: ' should be "
+ERROR: src/app/new-appointment/new-appointment.component.ts[84, 15]: object access via string literals is disallowed
+ERROR: src/app/new-appointment/new-appointment.component.ts[85, 26]: object access via string literals is disallowed
+ERROR: src/app/new-appointment/new-appointment.component.ts[85, 26]: ' should be "
+ERROR: src/app/new-appointment/new-appointment.component.ts[95, 7]: Calls to 'console.log' are not allowed.
+ERROR: src/app/new-appointment/new-appointment.component.ts[99, 7]: Parentheses are required around the parameters of an arrow function definition
+ERROR: src/app/new-appointment/new-appointment.component.ts[105, 19]: variable name must be in lowerCamelCase, PascalCase or UPPER_CASE
+ERROR: src/app/new-appointment/new-appointment.component.ts[105, 57]: object access via string literals is disallowed
+ERROR: src/app/new-appointment/new-appointment.component.ts[105, 57]: ' should be "
+ERROR: src/app/new-appointment/new-appointment.component.ts[107, 15]: Parentheses are required around the parameters of an arrow function definition
+ERROR: src/app/new-appointment/new-appointment.component.ts[109, 25]: ' should be "
+ERROR: src/app/new-appointment/new-appointment.component.ts[109, 25]: object access via string literals is disallowed
+ERROR: src/app/new-appointment/new-appointment.component.ts[110, 50]: object access via string literals is disallowed
+ERROR: src/app/new-appointment/new-appointment.component.ts[110, 50]: ' should be "
+ERROR: src/app/new-appointment/new-appointment.component.ts[113, 21]: Expected property shorthand in object literal ('{user_name}').
+ERROR: src/app/new-appointment/new-appointment.component.ts[114, 32]: ' should be "
+ERROR: src/app/new-appointment/new-appointment.component.ts[114, 41]: Missing trailing comma
+ERROR: src/app/new-appointment/new-appointment.component.ts[117, 16]: Missing trailing comma
+ERROR: src/app/new-appointment/new-appointment.component.ts[123, 8]: Missing trailing comma
+ERROR: src/app/new-appointment/new-appointment.component.ts[127, 3]: The class method 'ngOnDestroy' must be marked either 'private', 'public', or 'protected'
+ERROR: src/app/new-appointment/new-appointment.component.ts[133, 3]: The class method 'getAppointmentsAndRemoveExisting' must be marked either 'private', 'public', or 'protected'
+ERROR: src/app/new-appointment/new-appointment.component.ts[136, 68]: Parentheses are required around the parameters of an arrow function definition
+ERROR: src/app/new-appointment/new-appointment.component.ts[137, 24]: object access via string literals is disallowed
+ERROR: src/app/new-appointment/new-appointment.component.ts[137, 24]: ' should be "
+ERROR: src/app/new-appointment/new-appointment.component.ts[154, 9]: Calls to 'console.log' are not allowed.
+ERROR: src/app/new-appointment/new-appointment.component.ts[163, 1]: Exceeds maximum line length of 120
+ERROR: src/app/new-appointment/new-appointment.component.ts[171, 1]: Consecutive blank lines are forbidden
+ERROR: src/app/new-appointment/new-appointment.component.ts[172, 3]: The class method 'setDate' must be marked either 'private', 'public', or 'protected'
+ERROR: src/app/new-appointment/new-appointment.component.ts[181, 11]: The key 'month' is not sorted alphabetically
+ERROR: src/app/new-appointment/new-appointment.component.ts[182, 30]: Missing trailing comma
+ERROR: src/app/new-appointment/new-appointment.component.ts[183, 10]: Missing trailing comma
+ERROR: src/app/new-appointment/new-appointment.component.ts[184, 8]: Missing trailing comma
+ERROR: src/app/new-appointment/new-appointment.component.ts[188, 3]: The class method 'clearDate' must be marked either 'private', 'public', or 'protected'
+ERROR: src/app/new-appointment/new-appointment.component.ts[194, 3]: The class method 'isFormValidAndTouched' must be marked either 'private', 'public', or 'protected'
+ERROR: src/app/new-appointment/new-appointment.component.ts[198, 3]: The class method 'findAppointments' must be marked either 'private', 'public', or 'protected'
+ERROR: src/app/new-appointment/new-appointment.component.ts[202, 42]: ' should be "
+ERROR: src/app/new-appointment/new-appointment.component.ts[202, 58]: ' should be "
+ERROR: src/app/new-appointment/new-appointment.component.ts[202, 58]: object access via string literals is disallowed
+ERROR: src/app/new-appointment/new-appointment.component.ts[242, 3]: The class method 'sortAppointmentsByTimeAndDocName' must be marked either 'private', 'public', or 'protected'
+ERROR: src/app/new-appointment/new-appointment.component.ts[243, 36]: non-arrow functions are forbidden
+ERROR: src/app/new-appointment/new-appointment.component.ts[243, 44]: Spaces before function parens are disallowed
+ERROR: src/app/new-appointment/new-appointment.component.ts[260, 3]: The class method 'compareTime' must be marked either 'private', 'public', or 'protected'
+ERROR: src/app/new-appointment/new-appointment.component.ts[264, 1]: Exceeds maximum line length of 120
+ERROR: src/app/new-appointment/new-appointment.component.ts[264, 3]: The class method 'removeExistingAppointments' must be marked either 'private', 'public', or 'protected'
+ERROR: src/app/new-appointment/new-appointment.component.ts[265, 55]: non-arrow functions are forbidden
+ERROR: src/app/new-appointment/new-appointment.component.ts[265, 63]: Spaces before function parens are disallowed
+ERROR: src/app/new-appointment/new-appointment.component.ts[269, 1]: Exceeds maximum line length of 120
+ERROR: src/app/new-appointment/new-appointment.component.ts[280, 3]: The class method 'isOnTheHour' must be marked either 'private', 'public', or 'protected'
+ERROR: src/app/new-appointment/new-appointment.component.ts[284, 3]: The class method 'concatName' must be marked either 'private', 'public', or 'protected'
+ERROR: src/app/new-appointment/new-appointment.component.ts[289, 3]: The class method 'bookAppointment' must be marked either 'private', 'public', or 'protected'
+ERROR: src/app/new-appointment/new-appointment.component.ts[296, 3]: The class method 'completeAppointment' must be marked either 'private', 'public', or 'protected'
+ERROR: src/app/new-appointment/new-appointment.component.ts[299, 7]: Parentheses are required around the parameters of an arrow function definition
+ERROR: src/app/new-appointment/new-appointment.component.ts[301, 28]: ' should be "
+ERROR: src/app/new-appointment/new-appointment.component.ts[301, 28]: object access via string literals is disallowed
+ERROR: src/app/new-appointment/new-appointment.component.ts[304, 37]: ' should be "
+ERROR: src/app/new-appointment/new-appointment.component.ts[306, 28]: ' should be "
+ERROR: src/app/new-appointment/new-appointment.component.ts[312, 8]: Missing trailing comma
+ERROR: src/app/new-appointment/new-appointment.component.ts[316, 3]: The class method 'closeModal' must be marked either 'private', 'public', or 'protected'
+ERROR: src/app/new-appointment/new-appointment.component.ts[321, 3]: The class method 'removeErrMsg' must be marked either 'private', 'public', or 'protected'
+ERROR: src/app/new-appointment/new-appointment.component.ts[325, 3]: The class method 'showSpinner' must be marked either 'private', 'public', or 'protected'
+ERROR: src/app/new-appointment/new-appointment.component.ts[329, 3]: The class method 'hideSpinner' must be marked either 'private', 'public', or 'protected'
+ERROR: src/app/new-patient/new-patient.component.spec.ts[1, 50]: ' should be "
+ERROR: src/app/new-patient/new-patient.component.spec.ts[3, 37]: ' should be "
+ERROR: src/app/new-patient/new-patient.component.spec.ts[5, 10]: ' should be "
+ERROR: src/app/new-patient/new-patient.component.spec.ts[11, 44]: Missing trailing comma
+ERROR: src/app/new-patient/new-patient.component.spec.ts[22, 6]: ' should be "
+ERROR: src/app/new-patient/new-patient.component.ts[1, 21]: Named imports must be alphabetized.
+ERROR: src/app/new-patient/new-patient.component.ts[1, 46]: ' should be "
+ERROR: src/app/new-patient/new-patient.component.ts[2, 10]: Named imports must be alphabetized.
+ERROR: src/app/new-patient/new-patient.component.ts[2, 40]: ' should be "
+ERROR: src/app/new-patient/new-patient.component.ts[3, 1]: Import sources within a group must be alphabetized.
+ERROR: src/app/new-patient/new-patient.component.ts[3, 52]: ' should be "
+ERROR: src/app/new-patient/new-patient.component.ts[5, 35]: ' should be "
+ERROR: src/app/new-patient/new-patient.component.ts[7, 32]: ' should be "
+ERROR: src/app/new-patient/new-patient.component.ts[8, 1]: Import sources within a group must be alphabetized.
+ERROR: src/app/new-patient/new-patient.component.ts[8, 42]: ' should be "
+ERROR: src/app/new-patient/new-patient.component.ts[10, 32]: ' should be "
+ERROR: src/app/new-patient/new-patient.component.ts[11, 1]: Import sources within a group must be alphabetized.
+ERROR: src/app/new-patient/new-patient.component.ts[11, 25]: ' should be "
+ERROR: src/app/new-patient/new-patient.component.ts[14, 13]: ' should be "
+ERROR: src/app/new-patient/new-patient.component.ts[15, 16]: ' should be "
+ERROR: src/app/new-patient/new-patient.component.ts[16, 3]: The key 'styleUrls' is not sorted alphabetically
+ERROR: src/app/new-patient/new-patient.component.ts[16, 15]: ' should be "
+ERROR: src/app/new-patient/new-patient.component.ts[16, 45]: Missing trailing comma
+ERROR: src/app/new-patient/new-patient.component.ts[25, 3]: Declaration of public instance field not allowed after declaration of private instance field. Instead, this should come at the beginning of the class/interface.
+ERROR: src/app/new-patient/new-patient.component.ts[25, 20]: Array type using 'Array<T>' is forbidden for simple types. Use 'T[]' instead.
+ERROR: src/app/new-patient/new-patient.component.ts[28, 5]: parameters are not aligned
+ERROR: src/app/new-patient/new-patient.component.ts[29, 5]: parameters are not aligned
+ERROR: src/app/new-patient/new-patient.component.ts[30, 5]: parameters are not aligned
+ERROR: src/app/new-patient/new-patient.component.ts[31, 5]: parameters are not aligned
+ERROR: src/app/new-patient/new-patient.component.ts[35, 3]: The class method 'ngOnInit' must be marked either 'private', 'public', or 'protected'
+ERROR: src/app/new-patient/new-patient.component.ts[38, 17]: ' should be "
+ERROR: src/app/new-patient/new-patient.component.ts[39, 16]: ' should be "
+ERROR: src/app/new-patient/new-patient.component.ts[40, 17]: ' should be "
+ERROR: src/app/new-patient/new-patient.component.ts[41, 7]: The key 'line1' is not sorted alphabetically
+ERROR: src/app/new-patient/new-patient.component.ts[41, 14]: ' should be "
+ERROR: src/app/new-patient/new-patient.component.ts[42, 14]: ' should be "
+ERROR: src/app/new-patient/new-patient.component.ts[43, 17]: ' should be "
+ERROR: src/app/new-patient/new-patient.component.ts[44, 17]: ' should be "
+ERROR: src/app/new-patient/new-patient.component.ts[45, 17]: ' should be "
+ERROR: src/app/new-patient/new-patient.component.ts[46, 24]: ' should be "
+ERROR: src/app/new-patient/new-patient.component.ts[50, 3]: The class method 'isValid' must be marked either 'private', 'public', or 'protected'
+ERROR: src/app/new-patient/new-patient.component.ts[55, 3]: The class method 'removeMsg' must be marked either 'private', 'public', or 'protected'
+ERROR: src/app/new-patient/new-patient.component.ts[59, 3]: The class method 'createForm' must be marked either 'private', 'public', or 'protected'
+ERROR: src/app/new-patient/new-patient.component.ts[62, 18]: ' should be "
+ERROR: src/app/new-patient/new-patient.component.ts[66, 36]: Missing trailing comma
+ERROR: src/app/new-patient/new-patient.component.ts[68, 17]: ' should be "
+ERROR: src/app/new-patient/new-patient.component.ts[72, 36]: Missing trailing comma
+ERROR: src/app/new-patient/new-patient.component.ts[74, 18]: ' should be "
+ERROR: src/app/new-patient/new-patient.component.ts[76, 25]: Missing trailing comma
+ERROR: src/app/new-patient/new-patient.component.ts[78, 7]: The key 'password' is not sorted alphabetically
+ERROR: src/app/new-patient/new-patient.component.ts[78, 18]: ' should be "
+ERROR: src/app/new-patient/new-patient.component.ts[81, 33]: Missing trailing comma
+ERROR: src/app/new-patient/new-patient.component.ts[83, 25]: ' should be "
+ERROR: src/app/new-patient/new-patient.component.ts[86, 33]: Missing trailing comma
+ERROR: src/app/new-patient/new-patient.component.ts[88, 15]: ' should be "
+ERROR: src/app/new-patient/new-patient.component.ts[92, 33]: Missing trailing comma
+ERROR: src/app/new-patient/new-patient.component.ts[94, 15]: ' should be "
+ERROR: src/app/new-patient/new-patient.component.ts[98, 33]: Missing trailing comma
+ERROR: src/app/new-patient/new-patient.component.ts[100, 18]: ' should be "
+ERROR: src/app/new-patient/new-patient.component.ts[104, 33]: Missing trailing comma
+ERROR: src/app/new-patient/new-patient.component.ts[106, 18]: ' should be "
+ERROR: src/app/new-patient/new-patient.component.ts[110, 1]: Exceeds maximum line length of 120
+ERROR: src/app/new-patient/new-patient.component.ts[110, 202]: Missing trailing comma
+ERROR: src/app/new-patient/new-patient.component.ts[111, 9]: Missing trailing comma
+ERROR: src/app/new-patient/new-patient.component.ts[116, 22]: ' should be "
+ERROR: src/app/new-patient/new-patient.component.ts[116, 54]: ' should be "
+ERROR: src/app/new-patient/new-patient.component.ts[119, 3]: The class method 'saveDetails' must be marked either 'private', 'public', or 'protected'
+ERROR: src/app/new-patient/new-patient.component.ts[119, 3]: Declaration of public instance method not allowed after declaration of private instance method. Instead, this should come after constructors.
+ERROR: src/app/new-patient/new-patient.component.ts[120, 5]: Calls to 'console.log' are not allowed.
+ERROR: src/app/new-patient/new-patient.component.ts[124, 9]: Calls to 'console.log' are not allowed.
+ERROR: src/app/new-patient/new-patient.component.ts[125, 29]: ' should be "
+ERROR: src/app/new-patient/new-patient.component.ts[125, 29]: object access via string literals is disallowed
+ERROR: src/app/new-patient/new-patient.component.ts[127, 23]: ' should be "
+ERROR: src/app/new-patient/new-patient.component.ts[129, 49]: ' should be "
+ERROR: src/app/new-patient/new-patient.component.ts[130, 23]: ' should be "
+ERROR: src/app/new-patient/new-patient.component.ts[133, 8]: Missing trailing comma
+ERROR: src/app/new-patient/new-patient.component.ts[137, 3]: Declaration of public instance method not allowed after declaration of private instance method. Instead, this should come after constructors.
+ERROR: src/app/new-patient/new-patient.component.ts[137, 3]: The class method 'pushMsgAndRemoveAfterInterval' must be marked either 'private', 'public', or 'protected'
+ERROR: src/app/new-patient/new-patient.component.ts[144, 3]: The class method 'updateInputState' must be marked either 'private', 'public', or 'protected'
+ERROR: src/app/new-patient/new-patient.component.ts[144, 3]: Declaration of public instance method not allowed after declaration of private instance method. Instead, this should come after constructors.
+ERROR: src/app/new-patient/new-patient.component.ts[146, 57]: Parentheses are required around the parameters of an arrow function definition
+ERROR: src/app/new-patient/new-patient.component.ts[150, 57]: Parentheses are required around the parameters of an arrow function definition
+ERROR: src/app/new-patient/new-patient.component.ts[158, 51]: ' should be "
+ERROR: src/app/new-patient/new-patient.component.ts[160, 50]: ' should be "
+ERROR: src/app/new-patient/new-patient.component.ts[162, 51]: ' should be "
+ERROR: src/app/new-patient/new-patient.component.ts[164, 48]: ' should be "
+ERROR: src/app/new-patient/new-patient.component.ts[166, 48]: ' should be "
+ERROR: src/app/new-patient/new-patient.component.ts[168, 51]: ' should be "
+ERROR: src/app/new-patient/new-patient.component.ts[170, 51]: ' should be "
+ERROR: src/app/new-patient/new-patient.component.ts[172, 51]: ' should be "
+ERROR: src/app/new-patient/new-patient.component.ts[174, 58]: ' should be "
+ERROR: src/app/new-staff/new-staff.component.spec.ts[1, 50]: ' should be "
+ERROR: src/app/new-staff/new-staff.component.spec.ts[3, 35]: ' should be "
+ERROR: src/app/new-staff/new-staff.component.spec.ts[5, 10]: ' should be "
+ERROR: src/app/new-staff/new-staff.component.spec.ts[11, 42]: Missing trailing comma
+ERROR: src/app/new-staff/new-staff.component.spec.ts[22, 6]: ' should be "
+ERROR: src/app/new-staff/new-staff.component.ts[1, 21]: Named imports must be alphabetized.
+ERROR: src/app/new-staff/new-staff.component.ts[1, 46]: ' should be "
+ERROR: src/app/new-staff/new-staff.component.ts[2, 10]: Named imports must be alphabetized.
+ERROR: src/app/new-staff/new-staff.component.ts[2, 40]: ' should be "
+ERROR: src/app/new-staff/new-staff.component.ts[3, 1]: Import sources within a group must be alphabetized.
+ERROR: src/app/new-staff/new-staff.component.ts[3, 52]: ' should be "
+ERROR: src/app/new-staff/new-staff.component.ts[5, 35]: ' should be "
+ERROR: src/app/new-staff/new-staff.component.ts[6, 30]: ' should be "
+ERROR: src/app/new-staff/new-staff.component.ts[7, 1]: Import sources within a group must be alphabetized.
+ERROR: src/app/new-staff/new-staff.component.ts[7, 42]: ' should be "
+ERROR: src/app/new-staff/new-staff.component.ts[9, 30]: ' should be "
+ERROR: src/app/new-staff/new-staff.component.ts[10, 1]: Import sources within a group must be alphabetized.
+ERROR: src/app/new-staff/new-staff.component.ts[10, 25]: ' should be "
+ERROR: src/app/new-staff/new-staff.component.ts[13, 13]: ' should be "
+ERROR: src/app/new-staff/new-staff.component.ts[14, 16]: ' should be "
+ERROR: src/app/new-staff/new-staff.component.ts[15, 3]: The key 'styleUrls' is not sorted alphabetically
+ERROR: src/app/new-staff/new-staff.component.ts[15, 15]: ' should be "
+ERROR: src/app/new-staff/new-staff.component.ts[15, 43]: Missing trailing comma
+ERROR: src/app/new-staff/new-staff.component.ts[23, 3]: Declaration of public instance field not allowed after declaration of private instance field. Instead, this should come at the beginning of the class/interface.
+ERROR: src/app/new-staff/new-staff.component.ts[24, 3]: Declaration of public instance field not allowed after declaration of private instance field. Instead, this should come at the beginning of the class/interface.
+ERROR: src/app/new-staff/new-staff.component.ts[24, 19]: ' should be "
+ERROR: src/app/new-staff/new-staff.component.ts[24, 28]: ' should be "
+ERROR: src/app/new-staff/new-staff.component.ts[27, 5]: parameters are not aligned
+ERROR: src/app/new-staff/new-staff.component.ts[28, 5]: parameters are not aligned
+ERROR: src/app/new-staff/new-staff.component.ts[29, 5]: parameters are not aligned
+ERROR: src/app/new-staff/new-staff.component.ts[30, 5]: parameters are not aligned
+ERROR: src/app/new-staff/new-staff.component.ts[34, 3]: The class method 'ngOnInit' must be marked either 'private', 'public', or 'protected'
+ERROR: src/app/new-staff/new-staff.component.ts[38, 3]: The class method 'createForm' must be marked either 'private', 'public', or 'protected'
+ERROR: src/app/new-staff/new-staff.component.ts[40, 18]: ' should be "
+ERROR: src/app/new-staff/new-staff.component.ts[44, 36]: Missing trailing comma
+ERROR: src/app/new-staff/new-staff.component.ts[46, 17]: ' should be "
+ERROR: src/app/new-staff/new-staff.component.ts[50, 36]: Missing trailing comma
+ERROR: src/app/new-staff/new-staff.component.ts[52, 18]: ' should be "
+ERROR: src/app/new-staff/new-staff.component.ts[54, 25]: Missing trailing comma
+ERROR: src/app/new-staff/new-staff.component.ts[56, 7]: The key 'staff_role' is not sorted alphabetically
+ERROR: src/app/new-staff/new-staff.component.ts[56, 20]: ' should be "
+ERROR: src/app/new-staff/new-staff.component.ts[57, 18]: ' should be "
+ERROR: src/app/new-staff/new-staff.component.ts[60, 33]: Missing trailing comma
+ERROR: src/app/new-staff/new-staff.component.ts[62, 25]: ' should be "
+ERROR: src/app/new-staff/new-staff.component.ts[65, 33]: Missing trailing comma
+ERROR: src/app/new-staff/new-staff.component.ts[66, 9]: Missing trailing comma
+ERROR: src/app/new-staff/new-staff.component.ts[71, 22]: ' should be "
+ERROR: src/app/new-staff/new-staff.component.ts[71, 54]: ' should be "
+ERROR: src/app/new-staff/new-staff.component.ts[74, 3]: The class method 'isValid' must be marked either 'private', 'public', or 'protected'
+ERROR: src/app/new-staff/new-staff.component.ts[74, 3]: Declaration of public instance method not allowed after declaration of private instance method. Instead, this should come after constructors.
+ERROR: src/app/new-staff/new-staff.component.ts[79, 3]: The class method 'saveDetails' must be marked either 'private', 'public', or 'protected'
+ERROR: src/app/new-staff/new-staff.component.ts[79, 3]: Declaration of public instance method not allowed after declaration of private instance method. Instead, this should come after constructors.
+ERROR: src/app/new-staff/new-staff.component.ts[80, 5]: Calls to 'console.log' are not allowed.
+ERROR: src/app/new-staff/new-staff.component.ts[84, 9]: Calls to 'console.log' are not allowed.
+ERROR: src/app/new-staff/new-staff.component.ts[85, 29]: ' should be "
+ERROR: src/app/new-staff/new-staff.component.ts[85, 29]: object access via string literals is disallowed
+ERROR: src/app/new-staff/new-staff.component.ts[87, 23]: ' should be "
+ERROR: src/app/new-staff/new-staff.component.ts[89, 49]: ' should be "
+ERROR: src/app/new-staff/new-staff.component.ts[90, 1]: Exceeds maximum line length of 120
+ERROR: src/app/new-staff/new-staff.component.ts[90, 23]: ' should be "
+ERROR: src/app/new-staff/new-staff.component.ts[93, 8]: Missing trailing comma
+ERROR: src/app/new-staff/new-staff.component.ts[97, 3]: Declaration of public instance method not allowed after declaration of private instance method. Instead, this should come after constructors.
+ERROR: src/app/new-staff/new-staff.component.ts[97, 3]: The class method 'pushMsgAndRemoveAfterInterval' must be marked either 'private', 'public', or 'protected'
+ERROR: src/app/new-staff/new-staff.component.ts[104, 3]: Declaration of public instance method not allowed after declaration of private instance method. Instead, this should come after constructors.
+ERROR: src/app/new-staff/new-staff.component.ts[104, 3]: The class method 'updateInputState' must be marked either 'private', 'public', or 'protected'
+ERROR: src/app/new-staff/new-staff.component.ts[106, 55]: Parentheses are required around the parameters of an arrow function definition
+ERROR: src/app/new-staff/new-staff.component.ts[110, 55]: Parentheses are required around the parameters of an arrow function definition
+ERROR: src/app/new-staff/new-staff.component.ts[118, 49]: ' should be "
+ERROR: src/app/new-staff/new-staff.component.ts[120, 48]: ' should be "
+ERROR: src/app/new-staff/new-staff.component.ts[122, 49]: ' should be "
+ERROR: src/app/new-staff/new-staff.component.ts[124, 51]: ' should be "
+ERROR: src/app/new-staff/new-staff.component.ts[126, 49]: ' should be "
+ERROR: src/app/new-staff/new-staff.component.ts[128, 56]: ' should be "
+ERROR: src/app/page-not-found/page-not-found.component.spec.ts[1, 50]: ' should be "
+ERROR: src/app/page-not-found/page-not-found.component.spec.ts[3, 39]: ' should be "
+ERROR: src/app/page-not-found/page-not-found.component.spec.ts[5, 10]: ' should be "
+ERROR: src/app/page-not-found/page-not-found.component.spec.ts[11, 46]: Missing trailing comma
+ERROR: src/app/page-not-found/page-not-found.component.spec.ts[22, 6]: ' should be "
+ERROR: src/app/page-not-found/page-not-found.component.ts[1, 35]: ' should be "
+ERROR: src/app/page-not-found/page-not-found.component.ts[4, 13]: ' should be "
+ERROR: src/app/page-not-found/page-not-found.component.ts[5, 16]: ' should be "
+ERROR: src/app/page-not-found/page-not-found.component.ts[6, 3]: The key 'styleUrls' is not sorted alphabetically
+ERROR: src/app/page-not-found/page-not-found.component.ts[6, 15]: ' should be "
+ERROR: src/app/page-not-found/page-not-found.component.ts[6, 48]: Missing trailing comma
+ERROR: src/app/page-not-found/page-not-found.component.ts[10, 17]: block is empty
+ERROR: src/app/page-not-found/page-not-found.component.ts[12, 3]: The class method 'ngOnInit' must be marked either 'private', 'public', or 'protected'
+ERROR: src/app/page-not-found/page-not-found.component.ts[12, 14]: block is empty
+ERROR: src/app/patient-list/patient-list.component.spec.ts[1, 50]: ' should be "
+ERROR: src/app/patient-list/patient-list.component.spec.ts[3, 38]: ' should be "
+ERROR: src/app/patient-list/patient-list.component.spec.ts[5, 10]: ' should be "
+ERROR: src/app/patient-list/patient-list.component.spec.ts[11, 45]: Missing trailing comma
+ERROR: src/app/patient-list/patient-list.component.spec.ts[22, 6]: ' should be "
+ERROR: src/app/patient-list/patient-list.component.ts[1, 21]: Named imports must be alphabetized.
+ERROR: src/app/patient-list/patient-list.component.ts[1, 46]: ' should be "
+ERROR: src/app/patient-list/patient-list.component.ts[2, 24]: ' should be "
+ERROR: src/app/patient-list/patient-list.component.ts[4, 32]: ' should be "
+ERROR: src/app/patient-list/patient-list.component.ts[5, 1]: Import sources within a group must be alphabetized.
+ERROR: src/app/patient-list/patient-list.component.ts[5, 25]: ' should be "
+ERROR: src/app/patient-list/patient-list.component.ts[6, 28]: ' should be "
+ERROR: src/app/patient-list/patient-list.component.ts[9, 13]: ' should be "
+ERROR: src/app/patient-list/patient-list.component.ts[10, 16]: ' should be "
+ERROR: src/app/patient-list/patient-list.component.ts[11, 3]: The key 'styleUrls' is not sorted alphabetically
+ERROR: src/app/patient-list/patient-list.component.ts[11, 15]: ' should be "
+ERROR: src/app/patient-list/patient-list.component.ts[11, 46]: Missing trailing comma
+ERROR: src/app/patient-list/patient-list.component.ts[17, 3]: Declaration of public instance field not allowed after declaration of private instance field. Instead, this should come at the beginning of the class/interface.
+ERROR: src/app/patient-list/patient-list.component.ts[18, 3]: Declaration of public instance field not allowed after declaration of private instance field. Instead, this should come at the beginning of the class/interface.
+ERROR: src/app/patient-list/patient-list.component.ts[19, 11]: variable name must be in lowerCamelCase, PascalCase or UPPER_CASE
+ERROR: src/app/patient-list/patient-list.component.ts[22, 5]: parameters are not aligned
+ERROR: src/app/patient-list/patient-list.component.ts[24, 3]: The class method 'getFullName' must be marked either 'private', 'public', or 'protected'
+ERROR: src/app/patient-list/patient-list.component.ts[29, 3]: The class method 'goToNotes' must be marked either 'private', 'public', or 'protected'
+ERROR: src/app/patient-list/patient-list.component.ts[32, 31]: ' should be "
+ERROR: src/app/patient-list/patient-list.component.ts[35, 3]: The class method 'ngOnInit' must be marked either 'private', 'public', or 'protected'
+ERROR: src/app/patient-list/patient-list.component.ts[38, 29]: ' should be "
+ERROR: src/app/patient-list/patient-list.component.ts[38, 29]: object access via string literals is disallowed
+ERROR: src/app/patient-list/patient-list.component.ts[41, 32]: ' should be "
+ERROR: src/app/patient-list/patient-list.component.ts[41, 32]: object access via string literals is disallowed
+ERROR: src/app/patient-list/patient-list.component.ts[46, 15]: The key 'fullName' is not sorted alphabetically
+ERROR: src/app/patient-list/patient-list.component.ts[46, 76]: Missing trailing comma
+ERROR: src/app/patient-list/patient-list.component.ts[49, 12]: Missing trailing comma
+ERROR: src/app/patient-list/patient-list.component.ts[54, 9]: Calls to 'console.log' are not allowed.
+ERROR: src/app/patient-list/patient-list.component.ts[60, 8]: Missing trailing comma
+ERROR: src/app/patient-list/patient-list.component.ts[64, 3]: The class method 'ngOnDestroy' must be marked either 'private', 'public', or 'protected'
+ERROR: src/app/patient-notes/patient-notes.component.spec.ts[1, 50]: ' should be "
+ERROR: src/app/patient-notes/patient-notes.component.spec.ts[3, 39]: ' should be "
+ERROR: src/app/patient-notes/patient-notes.component.spec.ts[5, 10]: ' should be "
+ERROR: src/app/patient-notes/patient-notes.component.spec.ts[11, 46]: Missing trailing comma
+ERROR: src/app/patient-notes/patient-notes.component.spec.ts[22, 6]: ' should be "
+ERROR: src/app/patient-notes/patient-notes.component.ts[1, 21]: Named imports must be alphabetized.
+ERROR: src/app/patient-notes/patient-notes.component.ts[1, 46]: ' should be "
+ERROR: src/app/patient-notes/patient-notes.component.ts[2, 24]: ' should be "
+ERROR: src/app/patient-notes/patient-notes.component.ts[4, 35]: ' should be "
+ERROR: src/app/patient-notes/patient-notes.component.ts[6, 25]: ' should be "
+ERROR: src/app/patient-notes/patient-notes.component.ts[7, 1]: Import sources within a group must be alphabetized.
+ERROR: src/app/patient-notes/patient-notes.component.ts[7, 25]: ' should be "
+ERROR: src/app/patient-notes/patient-notes.component.ts[8, 32]: ' should be "
+ERROR: src/app/patient-notes/patient-notes.component.ts[9, 1]: Import sources within a group must be alphabetized.
+ERROR: src/app/patient-notes/patient-notes.component.ts[9, 31]: ' should be "
+ERROR: src/app/patient-notes/patient-notes.component.ts[11, 13]: ' should be "
+ERROR: src/app/patient-notes/patient-notes.component.ts[12, 16]: ' should be "
+ERROR: src/app/patient-notes/patient-notes.component.ts[13, 3]: The key 'styleUrls' is not sorted alphabetically
+ERROR: src/app/patient-notes/patient-notes.component.ts[13, 15]: ' should be "
+ERROR: src/app/patient-notes/patient-notes.component.ts[13, 47]: Missing trailing comma
+ERROR: src/app/patient-notes/patient-notes.component.ts[17, 11]: variable name must be in lowerCamelCase, PascalCase or UPPER_CASE
+ERROR: src/app/patient-notes/patient-notes.component.ts[18, 3]: Declaration of public instance field not allowed after declaration of private instance field. Instead, this should come at the beginning of the class/interface.
+ERROR: src/app/patient-notes/patient-notes.component.ts[26, 21]: Array type using 'Array<T>' is forbidden for simple types. Use 'T[]' instead.
+ERROR: src/app/patient-notes/patient-notes.component.ts[30, 5]: parameters are not aligned
+ERROR: src/app/patient-notes/patient-notes.component.ts[32, 3]: The class method 'ngOnInit' must be marked either 'private', 'public', or 'protected'
+ERROR: src/app/patient-notes/patient-notes.component.ts[37, 3]: The class method 'editNotes' must be marked either 'private', 'public', or 'protected'
+ERROR: src/app/patient-notes/patient-notes.component.ts[42, 3]: The class method 'cancelEdit' must be marked either 'private', 'public', or 'protected'
+ERROR: src/app/patient-notes/patient-notes.component.ts[47, 3]: The class method 'saveNotes' must be marked either 'private', 'public', or 'protected'
+ERROR: src/app/patient-notes/patient-notes.component.ts[51, 7]: Parentheses are required around the parameters of an arrow function definition
+ERROR: src/app/patient-notes/patient-notes.component.ts[52, 28]: object access via string literals is disallowed
+ERROR: src/app/patient-notes/patient-notes.component.ts[52, 28]: ' should be "
+ERROR: src/app/patient-notes/patient-notes.component.ts[54, 23]: ' should be "
+ERROR: src/app/patient-notes/patient-notes.component.ts[57, 23]: ' should be "
+ERROR: src/app/patient-notes/patient-notes.component.ts[60, 8]: Missing trailing comma
+ERROR: src/app/patient-notes/patient-notes.component.ts[64, 3]: The class method 'addMedication' must be marked either 'private', 'public', or 'protected'
+ERROR: src/app/patient-notes/patient-notes.component.ts[70, 9]: The key 'amount' is not sorted alphabetically
+ERROR: src/app/patient-notes/patient-notes.component.ts[71, 27]: Missing trailing comma
+ERROR: src/app/patient-notes/patient-notes.component.ts[76, 19]: ' should be "
+ERROR: src/app/patient-notes/patient-notes.component.ts[81, 3]: The class method 'removeMed' must be marked either 'private', 'public', or 'protected'
+ERROR: src/app/patient-notes/patient-notes.component.ts[86, 3]: The class method 'setMedFieldsNull' must be marked either 'private', 'public', or 'protected'
+ERROR: src/app/patient-notes/patient-notes.component.ts[92, 3]: The class method 'removeMsg' must be marked either 'private', 'public', or 'protected'
+ERROR: src/app/patient-notes/patient-notes.component.ts[96, 3]: The class method 'getPatientData' must be marked either 'private', 'public', or 'protected'
+ERROR: src/app/patient-notes/patient-notes.component.ts[99, 29]: ' should be "
+ERROR: src/app/patient-notes/patient-notes.component.ts[99, 29]: object access via string literals is disallowed
+ERROR: src/app/patient-notes/patient-notes.component.ts[100, 34]: object access via string literals is disallowed
+ERROR: src/app/patient-notes/patient-notes.component.ts[100, 34]: ' should be "
+ERROR: src/app/patient-notes/patient-notes.component.ts[103, 50]: object access via string literals is disallowed
+ERROR: src/app/patient-notes/patient-notes.component.ts[103, 50]: ' should be "
+ERROR: src/app/patient-notes/patient-notes.component.ts[103, 68]: ' should be "
+ERROR: src/app/patient-notes/patient-notes.component.ts[103, 68]: object access via string literals is disallowed
+ERROR: src/app/patient-notes/patient-notes.component.ts[103, 86]: object access via string literals is disallowed
+ERROR: src/app/patient-notes/patient-notes.component.ts[103, 86]: ' should be "
+ERROR: src/app/patient-notes/patient-notes.component.ts[103, 108]: ' should be "
+ERROR: src/app/patient-notes/patient-notes.component.ts[103, 108]: object access via string literals is disallowed
+ERROR: src/app/patient-notes/patient-notes.component.ts[105, 28]: ' should be "
+ERROR: src/app/patient-notes/patient-notes.component.ts[105, 28]: object access via string literals is disallowed
+ERROR: src/app/patient-notes/patient-notes.component.ts[106, 28]: object access via string literals is disallowed
+ERROR: src/app/patient-notes/patient-notes.component.ts[106, 28]: ' should be "
+ERROR: src/app/patient-notes/patient-notes.component.ts[107, 28]: ' should be "
+ERROR: src/app/patient-notes/patient-notes.component.ts[107, 28]: object access via string literals is disallowed
+ERROR: src/app/patient-notes/patient-notes.component.ts[108, 28]: object access via string literals is disallowed
+ERROR: src/app/patient-notes/patient-notes.component.ts[108, 28]: ' should be "
+ERROR: src/app/patient-notes/patient-notes.component.ts[109, 28]: ' should be "
+ERROR: src/app/patient-notes/patient-notes.component.ts[109, 28]: object access via string literals is disallowed
+ERROR: src/app/patient-notes/patient-notes.component.ts[109, 42]: Missing trailing comma
+ERROR: src/app/patient-notes/patient-notes.component.ts[116, 33]: ' should be "
+ERROR: src/app/patient-notes/patient-notes.component.ts[120, 3]: The class method 'pushMsgAndRemoveAfterInterval' must be marked either 'private', 'public', or 'protected'
+ERROR: src/app/patient-notes/patient-notes.component.ts[127, 3]: The class method 'ngOnDestroy' must be marked either 'private', 'public', or 'protected'
+ERROR: src/app/patient-profile/patient-profile.component.spec.ts[1, 50]: ' should be "
+ERROR: src/app/patient-profile/patient-profile.component.spec.ts[3, 41]: ' should be "
+ERROR: src/app/patient-profile/patient-profile.component.spec.ts[5, 10]: ' should be "
+ERROR: src/app/patient-profile/patient-profile.component.spec.ts[11, 48]: Missing trailing comma
+ERROR: src/app/patient-profile/patient-profile.component.spec.ts[22, 6]: ' should be "
+ERROR: src/app/patient-profile/patient-profile.component.ts[6, 1]: Import sources within a group must be alphabetized.
+ERROR: src/app/patient-profile/patient-profile.component.ts[13, 13]: ' should be "
+ERROR: src/app/patient-profile/patient-profile.component.ts[14, 16]: ' should be "
+ERROR: src/app/patient-profile/patient-profile.component.ts[15, 3]: The key 'styleUrls' is not sorted alphabetically
+ERROR: src/app/patient-profile/patient-profile.component.ts[15, 15]: ' should be "
+ERROR: src/app/patient-profile/patient-profile.component.ts[15, 49]: Missing trailing comma
+ERROR: src/app/patient-profile/patient-profile.component.ts[27, 1]: Exceeds maximum line length of 120
+ERROR: src/app/patient-profile/patient-profile.component.ts[28, 5]: parameters are not aligned
+ERROR: src/app/patient-profile/patient-profile.component.ts[53, 41]: object access via string literals is disallowed
+ERROR: src/app/patient-profile/patient-profile.component.ts[55, 33]: object access via string literals is disallowed
+ERROR: src/app/patient-profile/patient-profile.component.ts[56, 35]: object access via string literals is disallowed
+ERROR: src/app/patient-profile/patient-profile.component.ts[66, 13]: Expected property shorthand in object literal ('{address}').
+ERROR: src/app/patient-profile/patient-profile.component.ts[96, 9]: Calls to 'console.log' are not allowed.
+ERROR: src/app/patient-profile/patient-profile.component.ts[97, 41]: object access via string literals is disallowed
+ERROR: src/app/patient-profile/patient-profile.component.ts[97, 41]: ' should be "
+ERROR: src/app/patient-profile/patient-profile.component.ts[99, 33]: ' should be "
+ERROR: src/app/patient-profile/patient-profile.component.ts[99, 33]: object access via string literals is disallowed
+ERROR: src/app/patient-profile/patient-profile.component.ts[103, 56]: object access via string literals is disallowed
+ERROR: src/app/patient-profile/patient-profile.component.ts[103, 83]: object access via string literals is disallowed
+ERROR: src/app/search.pipe.spec.ts[1, 28]: ' should be "
+ERROR: src/app/search.pipe.spec.ts[3, 10]: ' should be "
+ERROR: src/app/search.pipe.spec.ts[4, 6]: ' should be "
+ERROR: src/app/search.pipe.ts[1, 37]: ' should be "
+ERROR: src/app/search.pipe.ts[4, 9]: ' should be "
+ERROR: src/app/search.pipe.ts[4, 17]: Missing trailing comma
+ERROR: src/app/search.pipe.ts[8, 3]: The class method 'transform' must be marked either 'private', 'public', or 'protected'
+ERROR: src/app/search.pipe.ts[10, 5]: if statements must be braced
+ERROR: src/app/search.pipe.ts[11, 1]: Exceeds maximum line length of 120
+ERROR: src/app/search.pipe.ts[11, 54]: ' should be "
+ERROR: src/app/search.pipe.ts[11, 64]: Parentheses are required around the parameters of an arrow function definition
+ERROR: src/app/search.pipe.ts[11, 116]: ' should be "
+ERROR: src/app/services/appointments.service.spec.ts[1, 10]: Named imports must be alphabetized.
+ERROR: src/app/services/appointments.service.spec.ts[1, 33]: ' should be "
+ERROR: src/app/services/appointments.service.spec.ts[3, 37]: ' should be "
+ERROR: src/app/services/appointments.service.spec.ts[5, 10]: ' should be "
+ERROR: src/app/services/appointments.service.spec.ts[8, 39]: Missing trailing comma
+ERROR: src/app/services/appointments.service.spec.ts[12, 6]: ' should be "
+ERROR: src/app/services/appointments.service.ts[1, 28]: ' should be "
+ERROR: src/app/services/appointments.service.ts[2, 10]: Named imports must be alphabetized.
+ERROR: src/app/services/appointments.service.ts[2, 57]: ' should be "
+ERROR: src/app/services/appointments.service.ts[3, 1]: Import sources within a group must be alphabetized.
+ERROR: src/app/services/appointments.service.ts[3, 28]: ' should be "
+ERROR: src/app/services/appointments.service.ts[4, 29]: ' should be "
+ERROR: src/app/services/appointments.service.ts[9, 3]: The class property 'baseUrl' must be marked either 'private', 'public', or 'protected'
+ERROR: src/app/services/appointments.service.ts[9, 13]: ' should be "
+ERROR: src/app/services/appointments.service.ts[10, 3]: The class property 'confirmationData' must be marked either 'private', 'public', or 'protected'
+ERROR: src/app/services/appointments.service.ts[16, 3]: The class method 'getAppointments' must be marked either 'private', 'public', or 'protected'
+ERROR: src/app/services/appointments.service.ts[17, 41]: ' should be "
+ERROR: src/app/services/appointments.service.ts[20, 3]: The class method 'getAppointmentsOnDate' must be marked either 'private', 'public', or 'protected'
+ERROR: src/app/services/appointments.service.ts[21, 41]: ' should be "
+ERROR: src/app/services/appointments.service.ts[24, 3]: The class method 'createNewAppointment' must be marked either 'private', 'public', or 'protected'
+ERROR: src/app/services/appointments.service.ts[28, 3]: The class method 'getDocsAppointments' must be marked either 'private', 'public', or 'protected'
+ERROR: src/app/services/appointments.service.ts[32, 3]: The class method 'getPatientsAppointments' must be marked either 'private', 'public', or 'protected'
+ERROR: src/app/services/auth-guard.service.ts[1, 28]: ' should be "
+ERROR: src/app/services/auth-guard.service.ts[2, 10]: Named imports must be alphabetized.
+ERROR: src/app/services/auth-guard.service.ts[2, 53]: ' should be "
+ERROR: src/app/services/auth-guard.service.ts[4, 29]: ' should be "
+ERROR: src/app/services/auth-guard.service.ts[5, 1]: Import sources within a group must be alphabetized.
+ERROR: src/app/services/auth-guard.service.ts[5, 24]: ' should be "
+ERROR: src/app/services/auth-guard.service.ts[11, 5]: parameters are not aligned
+ERROR: src/app/services/auth-guard.service.ts[13, 3]: The class method 'canActivate' must be marked either 'private', 'public', or 'protected'
+ERROR: src/app/services/auth-guard.service.ts[16, 9]: Identifier 'loggedIn' is never reassigned; use 'const' instead of 'let'.
+ERROR: src/app/services/auth-guard.service.ts[19, 33]: ' should be "
+ERROR: src/app/services/auth-guard.service.ts[25, 35]: ' should be "
+ERROR: src/app/services/auth-guard.service.ts[27, 35]: ' should be "
+ERROR: src/app/services/auth-guard.service.ts[27, 61]: ' should be "
+ERROR: src/app/services/auth-guard.service.ts[27, 85]: ' should be "
+ERROR: src/app/services/auth-guard.service.ts[30, 35]: ' should be "
+ERROR: src/app/services/auth.service.spec.ts[1, 10]: Named imports must be alphabetized.
+ERROR: src/app/services/auth.service.spec.ts[1, 33]: ' should be "
+ERROR: src/app/services/auth.service.spec.ts[3, 29]: ' should be "
+ERROR: src/app/services/auth.service.spec.ts[5, 10]: ' should be "
+ERROR: src/app/services/auth.service.spec.ts[8, 31]: Missing trailing comma
+ERROR: src/app/services/auth.service.spec.ts[12, 6]: ' should be "
+ERROR: src/app/services/auth.service.ts[1, 28]: ' should be "
+ERROR: src/app/services/auth.service.ts[2, 1]: Import sources within a group must be alphabetized.
+ERROR: src/app/services/auth.service.ts[2, 28]: ' should be "
+ERROR: src/app/services/auth.service.ts[3, 24]: ' should be "
+ERROR: src/app/services/auth.service.ts[5, 28]: ' should be "
+ERROR: src/app/services/auth.service.ts[6, 1]: Import sources within a group must be alphabetized.
+ERROR: src/app/services/auth.service.ts[6, 26]: ' should be "
+ERROR: src/app/services/auth.service.ts[7, 21]: ' should be "
+ERROR: src/app/services/auth.service.ts[8, 1]: Import sources within a group must be alphabetized.
+ERROR: src/app/services/auth.service.ts[8, 33]: ' should be "
+ERROR: src/app/services/auth.service.ts[9, 28]: ' should be "
+ERROR: src/app/services/auth.service.ts[10, 1]: Import sources within a group must be alphabetized.
+ERROR: src/app/services/auth.service.ts[10, 25]: ' should be "
+ERROR: src/app/services/auth.service.ts[11, 1]: Import sources within a group must be alphabetized.
+ERROR: src/app/services/auth.service.ts[11, 28]: ' should be "
+ERROR: src/app/services/auth.service.ts[13, 22]: ' should be "
+ERROR: src/app/services/auth.service.ts[22, 5]: parameters are not aligned
+ERROR: src/app/services/auth.service.ts[25, 3]: The class method 'login' must be marked either 'private', 'public', or 'protected'
+ERROR: src/app/services/auth.service.ts[26, 22]: ' should be "
+ERROR: src/app/services/auth.service.ts[28, 29]: ' should be "
+ERROR: src/app/services/auth.service.ts[28, 54]: Unnecessarily quoted property 'username' found.
+ERROR: src/app/services/auth.service.ts[28, 54]: ' should be "
+ERROR: src/app/services/auth.service.ts[28, 73]: Unnecessarily quoted property 'password' found.
+ERROR: src/app/services/auth.service.ts[28, 73]: ' should be "
+ERROR: src/app/services/auth.service.ts[29, 29]: ' should be "
+ERROR: src/app/services/auth.service.ts[31, 29]: ' should be "
+ERROR: src/app/services/auth.service.ts[31, 51]: ' should be "
+ERROR: src/app/services/auth.service.ts[31, 51]: Unnecessarily quoted property 'username' found.
+ERROR: src/app/services/auth.service.ts[31, 70]: Unnecessarily quoted property 'password' found.
+ERROR: src/app/services/auth.service.ts[31, 70]: ' should be "
+ERROR: src/app/services/auth.service.ts[35, 3]: The class method 'tokenTest' must be marked either 'private', 'public', or 'protected'
+ERROR: src/app/services/auth.service.ts[36, 26]: ' should be "
+ERROR: src/app/services/auth.service.ts[39, 3]: The class method 'logout' must be marked either 'private', 'public', or 'protected'
+ERROR: src/app/services/auth.service.ts[40, 29]: ' should be "
+ERROR: src/app/services/auth.service.ts[41, 29]: ' should be "
+ERROR: src/app/services/auth.service.ts[42, 31]: ' should be "
+ERROR: src/app/services/auth.service.ts[46, 36]: Parentheses are required around the parameters of an arrow function definition
+ERROR: src/app/services/auth.service.ts[58, 3]: The class method 'isLoggedOut' must be marked either 'private', 'public', or 'protected'
+ERROR: src/app/services/auth.service.ts[62, 3]: The class method 'getExpiration' must be marked either 'private', 'public', or 'protected'
+ERROR: src/app/services/auth.service.ts[63, 45]: ' should be "
+ERROR: src/app/services/auth.service.ts[76, 11]: variable name must be in lowerCamelCase, PascalCase or UPPER_CASE
+ERROR: src/app/services/auth.service.ts[76, 37]: object access via string literals is disallowed
+ERROR: src/app/services/auth.service.ts[76, 37]: ' should be "
+ERROR: src/app/services/auth.service.ts[87, 3]: The class method 'getUserType' must be marked either 'private', 'public', or 'protected'
+ERROR: src/app/services/auth.service.ts[89, 11]: variable name must be in lowerCamelCase, PascalCase or UPPER_CASE
+ERROR: src/app/services/auth.service.ts[89, 29]: object access via string literals is disallowed
+ERROR: src/app/services/auth.service.ts[89, 29]: ' should be "
+ERROR: src/app/services/auth.service.ts[93, 3]: The class method 'getUserId' must be marked either 'private', 'public', or 'protected'
+ERROR: src/app/services/auth.service.ts[94, 11]: variable name must be in lowerCamelCase, PascalCase or UPPER_CASE
+ERROR: src/app/services/auth.service.ts[94, 37]: object access via string literals is disallowed
+ERROR: src/app/services/auth.service.ts[94, 37]: ' should be "
+ERROR: src/app/services/data.service.spec.ts[1, 10]: Named imports must be alphabetized.
+ERROR: src/app/services/data.service.spec.ts[1, 33]: ' should be "
+ERROR: src/app/services/data.service.spec.ts[3, 29]: ' should be "
+ERROR: src/app/services/data.service.spec.ts[5, 10]: ' should be "
+ERROR: src/app/services/data.service.spec.ts[8, 31]: Missing trailing comma
+ERROR: src/app/services/data.service.spec.ts[12, 6]: ' should be "
+ERROR: src/app/services/data.service.ts[1, 28]: ' should be "
+ERROR: src/app/services/data.service.ts[2, 41]: ' should be "
+ERROR: src/app/services/data.service.ts[3, 1]: Import sources within a group must be alphabetized.
+ERROR: src/app/services/data.service.ts[3, 28]: ' should be "
+ERROR: src/app/services/data.service.ts[5, 8]: ' should be "
+ERROR: src/app/services/data.service.ts[10, 3]: The class property 'result' must be marked either 'private', 'public', or 'protected'
+ERROR: src/app/services/data.service.ts[14, 3]: The class method 'getUsers' must be marked either 'private', 'public', or 'protected'
+ERROR: src/app/services/data.service.ts[15, 26]: ' should be "
+ERROR: src/app/services/data.service.ts[15, 50]: Parentheses are required around the parameters of an arrow function definition
+ERROR: src/app/services/interfaces/event.ts[1, 18]: interface name must start with a capitalized I
+ERROR: src/app/services/interfaces/user.ts[1, 18]: interface name must start with a capitalized I
+ERROR: src/app/services/patient.service.spec.ts[1, 10]: Named imports must be alphabetized.
+ERROR: src/app/services/patient.service.spec.ts[1, 33]: ' should be "
+ERROR: src/app/services/patient.service.spec.ts[3, 32]: ' should be "
+ERROR: src/app/services/patient.service.spec.ts[5, 10]: ' should be "
+ERROR: src/app/services/patient.service.spec.ts[8, 34]: Missing trailing comma
+ERROR: src/app/services/patient.service.spec.ts[12, 6]: ' should be "
+ERROR: src/app/services/patient.service.ts[1, 28]: ' should be "
+ERROR: src/app/services/patient.service.ts[2, 10]: Named imports must be alphabetized.
+ERROR: src/app/services/patient.service.ts[2, 57]: ' should be "
+ERROR: src/app/services/patient.service.ts[3, 1]: Import sources within a group must be alphabetized.
+ERROR: src/app/services/patient.service.ts[3, 28]: ' should be "
+ERROR: src/app/services/patient.service.ts[4, 29]: ' should be "
+ERROR: src/app/services/patient.service.ts[9, 21]: ' should be "
+ERROR: src/app/services/patient.service.ts[10, 3]: Declaration of public instance field not allowed after declaration of private instance field. Instead, this should come at the beginning of the class/interface.
+ERROR: src/app/services/patient.service.ts[10, 10]: variable name must be in lowerCamelCase, PascalCase or UPPER_CASE
+ERROR: src/app/services/patient.service.ts[14, 3]: The class method 'getPatients' must be marked either 'private', 'public', or 'protected'
+ERROR: src/app/services/patient.service.ts[15, 41]: ' should be "
+ERROR: src/app/services/patient.service.ts[18, 3]: The class method 'getPatientNotes' must be marked either 'private', 'public', or 'protected'
+ERROR: src/app/services/patient.service.ts[18, 19]: variable name must be in lowerCamelCase, PascalCase or UPPER_CASE
+ERROR: src/app/services/patient.service.ts[23, 3]: The class method 'savePatientNotes' must be marked either 'private', 'public', or 'protected'
+ERROR: src/app/services/patient.service.ts[23, 20]: variable name must be in lowerCamelCase, PascalCase or UPPER_CASE
+ERROR: src/app/services/patient.service.ts[27, 3]: The class method 'getPatientById' must be marked either 'private', 'public', or 'protected'
+ERROR: src/app/services/patient.service.ts[27, 18]: variable name must be in lowerCamelCase, PascalCase or UPPER_CASE
+ERROR: src/app/services/patient.service.ts[31, 3]: The class method 'savePatientById' must be marked either 'private', 'public', or 'protected'
+ERROR: src/app/services/patient.service.ts[31, 19]: variable name must be in lowerCamelCase, PascalCase or UPPER_CASE
+ERROR: src/app/services/patient.service.ts[35, 3]: The class method 'createPatient' must be marked either 'private', 'public', or 'protected'
+ERROR: src/app/services/staff.service.spec.ts[1, 10]: Named imports must be alphabetized.
+ERROR: src/app/services/staff.service.spec.ts[1, 33]: ' should be "
+ERROR: src/app/services/staff.service.spec.ts[3, 30]: ' should be "
+ERROR: src/app/services/staff.service.spec.ts[5, 10]: ' should be "
+ERROR: src/app/services/staff.service.spec.ts[8, 32]: Missing trailing comma
+ERROR: src/app/services/staff.service.spec.ts[12, 6]: ' should be "
+ERROR: src/app/staff-list/staff-list.component.spec.ts[1, 50]: ' should be "
+ERROR: src/app/staff-list/staff-list.component.spec.ts[3, 36]: ' should be "
+ERROR: src/app/staff-list/staff-list.component.spec.ts[5, 10]: ' should be "
+ERROR: src/app/staff-list/staff-list.component.spec.ts[11, 43]: Missing trailing comma
+ERROR: src/app/staff-list/staff-list.component.spec.ts[22, 6]: ' should be "
+ERROR: src/app/staff-list/staff-list.component.ts[1, 35]: ' should be "
+ERROR: src/app/staff-list/staff-list.component.ts[4, 13]: ' should be "
+ERROR: src/app/staff-list/staff-list.component.ts[5, 16]: ' should be "
+ERROR: src/app/staff-list/staff-list.component.ts[6, 3]: The key 'styleUrls' is not sorted alphabetically
+ERROR: src/app/staff-list/staff-list.component.ts[6, 15]: ' should be "
+ERROR: src/app/staff-list/staff-list.component.ts[6, 44]: Missing trailing comma
+ERROR: src/app/staff-list/staff-list.component.ts[10, 17]: block is empty
+ERROR: src/app/staff-list/staff-list.component.ts[12, 3]: The class method 'ngOnInit' must be marked either 'private', 'public', or 'protected'
+ERROR: src/app/staff-list/staff-list.component.ts[12, 14]: block is empty
+ERROR: src/environments/environment.prod.ts[2, 19]: Missing trailing comma
+ERROR: src/environments/environment.ts[7, 20]: Missing trailing comma
+ERROR: src/main.ts[1, 32]: ' should be "
+ERROR: src/main.ts[2, 40]: ' should be "
+ERROR: src/main.ts[4, 27]: ' should be "
+ERROR: src/main.ts[5, 29]: ' should be "
+ERROR: src/main.ts[12, 10]: Parentheses are required around the parameters of an arrow function definition
+ERROR: src/main.ts[12, 17]: Calls to 'console.log' are not allowed.
+ERROR: src/polyfills.ts[21, 1]: jsdoc is not formatted correctly on this line
+ERROR: src/polyfills.ts[43, 1]: Consecutive blank lines are forbidden
+ERROR: src/polyfills.ts[44, 1]: jsdoc is not formatted correctly on this line
+ERROR: src/polyfills.ts[46, 8]: ' should be "
+ERROR: src/polyfills.ts[48, 1]: Consecutive blank lines are forbidden
+ERROR: src/polyfills.ts[52, 1]: asterisks in jsdoc must be aligned
+ERROR: src/polyfills.ts[52, 1]: jsdoc is not formatted correctly on this line
+ERROR: src/polyfills.ts[55, 1]: Consecutive blank lines are forbidden
+ERROR: src/polyfills.ts[60, 8]: ' should be "
+ERROR: src/polyfills.ts[62, 1]: Consecutive blank lines are forbidden
+ERROR: src/test.ts[3, 8]: ' should be "
+ERROR: src/test.ts[4, 8]: ' should be "
+ERROR: src/test.ts[5, 8]: ' should be "
+ERROR: src/test.ts[6, 1]: Import sources within a group must be alphabetized.
+ERROR: src/test.ts[6, 8]: ' should be "
+ERROR: src/test.ts[7, 1]: Import sources within a group must be alphabetized.
+ERROR: src/test.ts[7, 8]: ' should be "
+ERROR: src/test.ts[8, 8]: ' should be "
+ERROR: src/test.ts[9, 1]: Import sources within a group must be alphabetized.
+ERROR: src/test.ts[9, 28]: ' should be "
+ERROR: src/test.ts[12, 32]: Missing trailing comma
+ERROR: src/test.ts[13, 8]: ' should be "
+ERROR: src/test.ts[20, 20]: non-arrow functions are forbidden
+ERROR: src/test.ts[20, 28]: Spaces before function parens are disallowed
+ERROR: src/test.ts[20, 32]: block is empty
+ERROR: src/test.ts[25, 34]: Missing trailing comma
+ERROR: src/test.ts[28, 33]: ' should be "
+ERROR: src/typings.d.ts[3, 11]: interface name must start with a capitalized I
+

@@ -1,38 +1,38 @@
-import { Injectable } from '@angular/core';
-import { Http, Headers, RequestOptions, Response } from '@angular/http';
-import { HttpClient } from '@angular/common/http';
-import { HttpHeaders } from '@angular/common/http';
+import { HttpClient } from "@angular/common/http";
+import { HttpHeaders } from "@angular/common/http";
+import { Injectable } from "@angular/core";
+import { Headers, Http, RequestOptions, Response } from "@angular/http";
 
 @Injectable()
 export class PatientService {
 
-  private baseUrl = '/api/patients';
-  public patient_idToFind: string = null;
+  public patientIdToFind: string = null;
+  private baseUrl = "/api/patients";
 
   constructor(private http: HttpClient) { }
 
-  getPatients() {
-    return this.http.get(this.baseUrl + '/all-patients');
+  public getPatients() {
+    return this.http.get(this.baseUrl + "/all-patients");
   }
 
-  getPatientNotes(_id: string) {
-    return this.http.get(`${this.baseUrl}/patient-notes/${_id}`);
+  public getPatientNotes(id: string) {
+    return this.http.get(`${this.baseUrl}/patient-notes/${id}`);
   }
 
   //  FINISH SAVING NOTES
-  savePatientNotes(_id: string, notes) {
-    return this.http.post(`${this.baseUrl}/patient-notes/${_id}`, notes);
+  public savePatientNotes(id: string, notes) {
+    return this.http.post(`${this.baseUrl}/patient-notes/${id}`, notes);
   }
 
-  getPatientById(_id) {
-    return this.http.get(`${this.baseUrl}/patient/${_id}`);
+  public getPatientById(id) {
+    return this.http.get(`${this.baseUrl}/patient/${id}`);
   }
 
-  savePatientById(_id, data) {
-    return this.http.patch(`${this.baseUrl}/patient/${_id}`, data);
+  public savePatientById(id, data) {
+    return this.http.patch(`${this.baseUrl}/patient/${id}`, data);
   }
 
-  createPatient(data) {
+  public createPatient(data) {
     return this.http.post(`${this.baseUrl}/new-patient`, data);
   }
 

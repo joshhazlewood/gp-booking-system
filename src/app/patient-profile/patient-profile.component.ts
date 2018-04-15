@@ -1,18 +1,18 @@
 import { Component, OnInit } from "@angular/core";
 
+import { Ng4LoadingSpinnerService } from "ng4-loading-spinner";
 import { Address } from "../models/address";
+import { PatientProfile } from "../models/patient-profile";
 import { AppointmentsService } from "../services/appointments.service";
 import { AuthService } from "../services/auth.service";
-import { Ng4LoadingSpinnerService } from "ng4-loading-spinner";
-import { PatientProfile } from "../models/patient-profile";
 import { PatientService } from "../services/patient.service";
 
 import { IAppointment as Appointment } from "../services/interfaces/appointment";
 
 @Component({
-  selector: 'app-patient-profile',
-  templateUrl: './patient-profile.component.html',
-  styleUrls: ['./patient-profile.component.css']
+  selector: "app-patient-profile",
+  styleUrls: ["./patient-profile.component.css"],
+  templateUrl: "./patient-profile.component.html",
 })
 export class PatientProfileComponent implements OnInit {
 
@@ -24,8 +24,9 @@ export class PatientProfileComponent implements OnInit {
   public appointments: any[];
   private userId: string = null;
 
+  /* tslint:disable:max-line-length */
   constructor(private patientService: PatientService, private authService: AuthService, private spinnerService: Ng4LoadingSpinnerService,
-    private appointmentsService: AppointmentsService) { }
+              private appointmentsService: AppointmentsService) { }
 
   public ngOnInit() {
     this.userFound = false;
@@ -49,11 +50,11 @@ export class PatientProfileComponent implements OnInit {
 
   private getPatientData() {
     this.patientService.getPatientById(this.userId).subscribe(
-      (response) => {
-        const status: number = response["status"];
+      (response: any) => {
+        const status: number = response.status;
         if (status === 200) {
-          const data = response["data"];
-          const rawAddress = data["address"];
+          const data = response.data;
+          const rawAddress = data.address;
 
           const address: Address = {
             line1: rawAddress.line1,
@@ -63,9 +64,9 @@ export class PatientProfileComponent implements OnInit {
           };
           this.user = {
             _id: data._id,
-            address: address,
+            address,
             forename: data.forename,
-            patient_id: data.patient_id,
+            patientId: data.patient_id,
             surname: data.surname,
             username: data.user_name,
           };
@@ -92,15 +93,15 @@ export class PatientProfileComponent implements OnInit {
   private getAppointmentsData() {
     this.spinnerService.show();
     this.appointmentsService.getPatientsAppointments(this.userId).subscribe(
-      (response) => {
+      (response: any) => {
         console.log(response);
-        const status: number = response['status'];
+        const status: number = response.status;
         if (status === 200) {
-          const data = response['data'];
+          const data = response.data;
           // this.appointments = data;
           if (data.length > 0) {
             data.forEach((element) => {
-              const docName = this.getFullName(element["staff"].forename, element["staff"].surname);
+              const docName = this.getFullName(element.staff.forename, element.staff.surname);
               const app: Appointment = {
                 doctor: docName,
                 start_time: new Date(element.start_time),

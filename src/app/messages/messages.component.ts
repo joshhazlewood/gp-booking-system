@@ -1,17 +1,18 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input } from "@angular/core";
 
 @Component({
-  selector: 'app-messages',
-  templateUrl: './messages.component.html',
-  styleUrls: ['./messages.component.css']
+  selector: "app-messages",
+  styleUrls: ["./messages.component.css"],
+  templateUrl: "./messages.component.html",
 })
 export class MessagesComponent {
 
-  @Input() messages: string[];
+  @Input() public messages: string[];
 
+  /* tslint:disable:no-empty */
   constructor() { }
-
-  removeMsg(index) {
+  /* tslint:enable:no-empty */
+  public removeMsg(index) {
     this.messages.splice(index, 1);
   }
 

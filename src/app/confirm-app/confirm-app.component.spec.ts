@@ -1,14 +1,14 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed } from "@angular/core/testing";
 
-import { ConfirmAppComponent } from './confirm-app.component';
+import { ConfirmAppComponent } from "./confirm-app.component";
 
-describe('ConfirmAppComponent', () => {
+describe("ConfirmAppComponent", () => {
   let component: ConfirmAppComponent;
   let fixture: ComponentFixture<ConfirmAppComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ConfirmAppComponent ]
+      declarations: [ ConfirmAppComponent ],
     })
     .compileComponents();
   }));
@@ -19,7 +19,7 @@ describe('ConfirmAppComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });

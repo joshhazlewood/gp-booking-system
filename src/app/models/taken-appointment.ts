@@ -1,4 +1,5 @@
 export class TakenAppointment {
+    /* tslint:disable:variable-name */
     public doctor_id: string;
     public start_time: Date;
     constructor(doctor_id: string, start_time: Date) {
