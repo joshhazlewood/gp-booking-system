@@ -164,7 +164,6 @@ router.post('/login', (req, res) => {
                     res.json(resp);
                 } else {
                     logger.log('warning', 'User %s attemped to log in.', username);
-
                     const resp = new Response(401);
                     res.json(resp);
                 }

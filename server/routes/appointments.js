@@ -11,12 +11,33 @@ var PatientSchema = require('../schemas/patient');
 var Patient = mongoose.model('Patient', PatientSchema, 'patients');
 const Response = require('../response');
 
-// Response handling
-let response = {
-    status: 200,
-    data: [],
-    message: null
-};
+const winston = require('winston');
+const { createLogger, format, transports } = require('winston');
+const { combine, timestamp, prettyPrint, simple } = format;
+
+const logger = winston.createLogger({
+    format: combine(
+        timestamp(),
+        prettyPrint(),
+        format.splat(),
+        format.simple()
+    ),
+    transports: [
+        new winston.transports.Console(),
+        new winston.transports.File({
+            filename: 'info.log',
+            level: 'info'
+        }),
+        new winston.transports.File({
+            filename: 'errors.log',
+            level: 'error'
+        }),
+        new winston.transports.File({
+            filename: 'warning.log',
+            level: 'warning'
+        })
+    ]
+});
 
 // autoIncrement.initialize
 autoIncrement.initialize(mongoose.connection);
@@ -70,11 +91,12 @@ router.post('/new-appointment', ensureToken, function (req, res) {
             if (appointments.length === 0) {
                 appointmentsModel.create(appointment, function (err) {
                     if (err) {
-                        console.log('Error saving appointment data');
+                        // console.log('Error saving appointment data');
+                        logger.log('error', 'Error saving appointment data %s', appointment);
                         const resp = new Response(500);
                         res.json(resp);
                     } else {
-                        console.log('Saved appointment to DB');
+                        logger.log('info', 'User %s created an appointment at %s.', patient_id, startTime);
                         const resp = new Response(200);
                         res.json(resp);
                     }
@@ -89,16 +111,17 @@ router.post('/new-appointment', ensureToken, function (req, res) {
 
                 if (doctorTaken === true) {
                     console.log('Appointment already taken!');
+                    logger.log('warning', 'Clash found for appointment data %s', appointment);
                     const resp = new Response(409);
                     res.json(resp);
                 } else if (doctorTaken === false) {
                     appointmentsModel.create(appointment, function (err) {
                         if (err) {
-                            console.log('Error saving appointment data');
+                            logger.log('error', 'Error saving appointment data %s', appointment);
                             const resp = new Response(500);
                             res.json(resp);
                         } else {
-                            console.log('Saved appointment to DB');
+                            logger.log('info', 'User %s created an appointment at %s.', patient_id, startTime);
                             const resp = new Response(200);
                             res.json(resp);
                         }

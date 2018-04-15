@@ -4,9 +4,9 @@ const mongoose = require('mongoose');
 const jwt = require('jsonwebtoken');
 var bcrypt = require('bcrypt');
 const Response = require('../response');
-const winston = require('winston');
 const staffSchema = require('../schemas/staff');
 var staff = mongoose.model('staff', staffSchema, 'staff');
+const winston = require('winston');
 const { createLogger, format, transports } = require('winston');
 const { combine, timestamp, prettyPrint, simple } = format;
 
@@ -35,6 +35,30 @@ const accessLogger = winston.createLogger({
         new winston.transports.File({
             filename: './logs/changed.log',
             level: 'changed'
+        })
+    ]
+});
+
+const logger = winston.createLogger({
+    format: combine(
+        timestamp(),
+        prettyPrint(),
+        format.splat(),
+        format.simple()
+    ),
+    transports: [
+        new winston.transports.Console(),
+        new winston.transports.File({
+            filename: 'info.log',
+            level: 'info'
+        }),
+        new winston.transports.File({
+            filename: 'errors.log',
+            level: 'error'
+        }),
+        new winston.transports.File({
+            filename: 'warning.log',
+            level: 'warning'
         })
     ]
 });
@@ -180,7 +204,7 @@ router.get('id/:id', ensureAndVerifyToken, (req, res) => {
             console.log('No patient is found with an ID of ' + req.params.id);
         }
     })).catch(err => {
-        console.log(err);
+        logger.log('error', err);
     })
 });
 
@@ -213,7 +237,7 @@ router.post('/new-patient', (req, res) => {
 
     newPatient.save({ setDefaultsOnInsert: true }, function (err, resp) {
         if (err) {
-            console.log(err);
+            logger.log('error', err);
             const resp = new Response(409);
             res.json(resp);
         } else {
@@ -260,14 +284,19 @@ router.post('/login', (req, res) => {
                         id_token: token,
                         expires_in: expiresIn
                     }
+
+                    logger.log('info', 'User %s logged in.', username);
+                    
                     const resp = new Response(200, data);
                     res.json(resp);
                 } else {
+                    logger.log('warning', 'User %s attemped to log in.', username);
                     const resp = new Response(401);
                     res.json(resp);
                 }
             }
         } else {
+            logger.log('error', err);
             console.log(err);
         }
     })
