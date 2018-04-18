@@ -150,7 +150,7 @@ export class EditStaffComponent implements OnInit, OnDestroy {
 
   get username() { return this.staffForm.get("username"); }
 
-  get user_role() { return this.staffForm.get("user_role"); }
+  get staff_role() { return this.staffForm.get("staff_role"); }
 
   public ngOnDestroy() {
     this.staffMember$.unsubscribe();
