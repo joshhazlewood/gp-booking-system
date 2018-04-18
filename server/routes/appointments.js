@@ -62,7 +62,6 @@ router.get('/all-appointments', ensureToken, (req, res) => {
 
 
 router.post('/new-appointment', ensureToken, function (req, res) {
-    resetResponse();
     const appTaken = false;
     const { doctor, date, patient_id } = req['body'];
     const doc_id = doctor['_id'];
@@ -176,7 +175,6 @@ router.get('/date/:date', function (req, res) {
 });
 
 router.get('/app-as-event/:doctor_id', ensureToken, (req, res) => {
-    resetResponse();
     const doc_id = req.params.doctor_id;
 
     appointmentsModel.find({ 'staff': doc_id }).
@@ -220,7 +218,6 @@ function handleError(err) {
 }
 
 router.get('/protected', ensureToken, (req, res) => {
-    resetResponse();
     jwt.verify(req.token, '13118866', (err, data) => {
         console.log(data);
         if (err) {
@@ -246,12 +243,6 @@ function ensureToken(req, res, next) {
         const resp = new Response(403);
         res.json(resp);
     }
-}
-
-function resetResponse() {
-    response.status = 200;
-    response.data = [];
-    response.message = null;
 }
 
 
