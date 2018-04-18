@@ -6,6 +6,39 @@ var bcrypt = require('bcrypt');
 
 const Response = require('../response');
 const staffSchema = require('../schemas/staff');
+const winston = require('winston');
+const { createLogger, format, transports } = require('winston');
+const { combine, timestamp, prettyPrint, simple } = format;
+
+const options = {
+    db: mongoose.db,
+    collection: 'logs'
+};
+
+const logger = winston.createLogger({
+    format: combine(
+        timestamp(),
+        prettyPrint(),
+        format.splat(),
+        format.simple()
+    ),
+    transports: [
+        new winston.transports.Console(),
+        new winston.transports.File({
+            filename: 'info.log',
+            level: 'info'
+        }),
+        new winston.transports.File({
+            filename: 'errors.log',
+            level: 'error'
+        }),
+        new winston.transports.File({
+            filename: 'warning.log',
+            level: 'warning'
+        })
+    ]
+});
+
 
 // STAFF COLLECTION
 var staffModel = mongoose.model('staff', staffSchema, 'staff');
@@ -17,13 +50,6 @@ var testStaff = {
     staff_role: 'admin',
     user_name: 'admin@test.com',
     password: 'test'
-};
-
-// Response handling
-let response = {
-    status: 200,
-    data: [],
-    message: null
 };
 
 router.get('/', function (req, res) {
@@ -98,7 +124,6 @@ router.get('/all-staff', function (req, res) {
 });
 
 router.post('/login', (req, res) => {
-    resetResponse();
     const user = req.body;
     const username = user.username
     const password = user.password
@@ -133,9 +158,12 @@ router.post('/login', (req, res) => {
                         expires_in: expiresIn
                     }
 
+                    logger.log('info', 'User %s logged in.', username);
+
                     const resp = new Response(200, data);
                     res.json(resp);
                 } else {
+                    logger.log('warning', 'User %s attemped to log in.', username);
                     const resp = new Response(401);
                     res.json(resp);
                 }
@@ -152,7 +180,6 @@ router.post('/login', (req, res) => {
 });
 
 router.get('/staffMember/:id', ensureToken, (req, res) => {
-    resetResponse();
     const id = req.params.id;
     const idIsValid = mongoose.Types.ObjectId.isValid(id);
 
@@ -173,7 +200,6 @@ router.get('/staffMember/:id', ensureToken, (req, res) => {
 });
 
 router.patch('/staffMember/:id', ensureToken, (req, res) => {
-    resetResponse();
 
     const { _id, forename, surname, username, user_role } = req.body;
 
@@ -198,7 +224,7 @@ router.patch('/staffMember/:id', ensureToken, (req, res) => {
 });
 
 router.get('/user-data/:id', ensureToken, function (req, res) {
-    resetResponse();
+
     const id = req.params.id;
     let idIsValid = mongoose.Types.ObjectId.isValid(id);
     if (idIsValid) {
@@ -223,7 +249,6 @@ router.get('/user-data/:id', ensureToken, function (req, res) {
 });
 
 router.post('/new-staff', (req, res) => {
-    resetResponse();
 
     const { forename, surname, username, staff_role, password } = req.body;
 
@@ -253,11 +278,6 @@ router.post('/new-staff', (req, res) => {
 
 function handleError(err) {
     console.log(err);
-}
-function resetResponse() {
-    response.status = 200;
-    response.data = [];
-    response.message = null;
 }
 
 function ensureToken(req, res, next) {

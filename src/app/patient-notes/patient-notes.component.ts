@@ -8,13 +8,14 @@ import { ClinicalNotes } from "../models/clinical-notes";
 import { Patient } from "../models/patient";
 import { PatientService } from "../services/patient.service";
 @Component({
-  selector: "app-patient-notes",
-  styleUrls: ["./patient-notes.component.css"],
-  templateUrl: "./patient-notes.component.html",
+  selector: 'app-patient-notes',
+  templateUrl: './patient-notes.component.html',
+  styleUrls: ['./patient-notes.component.css']
 })
 export class PatientNotesComponent implements OnInit, OnDestroy {
 
   public patientFound = false;
+  private staffId: string;
   private patientId: string;
   private patient: Patient = null;
   private patients$: any = null;
@@ -27,10 +28,12 @@ export class PatientNotesComponent implements OnInit, OnDestroy {
   private patientNotesPreEdit: any = null;
 
   constructor(private patientService: PatientService,
-              private router: Router) { }
+    private authService: AuthService,
+    private router: Router) { }
 
   public ngOnInit() {
     this.patientId = this.patientService.patientIdToFind;
+    this.staffId = this.authService.getUserId();
     this.messages = [];
     this.getPatientData();
   }
@@ -47,7 +50,7 @@ export class PatientNotesComponent implements OnInit, OnDestroy {
   public saveNotes() {
     const notesToSave = this.patient.clinical_notes;
     this.canEditNotes = false;
-    this.patientService.savePatientNotes(this.patientId, this.patient.clinical_notes).subscribe(
+    this.patientService.savePatientNotes(this.patientId, this.staffId, this.patient.clinical_notes).subscribe(
       (res: any) => {
         const status = res.status;
         if (status === 200) {
@@ -95,7 +98,7 @@ export class PatientNotesComponent implements OnInit, OnDestroy {
 
   public getPatientData() {
     if (this.patientId !== null && this.patientId !== undefined) {
-      this.patients$ = this.patientService.getPatientNotes(this.patientId).subscribe((data: any) => {
+      this.patients$ = this.patientService.getPatientNotes(this.patientId, this.staffId).subscribe((data: any) => {
         const status = data.status;
         const patientData = data.data;
         if (status === 200) {
