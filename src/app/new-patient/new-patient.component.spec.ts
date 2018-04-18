@@ -1,14 +1,14 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed } from "@angular/core/testing";
 
-import { NewPatientComponent } from './new-patient.component';
+import { NewPatientComponent } from "./new-patient.component";
 
-describe('NewPatientComponent', () => {
+describe("NewPatientComponent", () => {
   let component: NewPatientComponent;
   let fixture: ComponentFixture<NewPatientComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ NewPatientComponent ]
+      declarations: [ NewPatientComponent ],
     })
     .compileComponents();
   }));
@@ -19,7 +19,7 @@ describe('NewPatientComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });

@@ -1,0 +1,186 @@
+
+ERROR: src/app/admin-panel/admin-panel.component.ts[13, 3]: The key 'styleUrls' is not sorted alphabetically
+ERROR: src/app/admin-panel/admin-panel.component.ts[19, 3]: Declaration of public instance field not allowed after declaration of private instance field. Instead, this should come at the beginning of the class/interface.
+ERROR: src/app/admin-panel/admin-panel.component.ts[21, 3]: Declaration of public instance field not allowed after declaration of private instance field. Instead, this should come at the beginning of the class/interface.
+ERROR: src/app/admin-panel/admin-panel.component.ts[22, 3]: Declaration of public instance field not allowed after declaration of private instance field. Instead, this should come at the beginning of the class/interface.
+ERROR: src/app/admin-panel/admin-panel.component.ts[23, 3]: Declaration of public instance field not allowed after declaration of private instance field. Instead, this should come at the beginning of the class/interface.
+ERROR: src/app/admin-panel/admin-panel.component.ts[24, 3]: Declaration of public instance field not allowed after declaration of private instance field. Instead, this should come at the beginning of the class/interface.
+ERROR: src/app/admin-panel/admin-panel.component.ts[25, 3]: Declaration of public instance field not allowed after declaration of private instance field. Instead, this should come at the beginning of the class/interface.
+ERROR: src/app/admin-panel/admin-panel.component.ts[47, 15]: The key 'fullName' is not sorted alphabetically
+ERROR: src/app/admin-panel/admin-panel.component.ts[57, 9]: Calls to 'console.log' are not allowed.
+ERROR: src/app/admin-panel/admin-panel.component.ts[71, 15]: The key 'fullName' is not sorted alphabetically
+ERROR: src/app/admin-panel/admin-panel.component.ts[78, 11]: Calls to 'console.log' are not allowed.
+ERROR: src/app/admin-panel/admin-panel.component.ts[83, 9]: Calls to 'console.log' are not allowed.
+ERROR: src/app/app.component.ts[8, 3]: The key 'styleUrls' is not sorted alphabetically
+ERROR: src/app/app.component.ts[17, 23]: variable name must be in lowerCamelCase, PascalCase or UPPER_CASE
+ERROR: src/app/app.module.ts[47, 5]: The key 'component' is not sorted alphabetically
+ERROR: src/app/app.module.ts[57, 5]: The key 'component' is not sorted alphabetically
+ERROR: src/app/app.module.ts[65, 5]: The key 'component' is not sorted alphabetically
+ERROR: src/app/app.module.ts[73, 5]: The key 'component' is not sorted alphabetically
+ERROR: src/app/app.module.ts[81, 5]: The key 'component' is not sorted alphabetically
+ERROR: src/app/app.module.ts[89, 5]: The key 'component' is not sorted alphabetically
+ERROR: src/app/app.module.ts[97, 5]: The key 'component' is not sorted alphabetically
+ERROR: src/app/app.module.ts[105, 5]: The key 'component' is not sorted alphabetically
+ERROR: src/app/app.module.ts[113, 5]: The key 'component' is not sorted alphabetically
+ERROR: src/app/app.module.ts[121, 5]: The key 'component' is not sorted alphabetically
+ERROR: src/app/app.module.ts[130, 5]: The key 'pathMatch' is not sorted alphabetically
+ERROR: src/app/app.module.ts[182, 7]: The key 'multi' is not sorted alphabetically
+ERROR: src/app/app.module.ts[185, 3]: The key 'bootstrap' is not sorted alphabetically
+ERROR: src/app/appointments/appointments.component.ts[14, 3]: The key 'styleUrls' is not sorted alphabetically
+ERROR: src/app/appointments/appointments.component.ts[23, 3]: Declaration of public instance field not allowed after declaration of private instance field. Instead, this should come at the beginning of the class/interface.
+ERROR: src/app/appointments/appointments.component.ts[36, 11]: variable name must be in lowerCamelCase, PascalCase or UPPER_CASE
+ERROR: src/app/appointments/appointments.component.ts[54, 25]: variable name must be in lowerCamelCase, PascalCase or UPPER_CASE
+ERROR: src/app/appointments/appointments.component.ts[55, 25]: variable name must be in lowerCamelCase, PascalCase or UPPER_CASE
+ERROR: src/app/appointments/appointments.component.ts[57, 25]: variable name must be in lowerCamelCase, PascalCase or UPPER_CASE
+ERROR: src/app/appointments/appointments.component.ts[58, 25]: variable name must be in lowerCamelCase, PascalCase or UPPER_CASE
+ERROR: src/app/appointments/appointments.component.ts[62, 21]: The key 'start' is not sorted alphabetically
+ERROR: src/app/appointments/appointments.component.ts[75, 19]: The key 'center' is not sorted alphabetically
+ERROR: src/app/appointments/appointments.component.ts[78, 17]: The key 'events' is not sorted alphabetically
+ERROR: src/app/auth/auth-interceptor.ts[9, 15]: parameters are not aligned
+ERROR: src/app/auth/login/login.component.ts[95, 21]: Shadowed name: 'res'
+ERROR: src/app/auth/login/login.component.ts[107, 21]: Shadowed name: 'res'
+ERROR: src/app/confirm-app/confirm-app.component.ts[9, 3]: The key 'styleUrls' is not sorted alphabetically
+ERROR: src/app/confirm-app/confirm-app.component.ts[14, 3]: Declaration of public instance field not allowed after declaration of private instance field. Instead, this should come at the beginning of the class/interface.
+ERROR: src/app/dashboard/dashboard.component.ts[6, 3]: The key 'styleUrls' is not sorted alphabetically
+ERROR: src/app/dashboard/dashboard.component.ts[10, 17]: block is empty
+ERROR: src/app/dashboard/dashboard.component.ts[12, 21]: block is empty
+ERROR: src/app/edit-patient/edit-patient.component.ts[14, 3]: The key 'styleUrls' is not sorted alphabetically
+ERROR: src/app/edit-patient/edit-patient.component.ts[24, 3]: Declaration of public instance field not allowed after declaration of private instance field. Instead, this should come at the beginning of the class/interface.
+ERROR: src/app/edit-patient/edit-patient.component.ts[25, 3]: Declaration of public instance field not allowed after declaration of private instance field. Instead, this should come at the beginning of the class/interface.
+ERROR: src/app/edit-patient/edit-patient.component.ts[50, 7]: The key 'line1' is not sorted alphabetically
+ERROR: src/app/edit-patient/edit-patient.component.ts[72, 1]: Exceeds maximum line length of 120
+ERROR: src/app/edit-patient/edit-patient.component.ts[117, 9]: Calls to 'console.log' are not allowed.
+ERROR: src/app/edit-patient/edit-patient.component.ts[150, 5]: Calls to 'console.log' are not allowed.
+ERROR: src/app/edit-patient/edit-patient.component.ts[154, 9]: Calls to 'console.log' are not allowed.
+ERROR: src/app/edit-patient/edit-patient.component.ts[165, 9]: Calls to 'console.log' are not allowed.
+ERROR: src/app/edit-staff/edit-staff.component.ts[15, 3]: The key 'styleUrls' is not sorted alphabetically
+ERROR: src/app/edit-staff/edit-staff.component.ts[25, 3]: Declaration of public instance field not allowed after declaration of private instance field. Instead, this should come at the beginning of the class/interface.
+ERROR: src/app/edit-staff/edit-staff.component.ts[26, 3]: Declaration of public instance field not allowed after declaration of private instance field. Instead, this should come at the beginning of the class/interface.
+ERROR: src/app/edit-staff/edit-staff.component.ts[28, 3]: Declaration of public instance field not allowed after declaration of private instance field. Instead, this should come at the beginning of the class/interface.
+ERROR: src/app/edit-staff/edit-staff.component.ts[52, 7]: The key 'staff_role' is not sorted alphabetically
+ERROR: src/app/edit-staff/edit-staff.component.ts[67, 5]: Calls to 'console.log' are not allowed.
+ERROR: src/app/edit-staff/edit-staff.component.ts[74, 11]: Calls to 'console.log' are not allowed.
+ERROR: src/app/edit-staff/edit-staff.component.ts[84, 11]: Calls to 'console.log' are not allowed.
+ERROR: src/app/edit-staff/edit-staff.component.ts[89, 9]: Calls to 'console.log' are not allowed.
+ERROR: src/app/messages/messages.component.ts[6, 3]: The key 'styleUrls' is not sorted alphabetically
+ERROR: src/app/messages/messages.component.ts[12, 17]: block is empty
+ERROR: src/app/models/address.ts[4, 12]: variable name must be in lowerCamelCase, PascalCase or UPPER_CASE
+ERROR: src/app/models/address.ts[7, 31]: variable name must be in lowerCamelCase, PascalCase or UPPER_CASE
+ERROR: src/app/models/appointment.ts[8, 25]: variable name must be in lowerCamelCase, PascalCase or UPPER_CASE
+ERROR: src/app/models/appointment.ts[9, 25]: variable name must be in lowerCamelCase, PascalCase or UPPER_CASE
+ERROR: src/app/models/appointment.ts[9, 50]: variable name must be in lowerCamelCase, PascalCase or UPPER_CASE
+ERROR: src/app/models/appointment.ts[9, 75]: variable name must be in lowerCamelCase, PascalCase or UPPER_CASE
+ERROR: src/app/models/clinical-notes.ts[6, 13]: variable name must be in lowerCamelCase, PascalCase or UPPER_CASE
+ERROR: src/app/models/clinical-notes.ts[7, 13]: variable name must be in lowerCamelCase, PascalCase or UPPER_CASE
+ERROR: src/app/models/clinical-notes.ts[8, 5]: Declaration of public instance field not allowed after declaration of private instance field. Instead, this should come at the beginning of the class/interface.
+ERROR: src/app/models/clinical-notes.ts[10, 35]: variable name must be in lowerCamelCase, PascalCase or UPPER_CASE
+ERROR: src/app/models/clinical-notes.ts[10, 50]: variable name must be in lowerCamelCase, PascalCase or UPPER_CASE
+ERROR: src/app/models/doctor.ts[2, 12]: variable name must be in lowerCamelCase, PascalCase or UPPER_CASE
+ERROR: src/app/models/doctor.ts[3, 12]: variable name must be in lowerCamelCase, PascalCase or UPPER_CASE
+ERROR: src/app/models/doctor.ts[6, 17]: variable name must be in lowerCamelCase, PascalCase or UPPER_CASE
+ERROR: src/app/models/doctor.ts[6, 30]: variable name must be in lowerCamelCase, PascalCase or UPPER_CASE
+ERROR: src/app/models/medications.ts[6, 19]: block is empty
+ERROR: src/app/models/patient-profile.ts[5, 24]: variable name must be in lowerCamelCase, PascalCase or UPPER_CASE
+ERROR: src/app/models/patient-profile.ts[6, 24]: variable name must be in lowerCamelCase, PascalCase or UPPER_CASE
+ERROR: src/app/models/patient.ts[5, 13]: variable name must be in lowerCamelCase, PascalCase or UPPER_CASE
+ERROR: src/app/models/patient.ts[6, 13]: variable name must be in lowerCamelCase, PascalCase or UPPER_CASE
+ERROR: src/app/models/patient.ts[10, 5]: Declaration of public instance field not allowed after declaration of private instance field. Instead, this should come at the beginning of the class/interface.
+ERROR: src/app/models/patient.ts[10, 12]: variable name must be in lowerCamelCase, PascalCase or UPPER_CASE
+ERROR: src/app/models/patient.ts[11, 13]: variable name must be in lowerCamelCase, PascalCase or UPPER_CASE
+ERROR: src/app/models/patient.ts[13, 17]: variable name must be in lowerCamelCase, PascalCase or UPPER_CASE
+ERROR: src/app/models/patient.ts[14, 17]: variable name must be in lowerCamelCase, PascalCase or UPPER_CASE
+ERROR: src/app/models/patient.ts[15, 17]: variable name must be in lowerCamelCase, PascalCase or UPPER_CASE
+ERROR: src/app/models/patient.ts[19, 17]: variable name must be in lowerCamelCase, PascalCase or UPPER_CASE
+ERROR: src/app/models/potential-appointment.ts[5, 12]: variable name must be in lowerCamelCase, PascalCase or UPPER_CASE
+ERROR: src/app/models/potential-appointment.ts[6, 12]: variable name must be in lowerCamelCase, PascalCase or UPPER_CASE
+ERROR: src/app/models/potential-appointment.ts[8, 19]: block is empty
+ERROR: src/app/models/staff-profile.ts[2, 24]: variable name must be in lowerCamelCase, PascalCase or UPPER_CASE
+ERROR: src/app/models/staff-profile.ts[3, 24]: variable name must be in lowerCamelCase, PascalCase or UPPER_CASE
+ERROR: src/app/models/staff.ts[2, 13]: variable name must be in lowerCamelCase, PascalCase or UPPER_CASE
+ERROR: src/app/models/staff.ts[5, 13]: variable name must be in lowerCamelCase, PascalCase or UPPER_CASE
+ERROR: src/app/models/staff.ts[6, 13]: variable name must be in lowerCamelCase, PascalCase or UPPER_CASE
+ERROR: src/app/models/staff.ts[9, 19]: block is empty
+ERROR: src/app/models/taken-appointment.ts[2, 12]: variable name must be in lowerCamelCase, PascalCase or UPPER_CASE
+ERROR: src/app/models/taken-appointment.ts[3, 12]: variable name must be in lowerCamelCase, PascalCase or UPPER_CASE
+ERROR: src/app/models/taken-appointment.ts[4, 17]: variable name must be in lowerCamelCase, PascalCase or UPPER_CASE
+ERROR: src/app/models/taken-appointment.ts[4, 36]: variable name must be in lowerCamelCase, PascalCase or UPPER_CASE
+ERROR: src/app/navbar/navbar.component.ts[12, 3]: The key 'styleUrls' is not sorted alphabetically
+ERROR: src/app/navbar/navbar.component.ts[20, 51]: non-arrow functions are forbidden
+ERROR: src/app/navbar/navbar.component.ts[29, 32]: non-arrow functions are forbidden
+ERROR: src/app/navbar/navbar.component.ts[30, 41]: non-arrow functions are forbidden
+ERROR: src/app/new-appointment/new-appointment.component.ts[22, 3]: The key 'styleUrls' is not sorted alphabetically
+ERROR: src/app/new-appointment/new-appointment.component.ts[26, 3]: Declaration of public instance field not allowed after declaration of private instance field. Instead, this should come at the beginning of the class/interface.
+ERROR: src/app/new-appointment/new-appointment.component.ts[27, 3]: Declaration of public instance field not allowed after declaration of private instance field. Instead, this should come at the beginning of the class/interface.
+ERROR: src/app/new-appointment/new-appointment.component.ts[37, 3]: Declaration of public instance field not allowed after declaration of private instance field. Instead, this should come at the beginning of the class/interface.
+ERROR: src/app/new-appointment/new-appointment.component.ts[45, 3]: Declaration of public instance field not allowed after declaration of private instance field. Instead, this should come at the beginning of the class/interface.
+ERROR: src/app/new-appointment/new-appointment.component.ts[48, 1]: Exceeds maximum line length of 120
+ERROR: src/app/new-appointment/new-appointment.component.ts[49, 5]: The key 'disableSince' is not sorted alphabetically
+ERROR: src/app/new-appointment/new-appointment.component.ts[51, 7]: The key 'month' is not sorted alphabetically
+ERROR: src/app/new-appointment/new-appointment.component.ts[57, 3]: Declaration of public instance field not allowed after declaration of private instance field. Instead, this should come at the beginning of the class/interface.
+ERROR: src/app/new-appointment/new-appointment.component.ts[68, 5]: Calls to 'console.log' are not allowed.
+ERROR: src/app/new-appointment/new-appointment.component.ts[95, 7]: Calls to 'console.log' are not allowed.
+ERROR: src/app/new-appointment/new-appointment.component.ts[154, 9]: Calls to 'console.log' are not allowed.
+ERROR: src/app/new-appointment/new-appointment.component.ts[163, 1]: Exceeds maximum line length of 120
+ERROR: src/app/new-appointment/new-appointment.component.ts[180, 11]: The key 'month' is not sorted alphabetically
+ERROR: src/app/new-appointment/new-appointment.component.ts[242, 36]: non-arrow functions are forbidden
+ERROR: src/app/new-appointment/new-appointment.component.ts[263, 1]: Exceeds maximum line length of 120
+ERROR: src/app/new-appointment/new-appointment.component.ts[264, 55]: non-arrow functions are forbidden
+ERROR: src/app/new-appointment/new-appointment.component.ts[268, 1]: Exceeds maximum line length of 120
+ERROR: src/app/new-patient/new-patient.component.ts[16, 3]: The key 'styleUrls' is not sorted alphabetically
+ERROR: src/app/new-patient/new-patient.component.ts[25, 3]: Declaration of public instance field not allowed after declaration of private instance field. Instead, this should come at the beginning of the class/interface.
+ERROR: src/app/new-patient/new-patient.component.ts[41, 7]: The key 'line1' is not sorted alphabetically
+ERROR: src/app/new-patient/new-patient.component.ts[78, 7]: The key 'password' is not sorted alphabetically
+ERROR: src/app/new-patient/new-patient.component.ts[110, 1]: Exceeds maximum line length of 120
+ERROR: src/app/new-patient/new-patient.component.ts[119, 3]: Declaration of public instance method not allowed after declaration of private instance method. Instead, this should come after constructors.
+ERROR: src/app/new-patient/new-patient.component.ts[120, 5]: Calls to 'console.log' are not allowed.
+ERROR: src/app/new-patient/new-patient.component.ts[124, 9]: Calls to 'console.log' are not allowed.
+ERROR: src/app/new-patient/new-patient.component.ts[137, 3]: Declaration of public instance method not allowed after declaration of private instance method. Instead, this should come after constructors.
+ERROR: src/app/new-patient/new-patient.component.ts[144, 3]: Declaration of public instance method not allowed after declaration of private instance method. Instead, this should come after constructors.
+ERROR: src/app/new-staff/new-staff.component.ts[15, 3]: The key 'styleUrls' is not sorted alphabetically
+ERROR: src/app/new-staff/new-staff.component.ts[23, 3]: Declaration of public instance field not allowed after declaration of private instance field. Instead, this should come at the beginning of the class/interface.
+ERROR: src/app/new-staff/new-staff.component.ts[24, 3]: Declaration of public instance field not allowed after declaration of private instance field. Instead, this should come at the beginning of the class/interface.
+ERROR: src/app/new-staff/new-staff.component.ts[27, 5]: parameters are not aligned
+ERROR: src/app/new-staff/new-staff.component.ts[28, 5]: parameters are not aligned
+ERROR: src/app/new-staff/new-staff.component.ts[29, 5]: parameters are not aligned
+ERROR: src/app/new-staff/new-staff.component.ts[30, 5]: parameters are not aligned
+ERROR: src/app/new-staff/new-staff.component.ts[56, 7]: The key 'staff_role' is not sorted alphabetically
+ERROR: src/app/new-staff/new-staff.component.ts[76, 5]: Calls to 'console.log' are not allowed.
+ERROR: src/app/new-staff/new-staff.component.ts[80, 9]: Calls to 'console.log' are not allowed.
+ERROR: src/app/new-staff/new-staff.component.ts[86, 1]: Exceeds maximum line length of 120
+ERROR: src/app/page-not-found/page-not-found.component.ts[6, 3]: The key 'styleUrls' is not sorted alphabetically
+ERROR: src/app/page-not-found/page-not-found.component.ts[10, 17]: block is empty
+ERROR: src/app/page-not-found/page-not-found.component.ts[12, 21]: block is empty
+ERROR: src/app/patient-list/patient-list.component.ts[11, 3]: The key 'styleUrls' is not sorted alphabetically
+ERROR: src/app/patient-list/patient-list.component.ts[17, 3]: Declaration of public instance field not allowed after declaration of private instance field. Instead, this should come at the beginning of the class/interface.
+ERROR: src/app/patient-list/patient-list.component.ts[18, 3]: Declaration of public instance field not allowed after declaration of private instance field. Instead, this should come at the beginning of the class/interface.
+ERROR: src/app/patient-list/patient-list.component.ts[19, 11]: variable name must be in lowerCamelCase, PascalCase or UPPER_CASE
+ERROR: src/app/patient-list/patient-list.component.ts[46, 15]: The key 'fullName' is not sorted alphabetically
+ERROR: src/app/patient-list/patient-list.component.ts[54, 9]: Calls to 'console.log' are not allowed.
+ERROR: src/app/patient-notes/patient-notes.component.ts[13, 3]: The key 'styleUrls' is not sorted alphabetically
+ERROR: src/app/patient-notes/patient-notes.component.ts[17, 11]: variable name must be in lowerCamelCase, PascalCase or UPPER_CASE
+ERROR: src/app/patient-notes/patient-notes.component.ts[18, 3]: Declaration of public instance field not allowed after declaration of private instance field. Instead, this should come at the beginning of the class/interface.
+ERROR: src/app/patient-notes/patient-notes.component.ts[70, 9]: The key 'amount' is not sorted alphabetically
+ERROR: src/app/patient-profile/patient-profile.component.ts[15, 3]: The key 'styleUrls' is not sorted alphabetically
+ERROR: src/app/patient-profile/patient-profile.component.ts[27, 1]: Exceeds maximum line length of 120
+ERROR: src/app/patient-profile/patient-profile.component.ts[96, 9]: Calls to 'console.log' are not allowed.
+ERROR: src/app/search.pipe.ts[11, 1]: Exceeds maximum line length of 120
+ERROR: src/app/services/interfaces/event.ts[1, 18]: interface name must start with a capitalized I
+ERROR: src/app/services/interfaces/user.ts[1, 18]: interface name must start with a capitalized I
+ERROR: src/app/services/patient.service.ts[10, 3]: Declaration of public instance field not allowed after declaration of private instance field. Instead, this should come at the beginning of the class/interface.
+ERROR: src/app/services/patient.service.ts[10, 10]: variable name must be in lowerCamelCase, PascalCase or UPPER_CASE
+ERROR: src/app/services/patient.service.ts[18, 26]: variable name must be in lowerCamelCase, PascalCase or UPPER_CASE
+ERROR: src/app/services/patient.service.ts[23, 27]: variable name must be in lowerCamelCase, PascalCase or UPPER_CASE
+ERROR: src/app/services/patient.service.ts[27, 25]: variable name must be in lowerCamelCase, PascalCase or UPPER_CASE
+ERROR: src/app/services/patient.service.ts[31, 26]: variable name must be in lowerCamelCase, PascalCase or UPPER_CASE
+ERROR: src/app/staff-list/staff-list.component.ts[6, 3]: The key 'styleUrls' is not sorted alphabetically
+ERROR: src/app/staff-list/staff-list.component.ts[10, 17]: block is empty
+ERROR: src/app/staff-list/staff-list.component.ts[12, 21]: block is empty
+ERROR: src/main.ts[12, 19]: Calls to 'console.log' are not allowed.
+ERROR: src/polyfills.ts[21, 1]: jsdoc is not formatted correctly on this line
+ERROR: src/polyfills.ts[43, 1]: jsdoc is not formatted correctly on this line
+ERROR: src/polyfills.ts[50, 1]: jsdoc is not formatted correctly on this line
+ERROR: src/polyfills.ts[50, 1]: asterisks in jsdoc must be aligned
+ERROR: src/test.ts[20, 20]: non-arrow functions are forbidden
+ERROR: src/test.ts[20, 31]: block is empty
+ERROR: src/typings.d.ts[3, 11]: interface name must start with a capitalized I
+

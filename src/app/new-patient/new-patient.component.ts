@@ -1,19 +1,19 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Component, OnDestroy, OnInit } from "@angular/core";
+import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { ActivatedRoute, Router } from "@angular/router";
 
-import { MessagesComponent } from '../messages/messages.component';
+import { MessagesComponent } from "../messages/messages.component";
 
-import { PatientService } from '../services/patient.service';
-import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
+import { Ng4LoadingSpinnerService } from "ng4-loading-spinner";
+import { PatientService } from "../services/patient.service";
 
-import { PatientProfile } from '../models/patient-profile';
-import { Address } from '../models/address';
+import { Address } from "../models/address";
+import { PatientProfile } from "../models/patient-profile";
 
 @Component({
-  selector: 'app-new-patient',
-  templateUrl: './new-patient.component.html',
-  styleUrls: ['./new-patient.component.css']
+  selector: "app-new-patient",
+  styleUrls: ["./new-patient.component.css"],
+  templateUrl: "./new-patient.component.html",
 })
 export class NewPatientComponent implements OnInit {
 
@@ -21,9 +21,10 @@ export class NewPatientComponent implements OnInit {
   public passwordsForm: FormGroup;
   public errors: string[];
 
+  public messages: string[] = null;
   private patient: PatientProfile = null;
-  public messages: Array<string> = null;
 
+  /* tslint:disable:align*/
   constructor(private patientService: PatientService,
     private activatedRoute: ActivatedRoute,
     private spinnerService: Ng4LoadingSpinnerService,
@@ -31,123 +32,121 @@ export class NewPatientComponent implements OnInit {
     private router: Router) {
     this.createForm();
   }
+  /* tslint:enable:align*/
 
-  ngOnInit() {
+  public ngOnInit() {
     this.messages = [];
-    this.newPatientForm.setValue({
-      forename: 'testOne',
-      surname: 'testOne',
-      username: 'testOne@test.com',
-      line1: '1b',
-      line2: 'brook road',
-      townCity: 'Manchester',
-      postcode: 'M14 6GG',
-      password: '',
-      passwordConfirm: '',
-    });
+    // this.newPatientForm.setValue({
+    //   forename: "testOne",
+    //   surname: "testOne",
+    //   username: "testOne@test.com",
+    //   line1: "1b",
+    //   line2: "brook road",
+    //   townCity: "Manchester",
+    //   postcode: "M14 6GG",
+    //   password: "",
+    //   passwordConfirm: "",
+    // });
   }
 
-  isValid() {
+  public isValid() {
     const valid = this.newPatientForm.valid;
     return valid;
   }
 
-  removeMsg(index) {
+  public removeMsg(index) {
     this.messages.splice(index, 1);
   }
 
-  createForm() {
-
+  public createForm() {
+    /* tslint:disable:object-literal-sort-keys max-line-length*/
     this.newPatientForm = this.fb.group({
-      forename: ['', [
+      forename: ["", [
         Validators.required,
         Validators.minLength(1),
         Validators.maxLength(50),
-        Validators.pattern(/^\D+$/)
+        Validators.pattern(/^\D+$/),
       ]],
-      surname: ['', [
+      surname: ["", [
         Validators.required,
         Validators.minLength(1),
         Validators.maxLength(50),
-        Validators.pattern(/^\D+$/)
+        Validators.pattern(/^\D+$/),
       ]],
-      username: ['', [
+      username: ["", [
         Validators.required,
-        Validators.email
+        Validators.email,
       ]],
-      password: ['', [
-        Validators.required,
-        Validators.minLength(4),
-        Validators.maxLength(50)
-      ]],
-      passwordConfirm: ['', [
+      password: ["", [
         Validators.required,
         Validators.minLength(4),
-        Validators.maxLength(50)
+        Validators.maxLength(50),
       ]],
-      line1: ['', [
+      passwordConfirm: ["", [
+        Validators.required,
+        Validators.minLength(4),
+        Validators.maxLength(50),
+      ]],
+      line1: ["", [
         Validators.required,
         Validators.pattern(/^[\w\-\s]{1,50}$/),
         Validators.minLength(1),
-        Validators.maxLength(50)
+        Validators.maxLength(50),
       ]],
-      line2: ['', [
+      line2: ["", [
         Validators.required,
         Validators.pattern(/^[\w\-\s]{1,50}$/),
         Validators.minLength(1),
-        Validators.maxLength(50)
+        Validators.maxLength(50),
       ]],
-      townCity: ['', [
+      townCity: ["", [
         Validators.required,
         Validators.pattern(/^[A-z\-\'\s]{1,50}$/),
         Validators.minLength(1),
-        Validators.maxLength(50)
+        Validators.maxLength(50),
       ]],
-      postcode: ['', [
+      postcode: ["", [
         Validators.required,
         Validators.minLength(1),
         Validators.maxLength(50),
-        Validators.pattern(/^([Gg][Ii][Rr] 0[Aa]{2})|((([A-Za-z][0-9]{1,2})|(([A-Za-z][A-Ha-hJ-Yj-y][0-9]{1,2})|(([A-Za-z][0-9][A-Za-z])|([A-Za-z][A-Ha-hJ-Yj-y][0-9]?[A-Za-z]))))\s?[0-9][A-Za-z]{2})$/)
-      ]]
+        Validators.pattern(/^([Gg][Ii][Rr] 0[Aa]{2})|((([A-Za-z][0-9]{1,2})|(([A-Za-z][A-Ha-hJ-Yj-y][0-9]{1,2})|(([A-Za-z][0-9][A-Za-z])|([A-Za-z][A-Ha-hJ-Yj-y][0-9]?[A-Za-z]))))\s?[0-9][A-Za-z]{2})$/),
+      ]],
     }, { validator: this.areEqual });
+    /* tslint:enable:object-literal-sort-keys max-line-length*/
   }
 
-  private areEqual(group: FormGroup) {
-    return group.get('password').value === group.get('passwordConfirm').value ? null : { mismatch: true };
-  }
-
-  saveDetails() {
+  public saveDetails() {
     console.log(this.newPatientForm.value);
     const data = this.newPatientForm.value;
     this.patientService.createPatient(data).subscribe(
-      (resp) => {
+      (resp: any) => {
         console.log(resp);
-        const status = resp['status'];
+        const status = resp.status;
         if (status === 200) {
-          const msg = 'Patient was saved to the database.';
+          const msg = "Patient was saved to the database.";
           this.pushMsgAndRemoveAfterInterval(msg);
-        } else if (status.toString().startsWith('4')) {
-          const msg = 'Error adding patient to the database. Email could already be in use.';
+        } else if (status.toString().startsWith("4")) {
+          const msg = "Error adding patient to the database. Email could already be in use.";
           this.pushMsgAndRemoveAfterInterval(msg);
         }
-      }
+      },
     );
   }
 
-  pushMsgAndRemoveAfterInterval(msg: string) {
+  public pushMsgAndRemoveAfterInterval(msg: string) {
     this.messages.push(msg);
     setTimeout(() => {
       this.messages.pop();
     }, 3000);
   }
 
-  updateInputState(input: string) {
+  public updateInputState(input: string) {
     if (this.newPatientForm.controls[input].valid) {
-      Object.keys(this.newPatientForm.controls).forEach(key => {
+      Object.keys(this.newPatientForm.controls).forEach((key) => {
         this.newPatientForm.controls[key].enable();
       });
     } else {
-      Object.keys(this.newPatientForm.controls).forEach(key => {
+      Object.keys(this.newPatientForm.controls).forEach((key) => {
         if (key !== input) {
           this.newPatientForm.controls[key].disable();
         }
@@ -155,22 +154,26 @@ export class NewPatientComponent implements OnInit {
     }
   }
 
-  get forename() { return this.newPatientForm.get('forename'); }
+  private areEqual(group: FormGroup) {
+    return group.get("password").value === group.get("passwordConfirm").value ? null : { mismatch: true };
+  }
 
-  get surname() { return this.newPatientForm.get('surname'); }
+  get forename() { return this.newPatientForm.get("forename"); }
 
-  get username() { return this.newPatientForm.get('username'); }
+  get surname() { return this.newPatientForm.get("surname"); }
 
-  get line1() { return this.newPatientForm.get('line1'); }
+  get username() { return this.newPatientForm.get("username"); }
 
-  get line2() { return this.newPatientForm.get('line2'); }
+  get line1() { return this.newPatientForm.get("line1"); }
 
-  get townCity() { return this.newPatientForm.get('townCity'); }
+  get line2() { return this.newPatientForm.get("line2"); }
 
-  get postcode() { return this.newPatientForm.get('postcode'); }
+  get townCity() { return this.newPatientForm.get("townCity"); }
 
-  get password() { return this.newPatientForm.get('password'); }
+  get postcode() { return this.newPatientForm.get("postcode"); }
 
-  get passwordConfirm() { return this.newPatientForm.get('passwordConfirm'); }
+  get password() { return this.newPatientForm.get("password"); }
+
+  get passwordConfirm() { return this.newPatientForm.get("passwordConfirm"); }
 
 }

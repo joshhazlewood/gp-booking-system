@@ -1,139 +1,139 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule } from "@angular/common/http";
+import { HTTP_INTERCEPTORS } from "@angular/common/http";
+import { NgModule } from "@angular/core";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 // import { HttpModule } from '@angular/http';
-import { Http } from '@angular/http';
-import { RouterModule, Routes } from '@angular/router';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HTTP_INTERCEPTORS } from '@angular/common/http';
-import { AuthInterceptor } from './auth/auth-interceptor';
+import { Http } from "@angular/http";
+import { BrowserModule } from "@angular/platform-browser";
+import { RouterModule, Routes } from "@angular/router";
+import { AuthInterceptor } from "./auth/auth-interceptor";
 
-import { MyDatePickerModule } from 'mydatepicker';
-import { FullCalendarModule } from 'ng-fullcalendar';
-import { Ng4LoadingSpinnerModule } from 'ng4-loading-spinner';
-import { MomentModule } from 'angular2-moment';
+import { MomentModule } from "angular2-moment";
+import { MyDatePickerModule } from "mydatepicker";
+import { FullCalendarModule } from "ng-fullcalendar";
+import { Ng4LoadingSpinnerModule } from "ng4-loading-spinner";
 
-import { AppComponent } from './app.component';
-import { DataService } from './services/data.service';
-import { DashboardComponent } from './dashboard/dashboard.component';
-import { NavbarComponent } from './navbar/navbar.component';
-import { StaffListComponent } from './staff-list/staff-list.component';
-import { PatientListComponent } from './patient-list/patient-list.component';
-import { AppointmentsComponent } from './appointments/appointments.component';
-import { AdminPanelComponent } from './admin-panel/admin-panel.component';
-import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
-import { NewAppointmentComponent } from './new-appointment/new-appointment.component';
-import { AppointmentsService } from './services/appointments.service';
-import { StaffService } from './services/staff.service';
-import { PatientService } from './services/patient.service';
-import { AuthService } from './services/auth.service';
-import { LoginComponent } from './auth/login/login.component';
-import { AuthGuardService } from './services/auth-guard.service';
-import { ConfirmAppComponent } from './confirm-app/confirm-app.component';
-import { SearchPipe } from './search.pipe';
-import { PatientNotesComponent } from './patient-notes/patient-notes.component';
-import { EditPatientComponent } from './edit-patient/edit-patient.component';
-import { EditStaffComponent } from './edit-staff/edit-staff.component';
-import { NewStaffComponent } from './new-staff/new-staff.component';
-import { NewPatientComponent } from './new-patient/new-patient.component';
-import { MessagesComponent } from './messages/messages.component';
-import { PatientProfileComponent } from './patient-profile/patient-profile.component';
+import { AdminPanelComponent } from "./admin-panel/admin-panel.component";
+import { AppComponent } from "./app.component";
+import { AppointmentsComponent } from "./appointments/appointments.component";
+import { LoginComponent } from "./auth/login/login.component";
+import { ConfirmAppComponent } from "./confirm-app/confirm-app.component";
+import { DashboardComponent } from "./dashboard/dashboard.component";
+import { EditPatientComponent } from "./edit-patient/edit-patient.component";
+import { EditStaffComponent } from "./edit-staff/edit-staff.component";
+import { MessagesComponent } from "./messages/messages.component";
+import { NavbarComponent } from "./navbar/navbar.component";
+import { NewAppointmentComponent } from "./new-appointment/new-appointment.component";
+import { NewPatientComponent } from "./new-patient/new-patient.component";
+import { NewStaffComponent } from "./new-staff/new-staff.component";
+import { PageNotFoundComponent } from "./page-not-found/page-not-found.component";
+import { PatientListComponent } from "./patient-list/patient-list.component";
+import { PatientNotesComponent } from "./patient-notes/patient-notes.component";
+import { PatientProfileComponent } from "./patient-profile/patient-profile.component";
+import { SearchPipe } from "./search.pipe";
+import { AppointmentsService } from "./services/appointments.service";
+import { AuthGuardService } from "./services/auth-guard.service";
+import { AuthService } from "./services/auth.service";
+import { DataService } from "./services/data.service";
+import { PatientService } from "./services/patient.service";
+import { StaffService } from "./services/staff.service";
+import { StaffListComponent } from "./staff-list/staff-list.component";
 
 const appRoutes: Routes = [
-  { path: 'login', component: LoginComponent },
-  { path: 'home', component: DashboardComponent },
+  { path: "login", component: LoginComponent },
+  { path: "home", component: DashboardComponent },
   {
-    path: 'new-appointment',
+    canActivate: [AuthGuardService],
     component: NewAppointmentComponent,
-    canActivate: [AuthGuardService],
     data: {
-      expectedRole: 'patient'
-    }
+      expectedRole: "patient",
+    },
+    path: "new-appointment",
   },
-  { path: 'confirm-app', component: ConfirmAppComponent },
-  { path: 'staff-list', component: StaffListComponent },
+  { path: "confirm-app", component: ConfirmAppComponent },
+  { path: "staff-list", component: StaffListComponent },
   {
-    path: 'patients-list',
+    canActivate: [AuthGuardService],
     component: PatientListComponent,
-    canActivate: [AuthGuardService],
     data: {
-      expectedRole: 'doctor'
-    }
+      expectedRole: "doctor",
+    },
+    path: "patients-list",
   },
   {
-    path: 'patient-notes',
+    canActivate: [AuthGuardService],
     component: PatientNotesComponent,
-    canActivate: [AuthGuardService],
     data: {
-      expectedRole: 'doctor',
-    }
+      expectedRole: "doctor",
+    },
+    path: "patient-notes",
   },
   {
-    path: 'appointments-list',
+    canActivate: [AuthGuardService],
     component: AppointmentsComponent,
-    canActivate: [AuthGuardService],
     data: {
-      expectedRole: 'doctor'
-    }
+      expectedRole: "doctor",
+    },
+    path: "appointments-list",
   },
   {
-    path: 'admin',
+    canActivate: [AuthGuardService],
     component: AdminPanelComponent,
-    canActivate: [AuthGuardService],
     data: {
-      expectedRole: 'admin'
-    }
+      expectedRole: "admin",
+    },
+    path: "admin",
   },
   {
-    path: 'edit-patient/:id',
+    canActivate: [AuthGuardService],
     component: EditPatientComponent,
-    canActivate: [AuthGuardService],
     data: {
-      expectedRole: 'admin'
-    }
+      expectedRole: "admin",
+    },
+    path: "edit-patient/:id",
   },
   {
-    path: 'edit-staff/:id',
+    canActivate: [AuthGuardService],
     component: EditStaffComponent,
-    canActivate: [AuthGuardService],
     data: {
-      expectedRole: 'admin'
-    }
+      expectedRole: "admin",
+    },
+    path: "edit-staff/:id",
   },
   {
-    path: 'new-staff',
+    canActivate: [AuthGuardService],
     component: NewStaffComponent,
-    canActivate: [AuthGuardService],
     data: {
-      expectedRole: 'admin'
-    }
+      expectedRole: "admin",
+    },
+    path: "new-staff",
   },
   {
-    path: 'new-patient',
+    canActivate: [AuthGuardService],
     component: NewPatientComponent,
-    canActivate: [AuthGuardService],
     data: {
-      expectedRole: 'admin'
-    }
+      expectedRole: "admin",
+    },
+    path: "new-patient",
   },
   {
-    path: 'patient-profile',
+    canActivate: [AuthGuardService],
     component: PatientProfileComponent,
-    canActivate: [AuthGuardService],
     data: {
-      expectedRole: 'patient'
-    }
+      expectedRole: "patient",
+    },
+    path: "patient-profile",
   },
   {
-    path: '',
-    redirectTo: '/home',
-    pathMatch: 'full'
+    path: "",
+    pathMatch: "full",
+    redirectTo: "/home",
   },
-  { path: '**', component: PageNotFoundComponent }
+  { path: "**", component: PageNotFoundComponent },
 ];
 
-
 @NgModule({
+  bootstrap: [AppComponent],
   declarations: [
     AppComponent,
     NavbarComponent,
@@ -153,7 +153,7 @@ const appRoutes: Routes = [
     NewStaffComponent,
     NewPatientComponent,
     MessagesComponent,
-    PatientProfileComponent
+    PatientProfileComponent,
   ],
   imports: [
     BrowserModule,
@@ -161,14 +161,14 @@ const appRoutes: Routes = [
     // HttpModule,
     RouterModule.forRoot(
       appRoutes,
-      { enableTracing: false } // <-- debugging purposes only
+      { enableTracing: false }, // <-- debugging purposes only
     ),
     FormsModule,
     ReactiveFormsModule,
     MyDatePickerModule,
     FullCalendarModule,
     Ng4LoadingSpinnerModule.forRoot(),
-    MomentModule
+    MomentModule,
   ],
   providers: [
     DataService,
@@ -178,11 +178,10 @@ const appRoutes: Routes = [
     AuthService,
     AuthGuardService,
     {
+      multi: true,
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,
-      multi: true
-    }
+    },
   ],
-  bootstrap: [AppComponent]
 })
 export class AppModule { }

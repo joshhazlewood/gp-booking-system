@@ -7,7 +7,7 @@ import * as jwtDecode from "jwt-decode";
 import * as moment from "moment";
 
 import { AuthService } from "../../services/auth.service";
-import { User } from "../../services/interfaces/user";
+import { IUser as User } from "../../services/interfaces/user";
 
 @Component({
   selector: "app-login",
@@ -22,9 +22,9 @@ export class LoginComponent {
   private userType: string;
 
   constructor(private fb: FormBuilder,
-    private authService: AuthService,
-    private router: Router,
-    private http: HttpClient
+              private authService: AuthService,
+              private router: Router,
+              private http: HttpClient,
   ) {
     this.loginForm = this.fb.group({
       email: ["", [
@@ -53,10 +53,10 @@ export class LoginComponent {
     if (this.loginForm.valid) {
       this.authService.login(val.email, val.password, val.userType)
         .subscribe(
-          (data) => {
-            const status = data["status"];
+          (data: any) => {
+            const status = data.status;
             if (status === 200) {
-              this.setSession(data["data"]);
+              this.setSession(data.data);
               if (val.userType === "patient") {
                 this.router.navigateByUrl("/new-appointment");
               } else {
@@ -77,12 +77,6 @@ export class LoginComponent {
     const decodedToken = jwtDecode(authResult.id_token);
     const parsedToken = JSON.parse(decodedToken.data);
     const user_id = parsedToken.user_id;
-    // this.user = 
-    // this.user = {
-    //   user_id: parsedToken.user_id,
-    //   user_name: parsedToken.user_name,
-    //   user_role: parsedToken.user_role
-    // }
 
     localStorage.setItem("id_token", authResult.id_token);
     localStorage.setItem("expires_at", expiresAt);
@@ -91,9 +85,9 @@ export class LoginComponent {
 
   private getDetailsAndSetUser(userId: string) {
     if (this.userType === "patient") {
-      const res = this.http.get(`/api/patients/user-data/${userId}`)
-        .subscribe(res => {
-          const userData = res["data"];
+      const resp = this.http.get(`/api/patients/user-data/${userId}`)
+        .subscribe((res: any) => {
+          const userData = res.data;
           this.user = {
             user_id: userData._id,
             user_name: userData.user_name,
@@ -103,9 +97,9 @@ export class LoginComponent {
           this.authService.setUser(this.user);
         });
     } else if (this.userType === "staff") {
-      const res = this.http.get(`/api/staff/user-data/${userId}`)
-        .subscribe(res => {
-          const userData = res["data"];
+      const resp = this.http.get(`/api/staff/user-data/${userId}`)
+        .subscribe((res: any) => {
+          const userData = res.data;
           this.user = {
             user_id: userData._id,
             user_name: userData.user_name,

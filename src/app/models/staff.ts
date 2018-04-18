@@ -1,4 +1,5 @@
 export class Staff {
+    /* tslint:disable:variable-name no-empty */
     private staff_id: number;
     private forname: string;
     private surname: string;

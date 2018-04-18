@@ -1,40 +1,40 @@
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { AuthService } from '../services/auth.service';
-import { AppointmentsService } from '../services/appointments.service';
+import { Component, OnInit } from "@angular/core";
+import { Router } from "@angular/router";
+import { AppointmentsService } from "../services/appointments.service";
+import { AuthService } from "../services/auth.service";
 
 @Component({
-  selector: 'app-confirm-app',
-  templateUrl: './confirm-app.component.html',
-  styleUrls: ['./confirm-app.component.css']
+  selector: "app-confirm-app",
+  styleUrls: ["./confirm-app.component.css"],
+  templateUrl: "./confirm-app.component.html",
 })
 export class ConfirmAppComponent implements OnInit {
 
-  private confirmationData = null;
   public dataFound = false;
+  private confirmationData = null;
 
   constructor(private router: Router,
-    private authService: AuthService,
-    private appointmentsService: AppointmentsService
+              private authService: AuthService,
+              private appointmentsService: AppointmentsService,
   ) { }
 
-  ngOnInit() {
+  public ngOnInit() {
     const data = this.appointmentsService.confirmationData;
-    if(!this.isEmptyObject(data)) {
+    if (!this.isEmptyObject(data)) {
       this.confirmationData = this.appointmentsService.confirmationData;
       this.dataFound = true;
     }
   }
 
-  isEmptyObject(obj) {
+  public isEmptyObject(obj) {
     return (obj && (Object.keys(obj).length === 0));
   }
 
-  goToHome() {
-    this.router.navigateByUrl('/home');
+  public goToHome() {
+    this.router.navigateByUrl("/home");
   }
 
-  logout() {
+  public logout() {
     this.authService.logout();
   }
 }

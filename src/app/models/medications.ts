@@ -3,6 +3,7 @@ export class Medications {
     public amount: number;
     public unit: string;
 
+    /* tslint:disable:no-empty */
     constructor() {
     }
 }

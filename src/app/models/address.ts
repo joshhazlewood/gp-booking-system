@@ -1,4 +1,5 @@
 export class Address {
+    /* tslint:disable:variable-name */
     public line1: string;
     public line2: string;
     public town_city: string;

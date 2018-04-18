@@ -1,52 +1,52 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, OnDestroy, OnInit } from "@angular/core";
+import { Router } from "@angular/router";
 
-import { PatientService } from '../services/patient.service';
-import { Patient } from '../models/patient';
-import { SearchPipe } from '../search.pipe';
+import { Patient } from "../models/patient";
+import { SearchPipe } from "../search.pipe";
+import { PatientService } from "../services/patient.service";
 
 @Component({
-  selector: 'app-patient-list',
-  templateUrl: './patient-list.component.html',
-  styleUrls: ['./patient-list.component.css']
+  selector: "app-patient-list",
+  styleUrls: ["./patient-list.component.css"],
+  templateUrl: "./patient-list.component.html",
 })
 export class PatientListComponent implements OnInit, OnDestroy {
 
-  private patients: any[] = null;
-  private patients$: any = null;
   public patientsFound = false;
   public query = null;
-  private patient_idToFind: string;
+  private patientIdToFind: string;
+  private patients: any[] = null;
+  private patients$: any = null;
 
   constructor(private patientService: PatientService,
-    private router: Router) { }
+              private router: Router) { }
 
-  getFullName(forename: string, surname: string): string {
+  public getFullName(forename: string, surname: string): string {
     const fullName = `${forename} ${surname}`;
     return fullName;
   }
 
-  goToNotes(patient) {
-    this.patient_idToFind = patient._id;
-    this.patientService.patient_idToFind = this.patient_idToFind;
-    this.router.navigateByUrl('/patient-notes');
+  public goToNotes(patient) {
+    this.patientIdToFind = patient._id;
+    this.patientService.patientIdToFind = this.patientIdToFind;
+    this.router.navigateByUrl("/patient-notes");
   }
 
-  ngOnInit() {
+  public ngOnInit() {
     this.patients$ = this.patientService.getPatients().subscribe(
-      (data) => {
-        const status = data['status'];
+      (data: any) => {
+        const status = data.status;
         if (status === 200) {
           // this.patients = data['data'];
-          const rawData = data['data'];
+          const rawData = data.data;
           this.patients = rawData.map((patient) => {
             const formattedPatient = {
               _id: patient._id,
+              fullName: this.getFullName(patient.forename, patient.surname),
               patient_id: patient.patient_id,
-              fullName: this.getFullName(patient.forename, patient.surname)
             };
             return formattedPatient;
-          }
+          },
           );
         }
       },
@@ -57,16 +57,12 @@ export class PatientListComponent implements OnInit, OnDestroy {
         if (this.patients !== null) {
           this.patientsFound = true;
         }
-      }
+      },
     );
   }
 
-  ngOnDestroy() {
-    // if (this.patient_idToFind !== null || this.patient_idToFind !== undefined) {
-    //   this.patientService.patient_idToFind = null;
-    // }
+  public ngOnDestroy() {
     this.patients$.unsubscribe();
-    // this.loggedIn$.unsubscribe();
   }
 
 }

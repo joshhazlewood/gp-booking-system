@@ -1,5 +1,7 @@
-import { Doctor } from './doctor';
+import { Doctor } from "./doctor";
 export class PotentialAppointment {
+    /* tslint:disable:variable-name no-empty */
+
     public date: Date;
     public doctor: Doctor;
     public staff_id: string;
@@ -8,6 +10,5 @@ export class PotentialAppointment {
     constructor() {
 
     }
-
 
 }

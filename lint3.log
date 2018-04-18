@@ -1,0 +1,29 @@
+
+ERROR: src/app/admin-panel/admin-panel.component.ts[77, 11]: Calls to 'console.log' are not allowed.
+ERROR: src/app/admin-panel/admin-panel.component.ts[82, 9]: Calls to 'console.log' are not allowed.
+ERROR: src/app/edit-patient/edit-patient.component.ts[123, 9]: Calls to 'console.log' are not allowed.
+ERROR: src/app/edit-patient/edit-patient.component.ts[156, 5]: Calls to 'console.log' are not allowed.
+ERROR: src/app/edit-patient/edit-patient.component.ts[160, 9]: Calls to 'console.log' are not allowed.
+ERROR: src/app/edit-patient/edit-patient.component.ts[171, 9]: Calls to 'console.log' are not allowed.
+ERROR: src/app/edit-staff/edit-staff.component.ts[73, 5]: Calls to 'console.log' are not allowed.
+ERROR: src/app/edit-staff/edit-staff.component.ts[80, 11]: Calls to 'console.log' are not allowed.
+ERROR: src/app/edit-staff/edit-staff.component.ts[90, 11]: Calls to 'console.log' are not allowed.
+ERROR: src/app/edit-staff/edit-staff.component.ts[95, 9]: Calls to 'console.log' are not allowed.
+ERROR: src/app/new-appointment/new-appointment.component.ts[70, 5]: Calls to 'console.log' are not allowed.
+ERROR: src/app/new-appointment/new-appointment.component.ts[97, 7]: Calls to 'console.log' are not allowed.
+ERROR: src/app/new-appointment/new-appointment.component.ts[156, 9]: Calls to 'console.log' are not allowed.
+ERROR: src/app/new-patient/new-patient.component.ts[119, 5]: Calls to 'console.log' are not allowed.
+ERROR: src/app/new-patient/new-patient.component.ts[123, 9]: Calls to 'console.log' are not allowed.
+ERROR: src/app/new-staff/new-staff.component.ts[81, 5]: Calls to 'console.log' are not allowed.
+ERROR: src/app/new-staff/new-staff.component.ts[85, 9]: Calls to 'console.log' are not allowed.
+ERROR: src/app/patient-list/patient-list.component.ts[54, 9]: Calls to 'console.log' are not allowed.
+ERROR: src/app/patient-profile/patient-profile.component.ts[97, 9]: Calls to 'console.log' are not allowed.
+ERROR: src/main.ts[12, 19]: Calls to 'console.log' are not allowed.
+ERROR: src/polyfills.ts[21, 1]: jsdoc is not formatted correctly on this line
+ERROR: src/polyfills.ts[43, 1]: jsdoc is not formatted correctly on this line
+ERROR: src/polyfills.ts[50, 1]: jsdoc is not formatted correctly on this line
+ERROR: src/polyfills.ts[50, 1]: asterisks in jsdoc must be aligned
+ERROR: src/test.ts[20, 20]: non-arrow functions are forbidden
+ERROR: src/test.ts[20, 31]: block is empty
+ERROR: src/typings.d.ts[3, 11]: interface name must start with a capitalized I
+

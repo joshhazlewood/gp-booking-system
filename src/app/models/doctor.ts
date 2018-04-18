@@ -1,4 +1,5 @@
 export class Doctor {
+    /* tslint:disable:variable-name */
     public _id: string;
     public pretty_id: number;
     public forename: string;
@@ -10,7 +11,7 @@ export class Doctor {
         this.surname = surname;
     }
 
-    getFullName(): string {
+    public getFullName(): string {
         const fullName = `${this.forename} ${this.surname}`;
         return fullName;
     }

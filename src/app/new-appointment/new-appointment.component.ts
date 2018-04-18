@@ -1,40 +1,42 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Router } from '@angular/router';
-import { FormGroup, FormBuilder } from '@angular/forms';
-import { Validators } from '@angular/forms';
+import { Component, OnDestroy, OnInit } from "@angular/core";
+import { FormBuilder, FormGroup } from "@angular/forms";
+import { Validators } from "@angular/forms";
+import { Router } from "@angular/router";
 
-import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
-import { IMyDpOptions, IMyDateModel } from 'mydatepicker';
-import { IMyDate } from '../../../node_modules/mydatepicker/dist/interfaces/my-date.interface';
-import { PotentialAppointment } from '../models/potential-appointment';
-import { TakenAppointment } from '../models/taken-appointment';
-import { Appointment } from '../models/appointment';
-import { Doctor } from '../models/doctor';
-import { AppointmentsService } from '../services/appointments.service';
-import { StaffService } from '../services/staff.service';
-import { AuthService } from '../services/auth.service';
-import { User } from '../services/interfaces/user';
-import * as moment from 'moment';
+import * as moment from "moment";
+import { IMyDateModel, IMyDpOptions } from "mydatepicker";
+import { Ng4LoadingSpinnerService } from "ng4-loading-spinner";
+import { IMyDate } from "../../../node_modules/mydatepicker/dist/interfaces/my-date.interface";
+import { Appointment } from "../models/appointment";
+import { Doctor } from "../models/doctor";
+import { PotentialAppointment } from "../models/potential-appointment";
+import { TakenAppointment } from "../models/taken-appointment";
+import { AppointmentsService } from "../services/appointments.service";
+import { AuthService } from "../services/auth.service";
+import { IUser as User } from "../services/interfaces/user";
+import { StaffService } from "../services/staff.service";
 
 @Component({
-  selector: 'app-new-appointment',
-  templateUrl: './new-appointment.component.html',
-  styleUrls: ['./new-appointment.component.css']
+  selector: "app-new-appointment",
+  styleUrls: ["./new-appointment.component.css"],
+  templateUrl: "./new-appointment.component.html",
 })
 export class NewAppointmentComponent implements OnInit, OnDestroy {
-  private formIsValid = false;
   public patientHasAppOnSelectedDay = false;
   public availableAppointmentsFound = false;
+  public errors: string[] = null;
+  public myForm: FormGroup;
+
+  private formIsValid = false;
   private todaysDate = new Date();
 
   private potentialAppointments: PotentialAppointment[];
   private takenAppointments: TakenAppointment[];
   private availableAppointments: PotentialAppointment[];
-  private sortedAppointments;
+  private sortedAppointments: any[];
   private appToConfirm: PotentialAppointment = null;
 
   private doctors = [];
-  public errors: string[] = null;
   private user: User = null;
   private isLoggedIn: boolean = null;
   private showModal: boolean = null;
@@ -42,19 +44,19 @@ export class NewAppointmentComponent implements OnInit, OnDestroy {
   private doctors$: any = null;
   private loggedIn$: any = null;
 
+  /* tslint:disable:member-ordering max-line-length*/
   public myDatePickerOptions: IMyDpOptions = {
     // other options...
-    dateFormat: 'dd/mm/yyyy',
-    disableUntil: { year: this.todaysDate.getFullYear(), month: this.todaysDate.getMonth() + 1, day: this.todaysDate.getDate() - 1 },
+    dateFormat: "dd/mm/yyyy",
     disableSince: {
-      year: moment(this.todaysDate).add(3, 'M').year(),
-      month: moment(this.todaysDate).add(3, 'M').month(),
-      day: moment(this.todaysDate).add(3, 'M').date() + 1,
+      day: moment(this.todaysDate).add(3, "M").date() + 1,
+      month: moment(this.todaysDate).add(3, "M").month(),
+      year: moment(this.todaysDate).add(3, "M").year(),
     },
-    disableWeekends: true
+    disableUntil: { year: this.todaysDate.getFullYear(), month: this.todaysDate.getMonth() + 1, day: this.todaysDate.getDate() - 1 },
+    disableWeekends: true,
   };
-
-  public myForm: FormGroup;
+  /* tslint:disable:member-ordering max-line-length*/
 
   constructor(
     private formBuilder: FormBuilder,
@@ -64,14 +66,14 @@ export class NewAppointmentComponent implements OnInit, OnDestroy {
     private spinnerService: Ng4LoadingSpinnerService,
     private router: Router) { }
 
-  ngOnInit() {
-    console.log(moment(this.todaysDate).add(3, 'M').date());
+  public ngOnInit() {
+    console.log(moment(this.todaysDate).add(3, "M").date());
     this.myForm = this.formBuilder.group({
       // Empty string or null means no initial value. Can be also specific date for
       // example: {date: {year: 2018, month: 10, day: 9}} which sets this date to initial
       // value.
 
-      myDate: [null, Validators.required]
+      myDate: [null, Validators.required],
       // other controls are here...
     });
     this.confirmApp = false;
@@ -79,10 +81,10 @@ export class NewAppointmentComponent implements OnInit, OnDestroy {
 
     // Get all the doctors ready for appointments
     this.showSpinner();
-    this.doctors$ = this.staffService.getDoctors().subscribe((res) => {
+    this.doctors$ = this.staffService.getDoctors().subscribe((res: any) => {
       let dataIsNull = false;
-      if (res['status'] === 200) {
-        const data = res['data'];
+      if (res.status === 200) {
+        const data = res.data;
 
         this.doctors = data.map((doc) => {
           const { _id, staff_id, forename, surname } = doc;
@@ -96,45 +98,45 @@ export class NewAppointmentComponent implements OnInit, OnDestroy {
     });
 
     this.loggedIn$ = this.authService.isLoggedIn().subscribe(
-      value => {
+      (value) => {
         this.isLoggedIn = true;
 
         if (value === true) {
 
           if (this.user === null) {
-            const user_id = this.authService.getToken()['user_id'];
+            const user_id = this.authService.getToken().user_id;
             this.authService.getUserDetails().subscribe(
-              res => {
+              (res: any) => {
                 this.hideSpinner();
-                if (res['status'] === 200) {
-                  const { _id, user_name } = res['data'];
+                if (res.status === 200) {
+                  const { _id, user_name } = res.data;
                   this.user = {
                     user_id: _id,
-                    user_name: user_name,
-                    user_role: 'patient'
+                    user_name,
+                    user_role: "patient",
                   };
                 }
-              }
+              },
             );
           }
         } else {
           this.user = null;
         }
-      }
+      },
     );
   }
 
-  ngOnDestroy() {
+  public ngOnDestroy() {
     this.hideSpinner();
     this.doctors$.unsubscribe();
     this.loggedIn$.unsubscribe();
   }
 
-  getAppointmentsAndRemoveExisting(date: Date): void {
+  public getAppointmentsAndRemoveExisting(date: Date): void {
     let dataIsNull = false;
     this.patientHasAppOnSelectedDay = false;
-    this.appointmentsService.getAppointmentsOnDate(date).subscribe(res => {
-      const data = res['data'];
+    this.appointmentsService.getAppointmentsOnDate(date).subscribe((res: any) => {
+      const data = res.data;
 
       if (data === null) {
         dataIsNull = true;
@@ -168,8 +170,7 @@ export class NewAppointmentComponent implements OnInit, OnDestroy {
       });
   }
 
-
-  setDate(): void {
+  public setDate(): void {
     // Set today date using the patchValue function
     this.availableAppointmentsFound = false;
 
@@ -177,29 +178,29 @@ export class NewAppointmentComponent implements OnInit, OnDestroy {
     this.myForm.patchValue({
       myDate: {
         date: {
-          year: date.getFullYear(),
+          day: date.getDate(),
           month: date.getMonth() + 1,
-          day: date.getDate()
-        }
-      }
+          year: date.getFullYear(),
+        },
+      },
     });
   }
 
-  clearDate(): void {
+  public clearDate(): void {
     // Clear the date using the patchValue function
     this.myForm.patchValue({ myDate: null });
     this.availableAppointmentsFound = false;
   }
 
-  isFormValidAndTouched(): boolean {
+  public isFormValidAndTouched(): boolean {
     return this.myForm.valid && this.myForm.touched;
   }
 
-  findAppointments(): void {
+  public findAppointments(): void {
     this.showSpinner();
     this.potentialAppointments = new Array<PotentialAppointment>();
 
-    const selectedDate = this.myForm.get('myDate').value['date'];
+    const selectedDate = this.myForm.get("myDate").value.date;
     const selectedYear = selectedDate.year;
     const selectedMonth = selectedDate.month - 1;
     const selectedDay = selectedDate.day;
@@ -239,8 +240,8 @@ export class NewAppointmentComponent implements OnInit, OnDestroy {
     this.getAppointmentsAndRemoveExisting(new Date(selectedYear, selectedMonth, selectedDay));
   }
 
-  sortAppointmentsByTimeAndDocName(array: PotentialAppointment[]): PotentialAppointment[] {
-    const sortedArray = array.sort(function (date1, date2) {
+  public sortAppointmentsByTimeAndDocName(array: PotentialAppointment[]): PotentialAppointment[] {
+    const sortedArray = array.sort((date1, date2) => {
       if (date1.date < date2.date) {
         return -1;
       } else if (date1.date > date2.date) {
@@ -257,12 +258,12 @@ export class NewAppointmentComponent implements OnInit, OnDestroy {
     return sortedArray;
   }
 
-  compareTime(time1, time2) {
+  public compareTime(time1, time2) {
     return time1 > time2;
   }
 
-  removeExistingAppointments(appointments: PotentialAppointment[], takenAppointments: TakenAppointment[]): PotentialAppointment[] {
-    const availableAppointments = appointments.filter(function (app) {
+  public removeExistingAppointments(appointments: PotentialAppointment[], takenAppointments: TakenAppointment[]): PotentialAppointment[] {
+    const availableAppointments = appointments.filter((app) => {
       //  Returns NOT of takenAppointments.some because we filter out if
       //  the potential appointment is at the same time as any other appointment today.
       const appNotTaken = !takenAppointments.some((takenApp) => {
@@ -277,56 +278,56 @@ export class NewAppointmentComponent implements OnInit, OnDestroy {
     return availableAppointments;
   }
 
-  isOnTheHour(hour: number): boolean {
+  public isOnTheHour(hour: number): boolean {
     return Number.isInteger(hour);
   }
 
-  concatName(forename, surname): string {
+  public concatName(forename, surname): string {
     const fullName = `${forename} ${surname}`;
     return fullName;
   }
 
-  bookAppointment(appointment: PotentialAppointment) {
+  public bookAppointment(appointment: PotentialAppointment) {
     this.showModal = true;
     this.confirmApp = true;
     this.appToConfirm = appointment;
     this.appToConfirm.patient_id = this.user.user_id;
   }
 
-  completeAppointment() {
+  public completeAppointment() {
     this.showSpinner();
     this.appointmentsService.createNewAppointment(this.appToConfirm).subscribe(
-      res => {
+      (res: any) => {
         this.hideSpinner();
-        const status = res['status'];
+        const status = res.status;
         if (status === 200) {
           this.appointmentsService.confirmationData = this.appToConfirm;
-          this.router.navigateByUrl('/confirm-app');
+          this.router.navigateByUrl("/confirm-app");
         } else if (status === 409) {
-          this.errors.push('Sorry, that appointment has already been taken. Please try another.');
+          this.errors.push("Sorry, that appointment has already been taken. Please try another.");
           this.closeModal();
           this.findAppointments();
         } else {
           this.findAppointments();
         }
-      }
+      },
     );
   }
 
-  closeModal() {
+  public closeModal() {
     this.showModal = false;
     this.confirmApp = false;
   }
 
-  removeErrMsg(index) {
+  public removeErrMsg(index) {
     this.errors.splice(index, 1);
   }
 
-  showSpinner() {
+  public showSpinner() {
     this.spinnerService.show();
   }
 
-  hideSpinner() {
+  public hideSpinner() {
     this.spinnerService.hide();
   }
 

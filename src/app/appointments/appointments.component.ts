@@ -1,82 +1,84 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from "@angular/core";
 
-import { AppointmentsService } from '../services/appointments.service';
-import { AuthService } from '../services/auth.service';
-import { Event } from '../services/interfaces/event';
-import { CalendarComponent } from 'ng-fullcalendar';
-import { Options } from 'fullcalendar';
-import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
-import * as moment from 'moment';
+import { Options } from "fullcalendar";
+import * as moment from "moment";
+import { CalendarComponent } from "ng-fullcalendar";
+import { Ng4LoadingSpinnerService } from "ng4-loading-spinner";
+import { AppointmentsService } from "../services/appointments.service";
+import { AuthService } from "../services/auth.service";
+import { IEvent as Event } from "../services/interfaces/event";
 
 @Component({
-  selector: 'app-appointments',
-  templateUrl: './appointments.component.html',
-  styleUrls: ['./appointments.component.css']
+  selector: "app-appointments",
+  styleUrls: ["./appointments.component.css"],
+  templateUrl: "./appointments.component.html",
 })
 export class AppointmentsComponent implements OnInit {
+
+  @ViewChild(CalendarComponent) public ucCalendar: CalendarComponent;
+
   public calendarOptions: Options;
   private appointments: any[] = null;
   private events: Event[] = null;
   private eventsFound = false;
   private displayEvent: any;
 
-  @ViewChild(CalendarComponent) ucCalendar: CalendarComponent;
-
-  constructor(private appointmentsService: AppointmentsService,
-    private spinnerService: Ng4LoadingSpinnerService,
-    private authService: AuthService
+  /* tslint:disable:align*/
+  constructor(private appointmentsService: AppointmentsService, private spinnerService: Ng4LoadingSpinnerService,
+    private authService: AuthService,
   ) { }
+  /* tslint:enable:align*/
 
-  getFullName(forename, surname): string {
+  public getFullName(forename, surname): string {
     const fullName = `${forename} ${surname}`;
     return fullName;
   }
 
-  ngOnInit() {
-    const doc_id = this.authService.getUserId();
+  public ngOnInit() {
+    const docId = this.authService.getUserId();
     this.spinnerService.show();
-    this.appointmentsService.getDocsAppointments(doc_id)
+    this.appointmentsService.getDocsAppointments(docId)
       .subscribe(
-        res => {
+        (res: any) => {
           this.spinnerService.hide();
-          if (res['status'] === 200) {
-            this.appointments = res['data'];
+          if (res.status === 200) {
+            this.appointments = res.data;
 
             if (this.appointments !== null) {
               this.events = this.appointments.map(
-                app => {
-                  const patientFName = app['patient']['forename'];
-                  const patientSName = app['patient']['surname'];
+                (app) => {
+                  const patientFName = app.patient.forename;
+                  const patientSName = app.patient.surname;
                   const fullName = this.getFullName(patientFName, patientSName);
-                  const start_time = app['start_time'];
-                  const end_time = app['end_time'];
-                  
-                  const start_timeAsLocaleString: string = moment(start_time).format().toLocaleString();
-                  const end_timeAsLocaleString: string = moment(end_time).format().toLocaleString();
+                  const startTime = app.start_time;
+                  const endTime = app.end_time;
 
-                  const formatted_start_time = start_timeAsLocaleString.slice(0, -6);
-                  const formatted_end_time = end_timeAsLocaleString.slice(0, -6);
+                  const startTimeAsLocaleString: string = moment(startTime).format().toLocaleString();
+                  const endTimeAsLocaleString: string = moment(endTime).format().toLocaleString();
+
+                  const formattedStartTime = startTimeAsLocaleString.slice(0, -6);
+                  const formattedEndTime = endTimeAsLocaleString.slice(0, -6);
 
                   const event = {
+                    end: formattedEndTime,
+                    start: formattedStartTime,
                     title: fullName,
-                    start: formatted_start_time,
-                    end: formatted_end_time
                   };
 
                   return event;
-                }
+                },
               );
               this.eventsFound = true;
               this.calendarOptions = {
                 editable: false,
                 eventLimit: false,
-                header: {
-                  left: 'prev,next today',
-                  center: 'title',
-                  right: 'month,agendaWeek,agendaDay,listMonth'
-                },
                 events: this.events,
-                handleWindowResize: true
+                handleWindowResize: true,
+                header: {
+                  center: "title",
+                  left: "prev,next today",
+                  right: "month,agendaWeek,agendaDay,listMonth",
+                },
                 // aspectRatio: 1.85
               };
             }
@@ -84,11 +86,11 @@ export class AppointmentsComponent implements OnInit {
         },
         (err) => {
           this.spinnerService.hide();
-        }
-      );
+        },
+    );
   }
 
-  clickButton(model: any) {
+  public clickButton(model: any) {
     this.displayEvent = model;
   }
 

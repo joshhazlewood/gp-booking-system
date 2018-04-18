@@ -1,14 +1,14 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed } from "@angular/core/testing";
 
-import { AdminPanelComponent } from './admin-panel.component';
+import { AdminPanelComponent } from "./admin-panel.component";
 
-describe('AdminPanelComponent', () => {
+describe("AdminPanelComponent", () => {
   let component: AdminPanelComponent;
   let fixture: ComponentFixture<AdminPanelComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ AdminPanelComponent ]
+      declarations: [ AdminPanelComponent ],
     })
     .compileComponents();
   }));
@@ -19,7 +19,7 @@ describe('AdminPanelComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });

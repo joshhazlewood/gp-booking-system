@@ -1,28 +1,29 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Component, OnDestroy, OnInit } from "@angular/core";
+import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { ActivatedRoute, Router } from "@angular/router";
 
-import { MessagesComponent } from '../messages/messages.component';
-import { StaffService } from '../services/staff.service';
-import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
+import { Ng4LoadingSpinnerService } from "ng4-loading-spinner";
+import { MessagesComponent } from "../messages/messages.component";
+import { StaffService } from "../services/staff.service";
 
-import { StaffProfile } from '../models/staff-profile';
-import { Address } from '../models/address';
+import { Address } from "../models/address";
+import { StaffProfile } from "../models/staff-profile";
 
 @Component({
-  selector: 'app-new-staff',
-  templateUrl: './new-staff.component.html',
-  styleUrls: ['./new-staff.component.css']
+  selector: "app-new-staff",
+  styleUrls: ["./new-staff.component.css"],
+  templateUrl: "./new-staff.component.html",
 })
 export class NewStaffComponent implements OnInit {
 
   public newStaffForm: FormGroup;
   public errors: string[];
 
-  private staff: StaffProfile = null;
   public messages: string[] = null;
-  public roles = ['admin', 'doctor'];
+  public roles = ["admin", "doctor"];
+  private staff: StaffProfile = null;
 
+  /* tslint:disable:align*/
   constructor(private staffService: StaffService,
     private activatedRoute: ActivatedRoute,
     private spinnerService: Ng4LoadingSpinnerService,
@@ -30,84 +31,85 @@ export class NewStaffComponent implements OnInit {
     private router: Router) {
     this.createForm();
   }
+  /* tslint:enable:align*/
 
-  ngOnInit() {
+  public ngOnInit() {
     this.messages = [];
   }
 
-  createForm() {
+  /* tslint:disable:object-literal-sort-keys*/
+  public createForm() {
     this.newStaffForm = this.fb.group({
-      forename: ['', [
+      forename: ["", [
         Validators.required,
         Validators.minLength(1),
         Validators.maxLength(50),
-        Validators.pattern(/^\D+$/)
+        Validators.pattern(/^\D+$/),
       ]],
-      surname: ['', [
+      surname: ["", [
         Validators.required,
         Validators.minLength(1),
         Validators.maxLength(50),
-        Validators.pattern(/^\D+$/)
+        Validators.pattern(/^\D+$/),
       ]],
-      username: ['', [
+      username: ["", [
         Validators.required,
-        Validators.email
+        Validators.email,
       ]],
-      staff_role: ['', Validators.required],
-      password: ['', [
-        Validators.required,
-        Validators.minLength(4),
-        Validators.maxLength(50)
-      ]],
-      passwordConfirm: ['', [
+      staff_role: ["", Validators.required],
+      password: ["", [
         Validators.required,
         Validators.minLength(4),
-        Validators.maxLength(50)
-      ]]
+        Validators.maxLength(50),
+      ]],
+      passwordConfirm: ["", [
+        Validators.required,
+        Validators.minLength(4),
+        Validators.maxLength(50),
+      ]],
     }, { validator: this.areEqual });
   }
+  /* tslint:enable:object-literal-sort-keys*/
 
-  private areEqual(group: FormGroup) {
-    return group.get('password').value === group.get('passwordConfirm').value ? null : { mismatch: true };
-  }
-
-  isValid() {
+  public isValid() {
     const valid = this.newStaffForm.valid;
     return valid;
   }
 
-  saveDetails() {
+  /* tslint:disable:max-line-length*/
+  public saveDetails() {
     console.log(this.newStaffForm.value);
     const data = this.newStaffForm.value;
     this.staffService.createStaff(data).subscribe(
-      (resp) => {
+      (resp: any) => {
         console.log(resp);
-        const status = resp['status'];
+        const status = resp.status;
         if (status === 200) {
-          const msg = 'Staff member was saved to the database.';
+          const msg = "Staff member was saved to the database.";
           this.pushMsgAndRemoveAfterInterval(msg);
-        } else if (status.toString().startsWith('4')) {
-          const msg = 'Error adding staff member to the database. This is most likey because the email is already in use.';
+        } else if (status.toString().startsWith("4")) {
+          const msg = "Error adding staff member to the database. This is most likey because the email is already in use.";
           this.pushMsgAndRemoveAfterInterval(msg);
         }
-      }
+      },
     );
   }
+  /* tslint:enable:max-line-length*/
 
-  pushMsgAndRemoveAfterInterval(msg: string) {
+  public pushMsgAndRemoveAfterInterval(msg: string) {
     this.messages.push(msg);
     setTimeout(() => {
       this.messages.pop();
     }, 3000);
   }
 
-  updateInputState(input: string) {
+  public updateInputState(input: string) {
     if (this.newStaffForm.controls[input].valid) {
-      Object.keys(this.newStaffForm.controls).forEach(key => {
+      Object.keys(this.newStaffForm.controls).forEach((key) => {
         this.newStaffForm.controls[key].enable();
       });
     } else {
-      Object.keys(this.newStaffForm.controls).forEach(key => {
+      Object.keys(this.newStaffForm.controls).forEach((key) => {
         if (key !== input) {
           this.newStaffForm.controls[key].disable();
         }
@@ -115,15 +117,19 @@ export class NewStaffComponent implements OnInit {
     }
   }
 
-  get forename() { return this.newStaffForm.get('forename'); }
+  private areEqual(group: FormGroup) {
+    return group.get("password").value === group.get("passwordConfirm").value ? null : { mismatch: true };
+  }
 
-  get surname() { return this.newStaffForm.get('surname'); }
+  get forename() { return this.newStaffForm.get("forename"); }
 
-  get username() { return this.newStaffForm.get('username'); }
+  get surname() { return this.newStaffForm.get("surname"); }
 
-  get staff_role() { return this.newStaffForm.get('staff_role'); }
+  get username() { return this.newStaffForm.get("username"); }
 
-  get password() { return this.newStaffForm.get('password'); }
+  get staff_role() { return this.newStaffForm.get("staff_role"); }
 
-  get passwordConfirm() { return this.newStaffForm.get('passwordConfirm'); }
+  get password() { return this.newStaffForm.get("password"); }
+
+  get passwordConfirm() { return this.newStaffForm.get("passwordConfirm"); }
 }

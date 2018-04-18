@@ -1,33 +1,33 @@
-import { Injectable } from '@angular/core';
-import { CanActivate, ActivatedRouteSnapshot } from '@angular/router';
+import { Injectable } from "@angular/core";
+import { ActivatedRouteSnapshot, CanActivate } from "@angular/router";
 
-import { AuthService } from './auth.service';
-import { Router } from '@angular/router';
+import { Router } from "@angular/router";
+import { AuthService } from "./auth.service";
 
 @Injectable()
 export class AuthGuardService implements CanActivate {
 
   constructor(private authService: AuthService,
-    private router: Router) { }
+              private router: Router) { }
 
-  canActivate(route: ActivatedRouteSnapshot): boolean {
+  public canActivate(route: ActivatedRouteSnapshot): boolean {
     const expectedRole = route.data.expectedRole;
 
-    let loggedIn = this.authService.getLoggedInAsBool();
+    const loggedIn = this.authService.getLoggedInAsBool();
 
     if (loggedIn === false) {
-      this.router.navigateByUrl('/login');
+      this.router.navigateByUrl("/login");
       return false;
     } else {
       const userType = this.authService.getUserType();
 
       if (userType === undefined) {
-        this.router.navigateByUrl('/home');
+        this.router.navigateByUrl("/home");
         return false;
-      } else if (expectedRole === 'doctor' && (userType === 'admin' || userType === 'admin' )) {
+      } else if (expectedRole === "doctor" && (userType === "admin" || userType === "admin" )) {
         return true;
       } else if (userType !== expectedRole ) {
-        this.router.navigateByUrl('/home');
+        this.router.navigateByUrl("/home");
         return false;
       }
     }
