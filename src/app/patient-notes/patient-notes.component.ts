@@ -6,7 +6,9 @@ import { MessagesComponent } from "../messages/messages.component";
 import { Address } from "../models/address";
 import { ClinicalNotes } from "../models/clinical-notes";
 import { Patient } from "../models/patient";
+import { AuthService } from "../services/auth.service";
 import { PatientService } from "../services/patient.service";
+
 @Component({
   selector: "app-patient-notes",
   styleUrls: ["./patient-notes.component.css"],
