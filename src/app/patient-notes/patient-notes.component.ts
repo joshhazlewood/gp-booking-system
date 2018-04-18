@@ -8,9 +8,9 @@ import { ClinicalNotes } from "../models/clinical-notes";
 import { Patient } from "../models/patient";
 import { PatientService } from "../services/patient.service";
 @Component({
-  selector: 'app-patient-notes',
-  templateUrl: './patient-notes.component.html',
-  styleUrls: ['./patient-notes.component.css']
+  selector: "app-patient-notes",
+  styleUrls: ["./patient-notes.component.css"],
+  templateUrl: "./patient-notes.component.html",
 })
 export class PatientNotesComponent implements OnInit, OnDestroy {
 
