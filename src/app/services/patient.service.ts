@@ -16,7 +16,7 @@ export class PatientService {
   }
 
   public getPatientNotes(id: string, staffId: string) {
-    return this.http.get(`${this.baseUrl}/patient-notes/${id}`);
+    return this.http.get(`${this.baseUrl}/patient-notes/${id}/${staffId}`);
   }
 
   //  FINISH SAVING NOTES

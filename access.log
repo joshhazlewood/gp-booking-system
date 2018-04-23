@@ -22,3 +22,19 @@
   level: 'changed',
   timestamp: '2018-04-08T20:32:14.672Z',
   [Symbol(level)]: 'changed' }
+{ message: 'doctor sam@test.com accessed patient testTwo@test.com notes.',
+  level: 'accessed',
+  timestamp: '2018-04-19T13:36:21.832Z',
+  [Symbol(level)]: 'accessed' }
+{ message: 'doctor sam@test.com accessed patient joshhaz2012@gmail.com notes.',
+  level: 'accessed',
+  timestamp: '2018-04-19T13:36:27.190Z',
+  [Symbol(level)]: 'accessed' }
+{ message: 'admin hash@admin.com accessed patient testTwo@test.com notes.',
+  level: 'accessed',
+  timestamp: '2018-04-19T13:52:43.701Z',
+  [Symbol(level)]: 'accessed' }
+{ message: 'admin hash@admin.com accessed patient testTwo@test.com notes.',
+  level: 'accessed',
+  timestamp: '2018-04-19T14:44:19.830Z',
+  [Symbol(level)]: 'accessed' }

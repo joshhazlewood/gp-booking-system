@@ -34,7 +34,7 @@ const logger = winston.createLogger({
         }),
         new winston.transports.File({
             filename: 'warning.log',
-            level: 'warning'
+            level: 'warn'
         })
     ]
 });
@@ -163,7 +163,7 @@ router.post('/login', (req, res) => {
                     const resp = new Response(200, data);
                     res.json(resp);
                 } else {
-                    logger.log('warning', 'User %s attemped to log in.', username);
+                    logger.log('warn', 'User %s attemped to log in.', username);
                     const resp = new Response(401);
                     res.json(resp);
                 }
