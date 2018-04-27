@@ -95,7 +95,7 @@ var testPatient = {
     password: 'testPass'
 }
 
-router.get('/all-patients', ensureAndVerifyToken, (req, res) => {
+router.get('/all-patients', ensureAndVerifyToken, ensureStaffMember, (req, res) => {
     patientModel.find({}, 'patient_id forename surname', function (err, patients) {
         if (!err) {
             if (patients.length === 0) {
@@ -116,7 +116,7 @@ router.get('/all-patients', ensureAndVerifyToken, (req, res) => {
     });
 });
 
-router.get('/patient-notes/:id/:staffId', ensureAndVerifyToken, (req, res) => {
+router.get('/patient-notes/:id/:staffId', ensureAndVerifyToken, ensureStaffMember, (req, res) => {
     const staffId = req.params.staffId;
     let staffUsername = null;
     let staffRole = null;
@@ -152,7 +152,7 @@ router.get('/patient-notes/:id/:staffId', ensureAndVerifyToken, (req, res) => {
     });
 });
 
-router.post('/patient-notes/:id/:staffId', ensureAndVerifyToken, (req, res) => {
+router.post('/patient-notes/:id/:staffId', ensureAndVerifyToken, ensureStaffMember, (req, res) => {
     const staffId = req.params.staffId;
     let staffUsername = null;
     let staffRole = null;
@@ -182,7 +182,7 @@ router.post('/patient-notes/:id/:staffId', ensureAndVerifyToken, (req, res) => {
     );
 });
 
-router.get('id/:id', ensureAndVerifyToken, (req, res) => {
+router.get('id/:id', ensureAndVerifyToken, ensureStaffMember, (req, res) => {
     patientModel.findOne({ 'patient_id': req.params.id }, function (err, patients) {
         if (!err) {
             // find returns an array - check if empty then send to 404
@@ -208,7 +208,7 @@ router.get('id/:id', ensureAndVerifyToken, (req, res) => {
     })
 });
 
-router.post('/new-patient', (req, res) => {
+router.post('/new-patient', ensureAndVerifyToken, ensureAdmin, (req, res) => {
 
     const { forename, surname, username, line1, line2, townCity, postcode, password } = req.body;
 
@@ -286,7 +286,7 @@ router.post('/login', (req, res) => {
                     }
 
                     logger.log('info', 'User %s logged in.', username);
-                    
+
                     const resp = new Response(200, data);
                     res.json(resp);
                 } else {
@@ -330,7 +330,7 @@ router.get('/user-data/:id', ensureAndVerifyToken, function (req, res) {
     }
 });
 
-router.get('/patient/:id', ensureAndVerifyToken, (req, res) => {
+router.get('/patient/:id', ensureAndVerifyToken, ensureStaffMember, (req, res) => {
     const id = req.params.id;
     const idIsValid = mongoose.Types.ObjectId.isValid(id);
 
@@ -349,7 +349,7 @@ router.get('/patient/:id', ensureAndVerifyToken, (req, res) => {
 
 });
 
-router.patch('/patient/:id', ensureAndVerifyToken, (req, res) => {
+router.patch('/patient/:id', ensureAndVerifyToken, ensureStaffMember, (req, res) => {
 
     const { _id, forename, surname, username, address } = req.body;
 
@@ -374,7 +374,7 @@ router.patch('/patient/:id', ensureAndVerifyToken, (req, res) => {
     );
 });
 
-router.get('/protected', ensureAndVerifyToken, (req, res) => {
+router.get('/protected', ensureAndVerifyToken, ensureStaffMember, (req, res) => {
     jwt.verify(req.token, '13118866', (err, data) => {
         if (err) {
             res.sendStatus(403);
@@ -402,6 +402,32 @@ function ensureAndVerifyToken(req, res, next) {
             }
         })
         // next();
+    } else {
+        res.sendStatus(403);
+    }
+}
+
+function ensureStaffMember(req, res, next) {
+    const decodedToken = jwt.decode(req.token);
+    const parsedToken = JSON.parse(decodedToken['data']);
+    const user_role = parsedToken.user_role;
+    const userIsStaffMember = (user_role === 'doctor' || user_role === 'admin');
+
+    if (userIsStaffMember) {
+        next();
+    } else {
+        res.sendStatus(403);
+    }
+}
+
+function ensureAdmin(req, res, next) {
+    const decodedToken = jwt.decode(req.token);
+    const parsedToken = JSON.parse(decodedToken['data']);
+    const user_role = parsedToken.user_role;
+    const userIsAdmin = user_role === 'admin';
+
+    if (userIsAdmin) {
+        next();
     } else {
         res.sendStatus(403);
     }

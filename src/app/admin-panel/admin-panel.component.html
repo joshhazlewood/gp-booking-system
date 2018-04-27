@@ -82,7 +82,7 @@
                 </tr>
               </thead>
               <tbody>
-                <tr *ngFor="let staffMember of staff | search:'patient_id,fullName':staffQuery">
+                <tr *ngFor="let staffMember of staff | search:'staff_id,fullName':staffQuery">
                   <td>{{staffMember.staff_id}}</td>
                   <td>{{staffMember.fullName}}</td>
                   <td>

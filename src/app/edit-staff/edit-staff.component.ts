@@ -87,7 +87,6 @@ export class EditStaffComponent implements OnInit, OnDestroy {
             rawData.user_name,
           );
           this.staffMemberFound = true;
-          console.log("here");
         }
       },
       (err) => {

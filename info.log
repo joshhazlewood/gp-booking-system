@@ -6,3 +6,8 @@ warn: User sam@test.com attemped to log in. {"timestamp":"2018-04-19T13:25:24.34
 info: User sam@test.com logged in. {"timestamp":"2018-04-19T13:25:34.781Z"}
 info: User hash@admin.com logged in. {"timestamp":"2018-04-19T13:50:09.330Z"}
 info: User hash@admin.com logged in. {"timestamp":"2018-04-23T11:56:46.577Z"}
+info: User patient@test.com logged in. {"timestamp":"2018-04-25T10:28:21.160Z"}
+info: User doctor@test.com logged in. {"timestamp":"2018-04-25T10:41:55.785Z"}
+info: User admin@test.com logged in. {"timestamp":"2018-04-25T10:44:38.638Z"}
+info: User patient@test.com logged in. {"timestamp":"2018-04-27T09:46:09.336Z"}
+info: User admin@test.com logged in. {"timestamp":"2018-04-27T09:46:24.672Z"}
