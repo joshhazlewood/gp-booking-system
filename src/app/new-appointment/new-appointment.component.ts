@@ -67,7 +67,6 @@ export class NewAppointmentComponent implements OnInit, OnDestroy {
     private router: Router) { }
 
   public ngOnInit() {
-    console.log(moment(this.todaysDate).add(3, "M").date());
     this.myForm = this.formBuilder.group({
       // Empty string or null means no initial value. Can be also specific date for
       // example: {date: {year: 2018, month: 10, day: 9}} which sets this date to initial
