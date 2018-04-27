@@ -1,6 +1,0 @@
-{ level: 'info',
-  message: 'User %s logged in.',
-  splat: [ 'sam@test.com' ],
-  timestamp: '2018-04-08T17:06:18.893Z',
-  [Symbol(level)]: 'info' }
-info: User sam@test.com logged in. {"timestamp":"2018-04-08T17:09:00.780Z"}

@@ -29,7 +29,7 @@ const accessLogger = winston.createLogger({
     levels: customLevels.levels,
     transports: [
         new winston.transports.File({
-            filename: 'access.log',
+            filename: './logs/access.log',
             level: 'accessed'
         }),
         new winston.transports.File({
@@ -49,51 +49,19 @@ const logger = winston.createLogger({
     transports: [
         new winston.transports.Console(),
         new winston.transports.File({
-            filename: 'info.log',
+            filename: './logs/info.log',
             level: 'info'
         }),
         new winston.transports.File({
-            filename: 'errors.log',
+            filename: './logs/errors.log',
             level: 'error'
         }),
         new winston.transports.File({
-            filename: 'warning.log',
+            filename: './logs/warning.log',
             level: 'warn'
         })
     ]
 });
-
-
-var testPatient = {
-    // patient_id: 100,
-    forename: 'test',
-    surname: 'patient',
-    address: {
-        line1: '2B',
-        line2: 'Davenport Ave',
-        town_city: 'Manchester',
-        postcode: 'M20 3EY'
-    },
-    clinical_notes: {
-        diagnosis: 'he\'s sick',
-        notes: 'loads of notes here',
-        last_accessed: new Date(),
-        last_accessed_by: 10,
-        medications: [
-            {
-                name: 'lisinopril',
-                amount: '5',
-                unit: 'mg/day'
-            }, {
-                name: 'test_med',
-                amount: '5',
-                unit: 'mg/day'
-            }
-        ]
-    },
-    user_name: 'test@gmail.com',
-    password: 'testPass'
-}
 
 router.get('/all-patients', ensureAndVerifyToken, ensureStaffMember, (req, res) => {
     patientModel.find({}, 'patient_id forename surname', function (err, patients) {
@@ -432,19 +400,5 @@ function ensureAdmin(req, res, next) {
         res.sendStatus(403);
     }
 }
-
-// patientModel.create(testPatient, function (err) {
-//     if (err) {
-//         console.log('Error Inserting New Patient Data');
-//         if (err.name == 'ValidationError') {
-//             for (field in err.errors) {
-//                 console.log(err.errors[field].message);
-//             }
-//         }
-//     } else {
-//         console.log('added to patients collection')
-//     }
-// });
-
 
 module.exports = router;

@@ -25,15 +25,15 @@ const logger = winston.createLogger({
     transports: [
         new winston.transports.Console(),
         new winston.transports.File({
-            filename: 'info.log',
+            filename: './logs/info.log',
             level: 'info'
         }),
         new winston.transports.File({
-            filename: 'errors.log',
+            filename: './logs/errors.log',
             level: 'error'
         }),
         new winston.transports.File({
-            filename: 'warning.log',
+            filename: './logs/warning.log',
             level: 'warning'
         })
     ]
@@ -254,20 +254,5 @@ var testAppointment = {
     start_time: new Date(2018, 2, 21, 16),
     end_time: new Date(2018, 2, 21, 16, 30)
 }
-
-// console.log(testAppointment);
-// appointmentsModel.create(testAppointment, function(err) {
-//     // if (err) return handleError(err)
-//     if (err) {
-//         console.log('Error Inserting New Appointment Data');
-//         if (err.name == 'ValidationError') {
-//             for (field in err.errors) {
-//                 console.log(err.errors[field].message);
-//             }
-//         }
-//     } else {
-//         console.log('added to appointments')
-//     }
-// });
 
 module.exports = router;

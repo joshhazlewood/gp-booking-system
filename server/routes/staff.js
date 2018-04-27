@@ -25,15 +25,15 @@ const logger = winston.createLogger({
     transports: [
         new winston.transports.Console(),
         new winston.transports.File({
-            filename: 'info.log',
+            filename: './logs/info.log',
             level: 'info'
         }),
         new winston.transports.File({
-            filename: 'errors.log',
+            filename: './logs/errors.log',
             level: 'error'
         }),
         new winston.transports.File({
-            filename: 'warning.log',
+            filename: './logs/warning.log',
             level: 'warn'
         })
     ]
@@ -43,14 +43,6 @@ const logger = winston.createLogger({
 // STAFF COLLECTION
 var staffModel = mongoose.model('staff', staffSchema, 'staff');
 
-var testStaff = {
-    // staff_id: 50,
-    forename: 'test',
-    surname: 'admin',
-    staff_role: 'admin',
-    user_name: 'admin@test.com',
-    password: 'test'
-};
 
 router.get('/', function (req, res) {
     staffModel.find({}, function (err, staff) {
@@ -299,18 +291,5 @@ function ensureToken(req, res, next) {
         res.sendStatus(403);
     }
 }
-
-// staffModel.create(testStaff, function(err) {
-//     if (err) {
-//         console.log('Error Inserting New Staff Data');
-//         if (err.name == 'ValidationError') {
-//             for (field in err.errors) {
-//                 console.log(err.errors[field].message);
-//             }
-//         }
-//     } else {
-//         console.log('added to staff collection')
-//     }
-// });
 
 module.exports = router;
