@@ -46,15 +46,15 @@ ng build
 #### MacOS/Linux
 
 ```
-git clone https://github.com/NileDaley/paperless.git
-cd paperless/app
+git clone https://github.com/joshhazlewood/gp-booking-system.git
+cd gp-booking-system
 npm install
 ```
 
 #### Windows
 ```
-git clone https://github.com/NileDaley/paperless.git
-cd paperless\app
+git clone https://github.com/joshhazlewood/gp-booking-system.git
+cd gp-booking-system
 npm install
 ```
 
